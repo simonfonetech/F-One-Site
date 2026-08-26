@@ -50,12 +50,10 @@
         <div class="mega-menu mega-menu--console">
           <div class="mega-console-scanlines" aria-hidden="true"></div>
           <div class="mega-console-top">
-            <span class="mega-console-label">// services</span>
             <div class="mega-tabs mega-console-tabs">
               {% for item in service_items %}
               {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
               <button type="button" class="mega-tab{% if loop.first %} is-active{% endif %}" data-panel="mega-panel-{{ loop.index }}" data-color="{{ meta.color }}" style="--tab-color:{{ meta.color }}">
-                <span class="mega-console-index">{{ "%02d"|format(loop.index) }}</span>
                 {% if meta.icon %}<span class="mega-tab-icon"><img src="{{ meta.icon }}" alt=""></span>{% endif %}
                 <span>{{ item.label }}</span>
               </button>

@@ -270,6 +270,21 @@ p.gb-headline { margin: 0 0 1rem; }
    Tab-switching reuses the same .mega-tab/.mega-panel contract as the
    baseline design, so main.js needs no changes. */
 .mega-services { position: relative; --mega-w: 880px; }
+/* Unifying fix: theme.css ships a global `a:focus { outline: thin
+   dotted; }`, and its (0,1,1) specificity beats any single-class rule of
+   ours, so a plain `.mega-whatever:focus { outline: none }` never
+   actually wins. On top of that, Chromium/WebKit adds its own default
+   tap-highlight on any <a>. Between the two, every link in the dropdown
+   -- cards, child items, CTAs -- shows a stray focus/tap box. Scoping to
+   `.mega-menu a`, the one class every redesign shares, kills it in one
+   place instead of patching each link selector piecemeal. */
+.mega-menu a:focus,
+.mega-menu a:focus-visible,
+.mega-menu a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -324,10 +339,28 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-arrow { display: none; }
 
+/* Stretches the panel to the header's own content width -- from the F One
+   logo to the "Get in touch" button, with a slight 8px overhang past
+   each -- instead of the ~880px box the base .mega-menu anchors under
+   the "Services" link. Same technique as the Floating Cards (8103)
+   redesign: `position: fixed` (not the base rule's absolute, which is
+   relative to .mega-services -- only ~65px wide) with `left`/`right`
+   reusing the header's own `calc(max((100vw - 1100px) / 2, 1rem))`
+   inset, so the panel's edges track the logo and button at any viewport
+   width the same way the header's own padding does. `top: 74px` matches
+   the header's 60px height plus the usual 14px gap. Hover still works
+   unchanged: an ancestor's :hover (and .mega-services's
+   mouseenter/mouseleave in main.js) is driven by DOM containment, not
+   visual position, so a fixed-position descendant still counts. */
 .mega-menu--console {
   flex-direction: column;
   background: linear-gradient(160deg, #ffffff 0%, #f4f7fa 100%);
-  position: absolute;
+  position: fixed;
+  top: 74px;
+  left: calc(max((100vw - 1100px) / 2, 1rem) - 8px);
+  right: calc(max((100vw - 1100px) / 2, 1rem) - 8px);
+  width: auto;
+  max-width: none;
 }
 .mega-console-scanlines {
   position: absolute;
@@ -340,15 +373,6 @@ p.gb-headline { margin: 0 0 1rem; }
   z-index: 1;
   padding: 20px 24px 16px;
   border-bottom: 1px solid rgba(0, 33, 53, .08);
-}
-.mega-console-label {
-  display: block;
-  font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
-  color: var(--primary);
-  font-size: .72rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
 }
 .mega-console-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
 .mega-console-tabs .mega-tab {
@@ -365,13 +389,6 @@ p.gb-headline { margin: 0 0 1rem; }
   font-weight: 600;
   font-size: .82rem;
   transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
-}
-.mega-console-index {
-  font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
-  font-size: .68rem;
-  font-weight: 700;
-  color: var(--tab-color);
-  opacity: .85;
 }
 .mega-tab-icon { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; }
 .mega-tab-icon img { width: 100%; height: 100%; object-fit: contain; }
@@ -396,7 +413,7 @@ p.gb-headline { margin: 0 0 1rem; }
    list, since it's a ul nested in ul.menu regardless of the wrappers in
    between. Without these !important overrides every child link renders
    ~999em off to the left. */
-.mega-console-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px 1.25rem; }
+.mega-console-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; box-shadow: none !important; list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px 1.25rem; }
 .mega-console-panel li { min-width: 0; }
 .mega-console-panel li a {
   display: flex;
@@ -406,7 +423,7 @@ p.gb-headline { margin: 0 0 1rem; }
   margin: 0 -8px;
   border-radius: 8px;
   min-width: 0;
-  color: var(--text-black);
+  color: var(--text-black) !important;
   text-decoration: none;
   font-weight: 500;
   font-size: .85rem;
@@ -418,7 +435,12 @@ p.gb-headline { margin: 0 0 1rem; }
   font-weight: 700;
   flex-shrink: 0;
 }
-.mega-console-panel li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); padding-left: 12px; }
+/* theme.css carries `.main-navigation li:hover > a { color: #f06120; }`
+   (direct-child, not just `a:hover`) which ties this selector on raw
+   specificity -- (0,2,2) either way -- so which one wins came down to
+   source order, and evidently not reliably in our favour. `!important`
+   here and on the base rule above settles it outright. */
+.mega-console-panel li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary) !important; padding-left: 12px; }
 .mega-console-cta {
   display: inline-flex;
   align-items: center;
