@@ -231,6 +231,19 @@ p.gb-headline { margin: 0 0 1rem; }
    after this file -- needs !important to still win. Page-specific
    selector, so this can't leak onto any other page. */
 .gb-container-60ee8c42 { background-color: var(--service-accent, #CC289C) !important; }
+/* Same section also has a decorative wave shape (SVG fill via currentColor)
+   hardcoded pink in 215.css -- that's the pink still visible behind/around
+   the blue container. Scoped to this exact shape only. */
+.gb-container-60ee8c42 > .gb-shapes .gb-shape-2 { color: var(--service-accent, #CC289C) !important; }
+/* Its "Find out more" button also has hardcoded pink text
+   (a.gb-button-1cbae936 in 215.css). Scoped to this one button. */
+a.gb-button-1cbae936 { color: var(--service-accent, #CC289C) !important; }
+
+/* "The Basics" heading on the Cloud Phone Systems page uses the WP
+   "black" text preset (brand.css: .has-text-black-color, !important),
+   so it needs an equally-important, more specific override. Scoped to
+   this one headline instance -- doesn't touch black text anywhere else. */
+.gb-headline-cf36339f .has-text-black-color { color: var(--service-accent, #004269) !important; }
 
 /* ---------- responsive visibility ---------- */
 @media (max-width: 767px) { .hide-on-mobile { display: none !important; } }
