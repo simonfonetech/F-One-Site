@@ -325,7 +325,7 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-arrow { display: none; }
 
 .mega-menu--floating {
-  background: linear-gradient(160deg, rgba(11, 21, 36, .96), rgba(6, 11, 20, .98));
+  background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%);
   padding: 22px;
   overflow: visible;
 }
@@ -333,8 +333,8 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-float-card {
   flex: 1 1 0;
   min-width: 0;
-  background: rgba(255, 255, 255, .045);
-  border: 1px solid rgba(255, 255, 255, .1);
+  background: rgba(0, 33, 53, .025);
+  border: 1px solid rgba(0, 33, 53, .08);
   border-radius: 16px;
   position: relative;
   overflow: hidden;
@@ -355,9 +355,9 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-float-card:hover,
 .mega-float-card:focus-within {
   flex-grow: 1.35;
-  background: rgba(255, 255, 255, .07);
-  border-color: rgba(255, 255, 255, .2);
-  box-shadow: 0 18px 36px -14px rgba(0, 0, 0, .55);
+  background: var(--text-white);
+  border-color: rgba(0, 33, 53, .16);
+  box-shadow: 0 18px 36px -14px rgba(0, 33, 53, .28);
   transform: translateY(-3px);
 }
 .mega-float-card:hover::before,
@@ -377,7 +377,7 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-float-icon { display: flex; width: 30px; height: 30px; flex-shrink: 0; }
 .mega-float-icon img { width: 100%; height: 100%; object-fit: contain; }
-.mega-float-title { flex: 1; min-width: 0; color: var(--text-white); font-weight: 700; font-size: .88rem; line-height: 1.25; }
+.mega-float-title { flex: 1; min-width: 0; color: var(--secondary); font-weight: 700; font-size: .88rem; line-height: 1.25; }
 .mega-float-chevron {
   color: var(--card-color);
   flex-shrink: 0;
@@ -412,7 +412,7 @@ p.gb-headline { margin: 0 0 1rem; }
   list-style: none;
   margin: 0;
   padding: 10px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(0, 33, 53, .08);
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -421,13 +421,13 @@ p.gb-headline { margin: 0 0 1rem; }
   display: block;
   padding: 6px 4px;
   border-radius: 6px;
-  color: rgba(255, 255, 255, .62);
+  color: var(--text-black);
   text-decoration: none;
   font-size: .78rem;
   font-weight: 500;
   transition: background-color .15s ease, color .15s ease, padding-left .15s ease;
 }
-.mega-float-drop li a:hover { background: rgba(255, 255, 255, .07); color: var(--text-white); padding-left: 9px; }
+.mega-float-drop li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); padding-left: 9px; }
 .mega-float-cta {
   display: inline-flex;
   align-items: center;
