@@ -269,6 +269,21 @@ p.gb-headline { margin: 0 0 1rem; }
    service, replacing the old tabs+panel split. Every service is visible at
    once, so there is no tab-switching JS to wire up here. */
 .mega-services { position: relative; --mega-w: 940px; }
+/* Unifying fix: theme.css ships a global `a:focus { outline: thin
+   dotted; }`, and its (0,1,1) specificity beats any single-class rule of
+   ours, so a plain `.mega-whatever:focus { outline: none }` never
+   actually wins. On top of that, Chromium/WebKit adds its own default
+   tap-highlight on any <a>. Between the two, every link in the dropdown
+   -- cards, child items, CTAs -- shows a stray focus/tap box. Scoping to
+   `.mega-menu a`, the one class every redesign shares, kills it in one
+   place instead of patching each link selector piecemeal. */
+.mega-menu a:focus,
+.mega-menu a:focus-visible,
+.mega-menu a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -414,7 +429,7 @@ p.gb-headline { margin: 0 0 1rem; }
    list, since it's a ul nested in ul.menu regardless of the wrappers in
    between. Without these !important overrides every child link renders
    ~999em off to the left. */
-.mega-bento-card ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.mega-bento-card ul { position: static !important; left: auto !important; top: auto !important; float: none !important; box-shadow: none !important; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
 .mega-bento-card li {
   font-size: .74rem;
   color: rgba(54, 54, 54, .65);
