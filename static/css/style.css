@@ -265,7 +265,7 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .main-navigation ul.menu > li:hover > a { font-weight: 700; }
 .main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
-/* Services mega-menu -- "Neon Bento": a dark glass card grid, one card per
+/* Services mega-menu -- "Neon Bento": a light glass card grid, one card per
    service, replacing the old tabs+panel split. Every service is visible at
    once, so there is no tab-switching JS to wire up here. */
 .mega-services { position: relative; --mega-w: 940px; }
@@ -325,10 +325,10 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-menu--bento {
   flex-direction: column;
   padding: 1.75rem 2rem 2rem;
-  background: radial-gradient(1200px 500px at -10% -40%, rgba(240, 97, 32, .18), transparent 60%),
-              radial-gradient(900px 400px at 110% 120%, rgba(118, 192, 255, .16), transparent 55%),
-              linear-gradient(180deg, #0b1626 0%, #071019 100%);
-  box-shadow: 0 32px 64px -16px rgba(0, 8, 16, .55), 0 0 0 1px rgba(255, 255, 255, .06);
+  background: radial-gradient(1200px 500px at -10% -40%, rgba(240, 97, 32, .09), transparent 60%),
+              radial-gradient(900px 400px at 110% 120%, rgba(118, 192, 255, .12), transparent 55%),
+              linear-gradient(180deg, #ffffff 0%, #f6f9fb 100%);
+  box-shadow: 0 24px 48px -12px rgba(0, 33, 53, .28), 0 0 0 1px rgba(0, 33, 53, .04);
   position: absolute;
 }
 .mega-bento-glow {
@@ -336,8 +336,8 @@ p.gb-headline { margin: 0 0 1rem; }
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+    linear-gradient(rgba(0, 33, 53, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 33, 53, .05) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: radial-gradient(circle at 20% 0%, black, transparent 70%);
 }
@@ -355,7 +355,7 @@ p.gb-headline { margin: 0 0 1rem; }
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.mega-bento-head h3 { margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--text-white); }
+.mega-bento-head h3 { margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--secondary); }
 .mega-bento-grid {
   position: relative;
   z-index: 1;
@@ -367,8 +367,8 @@ p.gb-headline { margin: 0 0 1rem; }
   position: relative;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, .04);
-  border: 1px solid rgba(255, 255, 255, .09);
+  background: rgba(0, 33, 53, .025);
+  border: 1px solid rgba(0, 33, 53, .08);
   border-radius: 16px;
   padding: 16px;
   text-decoration: none;
@@ -390,9 +390,9 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-bento-card:hover,
 .mega-bento-card:focus-visible {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, .065);
-  border-color: rgba(255, 255, 255, .18);
-  box-shadow: 0 16px 32px -12px rgba(0, 0, 0, .5);
+  background: var(--text-white);
+  border-color: rgba(0, 33, 53, .14);
+  box-shadow: 0 16px 32px -12px rgba(0, 33, 53, .22);
 }
 .mega-bento-card:hover::before,
 .mega-bento-card:focus-visible::before { transform: scaleX(1); }
@@ -407,7 +407,7 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-bento-card:hover .mega-bento-arrow,
 .mega-bento-card:focus-visible .mega-bento-arrow { opacity: 1; transform: translate(0, 0); }
-.mega-bento-card h4 { margin: 12px 0 8px; font-size: .92rem; font-weight: 700; color: var(--text-white); }
+.mega-bento-card h4 { margin: 12px 0 8px; font-size: .92rem; font-weight: 700; color: var(--secondary); }
 /* theme.css's `.main-navigation ul ul { position:absolute; left:-999em; }`
    (the WP default that hides a submenu off-canvas until hovered directly)
    outranks a plain class selector on specificity and still catches this
@@ -417,7 +417,7 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-bento-card ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
 .mega-bento-card li {
   font-size: .74rem;
-  color: rgba(255, 255, 255, .5);
+  color: rgba(54, 54, 54, .65);
   line-height: 1.35;
   padding-left: 10px;
   position: relative;
