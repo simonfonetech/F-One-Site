@@ -266,10 +266,12 @@ p.gb-headline { margin: 0 0 1rem; }
 .main-navigation ul.menu > li:hover > a { font-weight: 700; }
 .main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
 /* Services mega-menu -- "Spotlight Split": a narrow icon rail on the left
-   drives which service is "spotlit" on the right, inside a large glowing
-   gradient panel. Tab-switching reuses the same .mega-tab/.mega-panel
-   contract as the baseline design, so main.js needs no changes. */
-.mega-services { position: relative; --mega-w: 1020px; }
+   jumps (via real #anchors, no JS) to a big glowing gradient section on the
+   right. Every service's full sub-link list is expanded and stacked in one
+   scrollable column, not hidden behind tabs -- the rail is a quick-jump
+   index, not a show/hide switch. main.js's hover-highlight for .mega-tab
+   still runs and is harmless; it just re-labels which rail item glows. */
+.mega-services { position: relative; --mega-w: 1160px; }
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -324,6 +326,8 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-arrow { display: none; }
 
+.mega-menu--spotlight { align-items: flex-start; }
+
 .mega-rail {
   display: flex;
   flex-direction: column;
@@ -347,6 +351,7 @@ p.gb-headline { margin: 0 0 1rem; }
   background: transparent;
   padding: 12px 14px;
   text-align: left;
+  text-decoration: none;
   font-family: inherit;
   color: var(--text-black);
   font-weight: 700;
@@ -387,15 +392,40 @@ p.gb-headline { margin: 0 0 1rem; }
 
 .mega-spotlight-panels {
   flex: 1;
+  min-width: 0;
   position: relative;
   background: linear-gradient(160deg, #ffffff 0%, #f6f9fb 100%);
 }
-.mega-spotlight-panel { display: none; padding: 1.9rem 2.1rem 1.75rem; position: relative; overflow: hidden; }
-.mega-spotlight-panel.is-active { display: block; animation: megaFadeIn .28s ease; }
-@keyframes megaFadeIn {
-  from { opacity: 0; transform: translateX(6px); }
-  to { opacity: 1; transform: translateX(0); }
+.mega-spotlight-intro { position: relative; z-index: 1; padding: 1.6rem 2.1rem 0; }
+.mega-spotlight-eyebrow {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
+.mega-spotlight-intro h3 { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--secondary); letter-spacing: -.01em; }
+
+/* Every service is expanded and stacked here -- no tab hides the others --
+   so the column scrolls internally rather than pushing the whole menu (and
+   the page beneath it) to an unbounded height. */
+.mega-spotlight-scroll {
+  position: relative;
+  z-index: 1;
+  max-height: min(560px, calc(100vh - 180px));
+  overflow-y: auto;
+  padding: 1.1rem 2.1rem 1.6rem;
+  scroll-behavior: smooth;
+}
+.mega-spotlight-scroll::-webkit-scrollbar { width: 8px; }
+.mega-spotlight-scroll::-webkit-scrollbar-track { background: transparent; }
+.mega-spotlight-scroll::-webkit-scrollbar-thumb { background: rgba(0, 33, 53, .15); border-radius: 8px; }
+
+.mega-spotlight-panel { position: relative; overflow: hidden; padding: 20px 0; scroll-margin-top: 8px; }
+.mega-spotlight-panel:first-child { padding-top: 4px; }
+.mega-spotlight-panel + .mega-spotlight-panel { border-top: 1px solid rgba(0, 33, 53, .08); }
 .mega-spotlight-blob {
   position: absolute;
   top: -90px;
@@ -411,15 +441,17 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-spotlight-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: .75rem;
   position: relative;
   z-index: 1;
-  padding-bottom: 16px;
-  margin-bottom: 14px;
+  padding-bottom: 14px;
+  margin-bottom: 12px;
   border-bottom: 2px solid var(--tab-color);
 }
-.mega-spotlight-head h3 { margin: 0; font-size: 1.55rem; font-weight: 800; color: var(--secondary); letter-spacing: -.01em; }
+.mega-spotlight-head-icon { display: flex; width: 28px; height: 28px; flex-shrink: 0; }
+.mega-spotlight-head-icon img { width: 100%; height: 100%; object-fit: contain; }
+.mega-spotlight-head h4 { flex: 1; min-width: 0; margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--secondary); letter-spacing: -.01em; }
+.mega-spotlight-panel:target .mega-spotlight-head h4 { text-decoration: underline; text-decoration-color: var(--tab-color); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .mega-spotlight-cta {
   display: inline-flex;
   align-items: center;
