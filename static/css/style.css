@@ -392,7 +392,13 @@ p.gb-headline { margin: 0 0 1rem; }
   from { opacity: 0; transform: translateX(6px); }
   to { opacity: 1; transform: translateX(0); }
 }
-.mega-console-panel ul { list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px 1.25rem; }
+/* theme.css's `.main-navigation ul ul { position:absolute; left:-999em; }`
+   (the WP default that hides a submenu off-canvas until hovered directly)
+   outranks a plain class selector on specificity and still catches this
+   list, since it's a ul nested in ul.menu regardless of the wrappers in
+   between. Without these !important overrides every child link renders
+   ~999em off to the left. */
+.mega-console-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px 1.25rem; }
 .mega-console-panel li { min-width: 0; }
 .mega-console-panel li a {
   display: flex;
