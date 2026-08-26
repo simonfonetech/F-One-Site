@@ -26,6 +26,19 @@ OUTPUT_DIR = os.path.join(ROOT, 'output')
 
 POSTS_PER_PAGE = 9
 
+# Per-service accent colour for the header banner (phone number, "Get in
+# touch" button) and the floating socials rail, keyed by page slug. Matches
+# the colours already used for each service in the mega-menu's icon_map.
+# Every other page has no entry, so page_theme_color is None and the
+# banner/socials fall back to their normal site-wide orange.
+SERVICE_ACCENTS = {
+    'cloud-phone-systems':   'var(--blue)',
+    'internet-connectivity': 'var(--primary)',
+    'wifi-and-networking':   'var(--yellow)',
+    'mobile-sim-plans':      'var(--green)',
+    'it-essentials':         'var(--purple)',
+}
+
 FRONTMATTER_RE = re.compile(r'\A---\n(.*?)\n---\n?', re.DOTALL)
 
 
@@ -118,6 +131,7 @@ def main():
             og_image=p.get('featured_image'),
             content=p['_body'],
             generated_css=generated_css_path(p.get('post_id')),
+            page_theme_color=SERVICE_ACCENTS.get(slug),
         ))
         write_file(path + 'index.html', html)
         urls.append(path)

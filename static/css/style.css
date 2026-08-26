@@ -265,14 +265,44 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .main-navigation ul.menu > li:hover > a { font-weight: 700; }
 .main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
-/* Services mega-menu: left colored category tabs, right sub-item panel */
-/* One width for the panel and its hover bridge, so they can never drift apart.
-   980px is measured, not guessed: the tabs column is 250px and the panel has
-   56px of horizontal padding, leaving 674px of grid. IT Essentials is the
-   widest section and needs 663px for its two columns ("Remote Monitoring and
-   Management (RMM)" at 342px beside "Cyber Essentials Certification Support"),
-   which used to overflow the old 740px panel by 229px and get clipped. */
-.mega-services { position: relative; --mega-w: 980px; }
+/* Services mega-menu -- "Spotlight Split": a narrow icon rail on the left;
+   clicking/hovering a rail item swaps the right-hand panel to that
+   service's child links, exactly like the 8099 baseline's tab switching
+   (same .mega-tab/.mega-panel contract, so main.js needs no changes). The
+   category name only appears once, in the rail -- the panel itself is just
+   the "View all" link + that service's children, not a repeat of the
+   heading. Full tree:
+
+   Services > Cloud Phone Systems > Phone System Basics
+   Services > Cloud Phone Systems > Hardware
+   Services > Cloud Phone Systems > Mobile & PC Apps
+   Services > Cloud Phone Systems > SmartVoice Messaging
+   Services > Cloud Phone Systems > Smarter Calls with AI
+   Services > Cloud Phone Systems > Call Reporting
+   Services > Cloud Phone Systems > CRM Integration
+   Services > Cloud Phone Systems > WhatsApp for Business
+   Services > Cloud Phone Systems > Easy System Management
+   Services > Internet Connectivity > Superfast FTTP
+   Services > Internet Connectivity > Satellite Broadband
+   Services > Internet Connectivity > Dedicated Ethernet
+   Services > Internet Connectivity > Mobile Broadband
+   Services > WiFi & Networking > Mesh Networking
+   Services > WiFi & Networking > Full Site Coverage
+   Services > WiFi & Networking > Network Support
+   Services > WiFi & Networking > Social Wifi
+   Services > WiFi & Networking > Omada Network Manager
+   Services > Mobile SIM Plans > Nationwide Coverage
+   Services > Mobile SIM Plans > Flexible Contracts
+   Services > Mobile SIM Plans > Mobile Broadband
+   Services > IT Essentials > Microsoft 365 License Management
+   Services > IT Essentials > Email Security
+   Services > IT Essentials > Endpoint Detection & Response (EDR)
+   Services > IT Essentials > Backup for Microsoft 365
+   Services > IT Essentials > Remote Monitoring and Management (RMM)
+   Services > IT Essentials > Security Awareness Training
+   Services > IT Essentials > Password Manager
+   Services > IT Essentials > Cyber Essentials Certification Support */
+.mega-services { position: relative; --mega-w: 1020px; }
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -300,7 +330,7 @@ p.gb-headline { margin: 0 0 1rem; }
   width: var(--mega-w);
   max-width: calc(100vw - 2rem);
   background: var(--text-white);
-  border-radius: 20px;
+  border-radius: 24px;
   box-shadow: 0 24px 48px -12px rgba(0, 33, 53, .28), 0 0 0 1px rgba(0, 33, 53, .04);
   z-index: 50;
   overflow: hidden;
@@ -325,42 +355,52 @@ p.gb-headline { margin: 0 0 1rem; }
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
-.mega-arrow {
-  position: absolute;
-  top: -7px;
-  left: 2.5rem;
-  width: 16px;
-  height: 16px;
-  background: var(--text-white);
-  transform: rotate(45deg);
-  border-radius: 3px 0 0 0;
-  box-shadow: -2px -2px 4px rgba(0, 33, 53, .03);
-}
-.mega-tabs {
+.mega-arrow { display: none; }
+
+.mega-menu--spotlight { align-items: flex-start; }
+
+.mega-rail {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 250px;
+  width: 230px;
   flex-shrink: 0;
-  padding: 1rem;
-  background: linear-gradient(180deg, rgba(0,66,105,.04), rgba(0,66,105,0));
+  padding: 1.25rem .75rem;
+  background: linear-gradient(180deg, rgba(0,66,105,.05), rgba(0,66,105,0));
+  border-right: 1px solid rgba(0, 33, 53, .07);
   position: relative;
   z-index: 1;
 }
-.mega-tab {
+.mega-rail .mega-tab {
   display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
   background: transparent;
-  padding: 11px 12px;
+  padding: 12px 14px;
   text-align: left;
+  text-decoration: none;
   font-family: inherit;
   color: var(--text-black);
-  transition: background-color .18s ease, transform .18s ease;
+  font-weight: 700;
+  font-size: .88rem;
+  position: relative;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.mega-rail .mega-tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--tab-color);
+  transform: scaleY(0);
+  transition: transform .2s ease;
 }
 /* The service icons are full-colour artwork (coloured diamond + white symbol),
    so they sit on their own -- no tinted tile behind them and no filter, which
@@ -369,42 +409,58 @@ p.gb-headline { margin: 0 0 1rem; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
-  transition: transform .18s ease;
+  transition: transform .2s ease;
 }
 .mega-tab-icon img { width: 100%; height: 100%; object-fit: contain; }
-.mega-tab span:not(.mega-tab-icon) { font-weight: 700; font-size: .93rem; flex: 1; }
-.mega-tab-chevron { color: var(--tab-color); opacity: 0; transform: translateX(-4px); transition: opacity .18s ease, transform .18s ease; }
-.mega-tab:hover { background: rgba(0, 33, 53, .045); }
-.mega-tab.is-active { background: rgba(0, 33, 53, .06); }
-.mega-tab:hover .mega-tab-icon, .mega-tab.is-active .mega-tab-icon { transform: scale(1.08) rotate(-4deg); }
-.mega-tab:hover .mega-tab-chevron, .mega-tab.is-active .mega-tab-chevron { opacity: 1; transform: translateX(0); }
-.mega-panels {
+.mega-rail .mega-tab:hover { background: rgba(0, 33, 53, .045); transform: translateX(2px); }
+.mega-rail .mega-tab.is-active { background: rgba(0, 33, 53, .06); }
+.mega-rail .mega-tab.is-active::before { transform: scaleY(1); }
+.mega-rail .mega-tab:hover .mega-tab-icon,
+.mega-rail .mega-tab.is-active .mega-tab-icon { transform: scale(1.1) rotate(-4deg); }
+
+.mega-spotlight-panels {
   flex: 1;
-  padding: 1.75rem 1.75rem 1.5rem;
+  min-width: 0;
   position: relative;
+  background: linear-gradient(160deg, #ffffff 0%, #f6f9fb 100%);
 }
-.mega-panel { display: none; }
-.mega-panel.is-active { display: block; animation: megaFadeIn .28s ease; }
+.mega-spotlight-panel { display: none; padding: 1.9rem 2.1rem 1.75rem; position: relative; overflow: hidden; }
+.mega-spotlight-panel.is-active { display: block; animation: megaFadeIn .28s ease; }
 @keyframes megaFadeIn {
   from { opacity: 0; transform: translateX(6px); }
   to { opacity: 1; transform: translateX(0); }
 }
-.mega-panel-head {
+.mega-spotlight-blob {
+  position: absolute;
+  top: -90px;
+  right: -70px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--tab-color) 0%, transparent 68%);
+  opacity: .3;
+  pointer-events: none;
+  z-index: 0;
+}
+/* No repeated heading here -- the rail item you clicked already names the
+   service, so the panel is just its "View all" link plus its children. */
+.mega-spotlight-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  margin-bottom: 10px;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 14px;
+  margin-bottom: 12px;
   border-bottom: 2px solid var(--tab-color);
 }
-.mega-panel-head h3 { margin: 0; font-size: 1.05rem; color: var(--secondary); }
-.mega-view-all {
+.mega-spotlight-cta {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  flex-shrink: 0;
   color: var(--tab-color);
   text-decoration: none;
   font-weight: 700;
@@ -412,16 +468,22 @@ p.gb-headline { margin: 0 0 1rem; }
   white-space: nowrap;
   transition: gap .18s ease;
 }
-.mega-view-all svg { transition: transform .18s ease; }
-.mega-view-all:hover { gap: 8px; }
-.mega-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
-.mega-panel li a {
+.mega-spotlight-cta svg { transition: transform .18s ease; }
+.mega-spotlight-cta:hover { gap: 8px; }
+/* theme.css's `.main-navigation ul ul { position:absolute; left:-999em; }` --
+   the WP default that hides a submenu off-canvas until its parent <li> is
+   hovered directly -- outranks a plain `.mega-spotlight-panel ul` selector
+   on specificity and catches this list too, since it's still a ul nested in
+   ul.menu. Needs the same !important overrides the baseline's `.mega-panel
+   ul` used, or every child link renders ~999em off to the left. */
+.mega-spotlight-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
+.mega-spotlight-panel li a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 8px;
-  margin: 0 -8px;
-  border-radius: 8px;
+  padding: 9px 10px;
+  margin: 0 -10px;
+  border-radius: 10px;
   color: var(--text-black);
   text-decoration: none;
   font-weight: 600;
@@ -433,27 +495,33 @@ p.gb-headline { margin: 0 0 1rem; }
    column past the panel edge, where overflow:hidden clipped it. Allowing both to
    shrink means a label too long for the space wraps onto a second line rather
    than disappearing, on any viewport. */
-.mega-panel li { min-width: 0; }
-.mega-panel li a { min-width: 0; }
-.mega-panel li a svg { flex-shrink: 0; color: var(--tab-color); transition: transform .15s ease; }
-.mega-panel li a:hover { background: rgba(0, 33, 53, .05); color: var(--secondary); padding-left: 12px; }
-.mega-panel li a:hover svg { transform: translateX(2px); }
+.mega-spotlight-panel li { min-width: 0; }
+.mega-spotlight-panel li a { min-width: 0; }
+.mega-spotlight-panel li a svg { flex-shrink: 0; color: var(--tab-color); transition: transform .15s ease; }
+.mega-spotlight-panel li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); padding-left: 14px; }
+.mega-spotlight-panel li a:hover svg { transform: translateX(2px); }
 .site-contact { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin-left: 1.5rem; }
 /* Live wraps the number in a grey span but the visible text is the link
    inside it, which picks up the theme's orange `a` colour at 14px/400.
-   The 16px gap on .site-contact already matches live's padding-right. */
+   The 16px gap on .site-contact already matches live's padding-right.
+
+   `--service-accent` is set inline on <body> only for the 5 service
+   pages (build.py's SERVICE_ACCENTS), so var(...,fallback) makes every
+   other page fall straight through to the normal site-wide colour. */
 .site-phone-number {
   font-weight: 400;
   font-size: 14px;
-  color: var(--brand-link);
+  color: var(--service-accent, var(--brand-link));
   text-decoration: none;
   white-space: nowrap;
 }
 /* theme.css pins radius/padding/background with !important, matching live;
-   only the weight needs stating here (live renders this button at 300). */
+   only the weight needs stating here (live renders this button at 300).
+   background-color needs !important of its own now too, to beat
+   theme.css's own #f06120 !important on the same property. */
 .gb-button-wrapper a {
   display: inline-flex;
-  background-color: var(--brand-btn-bg);
+  background-color: var(--service-accent, var(--brand-btn-bg)) !important;
   color: var(--brand-btn-text);
   text-decoration: none;
   font-weight: 300;
@@ -462,6 +530,11 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .gb-button-wrapper a:hover { background-color: var(--brand-btn-bg-hover); }
 .menu-toggle { display: none; cursor: pointer; background: none; border: none; }
+/* theme.css sets the floating socials rail to a flat #f06120; overridden
+   here (loads after theme.css) so it also picks up --service-accent on
+   the 5 service pages, matching the phone number and "Get in touch"
+   button above. */
+.f-one-social-buttons { background-color: var(--service-accent, #f06120); }
 
 @media (max-width: 991px) {
   .site-header { padding: 0 1rem; }

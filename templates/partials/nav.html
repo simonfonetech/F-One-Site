@@ -47,25 +47,23 @@
     <ul id="primary-menu" class="menu nav-menu">
       <li class="menu-item menu-item-has-children mega-services">
         <a href="#">Services</a>
-        <div class="mega-menu">
-          <div class="mega-arrow"></div>
-          <div class="mega-tabs">
+        <div class="mega-menu mega-menu--spotlight">
+          <div class="mega-tabs mega-rail">
             {% for item in service_items %}
             {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
             <button type="button" class="mega-tab{% if loop.first %} is-active{% endif %}" data-panel="mega-panel-{{ loop.index }}" data-color="{{ meta.color }}" style="--tab-color:{{ meta.color }}">
               {% if meta.icon %}<span class="mega-tab-icon"><img src="{{ meta.icon }}" alt=""></span>{% endif %}
               <span>{{ item.label }}</span>
-              <svg class="mega-tab-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             {% endfor %}
           </div>
-          <div class="mega-panels">
+          <div class="mega-panels mega-spotlight-panels">
             {% for item in service_items %}
             {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
-            <div class="mega-panel{% if loop.first %} is-active{% endif %}" id="mega-panel-{{ loop.index }}" style="--tab-color:{{ meta.color }}">
-              <div class="mega-panel-head">
-                <h3>{{ item.label }}</h3>
-                <a class="mega-view-all" href="{{ item.url }}">View all<svg viewBox="0 0 24 24" width="13" height="13"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <div class="mega-panel mega-spotlight-panel{% if loop.first %} is-active{% endif %}" id="mega-panel-{{ loop.index }}" style="--tab-color:{{ meta.color }}">
+              <div class="mega-spotlight-blob" aria-hidden="true"></div>
+              <div class="mega-spotlight-head">
+                <a class="mega-spotlight-cta" href="{{ item.url }}">View all<svg viewBox="0 0 24 24" width="13" height="13"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
               </div>
               <ul>
                 {% for child in item.children %}
