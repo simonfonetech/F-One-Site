@@ -324,7 +324,25 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-arrow { display: none; }
 
+/* Stretches the panel to the header's own content width -- from the F One
+   logo to the right edge of "Get in touch" -- instead of the ~980px box
+   the base .mega-menu anchors under the "Services" link. That needs
+   `position: fixed` (not the base rule's absolute, which is relative to
+   .mega-services -- only ~65px wide and nowhere near centred): `left`/
+   `right` reuse the header's own `calc(max((100vw - 1100px) / 2, 1rem))`
+   inset, so the panel's edges track the logo and button at any viewport
+   width the same way the header's own padding does. `top: 74px` matches
+   the header's 60px height plus the usual 14px gap.
+   Hover still works unchanged: an ancestor's :hover (and .mega-services's
+   mouseenter/mouseleave in main.js) is driven by DOM containment, not
+   visual position, so a fixed-position descendant still counts. */
 .mega-menu--floating {
+  position: fixed;
+  top: 74px;
+  left: calc(max((100vw - 1100px) / 2, 1rem));
+  right: calc(max((100vw - 1100px) / 2, 1rem));
+  width: auto;
+  max-width: none;
   background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%);
   padding: 22px;
   overflow: visible;
