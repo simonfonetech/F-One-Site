@@ -596,23 +596,6 @@ a.gb-button-1cbae936 { color: var(--service-accent, #CC289C) !important; }
    the 5 service pages, matching the phone number and "Get in touch"
    button above. */
 .f-one-social-buttons { background-color: var(--service-accent, #f06120); }
-/* Each icon sits on its own white circle (theme.css: .f-one-social-buttons
-   a { background:#fff }) with its own multi-colour brand SVG on top
-   (Google, Instagram, YouTube red, etc.) -- neither picks up the rail's
-   tint, so the rail reads as a mismatched colour jumble on a themed page.
-   Recolour the circle to the service accent and flatten the (previously
-   colourful) glyph to solid white with it, so every icon becomes one
-   consistent accent-circle-with-white-mark, matching the rest of the
-   page's white-on-accent buttons. Scoped to the 5 service pages via
-   body.page-themed; everywhere else the rail keeps its original look.
-   The "Book a Demo" circle is a real staff photo, not a platform icon,
-   so it's excluded by alt text. */
-body.page-themed .f-one-social-buttons a:not(:has(img[alt="Book-demo"])) {
-  background: var(--service-accent, #fff);
-}
-body.page-themed .f-one-social-buttons img:not([alt="Book-demo"]) {
-  filter: brightness(0) invert(1);
-}
 .menu-toggle { display: none; cursor: pointer; background: none; border: none; }
 
 @media (max-width: 991px) {
@@ -725,7 +708,7 @@ body.page-themed .f-one-social-buttons img:not([alt="Book-demo"]) {
 .footer-columns a:hover { opacity: 1; text-decoration: underline; }
 /* contact rows carry an <ion-icon> beside the link, as on live */
 .footer-contact li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
-.footer-contact ion-icon { color: var(--primary); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.footer-contact ion-icon { color: var(--service-accent, var(--primary)); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
 .footer-contact span { min-width: 0; }
 /* Live closes with one centred 12px legal line above a hairline rule */
 .footer-bottom {
