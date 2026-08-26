@@ -348,11 +348,16 @@ p.gb-headline { margin: 0 0 1rem; }
   overflow: visible;
 }
 .mega-float-row { display: flex; gap: 12px; align-items: flex-start; width: 100%; }
+/* No visible box at rest -- just the icon and label floating on the panel
+   background. The border/background only appear on hover/focus, so the
+   "card" reads as a plain row of items until one is interacting; the
+   1px transparent border keeps the box the same size on hover instead
+   of the content nudging as a real border appears. */
 .mega-float-card {
   flex: 1 1 0;
   min-width: 0;
-  background: rgba(0, 33, 53, .025);
-  border: 1px solid rgba(0, 33, 53, .08);
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: 16px;
   position: relative;
   overflow: hidden;
