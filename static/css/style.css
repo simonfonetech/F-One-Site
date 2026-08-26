@@ -215,6 +215,22 @@ p.gb-headline { margin: 0 0 1rem; }
 .wp-contact-form input[type="range"] { padding: 0; accent-color: var(--primary); }
 .wp-contact-form output { font-weight: 700; color: var(--text-white); }
 .form-note { font-size: .78rem; opacity: .8; margin-top: 8px; color: var(--text-white); }
+/* theme.css's generic `button { background: #f06120; border-color:
+   #f06120; }` (element selector, very low specificity) is what colours
+   the contact form's "Send" button. Scoping to .wp-contact-form easily
+   outranks it, and var(--service-accent, ...) means it only actually
+   changes colour on the 5 themed service pages -- everywhere else
+   (including /contact-us/ itself) keeps the original orange. */
+.wp-contact-form button[type="submit"] {
+  background: var(--service-accent, #f06120);
+  border-color: var(--service-accent, #f06120);
+}
+/* The "Customisable On-Hold Marketing Messages" (SmartVoice) section on
+   the Cloud Phone Systems page is hardcoded pink in its own per-page
+   generated stylesheet (static/css/generated/215.css), which loads
+   after this file -- needs !important to still win. Page-specific
+   selector, so this can't leak onto any other page. */
+.gb-container-60ee8c42 { background-color: var(--service-accent, #CC289C) !important; }
 
 /* ---------- responsive visibility ---------- */
 @media (max-width: 767px) { .hide-on-mobile { display: none !important; } }
