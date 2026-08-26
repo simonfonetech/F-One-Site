@@ -470,7 +470,13 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-spotlight-cta svg { transition: transform .18s ease; }
 .mega-spotlight-cta:hover { gap: 8px; }
-.mega-spotlight-panel ul { position: relative; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
+/* theme.css's `.main-navigation ul ul { position:absolute; left:-999em; }` --
+   the WP default that hides a submenu off-canvas until its parent <li> is
+   hovered directly -- outranks a plain `.mega-spotlight-panel ul` selector
+   on specificity and catches this list too, since it's still a ul nested in
+   ul.menu. Needs the same !important overrides the baseline's `.mega-panel
+   ul` used, or every child link renders ~999em off to the left. */
+.mega-spotlight-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
 .mega-spotlight-panel li a {
   display: flex;
   align-items: center;
