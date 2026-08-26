@@ -265,13 +265,44 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .main-navigation ul.menu > li:hover > a { font-weight: 700; }
 .main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
-/* Services mega-menu -- "Spotlight Split": a narrow icon rail on the left
-   jumps (via real #anchors, no JS) to a big glowing gradient section on the
-   right. Every service's full sub-link list is expanded and stacked in one
-   scrollable column, not hidden behind tabs -- the rail is a quick-jump
-   index, not a show/hide switch. main.js's hover-highlight for .mega-tab
-   still runs and is harmless; it just re-labels which rail item glows. */
-.mega-services { position: relative; --mega-w: 1160px; }
+/* Services mega-menu -- "Spotlight Split": a narrow icon rail on the left;
+   clicking/hovering a rail item swaps the right-hand panel to that
+   service's child links, exactly like the 8099 baseline's tab switching
+   (same .mega-tab/.mega-panel contract, so main.js needs no changes). The
+   category name only appears once, in the rail -- the panel itself is just
+   the "View all" link + that service's children, not a repeat of the
+   heading. Full tree:
+
+   Services > Cloud Phone Systems > Phone System Basics
+   Services > Cloud Phone Systems > Hardware
+   Services > Cloud Phone Systems > Mobile & PC Apps
+   Services > Cloud Phone Systems > SmartVoice Messaging
+   Services > Cloud Phone Systems > Smarter Calls with AI
+   Services > Cloud Phone Systems > Call Reporting
+   Services > Cloud Phone Systems > CRM Integration
+   Services > Cloud Phone Systems > WhatsApp for Business
+   Services > Cloud Phone Systems > Easy System Management
+   Services > Internet Connectivity > Superfast FTTP
+   Services > Internet Connectivity > Satellite Broadband
+   Services > Internet Connectivity > Dedicated Ethernet
+   Services > Internet Connectivity > Mobile Broadband
+   Services > WiFi & Networking > Mesh Networking
+   Services > WiFi & Networking > Full Site Coverage
+   Services > WiFi & Networking > Network Support
+   Services > WiFi & Networking > Social Wifi
+   Services > WiFi & Networking > Omada Network Manager
+   Services > Mobile SIM Plans > Nationwide Coverage
+   Services > Mobile SIM Plans > Flexible Contracts
+   Services > Mobile SIM Plans > Mobile Broadband
+   Services > IT Essentials > Microsoft 365 License Management
+   Services > IT Essentials > Email Security
+   Services > IT Essentials > Endpoint Detection & Response (EDR)
+   Services > IT Essentials > Backup for Microsoft 365
+   Services > IT Essentials > Remote Monitoring and Management (RMM)
+   Services > IT Essentials > Security Awareness Training
+   Services > IT Essentials > Password Manager
+   Services > IT Essentials > Cyber Essentials Certification Support */
+.mega-services { position: relative; --mega-w: 1020px; }
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -396,75 +427,12 @@ p.gb-headline { margin: 0 0 1rem; }
   position: relative;
   background: linear-gradient(160deg, #ffffff 0%, #f6f9fb 100%);
 }
-.mega-spotlight-intro { position: relative; z-index: 1; padding: 1.6rem 2.1rem 0; }
-.mega-spotlight-eyebrow {
-  display: inline-block;
-  color: var(--primary);
-  font-weight: 700;
-  font-size: .72rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+.mega-spotlight-panel { display: none; padding: 1.9rem 2.1rem 1.75rem; position: relative; overflow: hidden; }
+.mega-spotlight-panel.is-active { display: block; animation: megaFadeIn .28s ease; }
+@keyframes megaFadeIn {
+  from { opacity: 0; transform: translateX(6px); }
+  to { opacity: 1; transform: translateX(0); }
 }
-.mega-spotlight-intro h3 { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--secondary); letter-spacing: -.01em; }
-
-/* Every service is expanded here, in full-width baseline-style cards --
-   heading, underline, plain "View all" link, two-column sub-link grid --
-   exactly like the 8099 preview's single active panel, just stacked one
-   after another instead of hidden behind tabs. The full tree this covers,
-   in flow-diagram form:
-
-   Services > Cloud Phone Systems > Phone System Basics
-   Services > Cloud Phone Systems > Hardware
-   Services > Cloud Phone Systems > Mobile & PC Apps
-   Services > Cloud Phone Systems > SmartVoice Messaging
-   Services > Cloud Phone Systems > Smarter Calls with AI
-   Services > Cloud Phone Systems > Call Reporting
-   Services > Cloud Phone Systems > CRM Integration
-   Services > Cloud Phone Systems > WhatsApp for Business
-   Services > Cloud Phone Systems > Easy System Management
-   Services > Internet Connectivity > Superfast FTTP
-   Services > Internet Connectivity > Satellite Broadband
-   Services > Internet Connectivity > Dedicated Ethernet
-   Services > Internet Connectivity > Mobile Broadband
-   Services > WiFi & Networking > Mesh Networking
-   Services > WiFi & Networking > Full Site Coverage
-   Services > WiFi & Networking > Network Support
-   Services > WiFi & Networking > Social Wifi
-   Services > WiFi & Networking > Omada Network Manager
-   Services > Mobile SIM Plans > Nationwide Coverage
-   Services > Mobile SIM Plans > Flexible Contracts
-   Services > Mobile SIM Plans > Mobile Broadband
-   Services > IT Essentials > Microsoft 365 License Management
-   Services > IT Essentials > Email Security
-   Services > IT Essentials > Endpoint Detection & Response (EDR)
-   Services > IT Essentials > Backup for Microsoft 365
-   Services > IT Essentials > Remote Monitoring and Management (RMM)
-   Services > IT Essentials > Security Awareness Training
-   Services > IT Essentials > Password Manager
-   Services > IT Essentials > Cyber Essentials Certification Support
-
-   The height cap + scroll below is just a safety net for short windows. */
-.mega-spotlight-scroll {
-  position: relative;
-  z-index: 1;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
-  padding: 1.1rem 2.1rem 1.6rem;
-  scroll-behavior: smooth;
-}
-.mega-spotlight-scroll::-webkit-scrollbar { width: 8px; }
-.mega-spotlight-scroll::-webkit-scrollbar-track { background: transparent; }
-.mega-spotlight-scroll::-webkit-scrollbar-thumb { background: rgba(0, 33, 53, .15); border-radius: 8px; }
-
-.mega-spotlight-panel {
-  position: relative;
-  overflow: hidden;
-  padding: 20px 0;
-  scroll-margin-top: 8px;
-}
-.mega-spotlight-panel:first-child { padding-top: 4px; }
-.mega-spotlight-panel + .mega-spotlight-panel { border-top: 1px solid rgba(0, 33, 53, .08); }
 .mega-spotlight-blob {
   position: absolute;
   top: -90px;
@@ -477,19 +445,17 @@ p.gb-headline { margin: 0 0 1rem; }
   pointer-events: none;
   z-index: 0;
 }
+/* No repeated heading here -- the rail item you clicked already names the
+   service, so the panel is just its "View all" link plus its children. */
 .mega-spotlight-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-end;
   position: relative;
   z-index: 1;
   padding-bottom: 14px;
   margin-bottom: 12px;
   border-bottom: 2px solid var(--tab-color);
 }
-.mega-spotlight-head h4 { margin: 0; font-size: 1.3rem; font-weight: 800; color: var(--secondary); letter-spacing: -.01em; }
-.mega-spotlight-panel:target .mega-spotlight-head h4 { text-decoration: underline; text-decoration-color: var(--tab-color); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .mega-spotlight-cta {
   display: inline-flex;
   align-items: center;
