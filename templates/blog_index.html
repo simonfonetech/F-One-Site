@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="blog-header">
+  <div class="post-header-background" role="presentation"></div>
+  <h1>Read Our Latest Blog<span style="color:var(--purple)">.</span></h1>
+  <div class="category-filter">
+    <a href="/blog/" class="{{ 'is-active' if not active_category else '' }}">All</a>
+    {% for cat in categories %}
+    <a href="/blog/category/{{ cat.slug }}/" class="{{ 'is-active' if active_category == cat.slug else '' }}">{{ cat.name }}</a>
+    {% endfor %}
+  </div>
+</div>
+<div class="post-grid">
+  {% for post in posts %}
+  {% include "partials/post_card.html" %}
+  {% endfor %}
+</div>
+{% if total_pages > 1 %}
+<div class="pagination">
+  {% for p in range(1, total_pages + 1) %}
+    {% if p == current_page %}
+      <span class="is-current">{{ p }}</span>
+    {% else %}
+      <a href="{{ pagination_url(p) }}">{{ p }}</a>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

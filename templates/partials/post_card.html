@@ -1,0 +1,8 @@
+<a class="post-card" href="{{ post.url }}">
+  {% if post.featured_image %}<img src="{{ post.featured_image }}" alt="{{ post.title }}" loading="lazy">{% endif %}
+  <div class="post-card-body">
+    <span class="post-card-meta">{{ post.date }}{% if post.categories %} &middot; {{ post.categories[0] }}{% endif %}</span>
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.excerpt }}</p>
+  </div>
+</a>

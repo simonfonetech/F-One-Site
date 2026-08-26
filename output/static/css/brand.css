@@ -1,0 +1,190 @@
+/* =============================================================================
+   F One Technologies — brand theme
+   =============================================================================
+   Single source of truth for brand colour, extracted from the live WordPress
+   site (https://fonetech.uk) so the static build renders identically.
+
+   Sources, in the order WordPress itself loads them:
+     1. <style id="global-styles-inline-css">  -> the theme.json colour palette
+                                                  and the .has-*-color classes
+     2. wp-content/themes/f-one/style.css      -> chrome (header, nav, buttons,
+                                                  links, footer)
+     3. <style id="wp-custom-css">             -> Customizer overrides, incl.
+                                                  the desktop nav link colour
+
+   Load this FIRST, before theme.css / style.css.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     1. Palette — verbatim from --wp--preset--color--* on the live site.
+        These names are baked into migrated block markup, so they must keep
+        their exact WordPress spellings (including "highligh-marketing").
+     --------------------------------------------------------------------- */
+
+  /* F One brand colours */
+  --wp--preset--color--primary: #f06120;              /* F One orange */
+  --wp--preset--color--secondary: #004269;            /* F One deep blue */
+  --wp--preset--color--text-black: #363636;
+  --wp--preset--color--text-white: #ffffff;
+
+  /* Product / service accents */
+  --wp--preset--color--blue: #76C0FF;                 /* Cloud Phone Systems */
+  --wp--preset--color--connectivity-orange: #EE561D;  /* Internet Connectivity */
+  --wp--preset--color--yellow: #FFCE00;               /* WiFi & Networking */
+  --wp--preset--color--green: #24D19C;                /* Mobile SIM Plans */
+  --wp--preset--color--purple: #D5ACF8;               /* IT Essentials */
+  --wp--preset--color--pink: #CC289C;
+  --wp--preset--color--wsa-green: #2ACC63;            /* Security Awareness Training */
+  --wp--preset--color--highligh-marketing: #cc299c;   /* NB: pink, not yellow */
+  --wp--preset--color--smart-red: #EB2121;
+  --wp--preset--color--gold: #b5b051;
+
+  /* WordPress core defaults — present in the live palette, so some migrated
+     blocks reference them */
+  --wp--preset--color--black: #000000;
+  --wp--preset--color--white: #ffffff;
+  --wp--preset--color--cyan-bluish-gray: #abb8c3;
+  --wp--preset--color--pale-pink: #f78da7;
+  --wp--preset--color--vivid-red: #cf2e2e;
+  --wp--preset--color--luminous-vivid-orange: #ff6900;
+  --wp--preset--color--luminous-vivid-amber: #fcb900;
+  --wp--preset--color--light-green-cyan: #7bdcb5;
+  --wp--preset--color--vivid-green-cyan: #00d084;
+  --wp--preset--color--pale-cyan-blue: #8ed1fc;
+  --wp--preset--color--vivid-cyan-blue: #0693e3;
+  --wp--preset--color--vivid-purple: #9b51e0;
+
+  /* ---------------------------------------------------------------------
+     2. Short aliases — what the hand-written static CSS uses.
+        Aliases of the presets above so there is only one place to edit.
+     --------------------------------------------------------------------- */
+  --primary:              var(--wp--preset--color--primary);
+  --secondary:            var(--wp--preset--color--secondary);
+  --text-black:           var(--wp--preset--color--text-black);
+  --text-white:           var(--wp--preset--color--text-white);
+  --blue:                 var(--wp--preset--color--blue);
+  --connectivity-orange:  var(--wp--preset--color--connectivity-orange);
+  --yellow:               var(--wp--preset--color--yellow);
+  --green:                var(--wp--preset--color--green);
+  --purple:               var(--wp--preset--color--purple);
+  --pink:                 var(--wp--preset--color--pink);
+  --wsa-green:            var(--wp--preset--color--wsa-green);
+  --highligh-marketing:   var(--wp--preset--color--highligh-marketing);
+  --smart-red:            var(--wp--preset--color--smart-red);
+  --gold:                 var(--wp--preset--color--gold);
+  --black:                var(--wp--preset--color--black);
+  --white:                var(--wp--preset--color--white);
+
+  /* ---------------------------------------------------------------------
+     3. Semantic chrome tokens — the literal values the live theme's own
+        stylesheet uses for site furniture.
+     --------------------------------------------------------------------- */
+  --brand-body-text:        #404040;   /* body copy */
+  --brand-link:             #f06120;   /* theme: a { color: #f06120 } */
+
+  --brand-nav-link:         #004269;   /* wp-custom-css: top-level nav links  */
+  --brand-nav-link-muted:   #535768;   /* theme: nested / mobile nav links    */
+  --brand-nav-link-active:  #f06120;   /* theme: current + hovered menu item  */
+
+  --brand-header-bg:        #ffffff;   /* desktop header */
+  --brand-header-bg-mobile: #103e62;   /* mobile header  */
+
+  --brand-surface-deep:     #002135;   /* footer / submenu gradient end */
+  --brand-panel:            #184166;   /* mega-menu service cards */
+
+  --brand-btn-bg:           #f06120;
+  --brand-btn-text:         #ffffff;
+  --brand-btn-bg-hover:     #444444;
+
+  --brand-muted:            #999999;
+  --brand-border:           #cccccc;
+  --brand-rule:             rgba(0, 66, 105, 0.3);
+
+  /* layout */
+  --max-width: 1200px;
+  --body-text: var(--brand-body-text);  /* legacy alias */
+}
+
+/* =============================================================================
+   WordPress preset utility classes
+   =============================================================================
+   Mirrors what WordPress emits in <style id="global-styles-inline-css">,
+   including the !important — block markup relies on these winning over the
+   per-block generated CSS, exactly as it does on the live site.
+
+   Two classes are deliberately absent, because they carry NO colour on live:
+
+     .has-text-color  — a marker WordPress adds alongside the real colour
+                        class. It does not set a colour of its own.
+     .has-link-color  — likewise a marker. There is no `link` entry in the
+                        live palette, so no rule is ever generated for it.
+
+   Giving either one a colour (as an earlier port did) makes it override the
+   real preset class that follows it, which is what turned white text blue.
+   ========================================================================== */
+
+/* --- brand --- */
+.has-primary-color             { color: var(--wp--preset--color--primary) !important; }
+.has-secondary-color           { color: var(--wp--preset--color--secondary) !important; }
+.has-text-black-color          { color: var(--wp--preset--color--text-black) !important; }
+.has-text-white-color          { color: var(--wp--preset--color--text-white) !important; }
+
+/* --- accents --- */
+.has-blue-color                { color: var(--wp--preset--color--blue) !important; }
+.has-connectivity-orange-color { color: var(--wp--preset--color--connectivity-orange) !important; }
+.has-yellow-color              { color: var(--wp--preset--color--yellow) !important; }
+.has-green-color               { color: var(--wp--preset--color--green) !important; }
+.has-purple-color              { color: var(--wp--preset--color--purple) !important; }
+.has-pink-color                { color: var(--wp--preset--color--pink) !important; }
+.has-wsa-green-color           { color: var(--wp--preset--color--wsa-green) !important; }
+.has-highligh-marketing-color  { color: var(--wp--preset--color--highligh-marketing) !important; }
+.has-smart-red-color           { color: var(--wp--preset--color--smart-red) !important; }
+.has-gold-color                { color: var(--wp--preset--color--gold) !important; }
+
+/* --- WordPress core defaults --- */
+.has-black-color               { color: var(--wp--preset--color--black) !important; }
+.has-white-color               { color: var(--wp--preset--color--white) !important; }
+.has-cyan-bluish-gray-color    { color: var(--wp--preset--color--cyan-bluish-gray) !important; }
+.has-pale-pink-color           { color: var(--wp--preset--color--pale-pink) !important; }
+.has-vivid-red-color           { color: var(--wp--preset--color--vivid-red) !important; }
+.has-luminous-vivid-orange-color { color: var(--wp--preset--color--luminous-vivid-orange) !important; }
+.has-luminous-vivid-amber-color  { color: var(--wp--preset--color--luminous-vivid-amber) !important; }
+.has-light-green-cyan-color    { color: var(--wp--preset--color--light-green-cyan) !important; }
+.has-vivid-green-cyan-color    { color: var(--wp--preset--color--vivid-green-cyan) !important; }
+.has-pale-cyan-blue-color      { color: var(--wp--preset--color--pale-cyan-blue) !important; }
+.has-vivid-cyan-blue-color     { color: var(--wp--preset--color--vivid-cyan-blue) !important; }
+.has-vivid-purple-color        { color: var(--wp--preset--color--vivid-purple) !important; }
+
+/* --- background counterparts --- */
+.has-primary-background-color             { background-color: var(--wp--preset--color--primary) !important; }
+.has-secondary-background-color           { background-color: var(--wp--preset--color--secondary) !important; }
+.has-text-black-background-color          { background-color: var(--wp--preset--color--text-black) !important; }
+.has-text-white-background-color          { background-color: var(--wp--preset--color--text-white) !important; }
+.has-blue-background-color                { background-color: var(--wp--preset--color--blue) !important; }
+.has-connectivity-orange-background-color { background-color: var(--wp--preset--color--connectivity-orange) !important; }
+.has-yellow-background-color              { background-color: var(--wp--preset--color--yellow) !important; }
+.has-green-background-color               { background-color: var(--wp--preset--color--green) !important; }
+.has-purple-background-color              { background-color: var(--wp--preset--color--purple) !important; }
+.has-pink-background-color                { background-color: var(--wp--preset--color--pink) !important; }
+.has-wsa-green-background-color           { background-color: var(--wp--preset--color--wsa-green) !important; }
+.has-highligh-marketing-background-color  { background-color: var(--wp--preset--color--highligh-marketing) !important; }
+.has-smart-red-background-color           { background-color: var(--wp--preset--color--smart-red) !important; }
+.has-gold-background-color                { background-color: var(--wp--preset--color--gold) !important; }
+.has-black-background-color               { background-color: var(--wp--preset--color--black) !important; }
+.has-white-background-color               { background-color: var(--wp--preset--color--white) !important; }
+.has-cyan-bluish-gray-background-color    { background-color: var(--wp--preset--color--cyan-bluish-gray) !important; }
+.has-pale-pink-background-color           { background-color: var(--wp--preset--color--pale-pink) !important; }
+.has-vivid-red-background-color           { background-color: var(--wp--preset--color--vivid-red) !important; }
+.has-luminous-vivid-orange-background-color { background-color: var(--wp--preset--color--luminous-vivid-orange) !important; }
+.has-luminous-vivid-amber-background-color  { background-color: var(--wp--preset--color--luminous-vivid-amber) !important; }
+.has-light-green-cyan-background-color    { background-color: var(--wp--preset--color--light-green-cyan) !important; }
+.has-vivid-green-cyan-background-color     { background-color: var(--wp--preset--color--vivid-green-cyan) !important; }
+.has-pale-cyan-blue-background-color      { background-color: var(--wp--preset--color--pale-cyan-blue) !important; }
+.has-vivid-cyan-blue-background-color     { background-color: var(--wp--preset--color--vivid-cyan-blue) !important; }
+.has-vivid-purple-background-color        { background-color: var(--wp--preset--color--vivid-purple) !important; }
+
+/* WordPress core: a link inside a colour-set paragraph inherits that colour,
+   unless the paragraph also carries its own link colour.
+   From <style id="wp-block-paragraph-inline-css"> on the live site. */
+:where(p.has-text-color:not(.has-link-color)) a { color: inherit; }

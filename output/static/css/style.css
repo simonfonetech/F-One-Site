@@ -1,0 +1,729 @@
+/* Brand tokens and the WordPress preset colour classes live in brand.css,
+   which is loaded ahead of this file. */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  /* proxima-nova is the real theme's Adobe Fonts (Typekit) face -- it loads fine
+     cross-domain, so we ask for it directly with a close system fallback chain */
+  font-family: proxima-nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--body-text);
+  line-height: 1.5;
+  background: var(--text-white);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+.site-main { overflow-x: hidden; }
+
+/* GenerateBlocks renders every container as .gb-container > .gb-inside-container.
+   The fetched per-page CSS puts flex/alignment on the OUTER .gb-container, but the
+   actual content lives one level deeper -- GB's own base framework CSS makes the
+   inner wrapper transparently inherit the outer's flex context, which our fetched
+   CSS (block-instance styles only) doesn't include. Without this, only the wrapper
+   itself gets centered/aligned and its children fall back to default block flow. */
+.gb-container {
+  /* GenerateBlocks' own default for an unstyled flex container is flex-start,
+     not the raw CSS initial "stretch" -- this is what keeps a button (or any
+     other auto-sized child) from stretching full-width when its container
+     doesn't request a specific alignment. A container that explicitly sets
+     align-items (e.g. the homepage hero's align-items:center) overrides this
+     via its own higher-specificity per-instance rule, so real centering still
+     wins. Only affects elements once display:flex is actually on; harmless
+     no-op otherwise. */
+  align-items: flex-start;
+}
+.gb-container > .gb-inside-container {
+  display: inherit;
+  flex-direction: inherit;
+  flex-wrap: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+  row-gap: inherit;
+  column-gap: inherit;
+  width: 100%;
+  min-width: 0;
+}
+
+/* GenerateBlocks grids rely on flex-wrap + percentage-width columns rather than
+   an explicit width on the wrapper itself. That's fine normally, but it creates a
+   circular layout dependency when a column contains a JS-measured carousel: the
+   wrapper's width depends on its children's content, the carousel's width depends
+   on measuring its column, which depends on the wrapper. Slick catches an unstable
+   intermediate measurement and locks it in via inline pixel widths. A firm
+   top-down width on the wrapper (and letting columns actually shrink) breaks
+   the cycle. */
+/* min-width, not width. GenerateBlocks grids widen themselves past their
+   container with a negative side margin (this page's wrapper carries
+   margin-left:-80px, matched by 80px of padding on each column). A fixed
+   width:100% pins the box to the container so the negative margin only shifts
+   it left instead of widening it -- costing 80px and wrapping the customer area
+   document titles onto two lines. min-width keeps the determinate width Slick
+   needs to measure against while letting those grids expand. */
+.gb-grid-wrapper { min-width: 100%; }
+.gb-grid-column { min-width: 0; }
+
+/* ---------- headline defaults ---------- */
+/* h1/h2 size and weight are pinned by the theme's own CSS (!important); these
+   are fallbacks for headline levels the theme doesn't touch */
+h1.gb-headline, h2.gb-headline, h3.gb-headline, h4.gb-headline { margin: 0; line-height: 1.2; font-weight: 700; }
+h3.gb-headline { font-size: 1.3rem; }
+/* 1rem bottom margin, matching live -- theme.css gives every <p> 1rem and the
+   per-instance generated CSS overrides it where a headline needs something
+   else. Forcing 0 here flattened that: it removed the gap between a testimonial
+   quote and its attribution, and between headline paragraphs generally.
+   Measured against live, 28 of 35 headline paragraphs on the homepage land on
+   exactly live's 16px with this. */
+p.gb-headline { margin: 0 0 1rem; }
+.gb-headline mark { background: transparent; padding: 0; }
+
+/* ---------- buttons ---------- */
+/* Base, safe for every button including icon-only ones. */
+.gb-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+/* Pill styling only for buttons that carry a label. GenerateBlocks adds
+   .gb-button-text when a button has text, so this leaves icon-only buttons
+   alone -- the customer area's view/download links are bare <a> icons whose
+   per-instance CSS deliberately sets no padding or background, and blanket
+   .gb-button padding inflated each one from 24x16 to 61x33.
+   Every button on the site has per-instance CSS (449 of 449), so this is a
+   brand default for anything newly authored rather than a repair.
+
+   Matched via :where() so the extra class contributes no specificity. As a
+   plain .gb-button.gb-button-text it scores (0,2,0) and beats the per-instance
+   a.gb-button-{id} rules at (0,1,1), overriding their real padding. */
+.gb-button:where(.gb-button-text) {
+  font-weight: 400;
+  padding: 10px 15px;
+  border-radius: 25px;
+  background-color: var(--brand-btn-bg);
+  color: var(--brand-btn-text);
+}
+.gb-button:where(.gb-button-text):hover { background-color: var(--secondary); color: var(--text-white); }
+
+/* Breathing room above in-page buttons.
+   Every button ships with margin-top:0 and the per-instance GenerateBlocks CSS
+   only sets padding, so content buttons sat flush against the paragraph above
+   them. This is external space on purpose -- padding-top would grow the button
+   box and push the label off centre, and would have to fight the eight
+   different per-instance padding values in use across the site.
+
+   Scoped to .site-main so the fixed header bar's "Get in touch" CTA (and the
+   footer) are untouched. Hero buttons already get 20px from their container's
+   row-gap, so they land at 40px, which reads as intentional.
+
+   Restricted to buttons carrying a label (.gb-button-text): icon-only buttons
+   such as the customer area's view/download links are inline row controls, and
+   20px of lead-in pushed each row 17px taller than live.
+
+   Only 4px is added here now: the p.gb-headline fix restored live's 16px
+   paragraph margin below the preceding copy, so the two stack. 20px on top of
+   that came to 36px, noticeably looser than the 20px total signed off earlier.
+
+   NB: this is a deliberate divergence from the live WordPress site, which has
+   no such rule -- see the note in _build/README-branding.md. */
+.site-main a.gb-button.gb-button-text,
+.site-main .gb-button-wrapper a,
+.site-main .wp-block-button a {
+  margin-top: 4px;
+}
+
+/* accordion toggle buttons look like plain rows, not pill buttons */
+.gb-accordion__toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--text-white);
+  color: var(--purple);
+  padding: 0;
+  border-radius: 0;
+  text-align: left;
+  font-weight: normal;
+}
+.gb-accordion__toggle:hover { background: var(--text-white); color: var(--secondary); }
+.gb-icon { display: inline-flex; width: 0.8em; height: 0.8em; margin-left: 10px; flex-shrink: 0; }
+.gb-accordion__icon-open { display: none; }
+.gb-accordion-item.is-open .gb-accordion__icon { display: none; }
+.gb-accordion-item.is-open .gb-accordion__icon-open { display: inline-flex; }
+.gb-accordion-item.is-open .gb-accordion__toggle { color: var(--secondary); }
+
+/* ---------- accordion slide ---------- */
+.gb-accordion-content {
+  overflow: hidden;
+  transition: max-height .25s ease, padding .25s ease;
+}
+/* the block's own inline padding (from its WP attrs) beats a plain class rule,
+   so force it to zero while collapsed rather than fighting specificity */
+.gb-accordion-item:not(.is-open) .gb-accordion-content {
+  max-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ---------- video embeds ---------- */
+.video-embed { position: relative; width: 100%; padding-top: 56.25%; }
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ---------- dynamic content notice (things that were live/dynamic on WP) ---------- */
+.dynamic-notice {
+  padding: 1em;
+  border: 1px dashed rgba(0,0,0,.2);
+  border-radius: 8px;
+  font-size: .9rem;
+  font-style: italic;
+  opacity: .75;
+}
+
+/* ---------- contact form placeholder ---------- */
+.wp-contact-form { display: flex; flex-direction: column; gap: 12px; max-width: 480px; }
+.wp-contact-form label { font-size: .9rem; font-weight: 600; }
+.wp-contact-form input, .wp-contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,.15);
+  font-family: inherit;
+  font-size: .95rem;
+}
+.wp-contact-form textarea { min-height: 100px; resize: vertical; }
+/* Both contact forms sit inside dark sections whose text colour is orange, and
+   labels would otherwise inherit it -- unreadable on the deep blue. Live sidesteps
+   this by using placeholders with no visible labels; keeping real labels is better
+   for accessibility, so they get an explicit colour instead. */
+.wp-contact-form-wrap { color: var(--text-white); }
+.wp-contact-form label { color: var(--text-white); }
+.wp-contact-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,.15);
+  font-family: inherit;
+  font-size: .95rem;
+  background: var(--text-white);
+  color: var(--text-black);
+}
+.wp-contact-form input[type="range"] { padding: 0; accent-color: var(--primary); }
+.wp-contact-form output { font-weight: 700; color: var(--text-white); }
+.form-note { font-size: .78rem; opacity: .8; margin-top: 8px; color: var(--text-white); }
+
+/* ---------- responsive visibility ---------- */
+@media (max-width: 767px) { .hide-on-mobile { display: none !important; } }
+@media (min-width: 768px) and (max-width: 991px) { .hide-on-tablet { display: none !important; } }
+@media (min-width: 992px) { .hide-on-desktop { display: none !important; } }
+
+/* ================= SITE HEADER (matched to the live theme's real CSS) ================= */
+/* the theme sets `body, html { overflow-x: hidden }`, which breaks position:sticky
+   in most browsers -- the live site works around this with position:fixed, so we
+   match that and pad body by the header's height instead */
+/* No body offset for the fixed header -- live doesn't have one either. Page
+   content starts at y=0 and slides under the header, and each hero's own top
+   padding (150px on the GB containers) provides the clearance. Padding the body
+   as well double-counted the header and pushed every page down ~60px: the
+   homepage hero sat 155px below the header instead of live's 95px.
+   The two templates that are ours rather than migrated -- .blog-header and
+   .post-header -- carry the 60px themselves instead. */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 calc(max((100vw - 1100px) / 2, 1rem));
+  box-shadow: 0 1px 6px rgba(0,0,0,.08);
+}
+.site-branding { flex-shrink: 0; margin-right: 1.5rem; }
+.site-branding svg { display: block; }
+.main-navigation { flex: 1 1 auto; min-width: 0; }
+.main-navigation ul.menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; height: 60px; }
+.main-navigation ul.menu li { display: flex; align-items: center; position: relative; cursor: pointer; }
+/* Live equivalent is `.desktop-navigation > ul > li > a` in wp-custom-css:
+   deep blue at 16px, going bold (not orange) on hover. */
+.main-navigation ul.menu > li > a {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  text-decoration: none;
+  color: var(--brand-nav-link);
+  font-weight: 400;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.main-navigation ul.menu > li:hover > a { font-weight: 700; }
+.main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
+/* Services mega-menu: left colored category tabs, right sub-item panel */
+/* One width for the panel and its hover bridge, so they can never drift apart.
+   980px is measured, not guessed: the tabs column is 250px and the panel has
+   56px of horizontal padding, leaving 674px of grid. IT Essentials is the
+   widest section and needs 663px for its two columns ("Remote Monitoring and
+   Management (RMM)" at 342px beside "Cyber Essentials Certification Support"),
+   which used to overflow the old 740px panel by 229px and get clipped. */
+.mega-services { position: relative; --mega-w: 980px; }
+
+/* The panel is offset 14px below the nav item, so travelling from "Services"
+   down to the options crosses a strip that belongs to neither element -- hover
+   is lost mid-journey and the menu snaps shut. This invisible bridge spans that
+   strip across the panel's full width, keeping :hover alive on .mega-services
+   while the cursor crosses. It only exists while the menu is open, so it never
+   sits over the page intercepting clicks. */
+.mega-services:hover::after,
+.mega-services.is-hover::after,
+.mega-services:focus-within::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -1.5rem;
+  width: var(--mega-w);
+  max-width: calc(100vw - 2rem);
+  height: 16px;
+}
+
+.mega-menu {
+  display: flex;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -1.5rem;
+  width: var(--mega-w);
+  max-width: calc(100vw - 2rem);
+  background: var(--text-white);
+  border-radius: 20px;
+  box-shadow: 0 24px 48px -12px rgba(0, 33, 53, .28), 0 0 0 1px rgba(0, 33, 53, .04);
+  z-index: 50;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(.98);
+  transform-origin: top left;
+  transition: opacity .22s ease, transform .22s cubic-bezier(.2,.8,.2,1), visibility .22s;
+  pointer-events: none;
+}
+/* `.is-hover` is held by main.js for a moment after the cursor leaves, which is
+   what lets you travel from "Services" to the panel. CSS :hover alone cannot do
+   this: the nav item is only ~65px wide, so any diagonal towards the panel exits
+   it sideways -- passing over the header and page, neither of which is a
+   descendant -- before the panel is reached. */
+.mega-services:hover .mega-menu,
+.mega-services.is-hover .mega-menu,
+.mega-services:focus-within .mega-menu,
+.mega-services.is-open .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.mega-arrow {
+  position: absolute;
+  top: -7px;
+  left: 2.5rem;
+  width: 16px;
+  height: 16px;
+  background: var(--text-white);
+  transform: rotate(45deg);
+  border-radius: 3px 0 0 0;
+  box-shadow: -2px -2px 4px rgba(0, 33, 53, .03);
+}
+.mega-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 250px;
+  flex-shrink: 0;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(0,66,105,.04), rgba(0,66,105,0));
+  position: relative;
+  z-index: 1;
+}
+.mega-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: transparent;
+  padding: 11px 12px;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-black);
+  transition: background-color .18s ease, transform .18s ease;
+}
+/* The service icons are full-colour artwork (coloured diamond + white symbol),
+   so they sit on their own -- no tinted tile behind them and no filter, which
+   would flatten them back into silhouettes. */
+.mega-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  transition: transform .18s ease;
+}
+.mega-tab-icon img { width: 100%; height: 100%; object-fit: contain; }
+.mega-tab span:not(.mega-tab-icon) { font-weight: 700; font-size: .93rem; flex: 1; }
+.mega-tab-chevron { color: var(--tab-color); opacity: 0; transform: translateX(-4px); transition: opacity .18s ease, transform .18s ease; }
+.mega-tab:hover { background: rgba(0, 33, 53, .045); }
+.mega-tab.is-active { background: rgba(0, 33, 53, .06); }
+.mega-tab:hover .mega-tab-icon, .mega-tab.is-active .mega-tab-icon { transform: scale(1.08) rotate(-4deg); }
+.mega-tab:hover .mega-tab-chevron, .mega-tab.is-active .mega-tab-chevron { opacity: 1; transform: translateX(0); }
+.mega-panels {
+  flex: 1;
+  padding: 1.75rem 1.75rem 1.5rem;
+  position: relative;
+}
+.mega-panel { display: none; }
+.mega-panel.is-active { display: block; animation: megaFadeIn .28s ease; }
+@keyframes megaFadeIn {
+  from { opacity: 0; transform: translateX(6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.mega-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--tab-color);
+}
+.mega-panel-head h3 { margin: 0; font-size: 1.05rem; color: var(--secondary); }
+.mega-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--tab-color);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .8rem;
+  white-space: nowrap;
+  transition: gap .18s ease;
+}
+.mega-view-all svg { transition: transform .18s ease; }
+.mega-view-all:hover { gap: 8px; }
+.mega-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
+.mega-panel li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 8px;
+  margin: 0 -8px;
+  border-radius: 8px;
+  color: var(--text-black);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .88rem;
+  transition: background-color .15s ease, color .15s ease, padding-left .15s ease;
+}
+/* Grid and flex items default to min-width:auto, so a label longer than its
+   track widens the track instead of wrapping -- which is what pushed the second
+   column past the panel edge, where overflow:hidden clipped it. Allowing both to
+   shrink means a label too long for the space wraps onto a second line rather
+   than disappearing, on any viewport. */
+.mega-panel li { min-width: 0; }
+.mega-panel li a { min-width: 0; }
+.mega-panel li a svg { flex-shrink: 0; color: var(--tab-color); transition: transform .15s ease; }
+.mega-panel li a:hover { background: rgba(0, 33, 53, .05); color: var(--secondary); padding-left: 12px; }
+.mega-panel li a:hover svg { transform: translateX(2px); }
+.site-contact { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin-left: 1.5rem; }
+/* Live wraps the number in a grey span but the visible text is the link
+   inside it, which picks up the theme's orange `a` colour at 14px/400.
+   The 16px gap on .site-contact already matches live's padding-right. */
+.site-phone-number {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--brand-link);
+  text-decoration: none;
+  white-space: nowrap;
+}
+/* theme.css pins radius/padding/background with !important, matching live;
+   only the weight needs stating here (live renders this button at 300). */
+.gb-button-wrapper a {
+  display: inline-flex;
+  background-color: var(--brand-btn-bg);
+  color: var(--brand-btn-text);
+  text-decoration: none;
+  font-weight: 300;
+  white-space: nowrap;
+  transition: background-color .2s ease;
+}
+.gb-button-wrapper a:hover { background-color: var(--brand-btn-bg-hover); }
+.menu-toggle { display: none; cursor: pointer; background: none; border: none; }
+
+@media (max-width: 991px) {
+  .site-header { padding: 0 1rem; }
+  .site-branding { width: auto; }
+  .site-branding svg path { fill: var(--secondary) !important; }
+  .main-navigation { width: auto; position: static; }
+  .menu-toggle { display: inline-flex; }
+  .main-navigation ul.menu {
+    display: none;
+    position: fixed;
+    inset: 60px 0 0 0;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--secondary);
+    padding: 1rem;
+    overflow-y: auto;
+    z-index: 90;
+  }
+  .main-navigation.is-open ul.menu { display: flex; }
+  .main-navigation ul.menu > li { width: 100%; }
+  .main-navigation ul.menu > li > a { height: auto; padding: 12px 0; color: var(--text-white); width: 100%; }
+  .mega-arrow { display: none; }
+  /* no hover bridge on touch layouts -- the panel sits inline and is driven by
+     .is-open, so the strip would only overlay content */
+  .mega-services:hover::after,
+  .mega-services.is-hover::after,
+  .mega-services:focus-within::after { content: none; }
+  .mega-menu {
+    position: static;
+    width: 100%;
+    max-width: none;
+    flex-direction: column;
+    box-shadow: none;
+    border-radius: 12px;
+    margin: 6px 0 10px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    display: none;
+  }
+  .mega-services.is-open .mega-menu { display: flex; }
+  .mega-services:hover .mega-menu { display: none; }
+  .mega-services.is-open:hover .mega-menu { display: flex; }
+  .mega-tabs { width: 100%; padding: 10px; background: none; gap: 2px; }
+  .mega-tab { padding: 10px; }
+  .mega-tab span:not(.mega-tab-icon) { color: var(--text-white); }
+  .mega-tab-chevron { display: none; }
+  .mega-panels { padding: 0 10px 10px; max-width: none; }
+  .mega-panel-head { border-bottom-color: rgba(255,255,255,.3); }
+  .mega-panel-head h3 { color: var(--text-white); }
+  .mega-panel ul { grid-template-columns: 1fr; }
+  .mega-panel li a { color: var(--text-white); }
+  .mega-panel li a:hover { background: rgba(255,255,255,.08); color: var(--text-white); }
+  .site-contact .site-phone-number { display: none; }
+}
+
+/* ================= "Proud to Support These Businesses" band =================
+   The client-logo band carries 50px of bottom padding on its own container and
+   another 50px on the section wrapping it, leaving 100px of dead space before
+   the next band. Live does the same; this is a deliberate prod-only tightening.
+   gb-container-55e4be16 is the shared inner container on every page that shows
+   this band, so both it and its immediate section wrapper are targeted.
+   !important because the per-page generated CSS sets the padding and loads
+   after this file. */
+.gb-container-55e4be16 { padding-bottom: 0 !important; }
+.gb-container:has(> .gb-inside-container > .gb-container-55e4be16) { padding-bottom: 0 !important; }
+
+/* ================= testimonial logo card =================
+   theme.css positions this figure absolutely with no `top`, so it falls back to
+   its static position -- which on live is after the 205px quote, putting the
+   logo over the card's bottom-right corner. Here the card resolves that static
+   position to the top of its content box instead, so the logo landed over the
+   quote and clipped the text. Anchoring it to the bottom removes the dependency:
+   a 72px overhang reproduces live on both the wifi page and the homepage. */
+.f_one_testimonial figure {
+  top: auto;
+  bottom: -72px;
+  transform: none;
+}
+
+/* ================= SITE FOOTER (matched to the live theme's real CSS) ================= */
+.site-footer {
+  background: linear-gradient(180deg, var(--secondary) 0%, #002135 100%);
+  color: var(--text-white);
+  /* No top margin -- live has none either. The last content band (the client
+     logo marquee) is meant to run straight into the footer; a 60px margin left
+     a strip of page background showing between them. */
+  margin-top: 0;
+}
+/* Type sizes match live exactly: 12px/18px for both the column headings and the
+   links, with no per-item margin. Prod was running 16px headings, 14px links and
+   an 8px gap on every <li>, which over 54 links made the footer 777px tall
+   against live's 507px. */
+/* 16px of lead-in, matching live -- there the space comes from the column
+   heading's own margin rather than container padding, so a 40px pad here sat
+   24px too deep. */
+.footer-inner { max-width: 1300px; margin: 0 auto; padding: 16px 20px 10px; }
+.footer-columns { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+.footer-columns h4 { font-size: 12px; line-height: 18px; color: var(--text-white); margin: 0 0 16px; font-weight: 700; }
+.footer-columns ul { list-style: none; margin: 0; padding: 0; }
+/* line-height on the li itself, not just the link: the li inherits body's 1.5
+   (24px), and that strut sets the line box floor regardless of the 18px on the
+   anchor inside -- 6px per row across 19 rows is most of the extra height. */
+.footer-columns li { margin-bottom: 0; line-height: 18px; }
+.footer-columns a { color: var(--text-white); text-decoration: none; opacity: .85; font-size: 12px; line-height: 18px; }
+.footer-columns a:hover { opacity: 1; text-decoration: underline; }
+/* contact rows carry an <ion-icon> beside the link, as on live */
+.footer-contact li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+.footer-contact ion-icon { color: var(--primary); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.footer-contact span { min-width: 0; }
+/* Live closes with one centred 12px legal line above a hairline rule */
+.footer-bottom {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+.footer-bottom p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--text-white);
+}
+@media (max-width: 991px) {
+  .footer-columns { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+  .footer-columns { grid-template-columns: 1fr; }
+}
+
+/* ================= BLOG ================= */
+/* Live renders this as a dark full-bleed hero: black behind a
+   left-to-right gradient overlay, with white heading and plain white
+   category links (no chips). Matched here minus the hero background
+   image and search block, which the static build doesn't carry. */
+.blog-header {
+  position: relative;
+  background-color: #000;
+  color: var(--text-white);
+  /* leading 120px = 60px clearing the fixed header + 60px of breathing room */
+  padding: 120px 20px 40px;
+  text-align: center;
+  z-index: 0;
+}
+.blog-header::after {
+  content: "";
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 66, 105, 0.62));
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.blog-header > *:not(.post-header-background) { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
+.blog-header h1 { color: var(--text-white); }
+.category-filter { display: flex; flex-wrap: wrap; gap: 8px 2rem; justify-content: center; margin: 20px 0 0; }
+.category-filter a {
+  color: var(--text-white);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 600;
+  opacity: .85;
+}
+.category-filter a.is-active, .category-filter a:hover { opacity: 1; text-decoration: underline; }
+
+.post-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+@media (max-width: 991px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .post-grid { grid-template-columns: 1fr; } }
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  text-decoration: none;
+  color: var(--brand-body-text);
+  background: var(--text-white);
+}
+.post-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+.post-card-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.post-card-meta { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--purple); font-weight: 700; }
+.post-card h3 { margin: 0; font-size: 1.05rem; color: var(--secondary); }
+.post-card p { margin: 0; font-size: .9rem; opacity: .8; }
+
+.pagination { display: flex; justify-content: center; gap: 10px; padding-bottom: 60px; }
+.pagination a, .pagination span {
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--secondary);
+  background: rgba(213,172,248,.15);
+  font-weight: 600;
+}
+.pagination .is-current { background: var(--purple); color: var(--text-white); }
+
+/* Dark hero over the darkened featured image, matching live's
+   header.blog-header treatment (black base + gradient overlay, white text). */
+.post-header {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #000;
+  color: var(--text-white);
+  /* leading 120px = 60px clearing the fixed header + 60px of breathing room */
+  padding: 120px 20px 50px;
+}
+.post-header::after {
+  content: "";
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 66, 105, 0.62));
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.post-header-background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--background, url("/assets/theme/blog-header.webp"));
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4);
+}
+.post-header > *:not(.post-header-background) { max-width: 800px; margin-left: auto; margin-right: auto; }
+.post-header .post-card-meta { margin-bottom: 10px; }
+.post-header h1 { color: var(--text-white); margin-bottom: 10px; }
+.post-body { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; }
+.post-body p { margin: 0 0 1.2em; }
+/* live shows the featured image at the top of the content, centred and rounded */
+.post-featured-image { display: block; max-width: 640px; margin: 0 auto 2em; border-radius: 12px; }
+.back-to-blog { display: block; margin: 0 0 20px; color: var(--text-white); text-decoration: none; font-weight: 600; opacity: .85; }
+.back-to-blog:hover { opacity: 1; }
+
+/* ================= awards loop (awards-and-achievements page) ================= */
+.awards-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+.awards-wrapper img { width: 100px; height: 100px; object-fit: contain; flex-shrink: 0; }
+.award-border-bottom { border-bottom: 1px solid rgba(255,255,255,.15); }
+.award-splitter { display: none; }
+.gb-text-e2f6abdd { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--yellow); font-weight: 700; margin: 0; }
+.gb-text-31028501 { font-size: 1.1rem; font-weight: 700; margin: 4px 0; color: var(--text-white); }
+.gb-text-97b128a5 { font-size: .9rem; opacity: .85; margin: 0; color: var(--text-white); }
+.gb-winner { color: var(--yellow); font-weight: 700; }
+@media (max-width: 640px) { .awards-wrapper { flex-direction: column; text-align: center; } }
+
+/* ================= GENERIC PAGE FALLBACK ================= */
+.fo-page-content { margin: 0; }
+.fo-page-content > .gb-block:first-child { margin-top: 0; }

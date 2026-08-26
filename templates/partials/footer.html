@@ -1,0 +1,32 @@
+<footer id="colophon" class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-columns">
+      {% for col in nav.footer %}
+      <div>
+        <h4>{{ col.title }}</h4>
+        <ul>
+          {% for link in col.links %}
+          <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+      {# Icon names match live's footer exactly (call / logo-whatsapp / mail /
+         paper-plane); Ionicons is loaded in base.html #}
+      <div>
+        <h4>Get in Touch</h4>
+        <ul class="footer-contact">
+          <li><ion-icon name="call"></ion-icon><span><a href="{{ site.phone_href }}">{{ site.phone }}</a></span></li>
+          <li><ion-icon name="logo-whatsapp"></ion-icon><span><a href="https://wa.me/message/ORB6E5N7V6W4C1">WhatsApp</a></span></li>
+          <li><ion-icon name="mail"></ion-icon><span><a href="mailto:letstalk@fonetech.uk">letstalk@fonetech.uk</a></span></li>
+          <li><ion-icon name="paper-plane"></ion-icon><span><a href="https://maps.app.goo.gl/Goip4HoK5J5g6Ms86" target="_blank" rel="noopener">First Floor Roman Landing<br>35-37 St Mary&rsquo;s Place<br>Southampton<br>Hampshire<br>SO14 3HY</a></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {# Live closes the footer with this single centred legal line and no separate
+     copyright/tagline row, so it is reproduced verbatim. #}
+  <div class="footer-bottom">
+    <p>F One Technologies Ltd (Company No. 08394387) is registered in England and Wales. Registered Office: First Floor Roman Landing, 35-37 St Mary&rsquo;s Place, Southampton, Hampshire SO14 3HY. Authorised and regulated by the Financial Conduct Authority (FCA No. 723159) and registered with the Information Commissioner&rsquo;s Office (ICO Ref No. ZB079863).</p>
+  </div>
+</footer>

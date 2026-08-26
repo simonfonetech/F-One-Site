@@ -1,0 +1,228 @@
+"""
+Static site generator for fonetech.uk.
+
+Reads site.yaml + data/nav.yaml + data/categories.yaml + content/**/*.md,
+renders everything through Jinja2 templates, and writes pretty-URL HTML
+into output/. Also copies static assets and generates sitemap.xml/robots.txt.
+
+Usage: python build.py
+"""
+import os
+import re
+import shutil
+import time
+import yaml
+import markdown as md
+from datetime import date
+from jinja2 import Environment, FileSystemLoader
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+CONTENT_DIR = os.path.join(ROOT, 'content')
+TEMPLATES_DIR = os.path.join(ROOT, 'templates')
+STATIC_DIR = os.path.join(ROOT, 'static')
+ASSETS_DIR = os.path.join(ROOT, 'assets')
+DATA_DIR = os.path.join(ROOT, 'data')
+OUTPUT_DIR = os.path.join(ROOT, 'output')
+
+POSTS_PER_PAGE = 9
+
+FRONTMATTER_RE = re.compile(r'\A---\n(.*?)\n---\n?', re.DOTALL)
+
+
+def load_yaml(path, default=None):
+    if not os.path.exists(path):
+        return default
+    with open(path, encoding='utf-8') as f:
+        return yaml.safe_load(f) or default
+
+
+def read_markdown_file(path):
+    with open(path, encoding='utf-8') as f:
+        raw = f.read()
+    m = FRONTMATTER_RE.match(raw)
+    if not m:
+        return {}, raw
+    frontmatter = yaml.safe_load(m.group(1)) or {}
+    body = raw[m.end():]
+    return frontmatter, body
+
+
+def render_body(fields, body):
+    if fields.get('format') == 'markdown':
+        return md.markdown(body, extensions=['extra'])
+    return body
+
+
+def load_content(subdir):
+    out = []
+    d = os.path.join(CONTENT_DIR, subdir)
+    if not os.path.isdir(d):
+        return out
+    for fname in sorted(os.listdir(d)):
+        if not fname.endswith('.md'):
+            continue
+        fields, body = read_markdown_file(os.path.join(d, fname))
+        fields['_body'] = render_body(fields, body)
+        out.append(fields)
+    return out
+
+
+def generated_css_path(post_id):
+    if not post_id:
+        return None
+    src = os.path.join(STATIC_DIR, 'css', 'generated', f'{post_id}.css')
+    if os.path.isfile(src):
+        return f'/static/css/generated/{post_id}.css'
+    return None
+
+
+def write_file(rel_path, content):
+    dest = os.path.join(OUTPUT_DIR, rel_path.lstrip('/'))
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    with open(dest, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+
+def main():
+    if os.path.exists(OUTPUT_DIR):
+        shutil.rmtree(OUTPUT_DIR)
+    os.makedirs(OUTPUT_DIR)
+
+    site = load_yaml(os.path.join(ROOT, 'site.yaml'), {})
+    nav = load_yaml(os.path.join(DATA_DIR, 'nav.yaml'), {'header': [], 'footer': []})
+    categories = load_yaml(os.path.join(DATA_DIR, 'categories.yaml'), [])
+
+    env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=False)
+    build_year = date.today().year
+    # Cache-buster for local css/js. Without it a browser keeps serving the
+    # stylesheet it already has and a rebuild looks like it did nothing.
+    asset_version = str(int(time.time()))
+
+    def base_ctx(**extra):
+        ctx = {'site': site, 'nav': nav, 'build_year': build_year,
+               'asset_version': asset_version}
+        ctx.update(extra)
+        return ctx
+
+    urls = []
+
+    # ---------------- pages ----------------
+    pages = load_content('pages')
+    for p in pages:
+        slug = p['slug']
+        path = f'/{slug}/'
+        html = env.get_template('page.html').render(base_ctx(
+            page_title=p.get('title', ''),
+            page_description=p.get('excerpt', '') or '',
+            canonical_path=path,
+            og_image=p.get('featured_image'),
+            content=p['_body'],
+            generated_css=generated_css_path(p.get('post_id')),
+        ))
+        write_file(path + 'index.html', html)
+        urls.append(path)
+        if slug == site.get('homepage_slug'):
+            write_file('/index.html', html)
+            urls.append('/')
+
+    # ---------------- posts ----------------
+    posts_raw = load_content('posts')
+    posts_raw.sort(key=lambda p: p.get('date') or '', reverse=True)
+
+    posts_view = []
+    for p in posts_raw:
+        url = f"/{p['slug']}/"
+        posts_view.append({
+            'title': p.get('title', ''),
+            'url': url,
+            'date': p.get('date', ''),
+            'categories': p.get('categories') or [],
+            'featured_image': p.get('featured_image'),
+            'excerpt': p.get('excerpt', ''),
+        })
+
+    for p, view in zip(posts_raw, posts_view):
+        html = env.get_template('post.html').render(base_ctx(
+            page_title=p.get('title', ''),
+            page_description=p.get('excerpt', '') or '',
+            canonical_path=view['url'],
+            og_image=p.get('featured_image'),
+            post=view,
+            content=p['_body'],
+            generated_css=generated_css_path(p.get('post_id')),
+        ))
+        write_file(view['url'] + 'index.html', html)
+        urls.append(view['url'])
+
+    # ---------------- blog index (paginated) ----------------
+    def paginate(post_list, base_path):
+        total_pages = max(1, (len(post_list) + POSTS_PER_PAGE - 1) // POSTS_PER_PAGE)
+        for page_num in range(1, total_pages + 1):
+            chunk = post_list[(page_num - 1) * POSTS_PER_PAGE: page_num * POSTS_PER_PAGE]
+            out_path = base_path if page_num == 1 else f'{base_path}page/{page_num}/'
+            yield page_num, total_pages, chunk, out_path
+
+    def pagination_url_factory(base_path):
+        return lambda n: base_path if n == 1 else f'{base_path}page/{n}/'
+
+    for page_num, total_pages, chunk, out_path in paginate(posts_view, '/blog/'):
+        html = env.get_template('blog_index.html').render(base_ctx(
+            page_title='Blog',
+            page_description=site.get('description', ''),
+            canonical_path=out_path,
+            og_image=None,
+            posts=chunk,
+            categories=categories,
+            active_category=None,
+            current_page=page_num,
+            total_pages=total_pages,
+            pagination_url=pagination_url_factory('/blog/'),
+        ))
+        write_file(out_path + 'index.html', html)
+        urls.append(out_path)
+
+    # ---------------- blog category pages (paginated) ----------------
+    for cat in categories:
+        matching = [p for p in posts_view if cat['name'] in p['categories']]
+        base_path = f"/blog/category/{cat['slug']}/"
+        for page_num, total_pages, chunk, out_path in paginate(matching, base_path):
+            html = env.get_template('blog_index.html').render(base_ctx(
+                page_title=f"{cat['name']} - Blog",
+                page_description=site.get('description', ''),
+                canonical_path=out_path,
+                og_image=None,
+                posts=chunk,
+                categories=categories,
+                active_category=cat['slug'],
+                current_page=page_num,
+                total_pages=total_pages,
+                pagination_url=pagination_url_factory(base_path),
+            ))
+            write_file(out_path + 'index.html', html)
+            urls.append(out_path)
+
+    # ---------------- static assets ----------------
+    shutil.copytree(STATIC_DIR, os.path.join(OUTPUT_DIR, 'static'), dirs_exist_ok=True)
+    # everything under assets/ ships as-is: uploads/ plus theme/ (images the
+    # live theme serves from wp-content/themes/f-one/images)
+    if os.path.isdir(ASSETS_DIR):
+        shutil.copytree(ASSETS_DIR, os.path.join(OUTPUT_DIR, 'assets'), dirs_exist_ok=True)
+
+    # ---------------- sitemap + robots ----------------
+    base_url = site.get('base_url', '').rstrip('/')
+    sitemap_entries = ''.join(f'  <url><loc>{base_url}{u}</loc></url>\n' for u in sorted(set(urls)))
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f'{sitemap_entries}'
+        '</urlset>\n'
+    )
+    write_file('/sitemap.xml', sitemap)
+    write_file('/robots.txt', f'User-agent: *\nAllow: /\nSitemap: {base_url}/sitemap.xml\n')
+
+    print(f'Built {len(pages)} pages, {len(posts_raw)} posts, {len(categories)} category listings.')
+    print(f'Output written to {OUTPUT_DIR}')
+
+
+if __name__ == '__main__':
+    main()

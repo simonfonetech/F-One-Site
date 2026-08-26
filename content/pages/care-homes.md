@@ -1,0 +1,120 @@
+---
+title: Care Homes
+slug: care-homes
+type: page
+format: html
+date: 2022-10-05
+excerpt: Solutions Tailored for Care Homes . Reliable technology plays an important role in delivering great care. Our solutions are designed to keep care homes...
+post_id: 403
+---
+<div class="gb-container gb-container-33b466d4 mobile-remove-gradient"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-b601b4d6"><div class="gb-grid-column gb-grid-column-53836b50"><div class="gb-container gb-container-53836b50"><div class="gb-inside-container">
+<h1 class="wp-block-heading has-text-align-left" id="h-solutions-tailored-for-care-homes"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Solutions Tailored for Care Homes</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h1>
+
+<p class="has-text-align-left">Reliable technology plays an important role in delivering great care. Our solutions are designed to keep care homes connected, make communication simple, and support staff throughout the day. From fast, building-wide WiFi to easy-to-use phone systems and the right handsets for every role, we provide technology that works quietly in the background so your team can focus on what matters most, caring for residents.</p>
+
+<div class="gb-button-wrapper gb-button-wrapper-960e1518"><a class="gb-button gb-button-1f1895d6 gb-button-text mobile-remove-gradient" href="/contact-us/">Get in touch</a></div>
+</div></div></div></div></div></div><div class="gb-container gb-container-9bea688f"><div class="gb-inside-container"><div class="gb-container gb-container-e29bcf60"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-2a594278"><div class="gb-grid-column gb-grid-column-a3660ce3"><div class="gb-container gb-container-a3660ce3"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-04289c43 gb-headline-text">What Our Customers Say About Working With Us<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
+</div></div></div><div class="gb-grid-column gb-grid-column-6e3c3e57"><div class="gb-container gb-container-6e3c3e57 f_one_testimonial"><div class="gb-inside-container">
+<blockquote class="wp-block-quote is-style-plain has-primary-background-color has-background">
+<p class="gb-headline gb-headline-69900d9b gb-headline-text">"With our new phone and WiFi system, both staff and residents are connecting more confidently. Our team is fully using the new care software, and it’s heartwarming to see residents enjoying classic movies on Netflix."</p>
+<cite>Diana Adlam - Aster Healthcare</cite></blockquote>
+
+<figure class="wp-block-image size-full"><img src="/assets/uploads/Customer-Logo-Review-Website.png" alt="" class="wp-image-12233"/></figure>
+</div></div></div></div></div></div></div></div><div class="gb-container gb-container-5032885c"><div class="gb-inside-container"><div class="gb-container gb-container-5fa316cf"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-3c650eef"><div class="gb-grid-column gb-grid-column-26759f3d"><div class="gb-container gb-container-26759f3d"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-c294d155 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Reliable WiFi Coverage</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-yellow-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-114f2a5c gb-headline-text">Fast, dependable WiFi across your care home keeps staff systems running smoothly and helps residents stay connected with family and friends. With strong coverage throughout the building, day-to-day tasks are simpler, communication is easier, and everyone benefits from a more connected environment.</p>
+</div></div></div></div>
+<a class="gb-button gb-button-5b612436 gb-button-text mobile-remove-gradient" href="/wifi-and-networking/">Find out more</a>
+</div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div><div class="gb-shape gb-shape-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-b84a8afb"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-97312baa"><div class="gb-grid-column gb-grid-column-4840a906"><div class="gb-container gb-container-4840a906"><div class="gb-inside-container">
+<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.png" alt="" class="wp-image-17483"/></figure>
+</div></div></div><div class="gb-grid-column gb-grid-column-cb0f73ca"><div class="gb-container gb-container-cb0f73ca"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-0abc83e9 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Effortless Communication</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-2d5754ed gb-headline-text">Our cloud phone system makes it easy for staff to stay connected across the care home. Take and transfer calls on desk phones, mobiles, or tablets, so families, GPs, and healthcare professionals can always reach the right person quickly, without disruption to day-to-day care.</p>
+
+<a class="gb-button gb-button-7ec1a8d0 gb-button-text mobile-remove-gradient" href="/cloud-phone-systems/">Find out more</a>
+</div></div></div></div></div></div><div class="gb-container gb-container-097ee022"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-3e6881e6"><div class="gb-grid-column gb-grid-column-f6599df0"><div class="gb-container gb-container-f6599df0"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-6410ea42 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Handsets That Fit Every Role</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-387734c6 gb-headline-text">Choose the right phones for each member of your team, from cordless handsets for carers on the move to desk phones for reception and office staff. With simple call forwarding and easy call handling, every call reaches the right person quickly and reliably.</p>
+<div class="gb-container gb-container-2fc684c3"><div class="gb-inside-container">
+<a class="gb-button gb-button-a5ae33cb gb-button-text" href="/cloud-phone-systems/">Find out more</a>
+</div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-d928bce5" id="contact"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-a4243318"><div class="gb-grid-column gb-grid-column-5cb68e7d"><div class="gb-container gb-container-5cb68e7d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-94fb6605"><div class="gb-grid-column gb-grid-column-ae8f81c0"><div class="gb-container gb-container-ae8f81c0"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-c6582bca gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Let's Talk</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-d60efda4 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Share your details and one of our team will be in touch shortly to discuss how we can support your care home with simple, reliable communication solutions that just work.</mark></p>
+<div class="gb-container gb-container-b0d99684"><div class="gb-inside-container">
+<a class="gb-button gb-button-13b5fd90 gb-button-text" href="tel:03302211183">0330 221 1183</a>
+</div></div></div></div></div></div></div></div></div><div class="gb-grid-column gb-grid-column-66bd7faa"><div class="gb-container gb-container-66bd7faa"><div class="gb-inside-container"><div class="gb-container gb-container-1d647e8a"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-6552d72e gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Get in Touch</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
+
+<div class="wp-contact-form-wrap">
+  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
+    <div><label for="cf-name-514">Your Name</label><input type="text" id="cf-name-514" required></div>
+    <div><label for="cf-email-514">Your Email</label><input type="email" id="cf-email-514" required></div>
+    <div><label for="cf-phone-514">Your Phone</label><input type="tel" id="cf-phone-514"></div>
+    <div><label for="cf-message-514">Your Message</label><textarea id="cf-message-514"></textarea></div>
+    <button type="submit" class="btn">Send</button>
+  </form>
+  <p class="form-note">Placeholder for WordPress Contact Form 7 (id 514) &mdash; connect a form backend before publishing.</p>
+</div>
+</div></div></div></div></div></div></div></div><div class="gb-container gb-container-5514cb03"><div class="gb-inside-container">
+<div class="slider-container" >
+<div class="slider-track">
+<img src="/assets/uploads/SupplierClient-Logo-Website-28-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-26-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-17-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-32-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-23-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-30-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-33-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-29-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-31-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-21-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-2-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-12-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-22-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-16-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-25-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-13-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-6-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-19-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-14-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-9-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-24-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-27-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-3-2-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-18-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-11-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-5-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-15-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-8-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-10-2.png"><img src="/assets/uploads/webex-scaled.png"><img src="/assets/uploads/shire-leasing-scaled.png"><img src="/assets/uploads/neos-networks-scaled.png"><img src="/assets/uploads/cisco-scaled.png">
+
+<img src="/assets/uploads/SupplierClient-Logo-Website-28-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-26-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-17-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-32-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-23-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-30-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-33-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-29-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-31-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-21-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-2-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-12-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-22-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-16-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-25-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-13-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-6-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-19-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-14-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-9-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-24-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-27-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-3-2-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-18-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-11-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-5-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-15-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-8-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-10-2.png"><img src="/assets/uploads/webex-scaled.png"><img src="/assets/uploads/shire-leasing-scaled.png"><img src="/assets/uploads/neos-networks-scaled.png"><img src="/assets/uploads/cisco-scaled.png">
+
+</div>
+<div class="slider-track">
+<img src="/assets/uploads/SupplierClient-Logo-Website-28-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-26-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-17-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-32-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-23-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-30-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-33-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-29-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-31-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-21-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-2-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-12-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-22-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-16-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-25-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-13-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-6-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-19-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-14-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-9-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-24-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-27-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-3-2-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-18-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-11-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-5-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-15-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-8-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-10-2.png"><img src="/assets/uploads/webex-scaled.png"><img src="/assets/uploads/shire-leasing-scaled.png"><img src="/assets/uploads/neos-networks-scaled.png"><img src="/assets/uploads/cisco-scaled.png">
+
+<img src="/assets/uploads/SupplierClient-Logo-Website-28-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-26-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-17-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-32-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-23-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-30-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-33-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-29-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-31-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-21-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-2-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-12-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-22-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-16-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-25-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-13-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-6-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-19-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-14-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-9-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-24-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-27-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-3-2-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-18-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-11-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-5-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-15-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-8-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-10-2.png"><img src="/assets/uploads/webex-scaled.png"><img src="/assets/uploads/shire-leasing-scaled.png"><img src="/assets/uploads/neos-networks-scaled.png"><img src="/assets/uploads/cisco-scaled.png">
+
+</div>
+<div class="slider-track">
+<img src="/assets/uploads/SupplierClient-Logo-Website-28-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-26-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-17-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-32-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-23-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-30-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-33-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-29-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-31-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-21-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-2-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-12-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-22-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-16-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-25-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-13-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-6-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-19-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-14-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-9-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-24-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-27-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-3-2-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-18-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-11-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-5-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-15-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-8-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-10-2.png"><img src="/assets/uploads/webex-scaled.png"><img src="/assets/uploads/shire-leasing-scaled.png"><img src="/assets/uploads/neos-networks-scaled.png"><img src="/assets/uploads/cisco-scaled.png">
+
+<img src="/assets/uploads/SupplierClient-Logo-Website-28-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-26-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-17-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-32-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-23-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-30-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-33-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-29-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-31-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-21-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-2-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-12-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-22-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-16-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-25-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-13-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-6-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-19-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-14-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-9-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-24-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-27-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-3-2-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-18-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-11-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-5-1.png"><img src="/assets/uploads/SupplierClient-Logo-Website-15-1-scaled.png"><img src="/assets/uploads/SupplierClient-Logo-Website-8-2.png"><img src="/assets/uploads/SupplierClient-Logo-Website-10-2.png"><img src="/assets/uploads/webex-scaled.png"><img src="/assets/uploads/shire-leasing-scaled.png"><img src="/assets/uploads/neos-networks-scaled.png"><img src="/assets/uploads/cisco-scaled.png">
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+const tracks = gsap.utils.toArray(".slider-track");
+const duration = 60;
+
+const master = gsap.timeline({ repeat: -1 });
+
+tracks.forEach((track, i) => {
+master.to(track, {
+x: "-100%",
+ease: "linear",
+duration: duration,
+repeat: 0,
+}, i * (duration / tracks.length));
+});
+
+</script>
+
+<style>
+.slider-container {
+overflow: hidden;
+width: 100%;
+height: 60px;
+}
+
+.slider-track {
+display: flex;
+}
+
+.slider-track img {
+height: 60px;
+margin-right: 2rem;
+flex-shrink: 0;
+}
+</style>
+</div></div>

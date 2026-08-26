@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="253.65" height="253.65" viewBox="0 0 253.65 253.65">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="148.019" height="120.207" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Group_2376" data-name="Group 2376" transform="translate(-285.129 -550)">
+    <g id="Group_106" data-name="Group 106" transform="translate(285.129 550)">
+      <rect id="Rectangle_2" data-name="Rectangle 2" width="179.358" height="179.358" rx="25" transform="translate(126.825 0) rotate(45)" fill="#76c0ff"/>
+      <g id="Group_3" data-name="Group 3" transform="translate(52.815 64.612)">
+        <g id="Group_1" data-name="Group 1" clip-path="url(#clip-path)">
+          <path id="Path_219" data-name="Path 219" d="M121.491,96.009a1.922,1.922,0,0,1-.157-3.838,24.939,24.939,0,0,0-.929-49.762,1.924,1.924,0,0,1-1.781-1.471A27.2,27.2,0,0,0,98.6,20.994a1.925,1.925,0,0,1-1.215-.9,32.912,32.912,0,0,0-61.3,16.434,1.924,1.924,0,0,1-2.142,1.9,26.7,26.7,0,0,0-3.09-.184,27.016,27.016,0,0,0-4.042,53.727,1.922,1.922,0,1,1-.569,3.8A30.861,30.861,0,0,1,30.854,34.4c.484,0,.969.012,1.46.037a36.756,36.756,0,0,1,67.96-16.986A31.113,31.113,0,0,1,122,38.668,28.785,28.785,0,0,1,121.652,96c-.054,0-.108.006-.161.006" transform="translate(0 0)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <path id="Icon_awesome-phone" data-name="Icon awesome-phone" d="M62.956,3.139,49.686.077a3.082,3.082,0,0,0-3.509,1.774L40.053,16.141a3.054,3.054,0,0,0,.88,3.573l7.732,6.329a47.288,47.288,0,0,1-22.61,22.61L19.727,40.92a3.059,3.059,0,0,0-3.573-.88L1.863,46.164A3.1,3.1,0,0,0,.077,49.686l3.062,13.27a3.061,3.061,0,0,0,2.986,2.373,59.2,59.2,0,0,0,59.2-59.2A3.059,3.059,0,0,0,62.956,3.139Z" transform="translate(379.29 657.835)" fill="none" stroke="#fff" stroke-width="5"/>
+    <path id="Path_306" data-name="Path 306" d="M3462.127,1945.455a137.873,137.873,0,0,1-20.055.9" transform="translate(-3001.54 -1236.878)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="5.5"/>
+  </g>
+</svg>

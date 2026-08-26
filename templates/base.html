@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page_title }} | {{ site.title }}</title>
+<meta name="description" content="{{ page_description }}">
+<link rel="canonical" href="{{ site.base_url }}{{ canonical_path }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ site.base_url }}{{ canonical_path }}">
+{% if og_image %}<meta property="og:image" content="{{ site.base_url }}{{ og_image }}">{% endif %}
+{# ?v= is the build timestamp, so a rebuild always invalidates the browser's
+   cached copy instead of appearing to change nothing #}
+<link rel="stylesheet" href="/static/css/wp-blocks.css?v={{ asset_version }}">
+<link rel="stylesheet" href="/static/css/brand.css?v={{ asset_version }}">
+<link rel="stylesheet" href="/static/css/theme.css?v={{ asset_version }}">
+<link rel="stylesheet" href="/static/css/style.css?v={{ asset_version }}">
+<link rel="stylesheet" href="/static/css/generateblocks-global.css?v={{ asset_version }}">
+{% if generated_css %}<link rel="stylesheet" href="{{ generated_css }}?v={{ asset_version }}">{% endif %}
+{# msgboxx's vendor CSS must come BEFORE wp-custom.css: wp-custom carries live's
+   `.msgboxxlauncher img { height: 60px }`, and loading the vendor bundle after
+   it let the widget's own sizing win, rendering the launcher at 100px. #}
+<link rel="stylesheet" href="https://cdn.msgboxx.io/static/css/bundle.min.css">
+<link rel="stylesheet" href="/static/css/wp-custom.css?v={{ asset_version }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<link rel="stylesheet" href="/static/css/carousel.css?v={{ asset_version }}">
+</head>
+<body>
+  {% include "partials/socials.html" %}
+  {% include "partials/nav.html" %}
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "partials/footer.html" %}
+  {# Ionicons: the contact details on /contact-us/ and in the footer are marked
+     up as <ion-icon> web components, exactly as on live. Without this script
+     they render as nothing at all. #}
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="/static/js/main.js?v={{ asset_version }}"></script>
+  {# Mount point for the msgboxx widget -- its React app renders into this, and
+     without it the bundle loads but produces nothing. Live has the same div. #}
+  <div id="omnichatWidget"></div>
+  {# Set the client id before the bundle runs as well as in its onload: with
+     async the bundle can execute first and read an undefined client. #}
+  <script>window.msgboxxClient = 'FONE';</script>
+  <script src="https://cdn.msgboxx.io/static/js/bundle.min.js" async onload="window.msgboxxClient='FONE';"></script>
+</body>
+</html>

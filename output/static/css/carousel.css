@@ -1,0 +1,86 @@
+/* Polish for Slick-powered .wp-block-cb-carousel sliders (Carousel Block plugin) */
+.wp-block-cb-carousel {
+  visibility: hidden;
+  /* Slick needs a determinate width to measure against. Flex ancestors that
+     don't explicitly request stretch (our default is flex-start, so buttons
+     don't stretch full-width) would otherwise size this to its own shrink-to-fit
+     content -- which Slick's own JS-computed content feeds back into, causing
+     a runaway circular measurement. Force it to always fill its container
+     regardless of the parent's align-items. */
+  width: 100%;
+  align-self: stretch;
+  min-width: 0;
+}
+.wp-block-cb-carousel.slick-initialized { visibility: visible; }
+.wp-block-cb-carousel .slick-track { display: flex !important; align-items: stretch; }
+.wp-block-cb-carousel .slick-slide { height: auto; }
+.wp-block-cb-carousel .slick-slide > div { height: 100%; }
+.wp-block-cb-carousel .wp-block-cb-slide { height: 100%; padding: 0 12px; box-sizing: border-box; }
+
+.wp-block-cb-carousel .slick-dots {
+  position: static;
+  margin-top: 16px;
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+}
+.wp-block-cb-carousel .slick-dots li { width: auto; height: auto; margin: 0; }
+/* These dots sit on white on some pages and on deep blue on others, so they
+   carry both a light fill and a dark ring: the ring defines them against white,
+   the fill against blue. The old flat rgba(0,33,53,.18) vanished on the dark
+   sections, leaving only the orange active dot visible. */
+.wp-block-cb-carousel .slick-dots li button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .45);
+  /* the ring keeps them visible on the one carousel that sits on white */
+  box-shadow: inset 0 0 0 1.5px rgba(0, 33, 53, .35);
+  transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.wp-block-cb-carousel .slick-dots li button::before { display: none; }
+.wp-block-cb-carousel .slick-dots li button:hover { transform: scale(1.15); }
+.wp-block-cb-carousel .slick-dots li.slick-active button {
+  background: #fff;
+  box-shadow: inset 0 0 0 1.5px rgba(0, 33, 53, .55);
+  transform: scale(1.1);
+}
+
+/* Edge zones for click-to-cycle (wired up in main.js) */
+.wp-block-cb-carousel { cursor: grab; }
+.wp-block-cb-carousel.is-dragging { cursor: grabbing; }
+
+/* ---------- client feedback slider ----------
+   The card must hug its content (live: 298px) rather than stretch to the 500px
+   slide height. .f_one_testimonial::after is the soft drop shadow, sized
+   height:100% of the card, so a stretched card throws the gradient far below
+   it instead of tucking it underneath as a shadow.
+
+   The slides themselves stay a uniform 500px, as on live, so the carousel does
+   not jump between quotes of different lengths -- it is only the card that must
+   not stretch. This has to outrank `.wp-block-cb-carousel .slick-slide > div`
+   above, which is what stretches it: the card is that direct child. */
+.wp-block-cb-carousel.testimonial-slider .slick-slide > div.f_one_testimonial {
+  height: auto;
+  align-self: flex-start;
+}
+
+/* no dots on this one -- the quotes advance on their own */
+.testimonial-slider .slick-dots { display: none !important; }
+
+.wp-block-cb-carousel .slick-arrow {
+  width: 40px;
+  height: 40px;
+  background: var(--text-white);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0, 33, 53, .18);
+  z-index: 2;
+}
+.wp-block-cb-carousel .slick-arrow::before {
+  color: var(--primary);
+  font-size: 20px;
+  opacity: 1;
+}
+.wp-block-cb-carousel .slick-prev { left: -8px; }
+.wp-block-cb-carousel .slick-next { right: -8px; }

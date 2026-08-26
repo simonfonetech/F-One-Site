@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Essentials Certification Support — FoneTech</title>
+<style>
+  :root {
+    --purple: #D5ACF8;
+    --secondary: #004269;
+    --yellow: #FFCE00;
+    --text-black: #363636;
+    --text-white: #ffffff;
+    --primary: #f06120;
+    --max-width: 1200px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-black);
+    line-height: 1.6;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .container-inner {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 25px;
+    background-color: var(--purple);
+    color: var(--text-white);
+    transition: background-color 0.2s ease;
+  }
+  .btn:hover { background-color: var(--secondary); }
+  .btn-small { padding: 6px 12px; margin-bottom: 15px; }
+  .btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--purple);
+    color: var(--purple);
+  }
+  .btn-outline:hover {
+    background-color: var(--purple);
+    color: var(--text-white);
+  }
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .dot-purple { color: var(--purple); }
+  .dot-secondary { color: var(--secondary); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    color: var(--text-white);
+    text-align: center;
+    background-color: #000;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(90deg, rgba(0,0,0,0.63) 20%, rgba(212,171,247,0.85) 100%),
+      url("https://fonetech.uk/wp-content/uploads/Full-Width-Page-Image-Website-12-2-scaled.png");
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+    width: 75%;
+    text-align: left;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .hero-content img.hero-icon { width: 150px; }
+  .hero-content h1 {
+    margin: 30px 0 0;
+    font-size: 2.6rem;
+    line-height: 1.2;
+  }
+  .hero-content h1 .dot-purple { color: var(--purple); }
+  .hero-content h1 .dot-secondary { color: var(--secondary); }
+  .hero-content p { margin: 0; font-size: 1.05rem; }
+
+  @media (max-width: 767px) {
+    .hero { min-height: 70vh; }
+    .hero-content {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      padding-top: 100px;
+      padding-bottom: 30px;
+    }
+    .hero-content h1, .hero-content p { text-align: center; }
+  }
+
+  /* ---------- KEY FEATURES ---------- */
+  .key-features {
+    padding: 40px 10px;
+  }
+  .key-features .container-inner {
+    padding: 50px 0;
+  }
+  .kf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 80px;
+    align-items: center;
+  }
+  .kf-text h2 { margin: 0; color: var(--text-black); }
+  .kf-text h2 .dot-purple { color: var(--purple); }
+  .kf-text p { max-width: 550px; }
+
+  .accordion { display: flex; flex-direction: column; row-gap: 20px; }
+  .accordion-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--text-white);
+    color: var(--purple);
+    border: 0;
+    padding: 0;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  .accordion-toggle:hover,
+  .accordion-item.is-open .accordion-toggle { color: var(--secondary); }
+  .accordion-toggle .icon {
+    width: 0.8em;
+    height: 0.8em;
+    flex-shrink: 0;
+    margin-left: 10px;
+    transition: transform 0.25s ease;
+  }
+  .accordion-item.is-open .accordion-toggle .icon { transform: rotate(180deg); }
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .accordion-content p {
+    margin: 0;
+    padding: 20px 0;
+    color: var(--text-black);
+  }
+
+  @media (max-width: 767px) {
+    .kf-grid { grid-template-columns: 1fr; }
+    .kf-text { text-align: center; padding-bottom: 40px; }
+    .kf-text p { margin-left: auto; margin-right: auto; }
+    .accordion { padding-bottom: 30px; }
+  }
+
+  /* ---------- COMPLIANCE OVERVIEW ---------- */
+  .compliance {
+    position: relative;
+    color: var(--text-white);
+    background-color: var(--purple);
+    padding: 10px;
+  }
+  .compliance::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, var(--secondary), #000000);
+    opacity: 0.29;
+  }
+  .compliance .container-inner {
+    position: relative;
+    z-index: 1;
+    padding: 4em 0;
+  }
+  .compliance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    align-items: center;
+  }
+  .compliance-img-desktop { padding: 4em 0; }
+  .compliance-img-mobile { display: none; }
+  .compliance-text h2 { margin: 0; color: var(--text-white); }
+  .compliance-text h2 .dot-secondary { color: var(--secondary); }
+  .compliance-text p { max-width: 550px; }
+
+  @media (max-width: 767px) {
+    .compliance-grid { grid-template-columns: 1fr; }
+    .compliance-img-desktop { display: none; }
+    .compliance-img-mobile { display: block; padding: 0; }
+    .compliance-text { text-align: center; }
+    .compliance-text p { margin-left: auto; margin-right: auto; }
+  }
+
+  /* ---------- GET IN TOUCH ---------- */
+  .contact-section {
+    padding: 4em 10px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .contact-left { width: 66.66%; }
+  .contact-left h2 { margin: 0; }
+  .contact-left h2 .dot-purple { color: var(--purple); }
+  .contact-left h2 .dot-secondary { color: var(--secondary); }
+
+  .contact-box {
+    background-color: var(--purple);
+    color: var(--text-white);
+    padding: 2em;
+    border-radius: 15px;
+  }
+  .contact-box h2 { margin: 0 0 1em; color: var(--text-white); }
+  .contact-box h2 .dot-secondary { color: var(--secondary); }
+
+  form.wp-contact-form { display: flex; flex-direction: column; gap: 12px; }
+  form.wp-contact-form label { font-size: 0.9rem; font-weight: 600; }
+  form.wp-contact-form input,
+  form.wp-contact-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+  form.wp-contact-form textarea { min-height: 100px; resize: vertical; }
+  form.wp-contact-form button {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--text-white);
+  }
+  form.wp-contact-form button:hover { background-color: #002a44; }
+  .form-note {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 767px) {
+    .contact-grid { grid-template-columns: 1fr; row-gap: 2em; }
+    .contact-left { width: 100%; text-align: center; }
+    .contact-left h2, .contact-left p { text-align: center; }
+  }
+
+  /* ---------- reusable block placeholder ---------- */
+  .reusable-block-note {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 10px 60px;
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+    border-top: 1px dashed #ddd;
+  }
+</style>
+</head>
+<body>
+
+  <!-- wp:generateblocks/container 67c9176e (hero) -->
+  <section class="hero">
+    <div class="container-inner hero-inner">
+      <!-- wp:generateblocks/grid f3dcb9f4 -->
+      <div class="hero-content">
+        <!-- wp:image 13105 -->
+        <img class="hero-icon" src="https://fonetech.uk/wp-content/uploads/it-services-1.png" alt="">
+
+        <!-- wp:generateblocks/headline 810f2631 -->
+        <h1><span class="dot-purple">Cyber Essentials Certification Support</span><span class="dot-secondary">.</span></h1>
+
+        <!-- wp:generateblocks/headline 48428598 -->
+        <p>Cyber Essentials Certification Support helps your business meet the technical and security requirements needed to achieve Cyber Essentials certification. We guide you through the process, help identify and implement any required changes, and provide clear, practical advice to make certification straightforward and manageable.</p>
+
+        <!-- wp:generateblocks/button 1d2e8637 -->
+        <div class="btn-group">
+          <a class="btn" href="https://fonetech.uk/contact-us/">Get in touch</a>
+          <!-- TODO: point href at the actual free assessment page/form -->
+          <a class="btn btn-outline" href="#">Take our free assessment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wp:generateblocks/container 2082a6f7 (Key Features) -->
+  <section class="key-features" id="key-features">
+    <div class="container-inner">
+      <!-- wp:generateblocks/grid e804a5a7 -->
+      <div class="kf-grid">
+
+        <!-- wp:generateblocks/container 2e33d87c -->
+        <div class="kf-text">
+          <!-- wp:generateblocks/headline c227aceb -->
+          <h2>Key Features<span class="dot-purple">.</span></h2>
+
+          <!-- wp:generateblocks/headline 6c21649b -->
+          <p>Achieving Cyber Essentials can feel complex without the right support, and our service is designed to simplify the process. By assessing your current setup and guiding you through each requirement, we help reduce uncertainty, avoid common mistakes, and improve your overall security posture along the way.</p>
+
+          <!-- wp:generateblocks/button a5ae33cb -->
+          <a class="btn btn-small" href="https://fonetech.uk/contact-us/">Get in touch</a>
+        </div>
+
+        <!-- wp:generateblocks/container 5ed81dca (accordion) -->
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" aria-expanded="false">
+              <strong>Cyber Essentials Readiness Assessment</strong>
+              <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <p>We review your existing IT environment against the Cyber Essentials requirements to identify any gaps. This provides a clear understanding of what needs to be addressed before certification.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" aria-expanded="false">
+              <strong>Practical Guidance &amp; Remediation Support</strong>
+              <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <p>Where changes are required, we provide clear, practical advice on how to implement them. This may include configuration changes, policy updates, or security improvements to bring you in line with the standard.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" aria-expanded="false">
+              <strong>Support with the Application Process</strong>
+              <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <p>We guide you through the Cyber Essentials application, helping ensure questions are answered accurately and confidently. This reduces the risk of delays or failed submissions.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" aria-expanded="false">
+              <strong>Alignment with Everyday Security Best Practice</strong>
+              <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <p>The steps required for Cyber Essentials also strengthen your day to day security. Our approach ensures improvements are practical, sustainable, and beneficial beyond certification alone.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" aria-expanded="false">
+              <strong>Ongoing Advice &amp; Future Readiness</strong>
+              <svg class="icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>
+            </button>
+            <div class="accordion-content">
+              <p>Once certified, we can help you stay compliant and prepared for renewal. This includes advice on maintaining standards as your business and technology evolve.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wp:generateblocks/container 9feaae2a (Compliance Overview) -->
+  <section class="compliance">
+    <div class="container-inner">
+      <!-- wp:generateblocks/grid 44407ec5 -->
+      <div class="compliance-grid">
+
+        <!-- wp:image 17044 (desktop only) -->
+        <div class="compliance-img-desktop">
+          <img src="https://fonetech.uk/wp-content/uploads/General-Page-PNG-Image-Website-61.png" alt="">
+        </div>
+
+        <!-- wp:generateblocks/container 1f090e5a -->
+        <div class="compliance-text">
+          <!-- wp:generateblocks/headline e4fd3ab7 -->
+          <h2>Compliance Overview<span class="dot-secondary">.</span></h2>
+
+          <!-- wp:generateblocks/headline 11a99a00 -->
+          <p>We provide clear oversight of your Cyber Essentials progress, helping track requirements, actions, and readiness from start to finish. This gives you confidence that nothing has been missed and that certification is being handled in a structured, supported way.</p>
+        </div>
+
+        <!-- wp:image 15463 (mobile only) -->
+        <div class="compliance-img-mobile">
+          <img src="https://fonetech.uk/wp-content/uploads/General-Page-PNG-Image-Website-9.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- wp:generateblocks/container d928bce5 (Get in Touch) -->
+  <section class="contact-section" id="get-in-touch">
+    <div class="container-inner">
+      <!-- wp:generateblocks/grid a4243318 -->
+      <div class="contact-grid">
+
+        <!-- wp:generateblocks/container 5cb68e7d -->
+        <div class="contact-left">
+          <!-- wp:generateblocks/headline 49feb12d -->
+          <h2><span class="dot-purple">Let&rsquo;s Talk</span><span class="dot-secondary">.</span></h2>
+
+          <!-- wp:generateblocks/headline 7c4cdc6f -->
+          <p>Cyber Essentials certification is increasingly required by customers, insurers, and public sector contracts, but it does not need to be overwhelming. If you&rsquo;d like support achieving Cyber Essentials in a clear and practical way, we&rsquo;re happy to talk it through and explain how we can help.</p>
+
+          <!-- wp:generateblocks/button 13b5fd90 -->
+          <a class="btn btn-small" href="tel:03302211183">0330 221 1183</a>
+        </div>
+
+        <!-- wp:generateblocks/container 66bd7faa -->
+        <div class="contact-box">
+          <!-- wp:generateblocks/headline 5497e424 -->
+          <h2>Get in Touch<span class="dot-secondary">.</span></h2>
+
+          <!-- wp:shortcode  [contact-form-7 id="514" title="Contact form"] -->
+          <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
+            <div>
+              <label for="cf-name">Your Name</label>
+              <input type="text" id="cf-name" name="your-name" required>
+            </div>
+            <div>
+              <label for="cf-email">Your Email</label>
+              <input type="email" id="cf-email" name="your-email" required>
+            </div>
+            <div>
+              <label for="cf-phone">Your Phone</label>
+              <input type="tel" id="cf-phone" name="your-phone">
+            </div>
+            <div>
+              <label for="cf-message">Your Message</label>
+              <textarea id="cf-message" name="your-message"></textarea>
+            </div>
+            <button type="submit" class="btn">Send</button>
+          </form>
+          <p class="form-note">Note: placeholder markup for the WordPress "Contact form 7" shortcode (id 514) — swap for the real embed when publishing back to WordPress.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- wp:block ref=569 -->
+  <p class="reusable-block-note">Reusable block (ref 569) referenced here in the original page — its content wasn't included in the source, so it isn't reproduced in this copy.</p>
+
+  <script>
+    document.querySelectorAll('.accordion-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.accordion-item');
+        var content = item.querySelector('.accordion-content');
+        var isOpen = item.classList.contains('is-open');
+
+        if (isOpen) {
+          content.style.maxHeight = null;
+          item.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

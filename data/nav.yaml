@@ -1,0 +1,194 @@
+header:
+  - label: Cloud Phone Systems
+    url: /cloud-phone-systems/
+    children:
+      - label: Phone System Basics
+        url: "/cloud-phone-systems/#the-basics"
+      - label: Hardware
+        url: "/cloud-phone-systems/#hardware"
+      - label: "Mobile & PC Apps"
+        url: "/cloud-phone-systems/#stay-connected-anywhere"
+      - label: SmartVoice Messaging
+        url: /smartvoice-on-hold-messaging/
+      - label: Smarter Calls with AI
+        url: "/cloud-phone-systems/#smart-call"
+      - label: Call Reporting
+        url: "/cloud-phone-systems/#call-recording"
+      - label: CRM Integration
+        url: /crm-integration/
+      - label: WhatsApp for Business
+        url: "/cloud-phone-systems/#whatsapp"
+      - label: Easy System Management
+        url: "/cloud-phone-systems/#system-management"
+  - label: Internet Connectivity
+    url: /internet-connectivity/
+    children:
+      - label: Superfast FTTP
+        url: "/internet-connectivity/#fttp"
+      - label: Satellite Broadband
+        url: "/internet-connectivity/#satellite"
+      - label: Dedicated Ethernet
+        url: "/internet-connectivity/#ethernet"
+      - label: Mobile Broadband
+        url: "/internet-connectivity/#broadband"
+  - label: "WiFi & Networking"
+    url: /wifi-and-networking/
+    children:
+      - label: Mesh Networking
+        url: "/wifi-and-networking/#mesh-networking"
+      - label: Full Site Coverage
+        url: "/wifi-and-networking/#full-site-coverage"
+      - label: Network Support
+        url: "/wifi-and-networking/#support"
+      - label: Social Wifi
+        url: "/wifi-and-networking/#social-wifi"
+      - label: Omada Network Manager
+        url: "/wifi-and-networking/#omada"
+  - label: Mobile SIM Plans
+    url: /mobile-sim-plans/
+    children:
+      - label: Nationwide Coverage
+        url: "/mobile-sim-plans/#nationwide"
+      - label: Flexible Contracts
+        url: "/mobile-sim-plans/#flexible"
+      - label: Mobile Broadband
+        url: "/mobile-sim-plans/#mobile-broadband"
+  - label: IT Essentials
+    url: /it-essentials/
+    children:
+      - label: Microsoft 365 License Management
+        url: "/it-essentials/#microsoft-management"
+      - label: Email Security
+        url: "/it-essentials/#email-security"
+      - label: "Endpoint Detection & Response (EDR)"
+        url: "/it-essentials/#endpoint-detection"
+      - label: Backup for Microsoft 365
+        url: "/it-essentials/#microsoft-backup"
+      - label: Remote Monitoring and Management (RMM)
+        url: "/it-essentials/#remote-monitoring"
+      - label: Security Awareness Training
+        url: "/it-essentials/#security-awareness"
+      - label: Password Manager
+        url: "/it-essentials/#uniqkey"
+      - label: Cyber Essentials Certification Support
+        url: "/it-essentials/#cyber-essentials"
+  - label: About Us
+    url: /about-us/
+    children: []
+  - label: Customer Area
+    url: /customerarea/
+    children: []
+  - label: Get in touch
+    url: /contact-us/
+    children: []
+footer:
+  - title: Our Services
+    links:
+      - label: Cloud Phone Systems
+        url: /cloud-phone-systems/
+      - label: Internet Connectivity
+        url: /internet-connectivity/
+      - label: "WiFi & Networking"
+        url: /wifi-and-networking/
+      - label: Mobile SIM Plans
+        url: /mobile-sim-plans/
+      - label: IT Essentials
+        url: /it-essentials/
+  - title: Industries
+    links:
+      - label: Care Homes
+        url: /care-homes/
+      - label: Dental Practices
+        url: /dental-practices/
+      - label: Doctor Surgeries
+        url: /doctors-surgeries/
+      - label: Golf Clubs
+        url: /golf-clubs/
+      - label: Veterinary Practices
+        url: /veterinary-practices/
+      - label: Education Solutions
+        url: /education-solutions/
+      - label: General Office
+        url: /general-office/
+      - label: Warehouse Solutions
+        url: /warehouses/
+      - label: Estate Agencies
+        url: /estate-agencies/
+      - label: Recruitment Agencies
+        url: /recruitment-agencies/
+      - label: Serviced Offices
+        url: /serviced-offices/
+  - title: Products
+    links:
+      - label: Yealink T34W
+        url: /yealink-t34w/
+      - label: Yealink T73W
+        url: /yealink-t73w/
+      - label: Yealink T74W
+        url: /yealink-t74w/
+      - label: Yealink T85W
+        url: /yealink-t85w/
+      - label: Yealink T87W
+        url: /yealink-t87w/
+      - label: Yealink T88W Pro
+        url: /yealink-t88wpro/
+      - label: Cisco 9851
+        url: /cisco-9851/
+      - label: Cisco 9861
+        url: /cisco-9861/
+      - label: Cisco 9871
+        url: /cisco-9871/
+      - label: Cordless DECT
+        url: /cordless-dect/
+      - label: Yealink W73H
+        url: /yealink-w73h/
+      - label: Yealink W59R Pro
+        url: /yealink-w59rpro/
+      - label: Yealink W56H
+        url: /yealink-w56h/
+      - label: Cisco 6825
+        url: /cisco-6825/
+      - label: Yealink WH64
+        url: /yealink-wh64/
+      - label: Routers
+        url: /routers/
+      - label: WiFi Access Points
+        url: /wifi-access-points/
+      - label: Managed Switches
+        url: /managed-switches/
+      - label: Comms Cabinets
+        url: /comms-cabinets/
+  - title: About Us
+    links:
+      - label: About F One
+        url: /about-us/
+      - label: Get in Touch
+        url: /contact-us/
+      - label: Meet the F One Team
+        url: "/about-us/#meet-the-team"
+      - label: Blog
+        url: /blog/
+  - title: Company
+    links:
+      - label: F One Careers
+        url: /careers/
+      - label: Customer Area
+        url: /customerarea/
+      - label: "Terms & Conditions"
+        url: /assets/uploads/Terms-and-Conditions.pdf
+      - label: Privacy Policy
+        url: /assets/uploads/Privacy-Policy.pdf
+      - label: Complaints Procedure
+        url: /assets/uploads/Complaints-Procedure.pdf
+      - label: Code of Conduct
+        url: /assets/uploads/Code-of-Conduct.pdf
+      - label: Service Level Agreement
+        url: /assets/uploads/Service-Level-Agreement.pdf
+      - label: "Brochures & Guides"
+        url: /customerarea/
+      - label: Employers Liability Certificate
+        url: /assets/uploads/Certificate-of-Employers-Liability-Insurance.pdf
+      - label: Professional Indemnity Insurance
+        url: /assets/uploads/Certificate-of-Professional-Indemnity-Insurance.pdf
+      - label: "Public & Products Liability Insurance"
+        url: /assets/uploads/Certificate-of-Public-and-Products-Liability-Insurance.pdf
