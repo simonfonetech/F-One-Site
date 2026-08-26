@@ -270,6 +270,22 @@ p.gb-headline { margin: 0 0 1rem; }
    reveal its sub-links while the row spotlights it and dims its neighbours.
    Pure CSS (:hover/:focus-within/:has) -- no tab-switching JS involved. */
 .mega-services { position: relative; --mega-w: 980px; }
+/* Unifying fix: theme.css ships a global `a:focus { outline: thin
+   dotted; }`, and its (0,1,1) specificity beats any single-class rule of
+   ours, so a plain `.mega-whatever:focus { outline: none }` never
+   actually wins. On top of that, Chromium/WebKit adds its own default
+   tap-highlight on any <a>. Between the two, every link in the dropdown
+   -- cards, child items, CTAs -- shows a stray focus/tap box. Scoping to
+   `.mega-menu a`, the one class every redesign shares, kills it in one
+   place instead of patching each link selector piecemeal (replaces the
+   narrower .mega-float-main/.mega-float-drop li a patches). */
+.mega-menu a:focus,
+.mega-menu a:focus-visible,
+.mega-menu a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -358,6 +374,18 @@ p.gb-headline { margin: 0 0 1rem; }
   overflow: hidden;
   transition: flex-grow .32s cubic-bezier(.2,.8,.2,1), transform .32s cubic-bezier(.2,.8,.2,1), border-color .25s ease, background-color .25s ease, box-shadow .25s ease, opacity .25s ease, filter .25s ease;
 }
+.mega-float-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
 .mega-float-card:hover,
 .mega-float-card:focus-within {
   flex-grow: 1.35;
@@ -366,6 +394,18 @@ p.gb-headline { margin: 0 0 1rem; }
   box-shadow: 0 18px 36px -14px rgba(0, 33, 53, .28);
   transform: translateY(-3px);
 }
+/* IT Essentials is always last in service_items (nav.yaml order) and
+   carries the longest label in the whole menu ("Cyber Essentials
+   Certification Support"), so it gets a bit more room on expand than
+   the other four cards -- less than before now that "Remote Monitoring
+   and Management (RMM)" lost its "(RMM)" suffix and is no longer the
+   widest line. */
+.mega-float-card:last-child:hover,
+.mega-float-card:last-child:focus-within {
+  flex-grow: 1.5;
+}
+.mega-float-card:hover::before,
+.mega-float-card:focus-within::before { transform: scaleX(1); }
 .mega-float-row:has(.mega-float-card:hover) .mega-float-card:not(:hover),
 .mega-float-row:has(.mega-float-card:focus-within) .mega-float-card:not(:focus-within) {
   opacity: .5;
@@ -379,16 +419,6 @@ p.gb-headline { margin: 0 0 1rem; }
   text-decoration: none;
   min-width: 0;
 }
-/* theme.css's `a:focus { outline: thin dotted; }` beats a plain
-   .mega-float-main rule on specificity (element+pseudo-class > class
-   alone), so the outline survived a bare `outline: none` here. Matching
-   its own :focus pseudo-class is what it takes to outrank it.
-   The card's own overflow:hidden + border-radius then clips that
-   dotted rectangle down to just its unclipped corner, which is what
-   read as a stray highlighted arc rather than a full ring. :focus-within
-   already drives a clear state change (box, border, colour bar,
-   chevron), so that's the focus indicator instead. */
-.mega-float-main:focus { outline: none; }
 .mega-float-icon { display: flex; width: 30px; height: 30px; flex-shrink: 0; }
 .mega-float-icon img { width: 100%; height: 100%; object-fit: contain; }
 .mega-float-title { flex: 1; min-width: 0; color: var(--secondary); font-weight: 700; font-size: .88rem; line-height: 1.25; }
@@ -412,17 +442,20 @@ p.gb-headline { margin: 0 0 1rem; }
   opacity: 1;
   padding: 0 14px 16px;
 }
-/* theme.css's `.main-navigation ul ul { position:absolute; left:-999em; }`
-   (the WP default that hides a submenu off-canvas until hovered directly)
-   outranks a plain class selector on specificity and still catches this
-   list, since it's a ul nested in ul.menu regardless of the wrappers in
-   between. Without these !important overrides every child link renders
-   ~999em off to the left. */
+/* theme.css's `.main-navigation ul ul { position:absolute; left:-999em;
+   box-shadow:0 3px 3px rgba(0,0,0,.2); }` (the WP default that hides a
+   submenu off-canvas until hovered directly, and drop-shadows it once
+   revealed) outranks a plain class selector on specificity and still
+   catches this list, since it's a ul nested in ul.menu regardless of the
+   wrappers in between. Without these !important overrides every child
+   link renders ~999em off to the left, and the box-shadow traces a faint
+   box around the whole list even once position is fixed. */
 .mega-float-drop ul {
   position: static !important;
   left: auto !important;
   top: auto !important;
   float: none !important;
+  box-shadow: none !important;
   list-style: none;
   margin: 0;
   padding: 10px 0 0;
@@ -435,19 +468,42 @@ p.gb-headline { margin: 0 0 1rem; }
   display: block;
   padding: 6px 4px;
   border-radius: 6px;
-  color: var(--text-black);
+  color: var(--text-black) !important;
   text-decoration: none;
   font-size: .78rem;
   font-weight: 500;
-  transition: background-color .15s ease, color .15s ease, padding-left .15s ease;
+  transition: background-color .15s ease, color .15s ease, transform .15s ease;
 }
-.mega-float-drop li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); padding-left: 9px; }
+/* theme.css carries `.main-navigation li:hover > a { color: #f06120; }`
+   (direct-child, not just `a:hover`) which ties this file's selectors on
+   raw specificity -- (0,2,2) either way -- so which one wins came down to
+   source order, and evidently not reliably in our favour. `!important`
+   here and on the :hover rule below settles it outright regardless of
+   specificity or order.
+
+   The shift-right-on-hover uses `transform: translateX()`, not
+   `padding-left` -- padding changes the element's own content-box width,
+   which for the longest label in the menu ("Microsoft 365 License
+   Management") could force its flex-sized card to recalculate/reflow
+   abruptly instead of animating smoothly. transform is purely visual
+   (GPU-composited), so it never triggers that reflow. */
+.mega-float-drop li a:hover {
+  color: var(--card-color) !important;
+  transform: translateX(5px);
+}
+/* theme.css's `.main-navigation a { display:block; color:#535768;
+   width:max-content; }` (0,1,1) outranks a plain `.mega-float-cta`
+   (0,1,0), so it was silently winning on both display (breaking the
+   icon/text flex alignment, since block ignores align-items/gap) and
+   colour (stuck at the muted nav grey instead of the card's colour).
+   !important on both settles it regardless of specificity. */
 .mega-float-cta {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   gap: 4px;
   margin-top: 10px;
-  color: var(--card-color);
+  padding-left: 4px;
+  color: var(--card-color) !important;
   text-decoration: none;
   font-weight: 700;
   font-size: .76rem;

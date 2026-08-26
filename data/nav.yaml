@@ -64,7 +64,7 @@ header:
         url: "/it-essentials/#endpoint-detection"
       - label: Backup for Microsoft 365
         url: "/it-essentials/#microsoft-backup"
-      - label: Remote Monitoring and Management (RMM)
+      - label: Remote Monitoring and Management
         url: "/it-essentials/#remote-monitoring"
       - label: Security Awareness Training
         url: "/it-essentials/#security-awareness"
