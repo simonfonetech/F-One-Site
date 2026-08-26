@@ -358,18 +358,6 @@ p.gb-headline { margin: 0 0 1rem; }
   overflow: hidden;
   transition: flex-grow .32s cubic-bezier(.2,.8,.2,1), transform .32s cubic-bezier(.2,.8,.2,1), border-color .25s ease, background-color .25s ease, box-shadow .25s ease, opacity .25s ease, filter .25s ease;
 }
-.mega-float-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--card-color);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .25s ease;
-}
 .mega-float-card:hover,
 .mega-float-card:focus-within {
   flex-grow: 1.35;
@@ -378,8 +366,6 @@ p.gb-headline { margin: 0 0 1rem; }
   box-shadow: 0 18px 36px -14px rgba(0, 33, 53, .28);
   transform: translateY(-3px);
 }
-.mega-float-card:hover::before,
-.mega-float-card:focus-within::before { transform: scaleX(1); }
 .mega-float-row:has(.mega-float-card:hover) .mega-float-card:not(:hover),
 .mega-float-row:has(.mega-float-card:focus-within) .mega-float-card:not(:focus-within) {
   opacity: .5;
