@@ -398,7 +398,17 @@ p.gb-headline { margin: 0 0 1rem; }
   opacity: 1;
   padding: 0 14px 16px;
 }
+/* theme.css's `.main-navigation ul ul { position:absolute; left:-999em; }`
+   (the WP default that hides a submenu off-canvas until hovered directly)
+   outranks a plain class selector on specificity and still catches this
+   list, since it's a ul nested in ul.menu regardless of the wrappers in
+   between. Without these !important overrides every child link renders
+   ~999em off to the left. */
 .mega-float-drop ul {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  float: none !important;
   list-style: none;
   margin: 0;
   padding: 10px 0 0;
