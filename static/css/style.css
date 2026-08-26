@@ -402,7 +402,7 @@ p.gb-headline { margin: 0 0 1rem; }
    widest line. */
 .mega-float-card:last-child:hover,
 .mega-float-card:last-child:focus-within {
-  flex-grow: 1.5;
+  flex-grow: 1.515;
 }
 .mega-float-card:hover::before,
 .mega-float-card:focus-within::before { transform: scaleX(1); }
@@ -419,9 +419,15 @@ p.gb-headline { margin: 0 0 1rem; }
   text-decoration: none;
   min-width: 0;
 }
-.mega-float-icon { display: flex; width: 30px; height: 30px; flex-shrink: 0; }
+/* Shifted the same 4px as the heading text below it, so the icon lines
+   up with the heading and the child items rather than sitting 4px to
+   their left. */
+.mega-float-icon { display: flex; width: 30px; height: 30px; flex-shrink: 0; margin-left: 4px; }
 .mega-float-icon img { width: 100%; height: 100%; object-fit: contain; }
-.mega-float-title { flex: 1; min-width: 0; color: var(--secondary); font-weight: 700; font-size: .88rem; line-height: 1.25; }
+/* 4px so the heading's own text lines up with the child items below it
+   (their <a> carries `padding: 6px 4px`, so their text sits 4px in from
+   the card edge -- the heading had no equivalent inset). */
+.mega-float-title { flex: 1; min-width: 0; padding-left: 4px; color: var(--secondary); font-weight: 700; font-size: .88rem; line-height: 1.25; }
 .mega-float-chevron {
   color: var(--card-color);
   flex-shrink: 0;
@@ -514,18 +520,23 @@ p.gb-headline { margin: 0 0 1rem; }
 /* Live wraps the number in a grey span but the visible text is the link
    inside it, which picks up the theme's orange `a` colour at 14px/400.
    The 16px gap on .site-contact already matches live's padding-right. */
+/* `--service-accent` is set inline on <body> only for the 5 service
+   pages (build.py's SERVICE_ACCENTS), so var(...,fallback) makes every
+   other page fall straight through to the normal site-wide colour. */
 .site-phone-number {
   font-weight: 400;
   font-size: 14px;
-  color: var(--brand-link);
+  color: var(--service-accent, var(--brand-link));
   text-decoration: none;
   white-space: nowrap;
 }
 /* theme.css pins radius/padding/background with !important, matching live;
-   only the weight needs stating here (live renders this button at 300). */
+   only the weight needs stating here (live renders this button at 300).
+   background-color needs !important of its own too, to beat theme.css's
+   own #f06120 !important on the same property. */
 .gb-button-wrapper a {
   display: inline-flex;
-  background-color: var(--brand-btn-bg);
+  background-color: var(--service-accent, var(--brand-btn-bg)) !important;
   color: var(--brand-btn-text);
   text-decoration: none;
   font-weight: 300;
@@ -533,6 +544,11 @@ p.gb-headline { margin: 0 0 1rem; }
   transition: background-color .2s ease;
 }
 .gb-button-wrapper a:hover { background-color: var(--brand-btn-bg-hover); }
+/* theme.css sets the floating socials rail to a flat #f06120; overridden
+   here (loads after theme.css) so it also picks up --service-accent on
+   the 5 service pages, matching the phone number and "Get in touch"
+   button above. */
+.f-one-social-buttons { background-color: var(--service-accent, #f06120); }
 .menu-toggle { display: none; cursor: pointer; background: none; border: none; }
 
 @media (max-width: 991px) {

@@ -60,7 +60,7 @@ header:
         url: "/it-essentials/#microsoft-management"
       - label: Email Security
         url: "/it-essentials/#email-security"
-      - label: "Endpoint Detection & Response (EDR)"
+      - label: "Endpoint Detection & Response"
         url: "/it-essentials/#endpoint-detection"
       - label: Backup for Microsoft 365
         url: "/it-essentials/#microsoft-backup"
