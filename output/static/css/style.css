@@ -339,8 +339,8 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-menu--floating {
   position: fixed;
   top: 74px;
-  left: calc(max((100vw - 1100px) / 2, 1rem) - 20px);
-  right: calc(max((100vw - 1100px) / 2, 1rem));
+  left: calc(max((100vw - 1100px) / 2, 1rem) - 8px);
+  right: calc(max((100vw - 1100px) / 2, 1rem) - 8px);
   width: auto;
   max-width: none;
   background: linear-gradient(160deg, #ffffff 0%, #f2f5f8 100%);
