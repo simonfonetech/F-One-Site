@@ -303,6 +303,21 @@ p.gb-headline { margin: 0 0 1rem; }
    Services > IT Essentials > Password Manager
    Services > IT Essentials > Cyber Essentials Certification Support */
 .mega-services { position: relative; --mega-w: 1020px; }
+/* Unifying fix: theme.css ships a global `a:focus { outline: thin
+   dotted; }`, and its (0,1,1) specificity beats any single-class rule of
+   ours, so a plain `.mega-whatever:focus { outline: none }` never
+   actually wins. On top of that, Chromium/WebKit adds its own default
+   tap-highlight on any <a>. Between the two, every link in the dropdown
+   -- cards, child items, CTAs -- shows a stray focus/tap box. Scoping to
+   `.mega-menu a`, the one class every redesign shares, kills it in one
+   place instead of patching each link selector piecemeal. */
+.mega-menu a:focus,
+.mega-menu a:focus-visible,
+.mega-menu a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -476,7 +491,7 @@ p.gb-headline { margin: 0 0 1rem; }
    on specificity and catches this list too, since it's still a ul nested in
    ul.menu. Needs the same !important overrides the baseline's `.mega-panel
    ul` used, or every child link renders ~999em off to the left. */
-.mega-spotlight-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
+.mega-spotlight-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; box-shadow: none !important; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
 .mega-spotlight-panel li a {
   display: flex;
   align-items: center;
@@ -484,7 +499,7 @@ p.gb-headline { margin: 0 0 1rem; }
   padding: 9px 10px;
   margin: 0 -10px;
   border-radius: 10px;
-  color: var(--text-black);
+  color: var(--text-black) !important;
   text-decoration: none;
   font-weight: 600;
   font-size: .88rem;
@@ -498,7 +513,12 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-spotlight-panel li { min-width: 0; }
 .mega-spotlight-panel li a { min-width: 0; }
 .mega-spotlight-panel li a svg { flex-shrink: 0; color: var(--tab-color); transition: transform .15s ease; }
-.mega-spotlight-panel li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); padding-left: 14px; }
+/* theme.css carries `.main-navigation li:hover > a { color: #f06120; }`
+   (direct-child, not just `a:hover`) which ties this selector on raw
+   specificity -- (0,2,2) either way -- so which one wins came down to
+   source order, and evidently not reliably in our favour. `!important`
+   here and on the base rule above settles it outright. */
+.mega-spotlight-panel li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary) !important; padding-left: 14px; }
 .mega-spotlight-panel li a:hover svg { transform: translateX(2px); }
 .site-contact { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin-left: 1.5rem; }
 /* Live wraps the number in a grey span but the visible text is the link
