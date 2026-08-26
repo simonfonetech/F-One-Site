@@ -408,13 +408,18 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-spotlight-intro h3 { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--secondary); letter-spacing: -.01em; }
 
-/* Every service is expanded and stacked here -- no tab hides the others --
-   so the column scrolls internally rather than pushing the whole menu (and
-   the page beneath it) to an unbounded height. */
+/* Every service is expanded here -- no tab hides the others -- laid out in
+   two balanced columns (like a sitemap-style mega menu) so all five
+   categories and their full sub-link lists are visible together instead of
+   stacked into one tall list that hides the bottom few behind a scroll a
+   visitor has to discover. The height cap + scroll is just a safety net for
+   short windows; on a normal desktop viewport nothing needs to scroll. */
 .mega-spotlight-scroll {
   position: relative;
   z-index: 1;
-  max-height: min(560px, calc(100vh - 180px));
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
   padding: 1.1rem 2.1rem 1.6rem;
   scroll-behavior: smooth;
@@ -423,9 +428,15 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-spotlight-scroll::-webkit-scrollbar-track { background: transparent; }
 .mega-spotlight-scroll::-webkit-scrollbar-thumb { background: rgba(0, 33, 53, .15); border-radius: 8px; }
 
-.mega-spotlight-panel { position: relative; overflow: hidden; padding: 20px 0; scroll-margin-top: 8px; }
+.mega-spotlight-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 16px 0;
+  scroll-margin-top: 8px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
 .mega-spotlight-panel:first-child { padding-top: 4px; }
-.mega-spotlight-panel + .mega-spotlight-panel { border-top: 1px solid rgba(0, 33, 53, .08); }
 .mega-spotlight-blob {
   position: absolute;
   top: -90px;
@@ -470,7 +481,7 @@ p.gb-headline { margin: 0 0 1rem; }
 .mega-spotlight-cta svg { transition: transform .18s ease; }
 .mega-spotlight-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -8px var(--tab-color); }
 .mega-spotlight-cta:hover svg { transform: translateX(3px); }
-.mega-spotlight-panel ul { position: relative; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
+.mega-spotlight-panel ul { position: relative; z-index: 1; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
 .mega-spotlight-panel li a {
   display: flex;
   align-items: center;
