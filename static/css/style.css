@@ -265,7 +265,7 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .main-navigation ul.menu > li:hover > a { font-weight: 700; }
 .main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
-/* Services mega-menu -- "Command Console": a dark SaaS-console panel with
+/* Services mega-menu -- "Command Console": a light SaaS-console panel with
    horizontal indexed pill tabs up top and a console-style link list below.
    Tab-switching reuses the same .mega-tab/.mega-panel contract as the
    baseline design, so main.js needs no changes. */
@@ -326,21 +326,20 @@ p.gb-headline { margin: 0 0 1rem; }
 
 .mega-menu--console {
   flex-direction: column;
-  background: linear-gradient(160deg, #0a1420 0%, #060b13 100%);
+  background: linear-gradient(160deg, #ffffff 0%, #f4f7fa 100%);
   position: absolute;
 }
 .mega-console-scanlines {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: repeating-linear-gradient(180deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 3px);
-  mix-blend-mode: overlay;
+  background-image: repeating-linear-gradient(180deg, rgba(0,33,53,.02) 0px, rgba(0,33,53,.02) 1px, transparent 1px, transparent 3px);
 }
 .mega-console-top {
   position: relative;
   z-index: 1;
   padding: 20px 24px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  border-bottom: 1px solid rgba(0, 33, 53, .08);
 }
 .mega-console-label {
   display: block;
@@ -349,7 +348,6 @@ p.gb-headline { margin: 0 0 1rem; }
   font-size: .72rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  opacity: .85;
   margin-bottom: 12px;
 }
 .mega-console-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -357,13 +355,13 @@ p.gb-headline { margin: 0 0 1rem; }
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgba(255, 255, 255, .1);
+  border: 1px solid rgba(0, 33, 53, .12);
   border-radius: 999px;
   cursor: pointer;
-  background: rgba(255, 255, 255, .03);
+  background: rgba(0, 33, 53, .025);
   padding: 8px 16px 8px 10px;
   font-family: inherit;
-  color: rgba(255, 255, 255, .68);
+  color: var(--text-black);
   font-weight: 600;
   font-size: .82rem;
   transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
@@ -377,12 +375,12 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-tab-icon { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; }
 .mega-tab-icon img { width: 100%; height: 100%; object-fit: contain; }
-.mega-console-tabs .mega-tab:hover { background: rgba(255, 255, 255, .06); color: rgba(255, 255, 255, .9); }
+.mega-console-tabs .mega-tab:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); }
 .mega-console-tabs .mega-tab.is-active {
-  background: rgba(255, 255, 255, .08);
+  background: var(--text-white);
   border-color: var(--tab-color);
-  color: var(--text-white);
-  box-shadow: 0 0 0 1px var(--tab-color), 0 0 18px -4px var(--tab-color);
+  color: var(--secondary);
+  box-shadow: 0 0 0 1px var(--tab-color), 0 8px 18px -6px var(--tab-color);
 }
 
 .mega-console-panels { position: relative; z-index: 1; padding: 18px 24px 22px; }
@@ -408,7 +406,7 @@ p.gb-headline { margin: 0 0 1rem; }
   margin: 0 -8px;
   border-radius: 8px;
   min-width: 0;
-  color: rgba(255, 255, 255, .72);
+  color: var(--text-black);
   text-decoration: none;
   font-weight: 500;
   font-size: .85rem;
@@ -420,13 +418,13 @@ p.gb-headline { margin: 0 0 1rem; }
   font-weight: 700;
   flex-shrink: 0;
 }
-.mega-console-panel li a:hover { background: rgba(255, 255, 255, .06); color: var(--text-white); padding-left: 12px; }
+.mega-console-panel li a:hover { background: rgba(0, 33, 53, .055); color: var(--secondary); padding-left: 12px; }
 .mega-console-cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, .08);
+  border-top: 1px solid rgba(0, 33, 53, .08);
   width: 100%;
   color: var(--tab-color);
   text-decoration: none;
