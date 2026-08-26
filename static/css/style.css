@@ -402,7 +402,7 @@ p.gb-headline { margin: 0 0 1rem; }
    widest line. */
 .mega-float-card:last-child:hover,
 .mega-float-card:last-child:focus-within {
-  flex-grow: 1.5;
+  flex-grow: 1.515;
 }
 .mega-float-card:hover::before,
 .mega-float-card:focus-within::before { transform: scaleX(1); }
@@ -419,9 +419,15 @@ p.gb-headline { margin: 0 0 1rem; }
   text-decoration: none;
   min-width: 0;
 }
-.mega-float-icon { display: flex; width: 30px; height: 30px; flex-shrink: 0; }
+/* Shifted the same 4px as the heading text below it, so the icon lines
+   up with the heading and the child items rather than sitting 4px to
+   their left. */
+.mega-float-icon { display: flex; width: 30px; height: 30px; flex-shrink: 0; margin-left: 4px; }
 .mega-float-icon img { width: 100%; height: 100%; object-fit: contain; }
-.mega-float-title { flex: 1; min-width: 0; color: var(--secondary); font-weight: 700; font-size: .88rem; line-height: 1.25; }
+/* 4px so the heading's own text lines up with the child items below it
+   (their <a> carries `padding: 6px 4px`, so their text sits 4px in from
+   the card edge -- the heading had no equivalent inset). */
+.mega-float-title { flex: 1; min-width: 0; padding-left: 4px; color: var(--secondary); font-weight: 700; font-size: .88rem; line-height: 1.25; }
 .mega-float-chevron {
   color: var(--card-color);
   flex-shrink: 0;
