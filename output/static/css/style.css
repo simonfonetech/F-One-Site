@@ -419,16 +419,27 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .mega-float-card:hover .mega-float-chevron,
 .mega-float-card:focus-within .mega-float-chevron { transform: rotate(180deg); }
+/* Animates to the content's own measured height via the CSS grid
+   `0fr -> 1fr` row trick, instead of guessing a fixed max-height (was
+   480px) and animating toward that ceiling regardless of how tall the
+   content actually is. A fixed target overshoots short lists and, worse,
+   fights the card's simultaneous width transition: as the card widens
+   the text reflows and its true height changes mid-animation, but
+   max-height keeps easing toward the same unrelated 480px -- the
+   mismatch between the two is what read as a "bounce". grid-template-rows
+   tracks the real row size continuously as it changes, so there's
+   nothing to overshoot. */
 .mega-float-drop {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  overflow: hidden;
   padding: 0 14px;
-  transition: max-height .32s cubic-bezier(.2,.8,.2,1), opacity .22s ease, padding .32s ease;
+  transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .22s ease, padding .32s ease;
 }
+.mega-float-drop-inner { overflow: hidden; min-height: 0; }
 .mega-float-card:hover .mega-float-drop,
 .mega-float-card:focus-within .mega-float-drop {
-  max-height: 480px;
+  grid-template-rows: 1fr;
   opacity: 1;
   padding: 0 14px 16px;
 }
