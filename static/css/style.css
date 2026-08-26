@@ -222,8 +222,15 @@ p.gb-headline { margin: 0 0 1rem; }
    changes colour on the 5 themed service pages -- everywhere else
    (including /contact-us/ itself) keeps the original orange. */
 .wp-contact-form button[type="submit"] {
-  background: var(--service-accent, #f06120);
-  border-color: var(--service-accent, #f06120);
+  background: #fff;
+  color: var(--service-accent, #f06120);
+  border-color: #fff;
+}
+.wp-contact-form button[type="submit"]:hover,
+.wp-contact-form button[type="submit"]:focus {
+  background: var(--secondary, #004269);
+  color: #fff;
+  border-color: var(--secondary, #004269);
 }
 /* The "Customisable On-Hold Marketing Messages" (SmartVoice) section on
    the Cloud Phone Systems page is hardcoded pink in its own per-page
