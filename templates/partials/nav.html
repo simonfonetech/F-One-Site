@@ -47,32 +47,28 @@
     <ul id="primary-menu" class="menu nav-menu">
       <li class="menu-item menu-item-has-children mega-services">
         <a href="#">Services</a>
-        <div class="mega-menu">
-          <div class="mega-arrow"></div>
-          <div class="mega-tabs">
-            {% for item in service_items %}
-            {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
-            <button type="button" class="mega-tab{% if loop.first %} is-active{% endif %}" data-panel="mega-panel-{{ loop.index }}" data-color="{{ meta.color }}" style="--tab-color:{{ meta.color }}">
-              {% if meta.icon %}<span class="mega-tab-icon"><img src="{{ meta.icon }}" alt=""></span>{% endif %}
-              <span>{{ item.label }}</span>
-              <svg class="mega-tab-chevron" viewBox="0 0 24 24" width="14" height="14"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            {% endfor %}
+        <div class="mega-menu mega-menu--bento">
+          <div class="mega-bento-glow" aria-hidden="true"></div>
+          <div class="mega-bento-head">
+            <span class="mega-bento-eyebrow">What we do</span>
+            <h3>Services built for how you work</h3>
           </div>
-          <div class="mega-panels">
+          <div class="mega-bento-grid">
             {% for item in service_items %}
             {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
-            <div class="mega-panel{% if loop.first %} is-active{% endif %}" id="mega-panel-{{ loop.index }}" style="--tab-color:{{ meta.color }}">
-              <div class="mega-panel-head">
-                <h3>{{ item.label }}</h3>
-                <a class="mega-view-all" href="{{ item.url }}">View all<svg viewBox="0 0 24 24" width="13" height="13"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="mega-bento-card" href="{{ item.url }}" style="--card-color:{{ meta.color }}">
+              <div class="mega-bento-card-top">
+                {% if meta.icon %}<span class="mega-bento-icon"><img src="{{ meta.icon }}" alt=""></span>{% endif %}
+                <svg class="mega-bento-arrow" viewBox="0 0 24 24" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
+              <h4>{{ item.label }}</h4>
               <ul>
-                {% for child in item.children %}
-                <li><a href="{{ child.url }}"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>{{ child.label }}</a></li>
+                {% for child in item.children[:4] %}
+                <li>{{ child.label }}</li>
                 {% endfor %}
+                {% if item.children|length > 4 %}<li class="mega-bento-more">+{{ item.children|length - 4 }} more</li>{% endif %}
               </ul>
-            </div>
+            </a>
             {% endfor %}
           </div>
         </div>

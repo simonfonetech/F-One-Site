@@ -265,14 +265,10 @@ p.gb-headline { margin: 0 0 1rem; }
 }
 .main-navigation ul.menu > li:hover > a { font-weight: 700; }
 .main-navigation ul.menu > li.current-menu-item > a { color: var(--brand-nav-link-active); }
-/* Services mega-menu: left colored category tabs, right sub-item panel */
-/* One width for the panel and its hover bridge, so they can never drift apart.
-   980px is measured, not guessed: the tabs column is 250px and the panel has
-   56px of horizontal padding, leaving 674px of grid. IT Essentials is the
-   widest section and needs 663px for its two columns ("Remote Monitoring and
-   Management (RMM)" at 342px beside "Cyber Essentials Certification Support"),
-   which used to overflow the old 740px panel by 229px and get clipped. */
-.mega-services { position: relative; --mega-w: 980px; }
+/* Services mega-menu -- "Neon Bento": a dark glass card grid, one card per
+   service, replacing the old tabs+panel split. Every service is visible at
+   once, so there is no tab-switching JS to wire up here. */
+.mega-services { position: relative; --mega-w: 940px; }
 
 /* The panel is offset 14px below the nav item, so travelling from "Services"
    down to the options crosses a strip that belongs to neither element -- hover
@@ -325,119 +321,114 @@ p.gb-headline { margin: 0 0 1rem; }
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
-.mega-arrow {
-  position: absolute;
-  top: -7px;
-  left: 2.5rem;
-  width: 16px;
-  height: 16px;
-  background: var(--text-white);
-  transform: rotate(45deg);
-  border-radius: 3px 0 0 0;
-  box-shadow: -2px -2px 4px rgba(0, 33, 53, .03);
-}
-.mega-tabs {
-  display: flex;
+
+.mega-menu--bento {
   flex-direction: column;
-  gap: 4px;
-  width: 250px;
-  flex-shrink: 0;
-  padding: 1rem;
-  background: linear-gradient(180deg, rgba(0,66,105,.04), rgba(0,66,105,0));
+  padding: 1.75rem 2rem 2rem;
+  background: radial-gradient(1200px 500px at -10% -40%, rgba(240, 97, 32, .18), transparent 60%),
+              radial-gradient(900px 400px at 110% 120%, rgba(118, 192, 255, .16), transparent 55%),
+              linear-gradient(180deg, #0b1626 0%, #071019 100%);
+  box-shadow: 0 32px 64px -16px rgba(0, 8, 16, .55), 0 0 0 1px rgba(255, 255, 255, .06);
+  position: absolute;
+}
+.mega-bento-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at 20% 0%, black, transparent 70%);
+}
+.mega-bento-head {
   position: relative;
   z-index: 1;
+  margin-bottom: 1.25rem;
 }
-.mega-tab {
+.mega-bento-eyebrow {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.mega-bento-head h3 { margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--text-white); }
+.mega-bento-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.mega-bento-card {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: transparent;
-  padding: 11px 12px;
-  text-align: left;
-  font-family: inherit;
-  color: var(--text-black);
-  transition: background-color .18s ease, transform .18s ease;
+  flex-direction: column;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 16px;
+  padding: 16px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .2s cubic-bezier(.2,.8,.2,1), border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
-/* The service icons are full-colour artwork (coloured diamond + white symbol),
-   so they sit on their own -- no tinted tile behind them and no filter, which
-   would flatten them back into silhouettes. */
-.mega-tab-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-  transition: transform .18s ease;
+.mega-bento-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
 }
-.mega-tab-icon img { width: 100%; height: 100%; object-fit: contain; }
-.mega-tab span:not(.mega-tab-icon) { font-weight: 700; font-size: .93rem; flex: 1; }
-.mega-tab-chevron { color: var(--tab-color); opacity: 0; transform: translateX(-4px); transition: opacity .18s ease, transform .18s ease; }
-.mega-tab:hover { background: rgba(0, 33, 53, .045); }
-.mega-tab.is-active { background: rgba(0, 33, 53, .06); }
-.mega-tab:hover .mega-tab-icon, .mega-tab.is-active .mega-tab-icon { transform: scale(1.08) rotate(-4deg); }
-.mega-tab:hover .mega-tab-chevron, .mega-tab.is-active .mega-tab-chevron { opacity: 1; transform: translateX(0); }
-.mega-panels {
-  flex: 1;
-  padding: 1.75rem 1.75rem 1.5rem;
+.mega-bento-card:hover,
+.mega-bento-card:focus-visible {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, .065);
+  border-color: rgba(255, 255, 255, .18);
+  box-shadow: 0 16px 32px -12px rgba(0, 0, 0, .5);
+}
+.mega-bento-card:hover::before,
+.mega-bento-card:focus-visible::before { transform: scaleX(1); }
+.mega-bento-card-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.mega-bento-icon { display: flex; width: 32px; height: 32px; flex-shrink: 0; }
+.mega-bento-icon img { width: 100%; height: 100%; object-fit: contain; }
+.mega-bento-arrow {
+  color: var(--card-color);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.mega-bento-card:hover .mega-bento-arrow,
+.mega-bento-card:focus-visible .mega-bento-arrow { opacity: 1; transform: translate(0, 0); }
+.mega-bento-card h4 { margin: 12px 0 8px; font-size: .92rem; font-weight: 700; color: var(--text-white); }
+.mega-bento-card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.mega-bento-card li {
+  font-size: .74rem;
+  color: rgba(255, 255, 255, .5);
+  line-height: 1.35;
+  padding-left: 10px;
   position: relative;
 }
-.mega-panel { display: none; }
-.mega-panel.is-active { display: block; animation: megaFadeIn .28s ease; }
-@keyframes megaFadeIn {
-  from { opacity: 0; transform: translateX(6px); }
-  to { opacity: 1; transform: translateX(0); }
+.mega-bento-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .5em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--card-color);
+  opacity: .8;
 }
-.mega-panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  margin-bottom: 10px;
-  border-bottom: 2px solid var(--tab-color);
-}
-.mega-panel-head h3 { margin: 0; font-size: 1.05rem; color: var(--secondary); }
-.mega-view-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--tab-color);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: .8rem;
-  white-space: nowrap;
-  transition: gap .18s ease;
-}
-.mega-view-all svg { transition: transform .18s ease; }
-.mega-view-all:hover { gap: 8px; }
-.mega-panel ul { position: static !important; left: auto !important; top: auto !important; float: none !important; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 1.5rem; }
-.mega-panel li a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 8px;
-  margin: 0 -8px;
-  border-radius: 8px;
-  color: var(--text-black);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: .88rem;
-  transition: background-color .15s ease, color .15s ease, padding-left .15s ease;
-}
-/* Grid and flex items default to min-width:auto, so a label longer than its
-   track widens the track instead of wrapping -- which is what pushed the second
-   column past the panel edge, where overflow:hidden clipped it. Allowing both to
-   shrink means a label too long for the space wraps onto a second line rather
-   than disappearing, on any viewport. */
-.mega-panel li { min-width: 0; }
-.mega-panel li a { min-width: 0; }
-.mega-panel li a svg { flex-shrink: 0; color: var(--tab-color); transition: transform .15s ease; }
-.mega-panel li a:hover { background: rgba(0, 33, 53, .05); color: var(--secondary); padding-left: 12px; }
-.mega-panel li a:hover svg { transform: translateX(2px); }
+.mega-bento-more { color: var(--card-color) !important; font-weight: 700; }
+.mega-bento-more::before { content: none; }
 .site-contact { flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin-left: 1.5rem; }
 /* Live wraps the number in a grey span but the visible text is the link
    inside it, which picks up the theme's orange `a` colour at 14px/400.
