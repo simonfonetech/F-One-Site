@@ -34,15 +34,23 @@
   color: #fff;
   transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
+/* theme.css's blanket `button:hover { background-color: #404040;
+   border-color: #404040; }` sets border-color too, not just
+   background -- restating background/color/box-shadow here without
+   also restating border-color left the ring a dark near-black grey
+   instead of purple (this is what made the hover look "broken" next
+   to the site's other purple buttons, which use box-shadow rings, not
+   a real border, so they never had a border-color to leak through). */
 .ce-quiz-trigger:hover {
   background: #fff;
   color: var(--purple);
+  border-color: var(--purple);
   box-shadow: 0 0 0 1px var(--purple);
 }
-/* theme.css has a blanket `button:active, button:focus { background:
-   #404040; }` (a dark, near-black grey) that a plain click leaves
-   applied indefinitely, since a clicked button stays :focus until
-   something else takes focus -- :hover alone doesn't reach that
+/* theme.css also has a blanket `button:active, button:focus {
+   background: #404040; border-color: #404040; }` that a plain click
+   leaves applied indefinitely, since a clicked button stays :focus
+   until something else takes focus -- :hover alone doesn't reach that
    because clicking triggers :focus, not :focus-visible, in most
    browsers. Explicitly put it back to the purple resting state; placed
    after :hover above so it also wins in the (very likely) case the
@@ -51,6 +59,7 @@
 .ce-quiz-trigger:active {
   background: var(--purple);
   color: #fff;
+  border-color: var(--purple);
   box-shadow: none;
 }
 
@@ -89,7 +98,7 @@
 .ce-quiz-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows .4s cubic-bezier(.22, 1, .36, 1);
+  transition: grid-template-rows .7s cubic-bezier(.22, 1, .36, 1);
   overflow-anchor: none;
 }
 .ce-quiz-panel.ce-quiz-open { grid-template-rows: 1fr; }
