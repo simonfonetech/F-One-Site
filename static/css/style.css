@@ -567,29 +567,6 @@ a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:act
    since 205.css loads after this file. */
 .gb-headline-22fa65d8 { color: var(--wp--preset--color--text-black, #363636) !important; }
 
-/* The "SmartVoice Messaging" accordion (The Basics section, Cloud Phone
-   Systems) reused the site's generic .gb-accordion__toggle styling,
-   which defaults to purple text -- off-brand here. Scoped to
-   .the-basics-accordian only, so other accordions elsewhere keep their
-   own look. */
-.the-basics-accordian .gb-accordion__toggle {
-  color: var(--text-black, #363636) !important;
-}
-/* Colon-style accent dot after each item's label, matching the heading
-   dot pattern elsewhere on the page -- generated via ::after rather
-   than edited into the source content. */
-.the-basics-accordian .gb-accordion__toggle .gb-button-text::after {
-  content: ".";
-  color: var(--service-accent, #76C0FF);
-}
-/* Hover highlights the whole row (icon included, via currentColor) in
-   the accent colour, and staying open keeps that same colour instead
-   of reverting once you've clicked in -- :is() so both states share
-   one declaration. */
-.the-basics-accordian :is(.gb-accordion__toggle:hover, .gb-accordion-item.is-open .gb-accordion__toggle) {
-  color: var(--service-accent, #76C0FF) !important;
-}
-
 /* ---------- responsive visibility ---------- */
 @media (max-width: 767px) { .hide-on-mobile { display: none !important; } }
 @media (min-width: 768px) and (max-width: 991px) { .hide-on-tablet { display: none !important; } }
