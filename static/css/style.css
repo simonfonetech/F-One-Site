@@ -87,18 +87,26 @@ p.gb-headline { margin: 0 0 1rem; }
    own accent is the most consistent option: it matches every other
    accent-coloured element already on the page instead of introducing a
    new colour meaning just for the dot.
-   Two things keep this from over-reaching: (1) :is(h1,h2,h3,h4) instead
-   of the generic .gb-headline, which also matches <p class="gb-headline">
-   -- those paragraph marks highlight whole sentences and aren't part of
-   this pattern; (2) :last-child, since some headings carry extra marks
-   for individually-coloured words earlier in the title (e.g. "Microsoft
+   Two things keep this from over-reaching: (1) :is(h1,h2,h3,h4) rather
+   than matching by class -- headings on this site are authored as
+   either .gb-headline (GenerateBlocks) or .wp-block-heading (plain WP
+   core heading block) more or less interchangeably, and .gb-headline
+   is ALSO used on <p class="gb-headline"> paragraphs (whose marks
+   highlight whole sentences and aren't part of this dot pattern at
+   all), so matching by element type only -- not requiring either
+   class -- is what actually catches every heading correctly rather
+   than silently missing whichever one wasn't the class checked for
+   ("Explore More Devices." on the product pages used wp-block-heading
+   and was invisible to a .gb-headline-only version of this rule).
+   (2) :last-child, since some headings carry extra marks for
+   individually-coloured words earlier in the title (e.g. "Microsoft
    365 Licence Management.") -- only the final mark is ever the dot.
    Scoped via body[style*="--service-accent"] rather than var()'s own
    fallback, since a fallback here would force one colour onto every
    dot on the rest of the site too; this attribute selector only
-   matches the 5 pages whose <body> actually carries that inline
-   custom property, so it's a genuine no-op everywhere else. */
-body[style*="--service-accent"] :is(h1, h2, h3, h4).gb-headline mark:last-child {
+   matches pages whose <body> actually carries that inline custom
+   property, so it's a genuine no-op everywhere else. */
+body[style*="--service-accent"] :is(h1, h2, h3, h4) mark:last-child {
   color: var(--service-accent) !important;
 }
 /* Exception: on these 28 headings the text right next to the dot is
@@ -145,6 +153,14 @@ body[style*="--service-accent"] .gb-headline:is(
   .gb-headline-aee25fea, .gb-headline-e4fd3ab7-8171-4127-9fbc-e48c5e8ad822,
   .gb-headline-ed387cc9, .gb-headline-f39e7668
 ) mark:last-child {
+  color: #fff !important;
+}
+/* "Explore More Devices." is a wp-block-heading (not .gb-headline), so it
+   was never caught by the class-scoped exceptions above -- it sits on the
+   same accent-coloured band as its white heading text, so the dot needs
+   to stay white too. Shared id across every product page, so one rule
+   covers all of them. */
+body[style*="--service-accent"] #h-explore-more-devices mark:last-child {
   color: #fff !important;
 }
 
