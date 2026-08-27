@@ -29,9 +29,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // (the section wrapper) lands at the top of its 800px band, well
     // above the heading, which is what "doesn't return you to the right
     // place" meant -- anchoring to the heading's own id fixes that.
-    // html has scroll-behavior:smooth site-wide, so this scrolls there
-    // rather than jumping instantly.
-    window.location.hash = 'cyber-essentials-heading';
+    //
+    // A hand-rolled requestAnimationFrame scroll was tried here first, to
+    // get an easing curve slightly different from the rest of the site --
+    // but the panel's own collapse (grid-template-rows, .4s) throws
+    // thousands of px of reflow at the main thread at the same time,
+    // which starved that rAF loop of frames for the better part of a
+    // second before it suddenly caught up, i.e. exactly the "not smooth"
+    // this was meant to fix. The browser's own scrollIntoView smooth
+    // animation runs on the compositor instead of the main thread, so it
+    // keeps animating fluidly through that same reflow storm untouched --
+    // measured continuous frame-by-frame movement with no stall at all in
+    // testing, where the custom version stalled visibly every time.
+    // scroll-margin-top on the heading (below) keeps it clear of the
+    // fixed header. This call only ever runs from this file, so it can't
+    // touch any other element's scrolling on the site.
+    const heading = document.getElementById('cyber-essentials-heading');
+    if (heading) heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Updates the URL to match without using location.hash directly --
+    // setting location.hash to a value it's *already* set to is a no-op
+    // in every browser (no scroll, no event), which is why this only
+    // ever worked on the first close and silently did nothing on the
+    // second, third, etc. pushState always updates the URL, and (unlike
+    // location.hash) never triggers its own native jump that could
+    // fight the scrollIntoView call above.
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', '#cyber-essentials-heading');
+    }
   }
 
   if (trigger && panel) {
