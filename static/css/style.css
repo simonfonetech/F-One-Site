@@ -315,24 +315,47 @@ body[style*="--service-accent"] .gb-headline:is(
    (a.gb-button-1cbae936 in 215.css). Scoped to this one button. */
 a.gb-button-1cbae936 { color: var(--service-accent, #CC289C) !important; }
 
-/* Cloud Phone Systems: every filled CTA button on the page gets the
-   same hover inversion + 8102 outline/glow ring (copied from the
-   command console's .mega-tab.is-active), split into two groups by
-   their rest fill: blue-filled buttons ("The Basics" etc.) invert to a
-   white fill on hover; white-filled buttons ("Find out more" variants,
-   the feature grid) stay filled but flip to the accent colour on
-   hover, with a WHITE ring+glow (not accent-coloured) -- these sit on
-   blue section backgrounds already, so an accent-coloured fill+ring
-   would disappear into its own backdrop; white stays visible either
-   way. A full 2px solid border is set on hover throughout, matching
-   the feature-grid buttons' own native 2px border -- those also carry
-   a hardcoded pink border-color on hover in 215.css, which this
+/* The dedicated SmartVoice product page (/smartvoice-on-hold-messaging/,
+   blue-themed) has the same hardcoded-pink pattern on two of its own
+   buttons: gb-button-1d2e8637 has a pink rest background, and
+   gb-button-e9849ba3 has pink rest text. Both classes are reused
+   verbatim on several other (correctly-coloured) pages too -- not
+   scoped to this one page, since var(--service-accent) already
+   resolves correctly per page and harmlessly reconfirms the existing
+   right answer everywhere else. */
+a.gb-button-1d2e8637 { background-color: var(--service-accent, #76C0FF) !important; }
+a.gb-button-e9849ba3 { color: var(--service-accent, #CC289C) !important; }
+
+/* Every filled CTA button gets the same hover inversion + 8102
+   outline/glow ring (copied from the command console's
+   .mega-tab.is-active), split into two groups by their rest fill:
+   blue-filled buttons ("The Basics" etc.) invert to a white fill on
+   hover; white-filled buttons ("Find out more" variants, the feature
+   grid) stay filled but flip to the accent colour on hover, with a
+   WHITE ring+glow (not accent-coloured) -- these sit on blue section
+   backgrounds already, so an accent-coloured fill+ring would disappear
+   into its own backdrop; white stays visible either way. A full 2px
+   solid border is set on hover throughout, matching the feature-grid
+   buttons' own native 2px border -- those also carry a hardcoded pink
+   border-color on hover in their per-page generated CSS, which this
    overrides too. Most of the other buttons have no border at rest at
    all, so a border appearing only on hover grew their box by 4px and
    nudged surrounding text -- giving every button a transparent 2px
    border at rest (below) reserves the same space up front so hover
    only recolours it, never resizes it, exactly like the feature-grid
-   buttons already do natively. !important throughout since these tie
+   buttons already do natively.
+
+   Originally built for Cloud Phone Systems specifically, but every
+   selector here is a bare class name with no page scoping -- and
+   GenerateBlocks turned out to reuse several of these exact same
+   instance ids across the ~35 individual product pages under each
+   service (confirmed: gb-button-a5ae33cb and -13b5fd90 were already
+   silently working correctly there before this class list even grew,
+   since var(--service-accent) always resolves to whichever page is
+   actually being viewed). Classes below with no comment of their own
+   were added later specifically to close the same gap for the several
+   product-page button ids that weren't already covered by chance.
+   !important throughout since these tie
    on specificity with 215.css's own per-instance rules (incl. its own
    hover rules), which load after this file. */
 a.gb-button-424478e8,
@@ -362,7 +385,11 @@ a.gb-button-845cca54,
 a.gb-button-a7814829,
 a.gb-button-7c8bdf41,
 a.gb-button-544ee991,
-a.gb-button-1cbae936 {
+a.gb-button-1cbae936,
+a.gb-button-1d2e8637,
+a.gb-button-32c7ad69,
+a.gb-button-b020a5b7,
+a.gb-button-e9849ba3 {
   border: 2px solid transparent !important;
   transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
@@ -373,7 +400,9 @@ a.gb-button-009f904b:hover, a.gb-button-009f904b:focus, a.gb-button-009f904b:act
 a.gb-button-f25c87bf:hover, a.gb-button-f25c87bf:focus, a.gb-button-f25c87bf:active,
 a.gb-button-99d6ea14:hover, a.gb-button-99d6ea14:focus, a.gb-button-99d6ea14:active,
 a.gb-button-9dd83a88:hover, a.gb-button-9dd83a88:focus, a.gb-button-9dd83a88:active,
-a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:active {
+a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:active,
+a.gb-button-1d2e8637:hover, a.gb-button-1d2e8637:focus, a.gb-button-1d2e8637:active,
+a.gb-button-32c7ad69:hover, a.gb-button-32c7ad69:focus, a.gb-button-32c7ad69:active {
   background-color: #fff !important;
   color: var(--service-accent, #76C0FF) !important;
   border: 2px solid currentColor !important;
@@ -400,7 +429,9 @@ a.gb-button-845cca54:hover, a.gb-button-845cca54:focus, a.gb-button-845cca54:act
 a.gb-button-a7814829:hover, a.gb-button-a7814829:focus, a.gb-button-a7814829:active,
 a.gb-button-7c8bdf41:hover, a.gb-button-7c8bdf41:focus, a.gb-button-7c8bdf41:active,
 a.gb-button-544ee991:hover, a.gb-button-544ee991:focus, a.gb-button-544ee991:active,
-a.gb-button-1cbae936:hover, a.gb-button-1cbae936:focus, a.gb-button-1cbae936:active {
+a.gb-button-1cbae936:hover, a.gb-button-1cbae936:focus, a.gb-button-1cbae936:active,
+a.gb-button-b020a5b7:hover, a.gb-button-b020a5b7:focus, a.gb-button-b020a5b7:active,
+a.gb-button-e9849ba3:hover, a.gb-button-e9849ba3:focus, a.gb-button-e9849ba3:active {
   background-color: var(--service-accent, #76C0FF) !important;
   color: #fff !important;
   border: 2px solid currentColor !important;
