@@ -77,11 +77,25 @@
 .ce-quiz-panel.ce-quiz-open { grid-template-rows: 1fr; }
 .ce-quiz-panel-inner { overflow: hidden; min-height: 0; }
 
-.ce-quiz-close {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 24px;
+/* Compound .ce-quiz-btn.ce-quiz-close selectors so this reliably beats
+   the plain .ce-quiz-btn / .ce-quiz-btn:hover rules further down this
+   file on specificity, regardless of source order. */
+.ce-quiz-btn.ce-quiz-close {
+  display: block;
+  width: max-content;
+  margin: 24px 0 0 auto;
   padding: 10px 24px;
+  border: 2px solid var(--ce-accent);
+  background: var(--ce-accent);
+  color: #fff;
+  box-shadow: none;
+}
+.ce-quiz-btn.ce-quiz-close:hover,
+.ce-quiz-btn.ce-quiz-close:focus-visible {
+  background: #fff;
+  color: var(--ce-accent);
+  transform: none;
+  box-shadow: 0 0 0 1px var(--ce-accent);
 }
 
 /* ---------- ported quiz content (namespaced under .ce-quiz) ---------- */
@@ -140,21 +154,6 @@
   border-top-right-radius: 12px;
   background: linear-gradient(90deg, var(--ce-navy), var(--ce-purple));
 }
-.ce-quiz-brand-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(213, 172, 248, .08);
-  border: 1px solid rgba(213, 172, 248, .3);
-  color: var(--ce-accent);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .6px;
-  text-transform: uppercase;
-}
-.ce-quiz-brand-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--ce-yellow); box-shadow: 0 0 8px var(--ce-yellow); }
 .ce-quiz-card-header h1 { margin: 14px 0 6px; font-weight: 700; font-size: 28px; letter-spacing: .2px; color: var(--ce-navy); }
 .ce-quiz-lead { color: var(--ce-muted); max-width: 620px; line-height: 1.6; font-size: .95rem; }
 

@@ -146,7 +146,6 @@ tracksCustomers.forEach((track, i) => {
  <div class="ce-quiz-panel-inner">
   <div class="ce-quiz ce-quiz-card">
     <header class="ce-quiz-card-header">
-      <span class="ce-quiz-brand-kicker">A free tool from F One Technologies Ltd</span>
       <h1>Cyber Essentials Readiness Assessment</h1>
       <p class="ce-quiz-lead">Eight questions — one for each requirement area of Cyber Essentials' technical controls: firewalls, secure configuration, device locking, security update management, user access control, administrative accounts, password-based authentication and malware protection. Cyber Essentials doesn't award partial credit and neither does this assessment. Nothing you enter here leaves your browser until you choose to request the report — and if gaps turn up, F One Technologies Ltd is on hand to help you close them.</p>
     </header>
@@ -272,7 +271,7 @@ tracksCustomers.forEach((track, i) => {
       <p id="ce-quiz-email-report-status" class="ce-quiz-email-report-status" role="status" aria-live="polite"></p>
     </div>
 
-    <button type="button" id="ce-quiz-close" class="ce-quiz-btn ce-quiz-btn-secondary ce-quiz-close">Close quiz</button>
+    <button type="button" id="ce-quiz-close" class="ce-quiz-btn ce-quiz-close">Close quiz</button>
   </div>
  </div>
 </div>

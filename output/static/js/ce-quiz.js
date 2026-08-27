@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
     panel.setAttribute('aria-hidden', 'true');
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
     if (refocusTrigger && trigger) trigger.focus({ preventScroll: true });
+    // Closing can happen from anywhere in a long quiz + report, scrolled
+    // well past the section it lives in -- send the user back to the
+    // #cyber-essentials anchor point rather than leaving them stranded.
+    // html has scroll-behavior:smooth site-wide, so this scrolls there
+    // rather than jumping instantly.
+    window.location.hash = 'cyber-essentials';
   }
 
   if (trigger && panel) {
