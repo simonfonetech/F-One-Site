@@ -1025,6 +1025,19 @@ a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:act
    after this file. */
 .gb-container-55e4be16 { padding-bottom: 0 !important; }
 .gb-container:has(> .gb-inside-container > .gb-container-55e4be16) { padding-bottom: 0 !important; }
+/* On Cloud Phone Systems specifically, the :has() rule just above zeroes
+   this instance's bottom padding down to 0, but the section right after
+   it (Easy System Management) carries no top padding of its own -- so
+   this band ends up with ~150px of breathing room above the heading and
+   none at all below the logos, sitting hard against the next section.
+   Restoring 150px here matches the top gap so the band reads as
+   centred between the two sections either side of it. gb-container-e12aa5fe
+   is this page's own unique instance id (confirmed not reused on any
+   other page), so this can't affect the same band elsewhere. Specificity
+   is bumped to (0,3,0) by repeating the class, since the :has() rule
+   above it is already at that level and both carry !important -- source
+   order alone wouldn't be enough to win the tie. */
+.gb-container-e12aa5fe.gb-container-e12aa5fe.gb-container-e12aa5fe { padding-bottom: 150px !important; }
 
 /* ================= testimonial logo card =================
    theme.css positions this figure absolutely with no `top`, so it falls back to
