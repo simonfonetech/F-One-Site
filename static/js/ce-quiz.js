@@ -1,40 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // ---------- drawer open/close ----------
+  // ---------- panel open/close ----------
+  // In-page expand/collapse (CSS grid-template-rows 0fr->1fr on
+  // .ce-quiz-panel), not a fixed overlay -- opening it pushes the rest
+  // of the page down instead of floating on top of it.
   const trigger = document.getElementById('ce-quiz-trigger');
-  const drawer = document.getElementById('ce-quiz-drawer');
-  const backdrop = document.getElementById('ce-quiz-backdrop');
+  const panel = document.getElementById('ce-quiz-panel');
   const closeBtn = document.getElementById('ce-quiz-close');
 
-  function openDrawer() {
-    if (!drawer) return;
-    drawer.classList.add('ce-quiz-open');
-    if (backdrop) backdrop.classList.add('ce-quiz-open');
-    document.body.classList.add('ce-quiz-locked');
-    drawer.setAttribute('aria-hidden', 'false');
+  function openPanel() {
+    if (!panel) return;
+    panel.classList.add('ce-quiz-open');
+    panel.setAttribute('aria-hidden', 'false');
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
-    const firstFocusable = drawer.querySelector('input, button');
-    if (firstFocusable) firstFocusable.focus({ preventScroll: true });
+    // Scroll the panel into view once it's had a moment to start expanding,
+    // so opening it doesn't leave it sitting off-screen below the fold.
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 120);
   }
 
-  function closeDrawer() {
-    if (!drawer) return;
-    drawer.classList.remove('ce-quiz-open');
-    if (backdrop) backdrop.classList.remove('ce-quiz-open');
-    document.body.classList.remove('ce-quiz-locked');
-    drawer.setAttribute('aria-hidden', 'true');
+  function closePanel({ refocusTrigger } = {}) {
+    if (!panel) return;
+    panel.classList.remove('ce-quiz-open');
+    panel.setAttribute('aria-hidden', 'true');
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    if (refocusTrigger && trigger) trigger.focus({ preventScroll: true });
   }
 
-  if (trigger && drawer) {
-    trigger.addEventListener('click', openDrawer);
+  if (trigger && panel) {
+    trigger.addEventListener('click', () => {
+      if (panel.classList.contains('ce-quiz-open')) closePanel();
+      else openPanel();
+    });
   }
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-  if (backdrop) backdrop.addEventListener('click', closeDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', () => closePanel({ refocusTrigger: true }));
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && drawer && drawer.classList.contains('ce-quiz-open')) closeDrawer();
+    if (e.key === 'Escape' && panel && panel.classList.contains('ce-quiz-open')) closePanel({ refocusTrigger: true });
   });
 
-  if (!drawer) return; // rest of this file only matters where the quiz markup exists
+  if (!panel) return; // rest of this file only matters where the quiz markup exists
 
   // ---------- option selection ----------
   const radios = Array.from(document.querySelectorAll('.ce-quiz input[type="radio"]'));
