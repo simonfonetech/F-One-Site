@@ -30,23 +30,38 @@
   margin-bottom: 15px;
   border-radius: 25px;
   border: 2px solid var(--purple);
-  background: #fff;
-  color: var(--purple);
+  background: var(--purple);
+  color: #fff;
   transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
 .ce-quiz-trigger:hover,
 .ce-quiz-trigger:focus-visible,
 .ce-quiz-trigger[aria-expanded="true"] {
-  background: var(--purple);
-  color: #fff;
+  background: #fff;
+  color: var(--purple);
   box-shadow: 0 0 0 1px var(--purple);
 }
+
+/* The Cyber Essentials Certification Support section itself
+   (gb-container-b72a280d, unique to this page) is a dark 800px-min-height
+   band with `display:flex; align-items:center` -- built to vertically
+   centre a short block of text against a background image. While the
+   quiz panel is collapsed, actual content is far shorter than 800px, so
+   flex centring pushes the heading ~290px down from the band's top edge.
+   The moment the panel's real height exceeds 800px, that gap disappears
+   and the heading visibly jumps up by the same ~290px -- an actual
+   change in the heading's position in the document, not a scroll
+   artefact. Forcing top-alignment removes the centring entirely, so the
+   heading sits at a fixed position from the top of the band always,
+   whether the panel is open or closed. */
+.gb-container-b72a280d { align-items: flex-start !important; }
 
 /* ---------- expanding panel shell ---------- */
 .ce-quiz-panel {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows .4s cubic-bezier(.22, 1, .36, 1);
+  overflow-anchor: none;
 }
 .ce-quiz-panel.ce-quiz-open { grid-template-rows: 1fr; }
 .ce-quiz-panel-inner { overflow: hidden; min-height: 0; }

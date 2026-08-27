@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
     panel.classList.add('ce-quiz-open');
     panel.setAttribute('aria-hidden', 'false');
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
-    // Scroll the panel into view once it's had a moment to start expanding,
-    // so opening it doesn't leave it sitting off-screen below the fold.
-    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 120);
+    // No auto-scroll here on purpose: the heading and intro paragraph
+    // above the button should stay exactly where they are on screen --
+    // only the panel itself grows underneath, pushing later content down.
   }
 
   function closePanel({ refocusTrigger } = {}) {
