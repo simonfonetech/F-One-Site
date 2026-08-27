@@ -234,13 +234,23 @@ body[style*="--service-accent"] #h-explore-more-devices mark:last-child {
    left over from the WordPress export, not because the text differs:
    "Get in touch" (111 instances, 118-138px), the phone number (56
    instances, 133-139px) and "Find out more" (101 instances, 128-152px).
-   Widths below are forced to each label's own reference width -- "Get in
-   touch" to the button under The Basics on Cloud Phone Systems (122px)
-   per instruction, the other two to their already-dominant width (the
-   value most instances already had). Padding-left/right is pinned
-   alongside width, matching whichever instance had the target width, so
-   the fixed box is exactly wide enough for that text at the widest
-   font-weight in use (700) -- narrower without it would clip or wrap.
+
+   The width chosen for each label is its measured text width (canvas-
+   measured at 16px/700-weight/0.5px letter-spacing, the widest of the
+   two font-weights in use, via document.fonts.ready so it's the real
+   proxima-nova metric, not a fallback font's) plus this rule's own
+   12px/side padding plus the 2px/side transparent border several of
+   these instances reserve for hover (see the Blue>White/White>fill
+   block above) -- e.g. "Get in touch" measures 94.4px, +24 padding +4
+   border = 122.4px required. The first version of this rule used
+   exactly that required figure with no slack, on the assumption it
+   matched the live reference button under The Basics pixel-for-pixel.
+   It doesn't leave any margin for real-world rendering variance
+   (subpixel rounding, font hinting, OS/display scaling), and in
+   practice the text wraps to two lines and blows out the pill -- this
+   is the site-wide "buttons rendering broken" bug. Each width below
+   adds roughly 8px of slack beyond the bare-minimum figure so a few
+   pixels of rendering variance can never tip it into wrapping again.
    "Get in touch" and the phone number both always link to one fixed
    destination (/contact-us/, tel:03302211183), so an attribute selector
    picks them out precisely -- including the one "Get in Touch" instance
@@ -249,17 +259,18 @@ body[style*="--service-accent"] #h-explore-more-devices mark:last-child {
    so it's matched by its full, audited list of 60 instance classes
    instead; none of them are shared with a "Get in touch" or phone
    instance, so this list and the two attribute rules can't collide.
-   Other labels ("Submit", "Read our reviews", "Login here"...) either
-   already match within their own group or -- "Submit" -- are sized to
-   fit their own form column rather than their text, so they're left
-   alone. */
+   Other labels ("Submit", "Login here"...) either already match within
+   their own group or -- "Submit" -- are sized to fit their own form
+   column rather than their text, so they're left alone. "Read our
+   reviews" had the same zero-margin problem (132.8px text in a 133px
+   budget) and is fixed the same way, just below. */
 a.gb-button.gb-button-text[href="/contact-us/"] {
-  width: 122px !important;
+  width: 130px !important;
   padding-left: 12px !important;
   padding-right: 12px !important;
 }
 a.gb-button.gb-button-text[href="tel:03302211183"] {
-  width: 139px !important;
+  width: 148px !important;
   padding-left: 12px !important;
   padding-right: 12px !important;
 }
@@ -285,18 +296,21 @@ a.gb-button.gb-button-text[href="tel:03302211183"] {
   .gb-button-e51f3077, .gb-button-e59a154a, .gb-button-e80c935e,
   .gb-button-f191adbb, .gb-button-ff2ed986, .gb-button-ff6e1240
 ) {
-  width: 136px !important;
+  width: 144px !important;
   padding-left: 12px !important;
   padding-right: 12px !important;
 }
 /* .gb-button-a5ae33cb is reused for a *third* label too -- "Read our
    reviews" on Wifi & Networking -- so the find-out-more list above just
-   caught it and shrank it to 136px, off from its already-consistent
-   177px sibling (Internet Connectivity, same href, same width). Restore
-   it via that shared Google-reviews href, which beats the class list on
-   specificity the same way the get-in-touch/phone rules do. */
+   caught it and shrank it, off from its already-consistent sibling
+   (Internet Connectivity, same href, same width). Restore it via that
+   shared Google-reviews href, which beats the class list on specificity
+   the same way the get-in-touch/phone rules do. Widened from the
+   original 177px for the same reason as the other three labels above:
+   132.8px of text plus 40px padding plus 4px border left only 0.2px of
+   slack, which is why it broke too. */
 a.gb-button.gb-button-text[href*="google.com/search"] {
-  width: 177px !important;
+  width: 185px !important;
   padding-left: 20px !important;
   padding-right: 20px !important;
 }
@@ -1090,6 +1104,19 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   text-decoration: none;
   white-space: nowrap;
 }
+/* theme.css's blanket `a:hover, a:focus, a:active { color: #f06120 }`
+   outscores the rest-state rule above (a class+pseudo beats a bare
+   class), so the phone number always flashed the site's default orange
+   on hover regardless of the page's own accent colour. Restate the same
+   colour on hover -- .site-phone-number:hover's two classes beat that
+   rule's one -- and go bold, so hovering still reads as an obvious
+   highlight even though the colour itself no longer changes. */
+.site-phone-number:hover,
+.site-phone-number:focus,
+.site-phone-number:active {
+  color: var(--service-accent, var(--brand-link));
+  font-weight: 700;
+}
 /* theme.css pins radius/padding/background with !important, matching live;
    only the weight needs stating here (live renders this button at 300).
    background-color needs !important of its own too, to beat theme.css's
@@ -1130,6 +1157,12 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
    the 5 service pages, matching the phone number and "Get in touch"
    button above. */
 .f-one-social-buttons { background-color: var(--service-accent, #f06120); }
+/* The rail itself already follows the page accent (above); the hover
+   tooltip that pops out next to each icon ("View Our Google Reviews"
+   etc.) is a separate element in theme.css with its own hardcoded
+   #f06120, so it stayed orange on every themed page regardless of the
+   rail's colour. */
+.f-one-social-buttons .tooltip-text { background-color: var(--service-accent, #f06120); }
 .menu-toggle { display: none; cursor: pointer; background: none; border: none; }
 
 @media (max-width: 991px) {
