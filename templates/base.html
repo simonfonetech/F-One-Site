@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 <link rel="stylesheet" href="/static/css/carousel.css?v={{ asset_version }}">
 </head>
-<body{% if page_theme_color %} style="--service-accent: {{ page_theme_color }};"{% endif %}>
+<body{% if page_theme_color %} style="--service-accent: {{ page_theme_color }}; --service-hover-bg: #fff; --service-hover-border-w: 2px;"{% endif %}>
   {% include "partials/socials.html" %}
   {% include "partials/nav.html" %}
   <main class="site-main">
