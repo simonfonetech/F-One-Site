@@ -27,6 +27,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 <link rel="stylesheet" href="/static/css/carousel.css?v={{ asset_version }}">
+{# Cyber Essentials Readiness Assessment slide-out (IT Essentials page only).
+   Loaded site-wide, same reasoning as the script include below: every
+   class is prefixed ce-quiz- so it's inert on any page without that
+   markup. #}
+<link rel="stylesheet" href="/static/css/ce-quiz.css?v={{ asset_version }}">
 </head>
 <body{% if page_theme_color %} style="--service-accent: {{ page_theme_color }}; --service-hover-bg: #fff; --service-hover-border-w: 2px;"{% endif %}{% if is_homepage %} class="is-homepage"{% endif %}>
   {% include "partials/socials.html" %}
@@ -43,6 +48,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script src="/static/js/main.js?v={{ asset_version }}"></script>
+  {# Cyber Essentials Readiness Assessment slide-out (IT Essentials page only).
+     Loaded site-wide since it's a tiny, fully self-guarded script (every
+     handler checks its elements exist first), same pattern as main.js. #}
+  <script src="/static/js/ce-quiz.js?v={{ asset_version }}"></script>
   {# Mount point for the msgboxx widget -- its React app renders into this, and
      without it the bundle loads but produces nothing. Live has the same div. #}
   <div id="omnichatWidget"></div>
