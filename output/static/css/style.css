@@ -130,6 +130,23 @@ body[style*="--service-accent"] .gb-headline:is(
 ) mark:last-child {
   color: #fff !important;
 }
+/* Same exception, same reasoning, for the product pages (Yealink/Cisco
+   phones, routers, RMM, etc.) now themed via SERVICE_ACCENTS too: their
+   "Get in Touch." heading and a shared "Central ... Dashboard." /
+   "Clear Customer Visibility." / etc. hero-block heading (a single
+   GenerateBlocks reusable instance reused verbatim across many of these
+   pages, hence one class covering several different heading texts) both
+   have white heading text, so their dots need to stay white for the
+   same reason as above. Just 7 unique instance classes cover all ~44
+   affected headings across ~32 pages, since GenerateBlocks reuses the
+   same instance id wherever the template block is identical. */
+body[style*="--service-accent"] .gb-headline:is(
+  .gb-headline-2d555531, .gb-headline-5497e424, .gb-headline-817f7bb5,
+  .gb-headline-aee25fea, .gb-headline-e4fd3ab7-8171-4127-9fbc-e48c5e8ad822,
+  .gb-headline-ed387cc9, .gb-headline-f39e7668
+) mark:last-child {
+  color: #fff !important;
+}
 
 /* ---------- buttons ---------- */
 /* Base, safe for every button including icon-only ones. */
