@@ -308,11 +308,27 @@ a.gb-button.gb-button-text[href="tel:03302211183"] {
    the same way the get-in-touch/phone rules do. Widened from the
    original 177px for the same reason as the other three labels above:
    132.8px of text plus 40px padding plus 4px border left only 0.2px of
-   slack, which is why it broke too. */
-a.gb-button.gb-button-text[href*="google.com/search"] {
+   slack, which is why it broke too.
+   :not(.gb-button-3acca46d) excludes a *fourth*, unrelated label that
+   happens to link to the exact same review URL: "Read our Google
+   reviews" under Client Feedback on the F One Technologies page. Its
+   own text is much longer (192.5px vs "Read our reviews"'s 132.8px),
+   so it needs its own, wider rule just below -- catching it here first
+   broke it exactly the same way, just discovered separately. */
+a.gb-button.gb-button-text[href*="google.com/search"]:not(.gb-button-3acca46d) {
   width: 185px !important;
   padding-left: 20px !important;
   padding-right: 20px !important;
+}
+/* "Read our Google reviews" (Client Feedback, F One Technologies): only
+   instance of this text, so no cross-page consistency to enforce -- just
+   giving it the same zero-margin-avoidance treatment as every other
+   label above. 192.5px text + 30px padding + 4px border = 226.5px
+   minimum, +8px slack. */
+a.gb-button.gb-button-text.gb-button-3acca46d {
+  width: 235px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 /* Breathing room above in-page buttons.
@@ -368,11 +384,19 @@ a.gb-button.gb-button-text[href*="google.com/search"] {
   transition: max-height .25s ease, padding .25s ease;
 }
 /* the block's own inline padding (from its WP attrs) beats a plain class rule,
-   so force it to zero while collapsed rather than fighting specificity */
+   so force it to zero while collapsed rather than fighting specificity.
+   margin-bottom is each instance's own per-page WordPress export value
+   (20px on Cloud Phone Systems) and, unlike padding, isn't cleared just
+   by max-height:0 -- with the content div's own height already at 0 while
+   collapsed, that margin *is* the entire visible gap between one row's
+   toggle and the next row's toggle. Pulled down to 4px for a visibly
+   tighter stack of rows; not 0, so closed rows still read as separate
+   lines rather than one fused block. */
 .gb-accordion-item:not(.is-open) .gb-accordion-content {
   max-height: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  margin-bottom: 4px !important;
 }
 
 /* ---------- video embeds ---------- */
@@ -1109,13 +1133,16 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
    class), so the phone number always flashed the site's default orange
    on hover regardless of the page's own accent colour. Restate the same
    colour on hover -- .site-phone-number:hover's two classes beat that
-   rule's one -- and go bold, so hovering still reads as an obvious
-   highlight even though the colour itself no longer changes. */
+   rule's one. A bold weight swap was tried as the highlight cue and
+   looked ugly (a 14px line visibly reflowing/thickening next to the
+   steady-weight nav items beside it), so the highlight is an underline
+   instead -- a standard, understated "this is a link" cue that doesn't
+   change the text's shape or width. */
 .site-phone-number:hover,
 .site-phone-number:focus,
 .site-phone-number:active {
   color: var(--service-accent, var(--brand-link));
-  font-weight: 700;
+  text-decoration: underline;
 }
 /* theme.css pins radius/padding/background with !important, matching live;
    only the weight needs stating here (live renders this button at 300).
