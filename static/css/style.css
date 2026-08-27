@@ -550,11 +550,13 @@ a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:act
   box-shadow: 0 0 0 1px #fff !important;
 }
 
-/* "The Basics" heading on the Cloud Phone Systems page uses the WP
-   "black" text preset (brand.css: .has-text-black-color, !important),
-   so it needs an equally-important, more specific override. Scoped to
-   this one headline instance -- doesn't touch black text anywhere else. */
-.gb-headline-cf36339f .has-text-black-color { color: var(--service-accent, #004269) !important; }
+/* "The Basics" heading previously had its text force-coloured to the
+   accent (overriding the WP "black" text preset). Reverted to match
+   "Mesh Networking" on WiFi & Networking -- and most other headings
+   site-wide -- which just use the native has-text-black-color preset
+   (#363636) with only the trailing "." carrying the accent colour via
+   the general heading-dot rule above. One consistent heading style
+   instead of singling this one out. */
 
 /* ---------- responsive visibility ---------- */
 @media (max-width: 767px) { .hide-on-mobile { display: none !important; } }
