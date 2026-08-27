@@ -309,23 +309,27 @@ a.gb-button.gb-button-text[href="tel:03302211183"] {
    original 177px for the same reason as the other three labels above:
    132.8px of text plus 40px padding plus 4px border left only 0.2px of
    slack, which is why it broke too.
-   :not(.gb-button-3acca46d) excludes a *fourth*, unrelated label that
-   happens to link to the exact same review URL: "Read our Google
-   reviews" under Client Feedback on the F One Technologies page. Its
-   own text is much longer (192.5px vs "Read our reviews"'s 132.8px),
-   so it needs its own, wider rule just below -- catching it here first
-   broke it exactly the same way, just discovered separately. */
-a.gb-button.gb-button-text[href*="google.com/search"]:not(.gb-button-3acca46d) {
+   A *fourth* label -- "Read our Google reviews" under Client Feedback
+   on F One Technologies -- links to this exact same review URL, so this
+   rule was also silently catching it and wrapping its longer text (it
+   needs 235px, not 185px) to two lines. Rather than excluding it by its
+   one current instance's class (which would only protect this specific
+   button and miss the same text if it's ever added to another page),
+   :not(:has(> strong)) excludes it structurally: uniquely among these
+   four labels, this one's markup wraps its text in <strong>, so the
+   distinction holds site-wide regardless of which instance class
+   GenerateBlocks happens to assign it on any given page. */
+a.gb-button.gb-button-text[href*="google.com/search"]:not(:has(> strong)) {
   width: 185px !important;
   padding-left: 20px !important;
   padding-right: 20px !important;
 }
-/* "Read our Google reviews" (Client Feedback, F One Technologies): only
-   instance of this text, so no cross-page consistency to enforce -- just
-   giving it the same zero-margin-avoidance treatment as every other
-   label above. 192.5px text + 30px padding + 4px border = 226.5px
-   minimum, +8px slack. */
-a.gb-button.gb-button-text.gb-button-3acca46d {
+/* "Read our Google reviews": same href as "Read our reviews" above, but
+   its text is <strong>-wrapped, which is what the rule above excludes
+   on -- see that comment. 192.5px text + 30px padding + 4px border =
+   226.5px minimum, +8px slack. Site-wide by construction: matches this
+   label wherever it appears, not tied to today's one known instance. */
+a.gb-button.gb-button-text[href*="google.com/search"]:has(> strong) {
   width: 235px !important;
   padding-left: 15px !important;
   padding-right: 15px !important;
