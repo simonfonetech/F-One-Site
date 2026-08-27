@@ -101,6 +101,35 @@ p.gb-headline { margin: 0 0 1rem; }
 body[style*="--service-accent"] :is(h1, h2, h3, h4).gb-headline mark:last-child {
   color: var(--service-accent) !important;
 }
+/* Exception: on these 28 headings the text right next to the dot is
+   white (product-carousel slide titles, and full-width sections
+   authored with white text against a coloured/dark background), so an
+   accent-coloured dot would either vanish into an identically-coloured
+   background or clash with white neighbouring text. The dot follows
+   its neighbour's colour instead, same rule as the accent one above:
+   uniform white here (not a random mix) reads as consistent, so it
+   still solves the original "off-brand noise" complaint. Identified by
+   checking the actual rendered colour of the text/mark immediately
+   before each dot across all 5 pages, not by guesswork.
+   Grouped under :is() and re-adding the body attribute + .gb-headline
+   class (already implied, but repeated here) so this beats the general
+   rule above on specificity -- a bare per-instance class selector alone
+   would tie on element count and lose to the general rule's extra
+   :is(h1,h2,h3,h4) element. */
+body[style*="--service-accent"] .gb-headline:is(
+  .gb-headline-a5cab2d7, .gb-headline-9d7b8720, .gb-headline-e8f25ba9,
+  .gb-headline-3a3d5834, .gb-headline-6c25b553, .gb-headline-41af14ae,
+  .gb-headline-b07de1a5, .gb-headline-e46c08c8, .gb-headline-dcf6bb95,
+  .gb-headline-60818d6a, .gb-headline-2efb6a31, .gb-headline-b909864c,
+  .gb-headline-0a9051f1, .gb-headline-696e5d7a, .gb-headline-b75cf0ec,
+  .gb-headline-2099f82f, .gb-headline-2156f1ee, .gb-headline-1fddfbc8,
+  .gb-headline-8b92a5e6, .gb-headline-ba552ee1, .gb-headline-85c50525,
+  .gb-headline-dc92313e, .gb-headline-07a7ebd0, .gb-headline-6b9aeea6,
+  .gb-headline-20bcd56b, .gb-headline-744a6250, .gb-headline-5a1beac1,
+  .gb-headline-17943dec
+) mark:last-child {
+  color: #fff !important;
+}
 
 /* ---------- buttons ---------- */
 /* Base, safe for every button including icon-only ones. */
