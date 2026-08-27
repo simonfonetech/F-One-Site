@@ -558,6 +558,15 @@ a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:act
    the general heading-dot rule above. One consistent heading style
    instead of singling this one out. */
 
+/* "Nationwide Coverage" on Mobile SIM Plans has its own per-instance
+   generated CSS (static/css/generated/205.css) authoring the whole
+   heading text green, not just the dot -- same mismatch as the old
+   "The Basics", so it gets the same fix: force the text back to the
+   standard dark grey and let only the dot (already accent-coloured via
+   the general rule above) carry the page's colour. !important needed
+   since 205.css loads after this file. */
+.gb-headline-22fa65d8 { color: var(--wp--preset--color--text-black, #363636) !important; }
+
 /* ---------- responsive visibility ---------- */
 @media (max-width: 767px) { .hide-on-mobile { display: none !important; } }
 @media (min-width: 768px) and (max-width: 991px) { .hide-on-tablet { display: none !important; } }
