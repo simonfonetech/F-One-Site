@@ -47,10 +47,15 @@ SERVICE_ACCENTS = {
 # carousel but are the same desk-phone family as the ones that are, so
 # they're grouped the same way. customerarea is excluded -- it's the
 # customer login portal, not a themed product.
+#
+# routers/wifi-access-points/managed-switches/comms-cabinets are linked
+# from the Cloud Phone Systems page's content but are networking
+# hardware, not phone hardware -- grouped under WiFi & Networking
+# instead, per explicit correction.
 _CLOUD_PHONE_SYSTEMS_PRODUCTS = [
     'cisco-6825', 'cisco-9851', 'cisco-9861', 'cisco-9871',
-    'comms-cabinets', 'cordless-dect', 'crm-integration', 'managed-switches',
-    'routers', 'smartvoice-on-hold-messaging', 'wifi-access-points',
+    'cordless-dect', 'crm-integration',
+    'smartvoice-on-hold-messaging',
     'yealink-t34w', 'yealink-t44w', 'yealink-t54w', 'yealink-t57w',
     'yealink-t58w-pro', 'yealink-t73w', 'yealink-t74w', 'yealink-t85w',
     'yealink-t87w', 'yealink-t88wpro', 'yealink-w56h', 'yealink-w59rpro',
@@ -61,7 +66,10 @@ _IT_ESSENTIALS_PRODUCTS = [
     'endpoint-detection-response', 'microsoft365-licence-management', 'rmm',
     'security-awareness-training', 'uniqkey-password-manager',
 ]
-_WIFI_AND_NETWORKING_PRODUCTS = ['omada-network-management', 'social-wifi']
+_WIFI_AND_NETWORKING_PRODUCTS = [
+    'omada-network-management', 'social-wifi',
+    'routers', 'wifi-access-points', 'managed-switches', 'comms-cabinets',
+]
 _INTERNET_CONNECTIVITY_PRODUCTS = ['satellite-broadband']
 for _slug in _CLOUD_PHONE_SYSTEMS_PRODUCTS:
     SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['cloud-phone-systems']
