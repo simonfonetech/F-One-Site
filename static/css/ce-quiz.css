@@ -34,12 +34,24 @@
   color: #fff;
   transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
-.ce-quiz-trigger:hover,
-.ce-quiz-trigger:focus-visible,
-.ce-quiz-trigger[aria-expanded="true"] {
+.ce-quiz-trigger:hover {
   background: #fff;
   color: var(--purple);
   box-shadow: 0 0 0 1px var(--purple);
+}
+/* theme.css has a blanket `button:active, button:focus { background:
+   #404040; }` (a dark, near-black grey) that a plain click leaves
+   applied indefinitely, since a clicked button stays :focus until
+   something else takes focus -- :hover alone doesn't reach that
+   because clicking triggers :focus, not :focus-visible, in most
+   browsers. Explicitly put it back to the purple resting state; placed
+   after :hover above so it also wins in the (very likely) case the
+   button is still under the mouse right after being clicked. */
+.ce-quiz-trigger:focus,
+.ce-quiz-trigger:active {
+  background: var(--purple);
+  color: #fff;
+  box-shadow: none;
 }
 
 /* The Cyber Essentials Certification Support section itself
