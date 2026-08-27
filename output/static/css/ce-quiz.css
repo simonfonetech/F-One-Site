@@ -20,11 +20,14 @@
 .ce-quiz-trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  height: 40px;
+  box-sizing: border-box;
   font-weight: bold;
   font-family: inherit;
   font-size: .95rem;
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 0 20px;
   margin-top: 4px;
   margin-left: 10px;
   margin-bottom: 15px;
@@ -52,11 +55,20 @@
    leaves applied indefinitely, since a clicked button stays :focus
    until something else takes focus -- :hover alone doesn't reach that
    because clicking triggers :focus, not :focus-visible, in most
-   browsers. Explicitly put it back to the purple resting state; placed
-   after :hover above so it also wins in the (very likely) case the
-   button is still under the mouse right after being clicked. */
-.ce-quiz-trigger:focus,
-.ce-quiz-trigger:active {
+   browsers. Explicitly put it back to the purple resting state.
+
+   :not(:hover) matters here: this button is also a toggle (clicking it
+   again closes the panel), and a plain click leaves it focused
+   afterwards. Without :not(:hover), this rule and :hover above tie on
+   specificity and this one -- being later in the file -- always won,
+   so once the button had been clicked once, hovering it again did
+   nothing until something else stole focus (clicking elsewhere). That
+   was the actual "doesn't return to hover" bug: not a colour leak, but
+   this rule permanently overriding real mouse hover. Restricting it to
+   the focused-but-not-hovered case fixes the leak it was written for
+   while leaving genuine hover free to always win. */
+.ce-quiz-trigger:focus:not(:hover),
+.ce-quiz-trigger:active:not(:hover) {
   background: var(--purple);
   color: #fff;
   border-color: var(--purple);
@@ -139,6 +151,14 @@
   --ce-muted: #6b6b74;
   --ce-accent: var(--ce-purple);
   --ce-accent-2: var(--ce-navy);
+  /* --ce-purple (#D5ACF8) is the site's IT Essentials brand swatch, but
+     it's a pale fill colour -- built for a solid button background with
+     white text on top, not for standing alone as text on white, where
+     it reads as washed-out rather than "purple". vivid-purple is a
+     darker, more saturated shade already defined site-wide for exactly
+     this (WordPress's own preset palette); using it for heading/accent
+     text is what actually reads as purple branding at text size. */
+  --ce-accent-text: var(--wp--preset--color--vivid-purple, #9b51e0);
   --ce-option-bg: rgba(213, 172, 248, .12);
   --ce-border: rgba(0, 66, 105, .14);
   --ce-rag-green: #1f9d6c;
@@ -181,23 +201,43 @@
   border-top-right-radius: 12px;
   background: linear-gradient(90deg, var(--ce-navy), var(--ce-purple));
 }
-.ce-quiz-card-header h1 { margin: 14px 0 6px; font-weight: 700; font-size: 28px; letter-spacing: .2px; color: var(--ce-navy); }
-.ce-quiz-lead { color: var(--ce-muted); max-width: 620px; line-height: 1.6; font-size: .95rem; }
+/* theme.css has `@media (min-width: 1025px) { h1, h2 { font-size: 40px
+   !important; line-height: 50px !important; } }` -- a sitewide rule for
+   real page headings that also matches this bare h2, used here as a
+   component-internal label rather than a page heading. !important
+   beats specificity regardless of how targeted a selector is, so
+   despite this rule being far more specific than theme.css's bare
+   `h1`/`h2`, the site's real heading size was winning outright and
+   this was rendering at 40px/50px -- comically large next to the rest
+   of the card, and the actual "heading is too large" bug.
 
+   The label ("1. Firewalls") now leads straight into its question on
+   one line ("1. Firewalls - Is your business network protected by a
+   firewall?"), so h2 is set inline rather than block, matching the
+   question's own size/weight instead of the old small-caps divider
+   style, with the " - " supplied as generated content so it's never
+   part of either element's actual text (JS reads .ce-quiz-q-title's
+   textContent for the results report and h2's for the section name --
+   see ce-quiz.js -- so keeping the separator out of both means neither
+   needs to strip it back out). h3 is inline for the same reason: two
+   adjacent inline elements in the same block flow read as one line,
+   where two adjacent block elements would each start their own. The
+   whole line is --ce-accent-text (the vivid, text-safe purple used for
+   headings elsewhere in this component) end to end, on both elements,
+   for "the entire line" rather than just the label half. */
 .ce-quiz-section { margin-top: 28px; }
+.ce-quiz-q-line { margin: 0 0 10px; }
 .ce-quiz-section h2 {
+  display: inline;
   font-weight: 600;
-  font-size: 15px;
-  letter-spacing: .3px;
-  color: var(--ce-navy);
-  text-transform: uppercase;
-  border-bottom: 2px solid var(--ce-purple-light);
-  padding-bottom: 10px;
-  margin: 0;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  color: var(--ce-accent-text);
 }
+.ce-quiz-section h2::after { content: " - "; color: var(--ce-accent-text); }
 
 .ce-quiz-question { margin: 20px 0; padding-top: 4px; }
-.ce-quiz-q-title { font-size: 15px; margin: 0 0 10px; color: var(--ce-text); font-weight: 600; }
+.ce-quiz-q-title { display: inline; font-size: 15px; margin: 0; color: var(--ce-accent-text); font-weight: 600; }
 .ce-quiz-options { display: flex; flex-direction: column; gap: 12px; }
 .ce-quiz-option {
   display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 8px;
@@ -226,8 +266,17 @@
   background: linear-gradient(180deg, rgba(213, 172, 248, .08), rgba(213, 172, 248, .02));
   box-shadow: 0 0 0 3px rgba(213, 172, 248, .12), 0 4px 16px rgba(213, 172, 248, .1);
 }
-.ce-quiz-option-content { color: rgba(0, 66, 105, .82); font-size: 14px; transition: color .18s ease; }
-.ce-quiz-option.selected .ce-quiz-option-content { color: var(--ce-navy); }
+/* Unselected answer text stays neutral -- same call the rest of the
+   site already makes for body copy on themed pages (paragraphs stay
+   --text-black regardless of page accent; only headings/labels/active
+   states carry the accent colour). It was navy before, an off-brand
+   colour bleeding in from the original mockup rather than a
+   deliberate neutral, which is what made it read as wrong. Selecting
+   an option is what earns the purple -- a deliberate accent pop on the
+   one option you've actively chosen, not a wash of purple across every
+   answer on the page. */
+.ce-quiz-option-content { color: var(--ce-text); font-size: 14px; transition: color .18s ease; }
+.ce-quiz-option.selected .ce-quiz-option-content { color: var(--ce-accent-text); }
 
 @keyframes ce-quiz-pulse {
   0% { box-shadow: 0 0 0 0 rgba(213, 172, 248, .45), 0 4px 16px rgba(213, 172, 248, .1); }
@@ -267,7 +316,7 @@
 .ce-quiz-email-report-field textarea:focus-visible { outline: 3px solid rgba(213, 172, 248, .25); outline-offset: 2px; border-color: var(--ce-accent); }
 .ce-quiz-email-report-form .ce-quiz-btn-secondary { align-self: center; }
 .ce-quiz-btn-secondary {
-  background: transparent; color: var(--ce-navy); box-shadow: none; border: 1.5px solid rgba(0, 66, 105, .4);
+  background: transparent; color: var(--ce-accent-text); box-shadow: none; border: 1.5px solid rgba(0, 66, 105, .4);
 }
 .ce-quiz-btn-secondary:hover { box-shadow: 0 4px 16px rgba(0, 66, 105, .12); background: rgba(0, 66, 105, .05); }
 .ce-quiz-btn-secondary:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
@@ -364,7 +413,6 @@
 
 @media (max-width: 767px) {
   .ce-quiz-card { padding: 20px 18px 30px; }
-  .ce-quiz-card-header h1 { font-size: 20px; }
   .ce-quiz-report { padding: 20px; }
   .ce-quiz-report-section-row { grid-template-columns: 1fr; gap: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(0, 66, 105, .1); }
   .ce-quiz-report-section-score { text-align: left; }

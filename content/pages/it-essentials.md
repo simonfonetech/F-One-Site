@@ -145,16 +145,10 @@ tracksCustomers.forEach((track, i) => {
 <div id="ce-quiz-panel" class="ce-quiz-panel" aria-hidden="true">
  <div class="ce-quiz-panel-inner">
   <div class="ce-quiz ce-quiz-card">
-    <header class="ce-quiz-card-header">
-      <h1>Cyber Essentials Readiness Assessment</h1>
-      <p class="ce-quiz-lead">Eight questions — one for each requirement area of Cyber Essentials' technical controls: firewalls, secure configuration, device locking, security update management, user access control, administrative accounts, password-based authentication and malware protection. Cyber Essentials doesn't award partial credit and neither does this assessment. Nothing you enter here leaves your browser until you choose to request the report — and if gaps turn up, F One Technologies Ltd is on hand to help you close them.</p>
-    </header>
-
     <form class="ce-quiz" aria-label="Assessment">
       <div class="ce-quiz-section">
-        <h2>1. Firewalls</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Is your business network protected by a firewall?</h3>
+          <div class="ce-quiz-q-line"><h2>1. Firewalls</h2><h3 class="ce-quiz-q-title">Is your business network protected by a firewall?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="fw1" value="yes"><span class="ce-quiz-option-content">Our internet connection is protected by a firewall/router that's configured and maintained appropriately, with software firewalls enabled on every device and default passwords changed.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="fw1" value="maybe"><span class="ce-quiz-option-content">We believe we have a firewall, but we're unsure how it's configured, whether default passwords have been changed, or whether it's still properly maintained.</span></label>
@@ -164,9 +158,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>2. Secure Configuration</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Have you removed software and accounts you don't need, and changed every default password on your devices?</h3>
+          <div class="ce-quiz-q-line"><h2>2. Secure Configuration</h2><h3 class="ce-quiz-q-title">Have you removed software and accounts you don't need, and changed every default password on your devices?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="sc1" value="yes"><span class="ce-quiz-option-content">We've removed or disabled unused software, services and accounts, and changed all default passwords on every computer, server and cloud service.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="sc1" value="maybe"><span class="ce-quiz-option-content">We've done some of this, but we haven't checked every device or cloud service for unused accounts, software or default passwords.</span></label>
@@ -176,9 +169,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>3. Device Locking</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Do your devices lock automatically and require a password, PIN or biometric to get back in?</h3>
+          <div class="ce-quiz-q-line"><h2>3. Device Locking</h2><h3 class="ce-quiz-q-title">Do your devices lock automatically and require a password, PIN or biometric to get back in?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="dl1" value="yes"><span class="ce-quiz-option-content">Every device that needs a person present requires a biometric, password or PIN before it can be used.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="dl1" value="maybe"><span class="ce-quiz-option-content">Most devices are set up this way, but we haven't checked every laptop, tablet or phone.</span></label>
@@ -188,9 +180,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>4. Security Update Management</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Are your operating systems and applications kept up to date with security fixes?</h3>
+          <div class="ce-quiz-q-line"><h2>4. Security Update Management</h2><h3 class="ce-quiz-q-title">Are your operating systems and applications kept up to date with security fixes?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="su1" value="yes"><span class="ce-quiz-option-content">High-risk and critical security updates are installed within 14 days of release across all our operating systems and applications, and nothing unsupported is still in use.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="su1" value="maybe"><span class="ce-quiz-option-content">Most devices are updated reasonably promptly, but we don't consistently check every device is patched within 14 days.</span></label>
@@ -200,9 +191,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>5. User Access Control</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Does every member of staff have their own individual account, created through an approval process?</h3>
+          <div class="ce-quiz-q-line"><h2>5. User Access Control</h2><h3 class="ce-quiz-q-title">Does every member of staff have their own individual account, created through an approval process?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="ac1" value="yes"><span class="ce-quiz-option-content">Every account is approved before it's created, and staff always log in with their own unique username and password — no shared accounts.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="ac1" value="maybe"><span class="ce-quiz-option-content">Most staff have individual accounts, but we don't have a formal approval process, or some shared accounts still exist.</span></label>
@@ -212,9 +202,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>6. Administrative Accounts</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Are administrator accounts kept separate from everyday accounts, and restricted to people who need them?</h3>
+          <div class="ce-quiz-q-line"><h2>6. Administrative Accounts</h2><h3 class="ce-quiz-q-title">Are administrator accounts kept separate from everyday accounts, and restricted to people who need them?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="aa1" value="yes"><span class="ce-quiz-option-content">Only approved staff have admin access, they use a separate account for admin tasks, and that access is reviewed regularly.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="aa1" value="maybe"><span class="ce-quiz-option-content">Some staff have admin access, but we're not sure everyone still needs it, or admin accounts are also used for everyday tasks like email and browsing.</span></label>
@@ -224,9 +213,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>7. Password-Based Authentication</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Do you use Multi-Factor Authentication (MFA), and is it enabled everywhere it's available?</h3>
+          <div class="ce-quiz-q-line"><h2>7. Password-Based Authentication</h2><h3 class="ce-quiz-q-title">Do you use Multi-Factor Authentication (MFA), and is it enabled everywhere it's available?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="pw1" value="yes"><span class="ce-quiz-option-content">MFA is enabled for all cloud services and administrator accounts, and anywhere it's not available, passwords are protected against brute-force guessing.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="pw1" value="maybe"><span class="ce-quiz-option-content">MFA is enabled for some users or services, but we're not sure it's switched on everywhere it could be.</span></label>
@@ -236,9 +224,8 @@ tracksCustomers.forEach((track, i) => {
       </div>
 
       <div class="ce-quiz-section">
-        <h2>8. Malware Protection</h2>
         <div class="ce-quiz-question">
-          <h3 class="ce-quiz-q-title">Are your computers, laptops, tablets and phones protected against malware?</h3>
+          <div class="ce-quiz-q-line"><h2>8. Malware Protection</h2><h3 class="ce-quiz-q-title">Are your computers, laptops, tablets and phones protected against malware?</h3></div>
           <div class="ce-quiz-options">
             <label class="ce-quiz-option"><input type="radio" name="mw1" value="yes"><span class="ce-quiz-option-content">All devices have antivirus/endpoint protection enabled and kept up to date, and mobile devices are restricted to approved apps.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="mw1" value="maybe"><span class="ce-quiz-option-content">Antivirus is installed on most computers, but we're not sure every device — including phones and tablets — is protected.</span></label>
