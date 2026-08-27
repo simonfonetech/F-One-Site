@@ -47,14 +47,25 @@
    band with `display:flex; align-items:center` -- built to vertically
    centre a short block of text against a background image. While the
    quiz panel is collapsed, actual content is far shorter than 800px, so
-   flex centring pushes the heading ~290px down from the band's top edge.
-   The moment the panel's real height exceeds 800px, that gap disappears
-   and the heading visibly jumps up by the same ~290px -- an actual
-   change in the heading's position in the document, not a scroll
-   artefact. Forcing top-alignment removes the centring entirely, so the
-   heading sits at a fixed position from the top of the band always,
-   whether the panel is open or closed. */
+   flex centring pushes the heading ~288px down from the band's top edge.
+   The moment the panel's real height exceeds 800px, that gap collapses
+   to zero and the heading visibly jumps back up to the band's top edge
+   -- an actual change in the heading's position in the document, not a
+   scroll artefact.
+
+   Fix: turn off the centring (align-items:flex-start) but replace it
+   with the exact same 288px offset as a fixed margin on the flex item
+   instead. That reproduces the original centred-at-800px resting
+   position pixel-for-pixel, but as a constant that doesn't get
+   recalculated against the container's current content height -- so
+   the heading lands in the same place either way, and every bit of the
+   panel's growth happens below it instead of the whole section
+   shifting. 288px measured directly from the live page before this
+   fix: with align-items:center still in effect, the flex item this
+   margin now targets sat 288px below gb-container-b72a280d's own top
+   edge, at that time driven purely by (800px - 224px content) / 2. */
 .gb-container-b72a280d { align-items: flex-start !important; }
+.gb-container-b72a280d > .gb-inside-container { margin-top: 288px !important; }
 
 /* ---------- expanding panel shell ---------- */
 .ce-quiz-panel {
