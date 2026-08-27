@@ -98,7 +98,7 @@
 .ce-quiz-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows .7s cubic-bezier(.22, 1, .36, 1);
+  transition: grid-template-rows 1.4s cubic-bezier(.22, 1, .36, 1);
   overflow-anchor: none;
 }
 .ce-quiz-panel.ce-quiz-open { grid-template-rows: 1fr; }
