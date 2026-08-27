@@ -255,12 +255,17 @@ a.gb-button-1cbae936 { color: var(--service-accent, #CC289C) !important; }
    hover, with a WHITE ring+glow (not accent-coloured) -- these sit on
    blue section backgrounds already, so an accent-coloured fill+ring
    would disappear into its own backdrop; white stays visible either
-   way. A full 2px solid border (not just border-color) is set on hover
-   throughout, matching the feature-grid buttons' own native 2px
-   border -- those also carry a hardcoded pink border-color on hover in
-   215.css, which this overrides too. !important throughout since
-   these tie on specificity with 215.css's own per-instance rules
-   (incl. its own hover rules), which load after this file. */
+   way. A full 2px solid border is set on hover throughout, matching
+   the feature-grid buttons' own native 2px border -- those also carry
+   a hardcoded pink border-color on hover in 215.css, which this
+   overrides too. Most of the other buttons have no border at rest at
+   all, so a border appearing only on hover grew their box by 4px and
+   nudged surrounding text -- giving every button a transparent 2px
+   border at rest (below) reserves the same space up front so hover
+   only recolours it, never resizes it, exactly like the feature-grid
+   buttons already do natively. !important throughout since these tie
+   on specificity with 215.css's own per-instance rules (incl. its own
+   hover rules), which load after this file. */
 a.gb-button-424478e8,
 a.gb-button-a5ae33cb,
 a.gb-button-009f904b,
@@ -289,7 +294,8 @@ a.gb-button-a7814829,
 a.gb-button-7c8bdf41,
 a.gb-button-544ee991,
 a.gb-button-1cbae936 {
-  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 /* Blue > White */
 a.gb-button-424478e8:hover, a.gb-button-424478e8:focus, a.gb-button-424478e8:active,
@@ -336,7 +342,8 @@ a.gb-button-1cbae936:hover, a.gb-button-1cbae936:focus, a.gb-button-1cbae936:act
    blue accent, so it fills with its own green on hover, same white
    ring treatment as the group above. */
 a.gb-button-57bb86cc {
-  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 a.gb-button-57bb86cc:hover, a.gb-button-57bb86cc:focus, a.gb-button-57bb86cc:active {
   background-color: var(--wp--preset--color--wsa-green, #2ACC63) !important;
@@ -687,7 +694,11 @@ a.gb-button-57bb86cc:hover, a.gb-button-57bb86cc:focus, a.gb-button-57bb86cc:act
   text-decoration: none;
   font-weight: 300;
   white-space: nowrap;
-  transition: background-color .2s ease;
+  /* Reserves the same 2px the hover rule below uses (0 on non-themed
+     pages), so hover only recolours the border instead of growing the
+     box and nudging the phone number beside it. */
+  border: var(--service-hover-border-w, 0) solid transparent !important;
+  transition: background-color .2s ease, border-color .18s ease;
 }
 /* On the 5 service-themed pages, this header CTA gets the same Blue >
    White hover as the other blue buttons on Cloud Phone Systems: white
