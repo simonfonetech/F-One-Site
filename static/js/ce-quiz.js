@@ -25,10 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (refocusTrigger && trigger) trigger.focus({ preventScroll: true });
     // Closing can happen from anywhere in a long quiz + report, scrolled
     // well past the section it lives in -- send the user back to the
-    // #cyber-essentials anchor point rather than leaving them stranded.
+    // heading itself rather than leaving them stranded. #cyber-essentials
+    // (the section wrapper) lands at the top of its 800px band, well
+    // above the heading, which is what "doesn't return you to the right
+    // place" meant -- anchoring to the heading's own id fixes that.
     // html has scroll-behavior:smooth site-wide, so this scrolls there
     // rather than jumping instantly.
-    window.location.hash = 'cyber-essentials';
+    window.location.hash = 'cyber-essentials-heading';
   }
 
   if (trigger && panel) {

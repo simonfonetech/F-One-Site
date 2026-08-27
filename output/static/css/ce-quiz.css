@@ -67,6 +67,12 @@
 .gb-container-b72a280d { align-items: flex-start !important; }
 .gb-container-b72a280d > .gb-inside-container { margin-top: 288px !important; }
 
+/* Closing the quiz jumps to #cyber-essentials-heading (see ce-quiz.js).
+   Without this, the native anchor jump aligns the heading's own top
+   edge to the very top of the viewport, which is exactly where the
+   site's 60px fixed header sits -- hiding the heading underneath it. */
+#cyber-essentials-heading { scroll-margin-top: 80px; }
+
 /* ---------- expanding panel shell ---------- */
 .ce-quiz-panel {
   display: grid;

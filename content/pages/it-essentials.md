@@ -135,7 +135,7 @@ tracksCustomers.forEach((track, i) => {
 </div></div></div><div class="gb-grid-column gb-grid-column-299fa3db"><div class="gb-container gb-container-299fa3db"><div class="gb-inside-container">
 <img class="gb-media-39a3cdf2" alt="" src="/assets/uploads/General-Page-PNG-Image-Website-65.png" title="General Page PNG Image (Website) (65)"/>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-b72a280d" id="cyber-essentials"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-0fce1633"><div class="gb-grid-column gb-grid-column-eb7bdd42"><div class="gb-container gb-container-eb7bdd42"><div class="gb-inside-container">
-<h2 class="gb-headline gb-headline-5500c0a9 gb-headline-text">Cyber Essentials Certification Support<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h2>
+<h2 id="cyber-essentials-heading" class="gb-headline gb-headline-5500c0a9 gb-headline-text">Cyber Essentials Certification Support<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h2>
 
 <p class="gb-headline gb-headline-e4b2ce07 gb-headline-text">Cyber Essentials Certification Support helps your business meet the technical and security requirements needed for certification. We guide you through the process, help implement any required changes, and provide clear advice to make certification straightforward.</p>
 
