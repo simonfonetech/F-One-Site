@@ -1038,6 +1038,18 @@ a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:act
    above it is already at that level and both carry !important -- source
    order alone wouldn't be enough to win the tie. */
 .gb-container-e12aa5fe.gb-container-e12aa5fe.gb-container-e12aa5fe { padding-bottom: 150px !important; }
+/* Same band, same problem, on the homepage -- but there it's not wrapped
+   in its own outer container at all (gb-container-55e4be16 sits directly
+   in .fo-page-content), so the .gb-container-55e4be16 { padding-bottom:0 }
+   rule right above is the only thing zeroing it, and the fix is on that
+   same element rather than an outer wrapper. Its own top gap measures
+   100px, so that's what's restored. gb-container-55e4be16 is reused by
+   5 other pages (about-us, f-one-technologies, and three service pages
+   each with their own outer-wrapper fix above), so this is scoped to
+   body.is-homepage rather than the bare class -- a small is_homepage
+   flag added in _build/build.py, mirroring how page_theme_color already
+   works, so it's a genuine no-op everywhere else. */
+body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
 
 /* ================= testimonial logo card =================
    theme.css positions this figure absolutely with no `top`, so it falls back to

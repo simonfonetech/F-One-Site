@@ -132,6 +132,7 @@ def main():
             content=p['_body'],
             generated_css=generated_css_path(p.get('post_id')),
             page_theme_color=SERVICE_ACCENTS.get(slug),
+            is_homepage=(slug == site.get('homepage_slug')),
         ))
         write_file(path + 'index.html', html)
         urls.append(path)
