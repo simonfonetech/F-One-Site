@@ -72,6 +72,8 @@ header:
         url: "/it-essentials/#uniqkey"
       - label: Cyber Essentials Certification Support
         url: "/it-essentials/#cyber-essentials"
+      - label: Free Cyber Essentials Report
+        url: "/it-essentials/#ce-quiz-panel"
   - label: About Us
     url: /about-us/
     children: []

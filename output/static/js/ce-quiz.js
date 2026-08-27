@@ -69,6 +69,26 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape' && panel && panel.classList.contains('ce-quiz-open')) closePanel({ refocusTrigger: true });
   });
 
+  // "Free Cyber Essentials Report" in the Services mega-menu links straight
+  // to /it-essentials/#ce-quiz-panel -- the native anchor jump alone would
+  // just scroll to the (collapsed, 0-height) panel and land on the trigger
+  // button having done nothing useful. Scroll first, while the panel is
+  // still collapsed and the page layout is settled, then open it, so the
+  // visitor watches it expand from exactly where they're already looking
+  // instead of the page jumping again once it grows.
+  function openIfDeepLinked() {
+    if (trigger && panel && window.location.hash === '#ce-quiz-panel' && !panel.classList.contains('ce-quiz-open')) {
+      trigger.scrollIntoView({ block: 'start' });
+      openPanel();
+    }
+  }
+  openIfDeepLinked();
+  // Covers the case the initial check above can't: clicking that same menu
+  // link while already on /it-essentials/ only changes the hash (same page,
+  // same URL otherwise) rather than reloading it, so DOMContentLoaded never
+  // fires again -- hashchange is what actually catches that click.
+  window.addEventListener('hashchange', openIfDeepLinked);
+
   if (!panel) return; // rest of this file only matters where the quiz markup exists
 
   // ---------- option selection ----------

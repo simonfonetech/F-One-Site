@@ -192,6 +192,9 @@
      the mockup this was ported from was always left-aligned. */
   text-align: left;
 }
+/* Solid, not the navy->purple gradient this started as -- matches the
+   IT Essentials entry in the Services mega-menu, which is a flat
+   #D5ACF8 (--purple) with no navy in it at all. */
 .ce-quiz-card::before {
   content: '';
   position: absolute;
@@ -199,7 +202,7 @@
   height: 6px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  background: linear-gradient(90deg, var(--ce-navy), var(--ce-purple));
+  background: var(--ce-purple);
 }
 /* theme.css has `@media (min-width: 1025px) { h1, h2 { font-size: 40px
    !important; line-height: 50px !important; } }` -- a sitewide rule for
