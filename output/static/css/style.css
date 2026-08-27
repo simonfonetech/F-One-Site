@@ -195,6 +195,33 @@ body[style*="--service-accent"] #h-explore-more-devices mark:last-child {
 }
 .gb-button:where(.gb-button-text):hover { background-color: var(--secondary); color: var(--text-white); }
 
+/* Every CTA button ships its own per-instance height/radius from WordPress
+   (449 separate generated CSS files -- one per post -- each hand-authored
+   with a slightly different padding/radius over the years), so the same
+   "Get in touch" label ends up 34px tall and square on one page, 52px and
+   fully round on another. Force every one to the height+shape of the
+   reference button ("Get in touch" under The Basics on Cloud Phone
+   Systems: 40px tall, fully rounded) so the site reads as one consistent
+   button style. Colour and hover are untouched -- only geometry changes.
+   Horizontal padding is left alone too, so width still tracks each
+   button's own label length instead of being forced identical.
+   Accordion toggles (full-width expand/collapse rows, not pill CTAs) and
+   the fixed header's "Get in touch" link (a bare <a>, no .gb-button class
+   at all) are naturally out of scope -- neither carries .gb-button-text.
+   The one CTA without that class is the native <button type="submit">
+   contact-form Submit, added explicitly below. */
+:is(
+  a.gb-button.gb-button-text,
+  button.gb-button.gb-button-text,
+  button.gb-button[type="submit"]
+):not(.gb-accordion__toggle) {
+  height: 40px !important;
+  min-height: 40px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  border-radius: 999px !important;
+}
+
 /* Breathing room above in-page buttons.
    Every button ships with margin-top:0 and the per-instance GenerateBlocks CSS
    only sets padding, so content buttons sat flush against the paragraph above
