@@ -287,16 +287,32 @@
 
 .ce-quiz-form-actions { margin-top: 18px; text-align: center; }
 
+/* Hover/active used to fill navy (--ce-accent-2 / --ce-navy) -- a
+   one-off look unlike every other purple button on the site, which
+   fills white with a purple ring on hover instead (see .ce-quiz-trigger
+   and the site-wide Blue>White pattern in style.css). Matched to that:
+   same white fill, purple text/border/ring. border is reserved
+   transparent at rest (box-sizing:border-box is already set on every
+   .ce-quiz-panel descendant, so this can't nudge the button's size the
+   way an unreserved border would). */
 .ce-quiz-btn {
-  appearance: none; border: none; cursor: pointer;
+  appearance: none; cursor: pointer;
   font-weight: 700; font-size: 15px; letter-spacing: .2px;
   color: #fff; padding: 13px 30px; border-radius: 25px;
+  border: 2px solid transparent;
   background: var(--ce-accent);
   box-shadow: 0 4px 18px rgba(213, 172, 248, .45);
-  transition: transform .15s ease, box-shadow .18s ease, background-color .18s ease;
+  transition: transform .15s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
 }
-.ce-quiz-btn:hover { transform: translateY(-2px); background: var(--ce-accent-2); box-shadow: 0 8px 26px rgba(0, 66, 105, .35); }
-.ce-quiz-btn:active { transform: translateY(0); background: var(--ce-navy); box-shadow: 0 3px 12px rgba(0, 66, 105, .3); }
+.ce-quiz-btn:hover,
+.ce-quiz-btn:active {
+  transform: translateY(-2px);
+  background: #fff;
+  color: var(--ce-accent);
+  border-color: var(--ce-accent);
+  box-shadow: 0 0 0 1px var(--ce-accent);
+}
+.ce-quiz-btn:active { transform: translateY(0); }
 .ce-quiz-btn:focus-visible { outline: 3px solid rgba(213, 172, 248, .5); outline-offset: 3px; }
 
 .ce-quiz-result { margin-top: 20px; }
