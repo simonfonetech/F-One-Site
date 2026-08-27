@@ -1137,16 +1137,16 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
    class), so the phone number always flashed the site's default orange
    on hover regardless of the page's own accent colour. Restate the same
    colour on hover -- .site-phone-number:hover's two classes beat that
-   rule's one. A bold weight swap was tried as the highlight cue and
-   looked ugly (a 14px line visibly reflowing/thickening next to the
-   steady-weight nav items beside it), so the highlight is an underline
-   instead -- a standard, understated "this is a link" cue that doesn't
-   change the text's shape or width. */
+   rule's one. Bold was tried first and looked ugly (a visible
+   reflow/thickening next to the steady-weight nav beside it); underline
+   was tried next and didn't land either. Settled on a soft text-shadow
+   glow in the same colour instead -- it reads as "lit up" on hover
+   without changing the text's weight, decoration, or box size at all. */
 .site-phone-number:hover,
 .site-phone-number:focus,
 .site-phone-number:active {
   color: var(--service-accent, var(--brand-link));
-  text-decoration: underline;
+  text-shadow: 0 0 8px var(--service-accent, var(--brand-link));
 }
 /* theme.css pins radius/padding/background with !important, matching live;
    only the weight needs stating here (live renders this button at 300).
