@@ -17,7 +17,12 @@
    can never show the "bounce" a fixed max-height would. */
 
 /* ---------- trigger button ---------- */
+/* Same reasoning as #cyber-essentials-heading below: the site header is
+   fixed/60px, so scrollIntoView({block:'start'}) alone (used by the
+   Free-Cyber-Essentials-Report deep link in ce-quiz.js) would land this
+   button half-hidden underneath it. */
 .ce-quiz-trigger {
+  scroll-margin-top: 80px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

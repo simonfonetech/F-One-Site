@@ -7,89 +7,191 @@ document.addEventListener('DOMContentLoaded', function () {
   const panel = document.getElementById('ce-quiz-panel');
   const closeBtn = document.getElementById('ce-quiz-close');
 
+  if (!panel) return; // everything below only matters where the quiz markup exists
+
+  // ---------- robust scrolling to the heading ----------
+  // Shared by every path that needs to land on #cyber-essentials-heading:
+  // opening (from the on-page trigger or the "Free Cyber Essentials
+  // Report" mega-menu link, from this page or another one) and closing.
+  //
+  // Getting this right fights the browser's own native jump-to-# behaviour
+  // on multiple fronts:
+  //  - style.css sets `html { scroll-behavior: smooth }` site-wide, so
+  //    both the browser's native jump to a URL fragment matching an
+  //    element id (which happens independently of this script, for a
+  //    fresh navigation *and* for same-page anchor clicks) and any scroll
+  //    this code performs animate smoothly and can overlap.
+  //  - A fresh cross-page navigation's native fragment-scroll is queued as
+  //    part of loading the document itself, before this script even runs
+  //    -- so it can still land *after* this code has already finished,
+  //    overriding it.
+  //  - The page is long and loads a webfont (proxima-nova, via Adobe
+  //    Typekit) asynchronously; text reflowing once it swaps in can shift
+  //    everything below it by a couple hundred px, invalidating a
+  //    scroll position that looked correct the instant it was set.
+  // whenScrollSettled polls scrollY across animation frames and only
+  // fires once it's held steady for a few frames running, i.e. once
+  // nothing else is actively scrolling the page any more, from any
+  // source, however long that takes -- no fixed delay to guess wrong.
+  function whenScrollSettled(cb) {
+    let lastY = window.scrollY;
+    let stableFrames = 0;
+    function check() {
+      const y = window.scrollY;
+      if (y === lastY) {
+        stableFrames++;
+      } else {
+        stableFrames = 0;
+        lastY = y;
+      }
+      if (stableFrames >= 4) { cb(); return; }
+      window.requestAnimationFrame(check);
+    }
+    window.requestAnimationFrame(check);
+  }
+
+  // Scrolls to #cyber-essentials-heading and calls back once it's actually
+  // arrived and stayed put. Waits for the webfont first (a no-op if it's
+  // already loaded, which it usually is by the time anyone's clicked
+  // anything) so the page's final text layout is what's being scrolled
+  // to, not a pre-swap approximation of it. Then: settle whatever
+  // scrolling the browser is already doing, cancel it with an instant
+  // scroll to the current position (a new scroll command interrupts an
+  // in-flight one, even to a no-op destination), scroll smoothly to the
+  // heading, settle again, and correct once more if scroll-margin-top
+  // wasn't respected exactly (fonts finishing mid-animation, etc.).
+  function scrollToHeading(cb) {
+    const heading = document.getElementById('cyber-essentials-heading');
+    if (!heading) { if (cb) cb(); return; }
+    const ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    ready.then(function () {
+      whenScrollSettled(function () {
+        window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+        heading.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        whenScrollSettled(function () {
+          const cs = window.getComputedStyle(heading);
+          const wantTop = parseFloat(cs.scrollMarginTop) || 0;
+          const actualTop = heading.getBoundingClientRect().top;
+          if (Math.abs(actualTop - wantTop) > 2) {
+            window.scrollTo({ top: window.scrollY + (actualTop - wantTop), behavior: 'instant' });
+          }
+          if (cb) cb();
+        });
+      });
+    });
+  }
+
   function openPanel() {
-    if (!panel) return;
     panel.classList.add('ce-quiz-open');
     panel.setAttribute('aria-hidden', 'false');
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
-    // No auto-scroll here on purpose: the heading and intro paragraph
-    // above the button should stay exactly where they are on screen --
-    // only the panel itself grows underneath, pushing later content down.
+  }
+
+  // Scrolls to the heading first and only opens the panel once that scroll
+  // has actually arrived -- so the panel doesn't start growing underneath
+  // a page that's still moving toward it. The heading sits at the same
+  // position whether the panel is open or collapsed (the fixed 288px
+  // margin on gb-container-b72a280d below), so scrolling to it before
+  // opening lands in exactly the same place as scrolling after; only the
+  // visual sequence changes.
+  function goToReport() {
+    scrollToHeading(function () {
+      if (!panel.classList.contains('ce-quiz-open')) openPanel();
+    });
   }
 
   function closePanel({ refocusTrigger } = {}) {
-    if (!panel) return;
     panel.classList.remove('ce-quiz-open');
     panel.setAttribute('aria-hidden', 'true');
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
     if (refocusTrigger && trigger) trigger.focus({ preventScroll: true });
     // Closing can happen from anywhere in a long quiz + report, scrolled
     // well past the section it lives in -- send the user back to the
-    // heading itself rather than leaving them stranded. #cyber-essentials
-    // (the section wrapper) lands at the top of its 800px band, well
-    // above the heading, which is what "doesn't return you to the right
-    // place" meant -- anchoring to the heading's own id fixes that.
-    //
-    // A hand-rolled requestAnimationFrame scroll was tried here first, to
-    // get an easing curve slightly different from the rest of the site --
-    // but the panel's own collapse (grid-template-rows, .4s) throws
-    // thousands of px of reflow at the main thread at the same time,
-    // which starved that rAF loop of frames for the better part of a
-    // second before it suddenly caught up, i.e. exactly the "not smooth"
-    // this was meant to fix. The browser's own scrollIntoView smooth
-    // animation runs on the compositor instead of the main thread, so it
-    // keeps animating fluidly through that same reflow storm untouched --
-    // measured continuous frame-by-frame movement with no stall at all in
-    // testing, where the custom version stalled visibly every time.
-    // scroll-margin-top on the heading (below) keeps it clear of the
-    // fixed header. This call only ever runs from this file, so it can't
-    // touch any other element's scrolling on the site.
-    const heading = document.getElementById('cyber-essentials-heading');
-    if (heading) heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // heading itself rather than leaving them stranded, the same robust
+    // scroll every other path here uses.
+    scrollToHeading();
     // Updates the URL to match without using location.hash directly --
     // setting location.hash to a value it's *already* set to is a no-op
     // in every browser (no scroll, no event), which is why this only
     // ever worked on the first close and silently did nothing on the
     // second, third, etc. pushState always updates the URL, and (unlike
     // location.hash) never triggers its own native jump that could
-    // fight the scrollIntoView call above.
+    // fight the scroll above.
     if (window.history && window.history.pushState) {
       window.history.pushState(null, '', '#cyber-essentials-heading');
     }
   }
 
-  if (trigger && panel) {
+  if (trigger) {
     trigger.addEventListener('click', () => {
       if (panel.classList.contains('ce-quiz-open')) closePanel();
-      else openPanel();
+      else goToReport();
     });
   }
   if (closeBtn) closeBtn.addEventListener('click', () => closePanel({ refocusTrigger: true }));
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && panel && panel.classList.contains('ce-quiz-open')) closePanel({ refocusTrigger: true });
+    if (e.key === 'Escape' && panel.classList.contains('ce-quiz-open')) closePanel({ refocusTrigger: true });
   });
 
   // "Free Cyber Essentials Report" in the Services mega-menu links straight
-  // to /it-essentials/#ce-quiz-panel -- the native anchor jump alone would
-  // just scroll to the (collapsed, 0-height) panel and land on the trigger
-  // button having done nothing useful. Scroll first, while the panel is
-  // still collapsed and the page layout is settled, then open it, so the
-  // visitor watches it expand from exactly where they're already looking
-  // instead of the page jumping again once it grows.
+  // to /it-essentials/#ce-quiz-panel.
+  //
+  // The mega-menu link with this href renders on every page site-wide,
+  // but only /it-essentials/ has the panel/trigger to act on -- the click
+  // listener attached to it below is only ever reached on this page (this
+  // whole file returns early above on any page without the panel), so on
+  // every other page the link stays a plain, normal one that navigates
+  // here, landing on the openIfDeepLinked() path below once it arrives.
   function openIfDeepLinked() {
-    if (trigger && panel && window.location.hash === '#ce-quiz-panel' && !panel.classList.contains('ce-quiz-open')) {
-      trigger.scrollIntoView({ block: 'start' });
-      openPanel();
+    if (window.location.hash !== '#ce-quiz-panel') return;
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', '#ce-quiz-panel');
+    }
+    goToReport();
   }
   openIfDeepLinked();
-  // Covers the case the initial check above can't: clicking that same menu
-  // link while already on /it-essentials/ only changes the hash (same page,
-  // same URL otherwise) rather than reloading it, so DOMContentLoaded never
-  // fires again -- hashchange is what actually catches that click.
+  // Covers a hash that's already there when this page loads (a fresh
+  // navigation straight to the URL) or changes later (browser back/
+  // forward, or a link elsewhere on the page pointing here). It does NOT
+  // cover clicking the mega-menu link a *second* time while the hash is
+  // already #ce-quiz-panel from the first click -- per spec, hashchange
+  // only fires when the hash actually changes, and clicking a same-hash
+  // link doesn't change it, so nothing above would run at all and only
+  // the browser's own native (and, per the comment on scrollToHeading,
+  // unreliable) scroll-to-#ce-quiz-panel would fire. The click handler
+  // below covers that case directly, independent of whether the hash
+  // "changes": it intercepts the click, so the browser's native jump
+  // never gets a chance to start in the first place, and calls the exact
+  // same goToReport() every time regardless of the panel's or the hash's
+  // current state.
+  document.querySelectorAll('a[href$="#ce-quiz-panel"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', '#ce-quiz-panel');
+      }
+      goToReport();
+    });
+  });
   window.addEventListener('hashchange', openIfDeepLinked);
 
-  if (!panel) return; // rest of this file only matters where the quiz markup exists
+  // Browsers can restore this exact page (DOM, scroll position, JS state
+  // and all) from the back-forward cache when returning via back/forward,
+  // rather than reloading it -- if the panel was left open, coming back
+  // that way would show it still open. Collapsing it on the way out means
+  // any such restore always finds it closed, so navigating here fresh
+  // always looks the same regardless of how the panel was left last time.
+  // Only the open/closed class changes -- selected answers are left alone,
+  // so a visitor who comes back still finds their progress, just collapsed
+  // rather than lost.
+  window.addEventListener('pagehide', function () {
+    panel.classList.remove('ce-quiz-open');
+    panel.setAttribute('aria-hidden', 'true');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  });
 
   // ---------- option selection ----------
   const radios = Array.from(document.querySelectorAll('.ce-quiz input[type="radio"]'));
