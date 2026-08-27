@@ -308,7 +308,7 @@ a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:act
   background-color: #fff !important;
   color: var(--service-accent, #76C0FF) !important;
   border: 2px solid currentColor !important;
-  box-shadow: 0 0 0 1px var(--service-accent, #76C0FF), 0 8px 18px -6px var(--service-accent, #76C0FF) !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #76C0FF) !important;
 }
 /* White (stays filled) > accent fill + white ring */
 a.gb-button-e59a154a:hover, a.gb-button-e59a154a:focus, a.gb-button-e59a154a:active,
@@ -335,7 +335,7 @@ a.gb-button-1cbae936:hover, a.gb-button-1cbae936:focus, a.gb-button-1cbae936:act
   background-color: var(--service-accent, #76C0FF) !important;
   color: #fff !important;
   border: 2px solid currentColor !important;
-  box-shadow: 0 0 0 1px #fff, 0 8px 18px -6px rgba(255, 255, 255, .55) !important;
+  box-shadow: 0 0 0 1px #fff !important;
 }
 /* The one white-bg button that isn't blue-themed: the WhatsApp
    section's CTA keeps its own green branding rather than the page's
@@ -349,7 +349,153 @@ a.gb-button-57bb86cc:hover, a.gb-button-57bb86cc:focus, a.gb-button-57bb86cc:act
   background-color: var(--wp--preset--color--wsa-green, #2ACC63) !important;
   color: #fff !important;
   border: 2px solid currentColor !important;
-  box-shadow: 0 0 0 1px #fff, 0 8px 18px -6px rgba(255, 255, 255, .55) !important;
+  box-shadow: 0 0 0 1px #fff !important;
+}
+
+/* ============ internet-connectivity ============ */
+/* Same Blue>White / White(fill)>accent+white-ring hover system as Cloud
+   Phone Systems, ported to this page's own buttons and accent colour.
+   Transparent 2px border reserved at rest so hover only recolours it
+   (no layout nudge); !important throughout to beat this page's own
+   per-instance generated CSS, which loads after this file. */
+a.gb-button-424478e8,
+a.gb-button-a52fc654,
+a.gb-button-2114d9a1,
+a.gb-button-99a8239f,
+a.gb-button-13b5fd90,
+a.gb-button-64db1e83 {
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+/* Blue > White */
+a.gb-button-424478e8:hover, a.gb-button-424478e8:focus, a.gb-button-424478e8:active,
+a.gb-button-a52fc654:hover, a.gb-button-a52fc654:focus, a.gb-button-a52fc654:active,
+a.gb-button-2114d9a1:hover, a.gb-button-2114d9a1:focus, a.gb-button-2114d9a1:active,
+a.gb-button-99a8239f:hover, a.gb-button-99a8239f:focus, a.gb-button-99a8239f:active,
+a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:active {
+  background-color: #fff !important;
+  color: var(--service-accent, #f06120) !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #f06120) !important;
+}
+/* White (stays filled) > accent fill + white ring */
+a.gb-button-64db1e83:hover, a.gb-button-64db1e83:focus, a.gb-button-64db1e83:active {
+  background-color: var(--service-accent, #f06120) !important;
+  color: #fff !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px #fff !important;
+}
+
+/* ============ wifi-and-networking ============ */
+/* Same Blue>White / White(fill)>accent+white-ring hover system as Cloud
+   Phone Systems, ported to this page's own buttons and accent colour.
+   Transparent 2px border reserved at rest so hover only recolours it
+   (no layout nudge); !important throughout to beat this page's own
+   per-instance generated CSS, which loads after this file. */
+a.gb-button-424478e8,
+a.gb-button-a5ae33cb,
+a.gb-button-3d7dd445,
+a.gb-button-958fe207,
+a.gb-button-ccece3b5,
+a.gb-button-13b5fd90,
+a.gb-button-c4fee099,
+a.gb-button-6883640f {
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+/* Blue > White */
+a.gb-button-424478e8:hover, a.gb-button-424478e8:focus, a.gb-button-424478e8:active,
+a.gb-button-a5ae33cb:hover, a.gb-button-a5ae33cb:focus, a.gb-button-a5ae33cb:active,
+a.gb-button-3d7dd445:hover, a.gb-button-3d7dd445:focus, a.gb-button-3d7dd445:active,
+a.gb-button-958fe207:hover, a.gb-button-958fe207:focus, a.gb-button-958fe207:active,
+a.gb-button-ccece3b5:hover, a.gb-button-ccece3b5:focus, a.gb-button-ccece3b5:active,
+a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:active {
+  background-color: #fff !important;
+  color: var(--service-accent, #FFCE00) !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #FFCE00) !important;
+}
+/* White (stays filled) > accent fill + white ring */
+a.gb-button-c4fee099:hover, a.gb-button-c4fee099:focus, a.gb-button-c4fee099:active,
+a.gb-button-6883640f:hover, a.gb-button-6883640f:focus, a.gb-button-6883640f:active {
+  background-color: var(--service-accent, #FFCE00) !important;
+  color: #fff !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px #fff !important;
+}
+
+/* ============ mobile-sim-plans ============ */
+/* Same Blue>White / White(fill)>accent+white-ring hover system as Cloud
+   Phone Systems, ported to this page's own buttons and accent colour.
+   Transparent 2px border reserved at rest so hover only recolours it
+   (no layout nudge); !important throughout to beat this page's own
+   per-instance generated CSS, which loads after this file. */
+a.gb-button-424478e8,
+a.gb-button-f0601d23,
+a.gb-button-36597eeb,
+a.gb-button-13b5fd90,
+a.gb-button-f191adbb {
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+/* Blue > White */
+a.gb-button-424478e8:hover, a.gb-button-424478e8:focus, a.gb-button-424478e8:active,
+a.gb-button-f0601d23:hover, a.gb-button-f0601d23:focus, a.gb-button-f0601d23:active,
+a.gb-button-36597eeb:hover, a.gb-button-36597eeb:focus, a.gb-button-36597eeb:active,
+a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:active {
+  background-color: #fff !important;
+  color: var(--service-accent, #24D19C) !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #24D19C) !important;
+}
+/* White (stays filled) > accent fill + white ring */
+a.gb-button-f191adbb:hover, a.gb-button-f191adbb:focus, a.gb-button-f191adbb:active {
+  background-color: var(--service-accent, #24D19C) !important;
+  color: #fff !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px #fff !important;
+}
+
+/* ============ it-essentials ============ */
+/* Same Blue>White / White(fill)>accent+white-ring hover system as Cloud
+   Phone Systems, ported to this page's own buttons and accent colour.
+   Transparent 2px border reserved at rest so hover only recolours it
+   (no layout nudge); !important throughout to beat this page's own
+   per-instance generated CSS, which loads after this file. */
+a.gb-button-424478e8,
+a.gb-button-e51f3077,
+a.gb-button-ff2ed986,
+a.gb-button-35837cdd,
+a.gb-button-b7e6f602,
+a.gb-button-d237b173,
+a.gb-button-9526648b,
+a.gb-button-13b5fd90,
+a.gb-button-ff6e1240,
+a.gb-button-d6cbc4b1 {
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+/* Blue > White */
+a.gb-button-424478e8:hover, a.gb-button-424478e8:focus, a.gb-button-424478e8:active,
+a.gb-button-e51f3077:hover, a.gb-button-e51f3077:focus, a.gb-button-e51f3077:active,
+a.gb-button-ff2ed986:hover, a.gb-button-ff2ed986:focus, a.gb-button-ff2ed986:active,
+a.gb-button-35837cdd:hover, a.gb-button-35837cdd:focus, a.gb-button-35837cdd:active,
+a.gb-button-b7e6f602:hover, a.gb-button-b7e6f602:focus, a.gb-button-b7e6f602:active,
+a.gb-button-d237b173:hover, a.gb-button-d237b173:focus, a.gb-button-d237b173:active,
+a.gb-button-9526648b:hover, a.gb-button-9526648b:focus, a.gb-button-9526648b:active,
+a.gb-button-13b5fd90:hover, a.gb-button-13b5fd90:focus, a.gb-button-13b5fd90:active {
+  background-color: #fff !important;
+  color: var(--service-accent, #D5ACF8) !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #D5ACF8) !important;
+}
+/* White (stays filled) > accent fill + white ring */
+a.gb-button-ff6e1240:hover, a.gb-button-ff6e1240:focus, a.gb-button-ff6e1240:active,
+a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:active {
+  background-color: var(--service-accent, #D5ACF8) !important;
+  color: #fff !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px #fff !important;
 }
 
 /* "The Basics" heading on the Cloud Phone Systems page uses the WP
@@ -716,7 +862,7 @@ a.gb-button-57bb86cc:hover, a.gb-button-57bb86cc:focus, a.gb-button-57bb86cc:act
   background-color: var(--service-hover-bg, var(--brand-btn-bg-hover)) !important;
   color: var(--service-accent, var(--brand-btn-text)) !important;
   border: var(--service-hover-border-w, 0) solid var(--service-accent, transparent) !important;
-  box-shadow: 0 0 0 1px var(--service-accent, transparent), 0 8px 18px -6px var(--service-accent, transparent) !important;
+  box-shadow: 0 0 0 1px var(--service-accent, transparent) !important;
 }
 /* theme.css sets the floating socials rail to a flat #f06120; overridden
    here (loads after theme.css) so it also picks up --service-accent on
