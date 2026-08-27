@@ -78,6 +78,29 @@ h3.gb-headline { font-size: 1.3rem; }
    exactly live's 16px with this. */
 p.gb-headline { margin: 0 0 1rem; }
 .gb-headline mark { background: transparent; padding: 0; }
+/* Every heading's trailing "." is a decorative <mark> carrying whatever
+   WP preset colour it happened to be authored with (pink, secondary,
+   the old "highlight-marketing" magenta...) -- a leftover from when
+   that dot doubled as a colour-switcher preview. Now that each service
+   page has one consistent accent colour, that mix of unrelated dot
+   colours reads as off-brand noise. Recolouring them all to the page's
+   own accent is the most consistent option: it matches every other
+   accent-coloured element already on the page instead of introducing a
+   new colour meaning just for the dot.
+   Two things keep this from over-reaching: (1) :is(h1,h2,h3,h4) instead
+   of the generic .gb-headline, which also matches <p class="gb-headline">
+   -- those paragraph marks highlight whole sentences and aren't part of
+   this pattern; (2) :last-child, since some headings carry extra marks
+   for individually-coloured words earlier in the title (e.g. "Microsoft
+   365 Licence Management.") -- only the final mark is ever the dot.
+   Scoped via body[style*="--service-accent"] rather than var()'s own
+   fallback, since a fallback here would force one colour onto every
+   dot on the rest of the site too; this attribute selector only
+   matches the 5 pages whose <body> actually carries that inline
+   custom property, so it's a genuine no-op everywhere else. */
+body[style*="--service-accent"] :is(h1, h2, h3, h4).gb-headline mark:last-child {
+  color: var(--service-accent) !important;
+}
 
 /* ---------- buttons ---------- */
 /* Base, safe for every button including icon-only ones. */
