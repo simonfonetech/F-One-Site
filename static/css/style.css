@@ -232,6 +232,27 @@ p.gb-headline { margin: 0 0 1rem; }
   color: #fff;
   border-color: var(--secondary, #004269);
 }
+/* "The Basics" section's "Get in touch" button: filled blue at rest,
+   inverts to transparent bg / blue text on hover, with the outline+glow
+   treatment copied from 8102's active command-console tab (.mega-tab.is-active,
+   templates/partials/nav.html on v3) -- a 1px solid ring plus a soft
+   colour-tinted shadow, both keyed to the same accent colour. Scoped to
+   this one button instance only; !important needed since this ties on
+   specificity with 215.css's own a.gb-button-a5ae33cb rules, which load
+   after this file (its hover/active/focus rule is otherwise a leftover
+   pink). */
+a.gb-button-a5ae33cb {
+  background-color: var(--service-accent, #76C0FF) !important;
+  color: #fff !important;
+  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+a.gb-button-a5ae33cb:hover,
+a.gb-button-a5ae33cb:focus,
+a.gb-button-a5ae33cb:active {
+  background-color: transparent !important;
+  color: var(--service-accent, #76C0FF) !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #76C0FF), 0 8px 18px -6px var(--service-accent, #76C0FF) !important;
+}
 /* The "Customisable On-Hold Marketing Messages" (SmartVoice) section on
    the Cloud Phone Systems page is hardcoded pink in its own per-page
    generated stylesheet (static/css/generated/215.css), which loads
@@ -245,6 +266,23 @@ p.gb-headline { margin: 0 0 1rem; }
 /* Its "Find out more" button also has hardcoded pink text
    (a.gb-button-1cbae936 in 215.css). Scoped to this one button. */
 a.gb-button-1cbae936 { color: var(--service-accent, #CC289C) !important; }
+
+/* The page's white-background CTA buttons ("Find out more" / "Get in
+   touch" variants) get the same 8102 outline+glow ring on hover as The
+   Basics button above. Both sit on blue section backgrounds already, so
+   filling them accent-blue on hover made them disappear into the
+   backdrop -- kept white bg / accent text unchanged instead and just
+   added the ring+glow around it. */
+a.gb-button-1cbae936,
+a.gb-button-544ee991 {
+  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+a.gb-button-1cbae936:hover, a.gb-button-1cbae936:focus, a.gb-button-1cbae936:active,
+a.gb-button-544ee991:hover, a.gb-button-544ee991:focus, a.gb-button-544ee991:active {
+  background-color: #fff !important;
+  color: var(--service-accent, #76C0FF) !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #76C0FF), 0 8px 18px -6px var(--service-accent, #76C0FF) !important;
+}
 
 /* "The Basics" heading on the Cloud Phone Systems page uses the WP
    "black" text preset (brand.css: .has-text-black-color, !important),
