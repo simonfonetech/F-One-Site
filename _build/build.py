@@ -38,6 +38,39 @@ SERVICE_ACCENTS = {
     'mobile-sim-plans':      'var(--green)',
     'it-essentials':         'var(--purple)',
 }
+# Individual product pages linked from one of the 5 service pages above
+# (each carrying its own accordion, e.g. "SmartVoice Messaging" on
+# /cloud-phone-systems/) inherit that service's colour too, via the same
+# page_theme_color mechanism -- confirmed by scanning each service page's
+# own content for hrefs into these slugs. The four yealink-t44w/t54w/t57w/
+# t58w-pro pages aren't currently linked from the cloud-phone-systems
+# carousel but are the same desk-phone family as the ones that are, so
+# they're grouped the same way. customerarea is excluded -- it's the
+# customer login portal, not a themed product.
+_CLOUD_PHONE_SYSTEMS_PRODUCTS = [
+    'cisco-6825', 'cisco-9851', 'cisco-9861', 'cisco-9871',
+    'comms-cabinets', 'cordless-dect', 'crm-integration', 'managed-switches',
+    'routers', 'smartvoice-on-hold-messaging', 'wifi-access-points',
+    'yealink-t34w', 'yealink-t44w', 'yealink-t54w', 'yealink-t57w',
+    'yealink-t58w-pro', 'yealink-t73w', 'yealink-t74w', 'yealink-t85w',
+    'yealink-t87w', 'yealink-t88wpro', 'yealink-w56h', 'yealink-w59rpro',
+    'yealink-w73h', 'yealink-wh64',
+]
+_IT_ESSENTIALS_PRODUCTS = [
+    'backup-for-microsoft365', 'cyber-essentials-support', 'email-security',
+    'endpoint-detection-response', 'microsoft365-licence-management', 'rmm',
+    'security-awareness-training', 'uniqkey-password-manager',
+]
+_WIFI_AND_NETWORKING_PRODUCTS = ['omada-network-management', 'social-wifi']
+_INTERNET_CONNECTIVITY_PRODUCTS = ['satellite-broadband']
+for _slug in _CLOUD_PHONE_SYSTEMS_PRODUCTS:
+    SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['cloud-phone-systems']
+for _slug in _IT_ESSENTIALS_PRODUCTS:
+    SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['it-essentials']
+for _slug in _WIFI_AND_NETWORKING_PRODUCTS:
+    SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['wifi-and-networking']
+for _slug in _INTERNET_CONNECTIVITY_PRODUCTS:
+    SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['internet-connectivity']
 
 FRONTMATTER_RE = re.compile(r'\A---\n(.*?)\n---\n?', re.DOTALL)
 

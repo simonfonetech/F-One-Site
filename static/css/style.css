@@ -567,27 +567,32 @@ a.gb-button-d6cbc4b1:hover, a.gb-button-d6cbc4b1:focus, a.gb-button-d6cbc4b1:act
    since 205.css loads after this file. */
 .gb-headline-22fa65d8 { color: var(--wp--preset--color--text-black, #363636) !important; }
 
-/* The "SmartVoice Messaging" accordion (The Basics section, Cloud Phone
-   Systems) reused the site's generic .gb-accordion__toggle styling,
-   which defaults to purple text -- off-brand here. Scoped to
-   .the-basics-accordian only, so other accordions elsewhere keep their
-   own look. */
-.the-basics-accordian .gb-accordion__toggle {
+/* Every accordion (the site's generic .gb-accordion__toggle component --
+   "SmartVoice Messaging" on Cloud Phone Systems, spec/FAQ lists on the
+   individual product pages under each service, etc.) reuses the same
+   markup, which defaults to purple text regardless of which service
+   the page belongs to. Originally scoped to .the-basics-accordian
+   (Cloud Phone Systems' own instance) only; generalised to
+   body[style*="--service-accent"] so it covers every accordion on
+   every page that carries a page_theme_color -- each still picks up
+   its own colour via var(--service-accent), and pages with no theme
+   colour at all (body has no inline style) are untouched. */
+body[style*="--service-accent"] .gb-accordion__toggle {
   color: var(--text-black, #363636) !important;
 }
 /* Colon-style accent dot after each item's label, matching the heading
    dot pattern elsewhere on the page -- generated via ::after rather
    than edited into the source content. */
-.the-basics-accordian .gb-accordion__toggle .gb-button-text::after {
+body[style*="--service-accent"] .gb-accordion__toggle .gb-button-text::after {
   content: ".";
-  color: var(--service-accent, #76C0FF);
+  color: var(--service-accent);
 }
 /* Hover highlights the whole row (icon included, via currentColor) in
    the accent colour, and staying open keeps that same colour instead
    of reverting once you've clicked in -- :is() so both states share
    one declaration. */
-.the-basics-accordian :is(.gb-accordion__toggle:hover, .gb-accordion-item.is-open .gb-accordion__toggle) {
-  color: var(--service-accent, #76C0FF) !important;
+body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-item.is-open .gb-accordion__toggle) {
+  color: var(--service-accent) !important;
 }
 
 /* ---------- responsive visibility ---------- */
