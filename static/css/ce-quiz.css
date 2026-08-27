@@ -404,7 +404,8 @@
 .ce-quiz-report-gap-q { color: var(--ce-text); }
 .ce-quiz-report-gap-tag { flex: none; font-size: 10px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
 .ce-quiz-report-gap.gap-yes .ce-quiz-report-gap-tag { background: rgba(31, 157, 108, .14); color: var(--ce-rag-green); }
-.ce-quiz-report-gap.gap-no .ce-quiz-report-gap-tag { background: rgba(214, 69, 90, .14); color: var(--ce-rag-red); }
+.ce-quiz-report-gap.gap-no .ce-quiz-report-gap-tag,
+.ce-quiz-report-gap.gap-notsure .ce-quiz-report-gap-tag { background: rgba(214, 69, 90, .14); color: var(--ce-rag-red); }
 .ce-quiz-report-gap.gap-maybe .ce-quiz-report-gap-tag { background: rgba(226, 164, 0, .16); color: var(--ce-rag-amber); }
 .ce-quiz-report-gap.gap-unanswered .ce-quiz-report-gap-tag { background: rgba(0, 66, 105, .08); color: var(--ce-muted); }
 

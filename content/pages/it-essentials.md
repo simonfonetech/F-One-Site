@@ -153,6 +153,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="fw1" value="yes"><span class="ce-quiz-option-content">Our internet connection is protected by a firewall/router that's configured and maintained appropriately, with software firewalls enabled on every device and default passwords changed.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="fw1" value="maybe"><span class="ce-quiz-option-content">We believe we have a firewall, but we're unsure how it's configured, whether default passwords have been changed, or whether it's still properly maintained.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="fw1" value="no"><span class="ce-quiz-option-content">We don't have a firewall, or business devices connect directly to the internet without appropriate protection.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="fw1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -164,6 +165,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="sc1" value="yes"><span class="ce-quiz-option-content">We've removed or disabled unused software, services and accounts, and changed all default passwords on every computer, server and cloud service.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="sc1" value="maybe"><span class="ce-quiz-option-content">We've done some of this, but we haven't checked every device or cloud service for unused accounts, software or default passwords.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="sc1" value="no"><span class="ce-quiz-option-content">We still have unused software, accounts or default passwords in place on some devices or services.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="sc1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -175,6 +177,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="dl1" value="yes"><span class="ce-quiz-option-content">Every device that needs a person present requires a biometric, password or PIN before it can be used.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="dl1" value="maybe"><span class="ce-quiz-option-content">Most devices are set up this way, but we haven't checked every laptop, tablet or phone.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="dl1" value="no"><span class="ce-quiz-option-content">Some of our devices don't require any form of authentication to unlock.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="dl1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -186,6 +189,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="su1" value="yes"><span class="ce-quiz-option-content">High-risk and critical security updates are installed within 14 days of release across all our operating systems and applications, and nothing unsupported is still in use.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="su1" value="maybe"><span class="ce-quiz-option-content">Most devices are updated reasonably promptly, but we don't consistently check every device is patched within 14 days.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="su1" value="no"><span class="ce-quiz-option-content">Updates are often delayed, or we know we're running unsupported software.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="su1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -197,6 +201,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="ac1" value="yes"><span class="ce-quiz-option-content">Every account is approved before it's created, and staff always log in with their own unique username and password — no shared accounts.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="ac1" value="maybe"><span class="ce-quiz-option-content">Most staff have individual accounts, but we don't have a formal approval process, or some shared accounts still exist.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="ac1" value="no"><span class="ce-quiz-option-content">Staff regularly share usernames, passwords or accounts, or new accounts are created without any approval.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="ac1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -208,6 +213,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="aa1" value="yes"><span class="ce-quiz-option-content">Only approved staff have admin access, they use a separate account for admin tasks, and that access is reviewed regularly.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="aa1" value="maybe"><span class="ce-quiz-option-content">Some staff have admin access, but we're not sure everyone still needs it, or admin accounts are also used for everyday tasks like email and browsing.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="aa1" value="no"><span class="ce-quiz-option-content">Most users have administrator access, and it's used for day-to-day work.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="aa1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -219,6 +225,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="pw1" value="yes"><span class="ce-quiz-option-content">MFA is enabled for all cloud services and administrator accounts, and anywhere it's not available, passwords are protected against brute-force guessing.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="pw1" value="maybe"><span class="ce-quiz-option-content">MFA is enabled for some users or services, but we're not sure it's switched on everywhere it could be.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="pw1" value="no"><span class="ce-quiz-option-content">Users generally only need a username and password to access company systems.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="pw1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
       </div>
@@ -230,6 +237,7 @@ tracksCustomers.forEach((track, i) => {
             <label class="ce-quiz-option"><input type="radio" name="mw1" value="yes"><span class="ce-quiz-option-content">All devices have antivirus/endpoint protection enabled and kept up to date, and mobile devices are restricted to approved apps.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="mw1" value="maybe"><span class="ce-quiz-option-content">Antivirus is installed on most computers, but we're not sure every device — including phones and tablets — is protected.</span></label>
             <label class="ce-quiz-option"><input type="radio" name="mw1" value="no"><span class="ce-quiz-option-content">Some or all devices don't have antivirus or other malware protection.</span></label>
+            <label class="ce-quiz-option"><input type="radio" name="mw1" value="notsure"><span class="ce-quiz-option-content">We're not sure.</span></label>
           </div>
         </div>
         <div class="ce-quiz-form-actions">

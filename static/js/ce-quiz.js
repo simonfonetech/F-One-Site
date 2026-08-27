@@ -143,7 +143,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const val = (input.value || '').toString().toLowerCase().trim();
     if (val === 'yes') return 3;
     if (val === 'maybe') return 2;
-    if (val === 'no') return 1;
+    // "not sure" scores the same as "no" -- neither demonstrates the
+    // control is actually in place, so neither earns partial credit.
+    if (val === 'no' || val === 'notsure') return 0;
     const n = parseInt(val, 10);
     return isNaN(n) ? 0 : n;
   }
@@ -289,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sectionsWrap.className = 'ce-quiz-report-sections';
     const fills = [];
 
-    const gapStatusLabel = { yes: 'Compliant', maybe: 'Partially in place', no: 'Not in place', unanswered: 'Not answered' };
+    const gapStatusLabel = { yes: 'Compliant', maybe: 'Partially in place', no: 'Not in place', notsure: 'Not sure', unanswered: 'Not answered' };
 
     sections.forEach(s => {
       const sBand = bandForRatio(s.score, s.possible);
@@ -457,6 +459,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (val === 'yes') gaps.push({ title, status: 'yes' });
             if (val === 'maybe') gaps.push({ title, status: 'maybe', recommendation });
             if (val === 'no') gaps.push({ title, status: 'no', recommendation });
+            if (val === 'notsure') gaps.push({ title, status: 'notsure', recommendation });
           } else {
             gaps.push({ title, status: 'unanswered' });
           }
