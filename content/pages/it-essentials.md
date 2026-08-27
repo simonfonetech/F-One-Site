@@ -140,7 +140,7 @@ tracksCustomers.forEach((track, i) => {
 <p class="gb-headline gb-headline-e4b2ce07 gb-headline-text">Cyber Essentials Certification Support helps your business meet the technical and security requirements needed for certification. We guide you through the process, help implement any required changes, and provide clear advice to make certification straightforward.</p>
 
 <a class="gb-button gb-button-9526648b gb-button-text" href="/cyber-essentials-support/">Find out more</a>
-<button type="button" id="ce-quiz-trigger" class="ce-quiz-trigger" aria-expanded="false" aria-controls="ce-quiz-panel">Take our Cyber Essentials readiness assessment!</button>
+<button type="button" id="ce-quiz-trigger" class="ce-quiz-trigger" aria-expanded="false" aria-controls="ce-quiz-panel">Take our free Cyber Essentials readiness quiz!</button>
 
 <div id="ce-quiz-panel" class="ce-quiz-panel" aria-hidden="true">
  <div class="ce-quiz-panel-inner">
