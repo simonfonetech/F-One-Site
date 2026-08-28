@@ -13,11 +13,16 @@
 {% set service_items = nav.header | selectattr('children') | list %}
 {% set plain_items = nav.header | rejectattr('children') | rejectattr('label', 'equalto', 'Get in touch') | list %}
 
-<header id="masthead" class="site-header">
-  <div class="site-branding">
-    <a href="/" class="custom-logo-link" rel="home" aria-current="page">
+{# Rendered twice below (desktop .site-branding, left-aligned; mobile
+   .site-branding-sm, centred and brightened via CSS filter) -- captured
+   once here rather than duplicating ~2KB of path data in the source. The
+   "-sm" element previously didn't exist in this template at all: theme.css
+   already had the CSS to show a centred, brightened logo below 1025px
+   (matching live), but with no element for that CSS to target, mobile
+   visitors got neither logo -- just the header's plain background. #}
+{% set logo_svg %}
       {# 100px matches live; prod was rendering it at 90 #}
-      <svg width="100" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 987.99 383.29">
+      <svg width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 987.99 383.29">
         <defs><style>.cls-1{fill:#004369}.cls-2{fill:#4e5860}</style></defs>
         <path class="cls-1" d="M244.57,169.37h-73v39h66.47v51.32H171.61v91.52H111V118.05H244.57Z" transform="translate(-111.01 -111.55)"/>
         <path class="cls-1" d="M308.88,234.61A120.15,120.15,0,0,1,385.72,121q23.64-9.42,52.09-9.43,28.14,0,51.94,9.43a123,123,0,0,1,41,26.13,119.59,119.59,0,0,1,26.74,39.11,126.85,126.85,0,0,1,0,96.77,119.48,119.48,0,0,1-26.74,39.11,122.65,122.65,0,0,1-41,26.13q-23.81,9.42-51.94,9.43-28.44,0-52.09-9.43a120.6,120.6,0,0,1-76.84-113.62Zm63.39,0a62,62,0,0,0,5.25,25.66,64.19,64.19,0,0,0,35.09,33.85,68.55,68.55,0,0,0,50.4,0,65.9,65.9,0,0,0,21-13.45,63.56,63.56,0,0,0,14.38-20.4,65.22,65.22,0,0,0,0-51.32A63.82,63.82,0,0,0,484,188.54a66.24,66.24,0,0,0-21-13.45,68.68,68.68,0,0,0-50.4,0A64.16,64.16,0,0,0,377.52,209,62,62,0,0,0,372.27,234.61Z" transform="translate(-111.01 -111.55)"/>
@@ -37,6 +42,17 @@
         <path class="cls-2" d="M1047.31,475.44a32.15,32.15,0,0,0,24,10.85c13.58,0,17.92-7.31,17.92-13.13,0-9.13-9.25-11.64-19.29-14.38-12.21-3.2-25.79-6.62-25.79-21.58,0-12.55,11.19-21.12,26.13-21.12,11.64,0,20.66,3.89,27,10.62l-5.71,7c-5.7-6.27-13.69-9.13-22-9.13-9.13,0-15.63,4.91-15.63,12.1,0,7.65,8.78,9.93,18.48,12.56,12.44,3.31,26.59,7.19,26.59,23.17,0,11.08-7.53,22.38-28.07,22.38-13.24,0-22.94-5-29.21-12.1Z" transform="translate(-111.01 -111.55)"/>
         <path class="cls-1" d="M518,237A80.94,80.94,0,1,1,437,156,80.94,80.94,0,0,1,518,237Zm-90.08,57.77h29.28V182.05H411.43v24.81h16.44Z" transform="translate(-111.01 -111.55)"/>
       </svg>
+{% endset %}
+
+<header id="masthead" class="site-header">
+  <div class="site-branding">
+    <a href="/" class="custom-logo-link" rel="home" aria-current="page">
+      {{ logo_svg }}
+    </a>
+  </div>
+  <div class="site-branding-sm">
+    <a href="/" class="custom-logo-link" rel="home" aria-current="page">
+      {{ logo_svg }}
     </a>
   </div>
 

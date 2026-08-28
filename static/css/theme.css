@@ -708,6 +708,16 @@ footer {
 		transition: transform 0.3s ease-in-out;
 		transform: translateY(-100%);
 	}
+
+	/* Missing counterpart to the rule above: with nothing ever resetting
+	   this transform, the menu stayed shifted fully off-screen even once
+	   style.css's .is-open toggle correctly switched it to display:flex --
+	   sitting behind/above the viewport instead of sliding into view.
+	   Restoring this (rather than dropping the transform outright) keeps
+	   the slide transition the base rule already declares. */
+	.main-navigation.is-open ul {
+		transform: translateY(0);
+	}
 }
 
 .main-navigation ul ul {
@@ -2373,7 +2383,6 @@ p {
 	margin: 0 0 1rem 0;
 }
 
-.site
 .site-header {
 	background: #103e62;
 	width: 100vw;
@@ -2388,31 +2397,35 @@ p {
 	height: 60px;
 }
 
-.site
 .site-header .site-branding {
 	display: none;
 }
 
 @media (min-width: 1025px) {
 
-	.site
 	.site-header .site-branding {
 		display: block;
 	}
 }
 
-.site
 .site-header .site-branding-sm {
 	position: absolute;
 	left: 50%;
 	top: 12px;
 	transform: translateX(-50%);
-	filter: brightness(100);
+	/* brightness(100) multiplies each RGB channel and clamps -- it can
+	   only ever push a channel *up*, never past what it already is once
+	   saturated, and the logo's navy fill (#004369) has a zero red
+	   channel that no multiplier moves off zero. The result was cyan
+	   (0,255,255), not white. brightness(0) first crushes every channel
+	   to black regardless of the source colour, then invert(1) flips
+	   that to pure white -- the standard, colour-independent way to turn
+	   an arbitrary coloured icon white. */
+	filter: brightness(0) invert(1);
 }
 
 @media (min-width: 1025px) {
 
-	.site
 	.site-header .site-branding-sm {
 		display: none;
 	}
@@ -2420,37 +2433,31 @@ p {
 
 @media (min-width: 1025px) {
 
-	.site
 	.site-header {
 		background-color: #fff;
 		flex-direction: row;
 	}
 
-	.site
 	.site-header .site-branding {
 		display: block;
 		width: 15%;
 	}
 
-	.site
 	.site-header nav {
 		width: 80%;
 	}
 
-	.site
 	.site-header .site-contact {
 		width: 25%;
 	}
 }
 
-.site
 .site-header .site-contact {
 	display: none;
 }
 
 @media (min-width: 1025px) {
 
-	.site
 	.site-header .site-contact {
 		display: flex;
 		align-items: center;
@@ -2458,20 +2465,17 @@ p {
 	}
 }
 
-.site
 .site-header .site-contact .gb-button-wrapper a {
 	color: #fff;
 	transition: background-color 0.25s;
 	background-color: #f06120;
 }
 
-.site
 .site-header .site-contact .gb-button-wrapper a:hover {
 	background-color: #444;
 	transition: background-color 0.25s;
 }
 
-.site
 .site-header .site-contact .site-phone-number {
 	padding-right: 1rem;
 	white-space: nowrap;
@@ -2479,33 +2483,27 @@ p {
 
 @media (min-width: 1025px) {
 
-	.site
 	.site-header ul.menu.nav-menu {
 		height: 60px;
 	}
 
-	.site
 	.site-header ul.menu.nav-menu li {
 		cursor: pointer;
 	}
 
-	.site
 	.site-header ul.menu.nav-menu > li > a {
 		height: 60px;
 		display: flex;
 		align-items: center;
 	}
 
-	.site
 	.site-header .menu-item-has-children:focus .sub-menu,
-	.site
 	.site-header .menu-item-has-children:hover .sub-menu {
 		display: flex;
 		left: 0;
 		z-index: 1;
 	}
 
-	.site
 	.site-header .sub-menu {
 		display: none;
 		justify-content: stretch;
@@ -2521,14 +2519,12 @@ p {
 		padding: 2.5rem calc((100vw - 1235px) / 2);
 	}
 
-	.site
 	.site-header .sub-menu li {
 		cursor: pointer;
 		align-items: flex-start;
 		width: 22%;
 	}
 
-	.site
 	.site-header .sub-menu li a {
 		display: flex;
 		align-items: center;
@@ -2536,13 +2532,11 @@ p {
 		color: #fff;
 	}
 
-	.site
 	.site-header .sub-menu li a i {
 		color: #f06120;
 		display: contents;
 	}
 
-	.site
 	.site-header .sub-menu li a ion-icon {
 		font-size: 28px;
 		min-width: 50px;

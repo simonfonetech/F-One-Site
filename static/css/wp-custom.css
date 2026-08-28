@@ -577,13 +577,33 @@ figure.marketing-video {
 	display: none !important;
 }
 @media (max-width: 1024px) {
+	/* style.css's .site-header rule (further up the cascade) sets a plain
+	   white background unconditionally -- fine on desktop, but live's own
+	   mobile header is dark navy with a centred, brightened logo
+	   (.site-branding-sm below already carries the matching
+	   filter:brightness(100), it just had nothing dark to brighten
+	   against). Same specificity, later in the build's CSS order, so this
+	   wins on mobile without touching the desktop rule at all. */
+	.site-header {
+		background: var(--secondary, #004269);
+	}
+
 	.main-navigation ul.menu.nav-menu li a ion-icon.md {
 		display: inline-block;
 		color: #f06120;
 		padding: 0 1em 0 0;
 	}
 
-	.main-navigation ul.nav-menu {
+	/* .is-open added: without it, this ties on specificity with style.css's
+	   correctly-gated `.main-navigation ul.menu { display: none }` /
+	   `.main-navigation.is-open ul.menu { display: flex }` pair, and this
+	   file loading after style.css in the build's CSS order wins that tie
+	   -- forcing the mobile nav drawer permanently open (display: block,
+	   full 100vh height, solid background) over the entire page from the
+	   moment it loads, hamburger untapped, hiding the whole header
+	   underneath it. This rule is meant to size the drawer once it's
+	   actually open, not to open it. */
+	.main-navigation.is-open ul.nav-menu {
 		overflow-y: scroll;
 		height: 100vh;
 		display: block;
