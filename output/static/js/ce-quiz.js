@@ -9,6 +9,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!panel) return; // everything below only matters where the quiz markup exists
 
+  // True for the ~1.4s the panel's own grid-template-rows open/close
+  // transition is actively running. getBoundingClientRect() on the
+  // heading above it mid-transition can read a transient, interpolated
+  // value rather than its true at-rest position (the heading itself is
+  // engineered to sit at a fixed spot regardless of the panel's state --
+  // see gb-container-b72a280d below -- but that invariant only holds once
+  // the transition has actually finished, not while grid-template-rows is
+  // still animating between 0fr and 1fr). Reading it at the wrong moment
+  // and "correcting" scrollY based on that bad reading is what caused a
+  // correction to fire mid-open and throw the page to a wildly wrong
+  // position further down the page.
+  let panelTransitioning = false;
+  panel.addEventListener('transitionend', function (e) {
+    if (e.target === panel && e.propertyName === 'grid-template-rows') panelTransitioning = false;
+  });
+
   // ---------- robust scrolling to the heading ----------
   // Shared by every path that needs to land on #cyber-essentials-heading:
   // opening (from the on-page trigger or the "Free Cyber Essentials
@@ -50,38 +66,95 @@ document.addEventListener('DOMContentLoaded', function () {
     window.requestAnimationFrame(check);
   }
 
-  // Scrolls to #cyber-essentials-heading and calls back once it's actually
-  // arrived and stayed put. Waits for the webfont first (a no-op if it's
-  // already loaded, which it usually is by the time anyone's clicked
-  // anything) so the page's final text layout is what's being scrolled
-  // to, not a pre-swap approximation of it. Then: settle whatever
-  // scrolling the browser is already doing, cancel it with an instant
-  // scroll to the current position (a new scroll command interrupts an
-  // in-flight one, even to a no-op destination), scroll smoothly to the
-  // heading, settle again, and correct once more if scroll-margin-top
-  // wasn't respected exactly (fonts finishing mid-animation, etc.).
+  // This page has ~350 <img> elements in total once the "Proud to
+  // Support These Businesses" client-logo carousel is counted (Slick
+  // clones each logo ~6x for its infinite-loop effect), roughly 150 of
+  // them positioned earlier in the DOM than #cyber-essentials-heading --
+  // none of them have width/height/aspect-ratio reserved, so each one
+  // still shifts the heading down by its own height as it finishes
+  // loading. On a same-machine test with a warm browser cache these all
+  // resolve in well under a second, which is exactly why this kept
+  // testing as fixed locally while still landing wrong on a real,
+  // uncached connection. Waiting for window.load (confirmed correct, but
+  // took upwards of 10s under a throttled connection in testing) isn't
+  // the right fix either: it makes the panel wait on every one of those
+  // ~150 logos, almost none of which actually sit close enough to the
+  // heading to shift it in practice, when only a handful of images
+  // earlier on the page actually do.
+  //
+  // Rather than identify exactly which images matter, correctPosition()
+  // is just run repeatedly for a while after the initial arrival --
+  // every 350ms for ~6.5s -- snapping the heading back into place each
+  // time something has nudged it since the last check. cb() still fires
+  // as soon as the first check finds nothing to correct, so opening the
+  // panel doesn't wait on the full 6.5s window; the repeated checks
+  // after that are just insurance against whatever loads in a few
+  // seconds afterwards.
   function scrollToHeading(cb) {
     const heading = document.getElementById('cyber-essentials-heading');
     if (!heading) { if (cb) cb(); return; }
-    const ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    ready.then(function () {
+    // document.fonts.ready is a genuine hang risk, not just a slow one: on a
+    // slow connection, a blocked font CDN request, or a browser/extension
+    // that never settles it for some other reason, this promise can simply
+    // never resolve -- and without a fallback, that means this whole
+    // scroll-then-open sequence never runs at all, leaving only the
+    // browser's own uncontrolled native scroll (the entire reason this
+    // function exists) as whatever moved the page. Racing it against a
+    // timeout means a slow font load only ever costs up to 1.2s, never an
+    // indefinite hang.
+    const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    const timeout = new Promise(function (resolve) { window.setTimeout(resolve, 1200); });
+
+    function correctPosition() {
+      if (panelTransitioning) return false; // see panelTransitioning above -- reading now would be unreliable
+      const cs = window.getComputedStyle(heading);
+      const wantTop = parseFloat(cs.scrollMarginTop) || 0;
+      const actualTop = heading.getBoundingClientRect().top;
+      if (Math.abs(actualTop - wantTop) > 2) {
+        window.scrollTo({ top: window.scrollY + (actualTop - wantTop), behavior: 'instant' });
+        return true; // was off, and has now been corrected
+      }
+      return false; // already on target
+    }
+
+    Promise.race([fontsReady, timeout]).then(function () {
       whenScrollSettled(function () {
         window.scrollTo({ top: window.scrollY, behavior: 'instant' });
         heading.scrollIntoView({ block: 'start', behavior: 'smooth' });
         whenScrollSettled(function () {
-          const cs = window.getComputedStyle(heading);
-          const wantTop = parseFloat(cs.scrollMarginTop) || 0;
-          const actualTop = heading.getBoundingClientRect().top;
-          if (Math.abs(actualTop - wantTop) > 2) {
-            window.scrollTo({ top: window.scrollY + (actualTop - wantTop), behavior: 'instant' });
-          }
+          correctPosition();
           if (cb) cb();
+          // Never fight a visitor who's actually trying to scroll during
+          // this window: the first sign of deliberate scroll input (wheel,
+          // touch, or a scroll-moving key) cancels the remaining checks
+          // immediately, leaving them wherever they've scrolled to.
+          let checksLeft = 18; // ~6.5s at 350ms apart
+          const interval = window.setInterval(function () {
+            correctPosition();
+            checksLeft--;
+            if (checksLeft <= 0) stopCorrecting();
+          }, 350);
+          const scrollKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+          function onUserInput(e) {
+            if (e.type === 'keydown' && scrollKeys.indexOf(e.key) === -1) return;
+            stopCorrecting();
+          }
+          function stopCorrecting() {
+            window.clearInterval(interval);
+            window.removeEventListener('wheel', onUserInput);
+            window.removeEventListener('touchstart', onUserInput);
+            window.removeEventListener('keydown', onUserInput);
+          }
+          window.addEventListener('wheel', onUserInput, { passive: true });
+          window.addEventListener('touchstart', onUserInput, { passive: true });
+          window.addEventListener('keydown', onUserInput);
         });
       });
     });
   }
 
   function openPanel() {
+    panelTransitioning = true;
     panel.classList.add('ce-quiz-open');
     panel.setAttribute('aria-hidden', 'false');
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
@@ -101,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function closePanel({ refocusTrigger } = {}) {
+    panelTransitioning = true;
     panel.classList.remove('ce-quiz-open');
     panel.setAttribute('aria-hidden', 'true');
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
