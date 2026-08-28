@@ -209,30 +209,6 @@
   border-top-right-radius: 12px;
   background: var(--ce-purple);
 }
-/* Shortcut to the report once one exists -- hidden until "Show me my
-   answers" at the bottom actually generates one (see ce-quiz.js), and
-   deliberately never hidden again after that, closing the quiz included:
-   once the report exists it stays reachable from the top for the rest
-   of the visit, however many times the panel opens and closes. Smaller
-   than the full .ce-quiz-btn it borrows its colours from -- this sits in
-   a corner alongside page content, not as a primary call to action. */
-.ce-quiz-jump-to-report {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  z-index: 1;
-  /* Explicit height + flex centring, not padding math against a
-     font-size -- padding alone landed at 52.5px against these buttons'
-     40px, the same box-sizing standard every CTA on the site (including
-     the ones directly above this one) is normalised to elsewhere. */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  min-height: 40px;
-  padding: 0 18px;
-  font-size: 12px;
-}
 /* theme.css has `@media (min-width: 1025px) { h1, h2 { font-size: 40px
    !important; line-height: 50px !important; } }` -- a sitewide rule for
    real page headings that also matches this bare h2, used here as a
@@ -502,10 +478,6 @@
 
 @media (max-width: 767px) {
   .ce-quiz-card { padding: 20px 18px 30px; }
-  /* Absolute top-right corner placement only really works with room to
-     spare beside the heading text -- on a narrow card it would overlap
-     the first question instead. Back into normal flow above it. */
-  .ce-quiz-jump-to-report { position: static; display: block; margin: 0 0 16px; width: max-content; }
   .ce-quiz-report { padding: 20px; }
   .ce-quiz-report-section-row { grid-template-columns: 1fr; gap: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(0, 66, 105, .1); }
   .ce-quiz-report-section-score { text-align: left; }

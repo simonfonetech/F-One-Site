@@ -261,15 +261,8 @@ document.addEventListener('DOMContentLoaded', function () {
           // page straight back to it, undoing the very navigation the
           // click just asked for. Capture phase so this still fires even
           // if the link's own handler stops the event from bubbling.
-          //
-          // #ce-quiz-jump-to-report is included for the exact same reason
-          // even though it's a <button>, not a link: clicking it scrolls
-          // down to the report on its own (see its handler below), and
-          // without this that scroll got undone the same way -- the next
-          // tick of this loop found the heading off-mark and snapped the
-          // page straight back up to it.
           function onLinkClick(e) {
-            if (e.target.closest('a[href]') || e.target.closest('#ce-quiz-jump-to-report')) stopCorrecting();
+            if (e.target.closest('a[href]')) stopCorrecting();
           }
           function stopCorrecting() {
             window.clearInterval(interval);
@@ -455,17 +448,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---------- scoring: build a RAG (Red/Amber/Green) report ----------
   const showBtn = document.getElementById('ce-quiz-show-results');
   const resultDiv = document.getElementById('ce-quiz-result');
-  const jumpToReportBtn = document.getElementById('ce-quiz-jump-to-report');
-
-  if (jumpToReportBtn) {
-    jumpToReportBtn.addEventListener('click', function () {
-      const report = resultDiv.querySelector('.ce-quiz-report');
-      if (!report) return;
-      const wantTop = 80; // clearance below the fixed header, same as #cyber-essentials-heading
-      const targetY = report.getBoundingClientRect().top + window.scrollY - wantTop;
-      animatedScrollTo(targetY, 900);
-    });
-  }
 
   const RAG = {
     green: {
@@ -844,9 +826,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       renderReport({ totalScore, totalPossible, answeredCount, totalQuestions, sections });
-      // Never hidden again once shown -- see .ce-quiz-jump-to-report in
-      // ce-quiz.css for why that's deliberate.
-      if (jumpToReportBtn) jumpToReportBtn.hidden = false;
     });
   }
 });

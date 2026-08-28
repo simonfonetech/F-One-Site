@@ -145,7 +145,6 @@ tracksCustomers.forEach((track, i) => {
 <div id="ce-quiz-panel" class="ce-quiz-panel" aria-hidden="true">
  <div class="ce-quiz-panel-inner">
   <div class="ce-quiz ce-quiz-card">
-    <button type="button" id="ce-quiz-jump-to-report" class="ce-quiz-btn ce-quiz-jump-to-report" hidden>Show me my answers</button>
     <form class="ce-quiz" aria-label="Assessment">
       <div class="ce-quiz-section">
         <div class="ce-quiz-question">
