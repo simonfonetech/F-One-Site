@@ -91,6 +91,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Services mega-menu on mobile: .mega-float-card's reveal is
+  // :hover/:focus-within driven (see style.css), which nothing on a touch
+  // screen ever triggers -- .mega-float-main is a plain link straight to
+  // the service's own page, so a tap just navigated there immediately,
+  // with every child link inside the card ("Phone System Basics",
+  // "Hardware", ...) unreachable. Below the same 991px breakpoint the
+  // rest of this mega-menu already switches to a mobile layout at,
+  // intercept that tap and toggle the card open instead; the "View all"
+  // link already inside .mega-float-drop covers the direct-navigation
+  // case the link would otherwise have handled.
+  document.querySelectorAll('.mega-float-card').forEach(function (card) {
+    var main = card.querySelector(':scope > .mega-float-main');
+    if (!main) return;
+    main.addEventListener('click', function (e) {
+      if (window.innerWidth > 991) return;
+      e.preventDefault();
+      card.classList.toggle('is-open');
+    });
+  });
+
   // Services mega-menu: switch the right-hand panel to match the hovered/clicked tab
   document.querySelectorAll('.mega-tab').forEach(function (tab) {
     function activate() {

@@ -1053,11 +1053,17 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
 /* theme.css's `.main-navigation ul ul { position:absolute; left:-999em;
    box-shadow:0 3px 3px rgba(0,0,0,.2); }` (the WP default that hides a
    submenu off-canvas until hovered directly, and drop-shadows it once
-   revealed) outranks a plain class selector on specificity and still
-   catches this list, since it's a ul nested in ul.menu regardless of the
-   wrappers in between. Without these !important overrides every child
-   link renders ~999em off to the left, and the box-shadow traces a faint
-   box around the whole list even once position is fixed. */
+   revealed) outranks a plain class selector on specificity -- (0,1,2) vs
+   this rule's (0,1,1) -- and still catches this list, since it's a ul
+   nested in ul.menu regardless of the wrappers in between. Without these
+   !important overrides every child link renders ~999em off to the left,
+   the box-shadow traces a faint box around the whole list even once
+   position is fixed, and (display, added after the mobile tap-to-expand
+   behaviour below surfaced it) the same specificity gap means theme.css's
+   *other* `@media (max-width: 1024px) { .main-navigation ul ul {
+   display: none } }` rule wins there too -- every card's sub-item list
+   stayed hidden even once the card itself correctly expanded, leaving
+   only the "View all" link inside it visible. */
 .mega-float-drop ul {
   position: static !important;
   left: auto !important;
@@ -1068,7 +1074,7 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   margin: 0;
   padding: 10px 0 0;
   border-top: 1px solid rgba(0, 33, 53, .08);
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 1px;
 }
@@ -1252,6 +1258,36 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   .mega-panel li a { color: var(--text-white); }
   .mega-panel li a:hover { background: rgba(255,255,255,.08); color: var(--text-white); }
   .site-contact .site-phone-number { display: none; }
+
+  /* .mega-float-row/-card ("Floating Cards", further up this file) never
+     got a mobile treatment when they replaced whatever the .mega-tabs
+     rules above were originally written for -- unconditionally
+     `display:flex` with no wrap, five cards wide, they ran straight off
+     the right edge of a phone screen with every label truncated
+     ("Clou", "Inter", "Mob"...). Stacking them is the visible half of the
+     fix; the other half is that reveal is entirely :hover/:focus-within
+     driven, which a touch tap never triggers -- .mega-float-main is a
+     plain <a> to the service's own page, so on a real phone every child
+     link ("Phone System Basics", "Hardware", ...) was completely
+     unreachable, not just visually broken. main.js intercepts a tap on
+     it below 992px and toggles .is-open on the card instead of
+     navigating; these rules mirror the desktop :hover state under that
+     class so the reveal still works, and the existing "View all" link
+     inside .mega-float-drop covers the navigation .mega-float-main
+     would otherwise have done directly. */
+  .mega-float-row { flex-direction: column; gap: 8px; }
+  .mega-float-card { width: 100%; flex: none; }
+  .mega-float-card.is-open {
+    background: var(--text-white);
+    border-color: rgba(0, 33, 53, .16);
+  }
+  .mega-float-card.is-open::before { transform: scaleX(1); }
+  .mega-float-card.is-open .mega-float-chevron { transform: rotate(180deg); }
+  .mega-float-card.is-open .mega-float-drop {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    padding: 0 14px 16px;
+  }
 }
 
 /* ================= "Proud to Support These Businesses" band =================

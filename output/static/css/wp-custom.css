@@ -67,6 +67,19 @@
 .wpmapblockrender {
 	border-bottom: 0!important;
 }
+/* The map's 1000px height is set inline (style="width:100%;height:1000px"
+   in the source content), sized for a wide desktop container -- on a
+   narrow mobile viewport that's a hugely disproportionate ~1000px-tall,
+   ~390px-wide strip, most of which renders as blank map background past
+   the edge of whatever the embed actually loaded. live doesn't show this
+   map on mobile at all; rather than dropping it outright, cutting it down
+   to a normal mobile map-embed height keeps the location genuinely
+   useful without the empty space. */
+@media (max-width: 767px) {
+	.wpmapblockrender {
+		height: 300px !important;
+	}
+}
 .home-header-img-container {
 	height: auto!important;
 }
