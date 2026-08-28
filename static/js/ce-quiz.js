@@ -90,16 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // panel doesn't wait on the full 6.5s window; the repeated checks
   // after that are just insurance against whatever loads in a few
   // seconds afterwards.
-  // extraUp: additional px to hold back beyond the heading's own
-  // scroll-margin-top, i.e. land with the heading's top edge that much
-  // further down the viewport than the 80px clearance alone would give
-  // (used to compensate for a remaining, unexplained overshoot reported
-  // specifically on a fresh cross-page navigation -- see openIfDeepLinked
-  // below; every other path here still lands at the plain 80px).
-  function scrollToHeading(cb, extraUp) {
+  function scrollToHeading(cb) {
     const heading = document.getElementById('cyber-essentials-heading');
     if (!heading) { if (cb) cb(); return; }
-    const upOffset = extraUp || 0;
     // document.fonts.ready is a genuine hang risk, not just a slow one: on a
     // slow connection, a blocked font CDN request, or a browser/extension
     // that never settles it for some other reason, this promise can simply
@@ -115,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function correctPosition() {
       if (panelTransitioning) return false; // see panelTransitioning above -- reading now would be unreliable
       const cs = window.getComputedStyle(heading);
-      const wantTop = (parseFloat(cs.scrollMarginTop) || 0) + upOffset;
+      const wantTop = parseFloat(cs.scrollMarginTop) || 0;
       const actualTop = heading.getBoundingClientRect().top;
       if (Math.abs(actualTop - wantTop) > 2) {
         window.scrollTo({ top: window.scrollY + (actualTop - wantTop), behavior: 'instant' });
@@ -129,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: window.scrollY, behavior: 'instant' });
         heading.scrollIntoView({ block: 'start', behavior: 'smooth' });
         whenScrollSettled(function () {
-          if (upOffset) window.scrollTo({ top: window.scrollY - upOffset, behavior: 'instant' });
           correctPosition();
           if (cb) cb();
           // Never fight a visitor who's actually trying to scroll during
@@ -175,10 +167,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // margin on gb-container-b72a280d below), so scrolling to it before
   // opening lands in exactly the same place as scrolling after; only the
   // visual sequence changes.
-  function goToReport(extraUp) {
+  function goToReport() {
     scrollToHeading(function () {
       if (!panel.classList.contains('ce-quiz-open')) openPanel();
-    }, extraUp);
+    });
   }
 
   function closePanel({ refocusTrigger } = {}) {
@@ -229,19 +221,22 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
+    // Per instruction: a fresh navigation straight to this hash now lands
+    // at the very top of the page first -- the same starting point any
+    // other visit to /it-essentials/ would have -- rather than attempting
+    // to jump straight to the target in one go. scrollToHeading()'s own
+    // smooth scrollIntoView then carries the visitor down from there,
+    // which reads as a deliberate "arrive, then travel to the report"
+    // rather than a guess at landing directly on it. This also sidesteps
+    // the whole reason a direct jump kept landing wrong in the first
+    // place: an instant scroll to a *known* position (the top) can't be
+    // thrown off by native scroll races or in-progress image loading the
+    // way a jump straight to a moving target further down the page could.
+    window.scrollTo({ top: 0, behavior: 'instant' });
     if (window.history && window.history.pushState) {
       window.history.pushState(null, '', '#ce-quiz-panel');
     }
-    // +100px only here: a fresh navigation straight to this hash (from
-    // another page, or the URL typed/bookmarked directly) was still
-    // landing further down than the plain scroll-margin-top clearance
-    // intends, even after the image-drift and mid-transition fixes above
-    // -- per instruction, holding back an extra 100px compensates for
-    // whatever's left. Every other path to this heading (the on-page
-    // trigger, and the click-intercept below for clicking the mega-menu
-    // link while already on this page) still lands at the plain 80px,
-    // since neither of those showed the same overshoot.
-    goToReport(100);
+    goToReport();
   }
   openIfDeepLinked();
   // Covers a hash that's already there when this page loads (a fresh
