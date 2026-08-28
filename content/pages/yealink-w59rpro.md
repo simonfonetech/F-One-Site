@@ -10,7 +10,7 @@ post_id: 6448
 <div class="gb-container gb-container-9779332d"><div class="gb-inside-container"><div class="gb-container gb-container-34d03727"><div class="gb-inside-container">
 <h1 class="gb-headline gb-headline-5d3cd711 gb-headline-text hardware-title">Yealink W59R Pro<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h1>
 </div></div></div></div><div class="gb-container gb-container-a62429aa" id="discover-more"><div class="gb-inside-container"><div class="gb-container gb-container-ddbf4fe9"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-399915be"><div class="gb-grid-column gb-grid-column-cfc07517"><div class="gb-container gb-container-cfc07517"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-5003c771"><img class="gb-image gb-image-5003c771" src="/assets/uploads/Yealink-W59R-Pro.png" alt="" title="Yealink W59R Pro"/></figure>
+<figure class="gb-block-image gb-block-image-5003c771"><img class="gb-image gb-image-5003c771" src="/assets/uploads/Yealink-W59R-Pro.webp" alt="" title="Yealink W59R Pro"/></figure>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-3a433208"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-18fb78fa"><div class="gb-grid-column gb-grid-column-641a72cf"><div class="gb-container gb-container-641a72cf"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-54ce3193 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Key Features</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 

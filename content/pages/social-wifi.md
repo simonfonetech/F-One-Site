@@ -8,7 +8,7 @@ excerpt: "Social WiFi . Social WiFi gives your customers fast, secure internet a
 post_id: 16834
 ---
 <div class="gb-container gb-container-67c9176e"><div class="gb-inside-container"><div class="gb-container gb-container-1785f137"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-f3dcb9f4"><div class="gb-grid-column gb-grid-column-f3660215"><div class="gb-container gb-container-f3660215"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/WiFi-Networking.png" alt="" class="wp-image-13100" style="width:150px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/WiFi-Networking.webp" alt="" class="wp-image-13100" style="width:150px"/></figure>
 
 <h1 class="gb-headline gb-headline-810f2631-07f4-4f74-9f4b-52e4f4ad3530 gb-headline-text">Social WiFi<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">.</mark></h1>
 

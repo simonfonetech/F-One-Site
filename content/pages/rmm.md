@@ -8,7 +8,7 @@ excerpt: "Remote Monitoring & Management (RMM) . Acronis Remote Monitoring & Man
 post_id: 16965
 ---
 <div class="gb-container gb-container-67c9176e"><div class="gb-inside-container"><div class="gb-container gb-container-1785f137"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-f3dcb9f4"><div class="gb-grid-column gb-grid-column-f3660215"><div class="gb-container gb-container-f3660215"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/it-services-1.png" alt="" class="wp-image-13105" style="width:150px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/it-services-1.webp" alt="" class="wp-image-13105" style="width:150px"/></figure>
 
 <h1 class="gb-headline gb-headline-810f2631-07f4-4f74-9f4b-52e4f4ad3530 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-purple-color">Remote Monitoring &amp; Management (RMM)</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h1>
 

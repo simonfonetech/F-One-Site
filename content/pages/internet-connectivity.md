@@ -8,7 +8,7 @@ excerpt: "Internet Connectivity . We provide reliable business internet connecti
 post_id: 186
 ---
 <div class="gb-container gb-container-1b5e3fa0 top-section"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e8a9558c"><div class="gb-grid-column gb-grid-column-d0c883ad"><div class="gb-container gb-container-d0c883ad"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/Internet-Connectivity.png" alt="" class="wp-image-13106" style="width:150px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/Internet-Connectivity.webp" alt="" class="wp-image-13106" style="width:150px" width="300" height="300"/></figure>
 
 <h1 class="gb-headline gb-headline-e83cf586 gb-headline-text">Internet Connectivity<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">.</mark></h1>
 
@@ -22,7 +22,7 @@ post_id: 186
 
 <a class="gb-button gb-button-a52fc654 gb-button-text" href="/contact-us/">Get in touch</a>
 </div></div></div><div class="gb-grid-column gb-grid-column-ca4b14da"><div class="gb-container gb-container-ca4b14da"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-4e7dcad2"><img class="gb-image gb-image-4e7dcad2" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-4-1.png" alt="" title="Rectangle General Page Boxed Image (Website) (4)"/></figure>
+<figure class="gb-block-image gb-block-image-4e7dcad2"><img class="gb-image gb-image-4e7dcad2" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-4-1.webp" alt="" title="Rectangle General Page Boxed Image (Website) (4)" width="1060" height="795"/></figure>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-b658d84e" id="satellite"><div class="gb-inside-container"><div class="gb-container gb-container-ea52e98f"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-c6014e16"><div class="gb-grid-column gb-grid-column-13b68484"><div class="gb-container gb-container-13b68484"><div class="gb-inside-container">
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/PNdbN1gKVOE" title="Video" loading="lazy" allowfullscreen></iframe></div>
 </div></div></div><div class="gb-grid-column gb-grid-column-8ac97406"><div class="gb-container gb-container-8ac97406"><div class="gb-inside-container">

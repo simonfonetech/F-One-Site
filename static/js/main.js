@@ -74,6 +74,18 @@ document.addEventListener('DOMContentLoaded', function () {
     li.addEventListener('mouseleave', function () { release(false); });
     // don't strand the panel open if the pointer never comes back
     li.addEventListener('click', function () { release(true); });
+    // Explicit per-link listener rather than relying on this click bubbling
+    // up from a link inside the panel: a same-page link (the CE-quiz
+    // trigger, any #anchor link) calls preventDefault() and handles its
+    // own navigation in JS, and while preventDefault() doesn't itself
+    // stop bubbling, closing here directly -- rather than depending on
+    // that bubble reaching the li -- means a selection always closes the
+    // panel immediately, however that link's own handler behaves. Left
+    // open, the panel sits over the top of the page and was blocking the
+    // very scroll a selection is supposed to trigger.
+    li.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { release(true); });
+    });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') release(true);
     });

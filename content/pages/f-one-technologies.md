@@ -140,7 +140,7 @@ post_id: 8863
 
 <a class="gb-button gb-button-6b245ba9 gb-button-text" href="/cloud-phone-systems/"><strong>Find out more</strong></a>
 </div></div></div><div class="gb-grid-column gb-grid-column-c3e3481d"><div class="gb-container gb-container-c3e3481d pos-rel"><div class="gb-inside-container"><div class="gb-container gb-container-0c79d1c0"><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.png" alt="" class="wp-image-17483"/></figure>
+<figure class="wp-block-image aligncenter size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.webp" alt="" class="wp-image-17483"/></figure>
 </div></div></div></div></div></div></div></div></div></div><div class="gb-container gb-container-55e4be16"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-148d77d5 gb-headline-text">Proud to Support These Businesses<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
 

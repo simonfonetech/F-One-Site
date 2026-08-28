@@ -28,7 +28,7 @@ post_id: 403
 </div></div></div></div>
 <a class="gb-button gb-button-5b612436 gb-button-text mobile-remove-gradient" href="/wifi-and-networking/">Find out more</a>
 </div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div><div class="gb-shape gb-shape-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-b84a8afb"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-97312baa"><div class="gb-grid-column gb-grid-column-4840a906"><div class="gb-container gb-container-4840a906"><div class="gb-inside-container">
-<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.png" alt="" class="wp-image-17483"/></figure>
+<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.webp" alt="" class="wp-image-17483"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-cb0f73ca"><div class="gb-container gb-container-cb0f73ca"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-0abc83e9 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Effortless Communication</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 

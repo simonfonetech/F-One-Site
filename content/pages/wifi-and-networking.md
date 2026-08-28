@@ -8,7 +8,7 @@ excerpt: "WiFi & Networking . We design, install, and support business WiFi and 
 post_id: 8825
 ---
 <div class="gb-container gb-container-09b457df"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e8a9558c"><div class="gb-grid-column gb-grid-column-d0c883ad"><div class="gb-container gb-container-d0c883ad"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/WiFi-Networking.png" alt="" class="wp-image-13100" style="width:150px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/WiFi-Networking.webp" alt="" class="wp-image-13100" style="width:150px" width="300" height="300"/></figure>
 
 <h1 class="gb-headline gb-headline-e83cf586 gb-headline-text">WiFi &amp; Networking<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">.</mark></h1>
 
@@ -22,7 +22,7 @@ post_id: 8825
 
 <a class="gb-button gb-button-a5ae33cb gb-button-text" href="https://www.google.com/search?q=f+one+technologies+ltd#lrd=0x48746ecda8137139:0x57ed256d88991c4b,1,,,,">Read our reviews</a>
 </div></div></div><div class="gb-grid-column gb-grid-column-e2032dd4"><div class="gb-container gb-container-e2032dd4"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-0782a812"><img class="gb-image gb-image-0782a812" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-31.png" alt="" title="Rectangle General Page Boxed Image (Website)"/></figure>
+<figure class="gb-block-image gb-block-image-0782a812"><img class="gb-image gb-image-0782a812" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-31.webp" alt="" title="Rectangle General Page Boxed Image (Website)" width="1000" height="608"/></figure>
 </div></div></div></div></div></div><div class="gb-container gb-container-48fdd6a8" id="feedback"><div class="gb-inside-container"><div class="gb-container gb-container-ccd84f01"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-bbcaad84"><div class="gb-grid-column gb-grid-column-9b7dad54"><div class="gb-container gb-container-9b7dad54 mobile-align-center"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-6b9aeea6 gb-headline-text">WiFi Case Study<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">.</mark></h2>
 
@@ -48,7 +48,7 @@ post_id: 8825
 
 <figure class="wp-block-image size-thumbnail"><img src="/assets/uploads/2022/10/gate-street-barn-150x80.png" alt="" class="wp-image-577"/></figure>
 </div></div></div></div></div></div><div class="gb-container gb-container-ca4f96a1" id="support"><div class="gb-inside-container"><div class="gb-container gb-container-2fcf15ad"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-4dc220dc"><div class="gb-grid-column gb-grid-column-027b0fc6"><div class="gb-container gb-container-027b0fc6"><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-style-default rounded-img"><img src="/assets/uploads/General-Page-PNG-Image-Website-1-2.png" alt="" class="wp-image-15808"/></figure>
+<figure class="wp-block-image aligncenter size-full is-style-default rounded-img"><img src="/assets/uploads/General-Page-PNG-Image-Website-1-2.webp" alt="" class="wp-image-15808" width="1272" height="845"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-39ef346e"><div class="gb-container gb-container-39ef346e"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-f6b2503f gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Network Support</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-yellow-color">.</mark></h2>
 
@@ -68,7 +68,7 @@ post_id: 8825
 
 <a class="gb-button gb-button-6883640f gb-button-text" href="/omada-network-management/">Find out more</a>
 </div></div></div><div class="gb-grid-column gb-grid-column-c291beda"><div class="gb-container gb-container-c291beda"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-92ef6e42"><img class="gb-image gb-image-92ef6e42" src="/assets/uploads/General-Page-PNG-Image-Website-11.png" alt="" title="General Page PNG Image (Website)"/></figure>
+<figure class="gb-block-image gb-block-image-92ef6e42"><img class="gb-image gb-image-92ef6e42" src="/assets/uploads/General-Page-PNG-Image-Website-11.webp" alt="" title="General Page PNG Image (Website)" width="1040" height="684"/></figure>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-41bec337" id="contact"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-fde7a852"><div class="gb-grid-column gb-grid-column-b0bb4303"><div class="gb-container gb-container-b0bb4303"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e43d10e6"><div class="gb-grid-column gb-grid-column-1e4b8fdc"><div class="gb-container gb-container-1e4b8fdc"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-038bba78 gb-headline-text">Let's Talk<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">.</mark></h2>
 

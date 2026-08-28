@@ -73,7 +73,7 @@ header:
       - label: Cyber Essentials Certification Support
         url: "/it-essentials/#cyber-essentials"
       - label: Free Cyber Essentials Report
-        url: "/it-essentials/#ce-quiz-panel"
+        url: "/it-essentials/?ce-quiz=open"
   - label: About Us
     url: /about-us/
     children: []

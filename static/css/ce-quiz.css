@@ -209,6 +209,30 @@
   border-top-right-radius: 12px;
   background: var(--ce-purple);
 }
+/* Shortcut to the report once one exists -- hidden until "Show me my
+   answers" at the bottom actually generates one (see ce-quiz.js), and
+   deliberately never hidden again after that, closing the quiz included:
+   once the report exists it stays reachable from the top for the rest
+   of the visit, however many times the panel opens and closes. Smaller
+   than the full .ce-quiz-btn it borrows its colours from -- this sits in
+   a corner alongside page content, not as a primary call to action. */
+.ce-quiz-jump-to-report {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  z-index: 1;
+  /* Explicit height + flex centring, not padding math against a
+     font-size -- padding alone landed at 52.5px against these buttons'
+     40px, the same box-sizing standard every CTA on the site (including
+     the ones directly above this one) is normalised to elsewhere. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 12px;
+}
 /* theme.css has `@media (min-width: 1025px) { h1, h2 { font-size: 40px
    !important; line-height: 50px !important; } }` -- a sitewide rule for
    real page headings that also matches this bare h2, used here as a
@@ -322,6 +346,20 @@
 }
 .ce-quiz-btn:active { transform: translateY(0); }
 .ce-quiz-btn:focus-visible { outline: 3px solid rgba(213, 172, 248, .5); outline-offset: 3px; }
+/* Same theme.css blanket `button:active, button:focus { background:
+   #404040; border-color: #404040; }` leak as .ce-quiz-trigger above: a
+   plain click leaves this focused (not hovered) indefinitely, at which
+   point that sitewide rule outranks the bare .ce-quiz-btn selector on
+   specificity and the button is stuck dark grey instead of its resting
+   purple. :not(:hover) so real hover -- higher specificity than this on
+   its own -- still always wins. */
+.ce-quiz-btn:focus:not(:hover) {
+  transform: none;
+  background: var(--ce-accent);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 18px rgba(213, 172, 248, .45);
+}
 
 .ce-quiz-result { margin-top: 20px; }
 
@@ -344,6 +382,10 @@
 }
 .ce-quiz-btn-secondary:hover { box-shadow: 0 4px 16px rgba(0, 66, 105, .12); background: rgba(0, 66, 105, .05); }
 .ce-quiz-btn-secondary:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+/* Same theme.css `button:active, button:focus { background: #404040 }`
+   leak as .ce-quiz-btn above -- this button is transparent at rest, so
+   left unclaimed the leak fills it solid dark grey once clicked. */
+.ce-quiz-btn-secondary:focus:not(:hover) { background: transparent; border-color: rgba(0, 66, 105, .4); color: var(--ce-accent-text); }
 .ce-quiz-email-report-status { margin: 12px 0 0; font-size: 13px; font-weight: 600; }
 .ce-quiz-email-report-status.pending { color: var(--ce-muted); }
 .ce-quiz-email-report-status.success { color: var(--ce-rag-green); }
@@ -384,7 +426,17 @@
 
 .ce-quiz-report-sections { margin-top: 24px; display: flex; flex-direction: column; gap: 13px; }
 .ce-quiz-report-section-block { display: flex; flex-direction: column; }
-.ce-quiz-report-section-row { display: grid; grid-template-columns: 170px 1fr 52px auto; align-items: center; gap: 14px; font-size: 13px; }
+/* Fixed 90px for the last column (not auto): each row is its own grid,
+   sized independently -- a row with a perfect score has no toggle button
+   to place there, so an auto track has nothing to size itself against
+   and collapses to 0, leaving the bar's 1fr claiming that extra space
+   and rendering visibly longer than every other row's bar. Reserving the
+   width up front regardless of whether that row happens to have a
+   toggle keeps every row's 1fr computed against the same remainder, so
+   every bar comes out the same length -- matching the shorter,
+   toggle-reserved rows, not stretching to the gap-free ones. 90px fits
+   the widest label ("SHOW ME", measured ~80px) with a little to spare. */
+.ce-quiz-report-section-row { display: grid; grid-template-columns: 170px 1fr 52px 90px; align-items: center; gap: 14px; font-size: 13px; }
 .ce-quiz-report-section-name { color: var(--ce-text); }
 .ce-quiz-report-bar { height: 8px; border-radius: 999px; background: var(--ce-purple-light); overflow: hidden; }
 .ce-quiz-report-bar-fill { height: 100%; width: 0%; border-radius: 999px; transition: width .9s cubic-bezier(.22, 1, .36, 1); background: linear-gradient(90deg, var(--ce-rag-green), var(--ce-rag-green-2)); }
@@ -393,14 +445,26 @@
 .ce-quiz-report-section-score { color: var(--ce-muted); text-align: right; }
 
 .ce-quiz-report-gap-toggle {
-  justify-self: end; background: transparent; border: 1px solid rgba(0, 66, 105, .25); color: var(--ce-muted);
+  justify-self: end; background: var(--ce-accent); border: 1px solid var(--ce-accent); color: #fff;
   font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase;
   padding: 5px 12px; border-radius: 999px; cursor: pointer;
   transition: border-color .18s ease, color .18s ease, background-color .18s ease;
 }
-.ce-quiz-report-gap-toggle:hover { border-color: rgba(213, 172, 248, .5); color: var(--ce-accent); }
+.ce-quiz-report-gap-toggle:hover { background: #fff; border-color: var(--ce-accent); color: var(--ce-accent-text); }
 .ce-quiz-report-gap-toggle:focus-visible { outline: 3px solid rgba(213, 172, 248, .25); outline-offset: 2px; }
-.ce-quiz-report-gap-toggle[aria-expanded="true"] { border-color: var(--ce-accent); color: var(--ce-accent); background: rgba(213, 172, 248, .08); }
+/* Same theme.css `button:active, button:focus { background: #404040 }`
+   leak as .ce-quiz-btn above -- collapsing this back to aria-expanded
+   false still leaves it :focus (a plain click doesn't trigger
+   :focus-visible), and the single-class selector above can't outrank
+   that blanket rule's specificity on its own. */
+.ce-quiz-report-gap-toggle:focus:not(:hover) { background: var(--ce-accent); border-color: var(--ce-accent); color: #fff; }
+/* Deliberately no separate [aria-expanded="true"] colour: the label
+   text ("Show me" / "Hide") already carries that state. Giving expanded
+   its own permanent white fill meant clicking the button then clicking
+   away -- a genuine blur, not just losing :hover -- left it stuck white
+   with nothing above to put it back, since :focus:not(:hover) only
+   holds while still focused. Resting colour now follows hover alone,
+   the same as every other button here, expanded or not. */
 
 .ce-quiz-report-section-detail { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
 .ce-quiz-report-section-detail.expanded { grid-template-rows: 1fr; }
@@ -438,6 +502,10 @@
 
 @media (max-width: 767px) {
   .ce-quiz-card { padding: 20px 18px 30px; }
+  /* Absolute top-right corner placement only really works with room to
+     spare beside the heading text -- on a narrow card it would overlap
+     the first question instead. Back into normal flow above it. */
+  .ce-quiz-jump-to-report { position: static; display: block; margin: 0 0 16px; width: max-content; }
   .ce-quiz-report { padding: 20px; }
   .ce-quiz-report-section-row { grid-template-columns: 1fr; gap: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(0, 66, 105, .1); }
   .ce-quiz-report-section-score { text-align: left; }

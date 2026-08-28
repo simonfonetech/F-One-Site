@@ -10,7 +10,7 @@ post_id: 10856
 <div class="gb-container gb-container-9779332d"><div class="gb-inside-container"><div class="gb-container gb-container-34d03727"><div class="gb-inside-container">
 <h1 class="gb-headline gb-headline-5d3cd711 gb-headline-text hardware-title">Yealink T34W<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h1>
 </div></div></div></div><div class="gb-container gb-container-2120a686" id="discover-more"><div class="gb-inside-container"><div class="gb-container gb-container-ddbf4fe9"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-399915be"><div class="gb-grid-column gb-grid-column-cfc07517"><div class="gb-container gb-container-cfc07517"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-5003c771"><img class="gb-image gb-image-5003c771" src="/assets/uploads/1-6.png" alt="" title="1 (6)"/></figure>
+<figure class="gb-block-image gb-block-image-5003c771"><img class="gb-image gb-image-5003c771" src="/assets/uploads/1-6.webp" alt="" title="1 (6)"/></figure>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-3a433208"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-18fb78fa"><div class="gb-grid-column gb-grid-column-641a72cf"><div class="gb-container gb-container-641a72cf"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-c3c9bbd1 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Key Features</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
@@ -48,7 +48,7 @@ post_id: 10856
 
 <h3 class="wp-block-heading has-text-align-center" id="h-yealink-t87w">Yealink T87W</h3>
 </div></div></div><div class="gb-grid-column gb-grid-column-fecde2e1"><div class="gb-container gb-container-fecde2e1 more-devices-image"><a class="gb-container-link" href="/yealink-w59rpro/"></a><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Yealink-W59R-Pro.png" alt="" class="wp-image-17566" style="width:auto;height:150px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Yealink-W59R-Pro.webp" alt="" class="wp-image-17566" style="width:auto;height:150px"/></figure>
 
 <h3 class="wp-block-heading has-text-align-center" id="h-yealink-w59r-pro">Yealink W59R Pro</h3>
 </div></div></div><div class="gb-grid-column gb-grid-column-0e757264"><div class="gb-container gb-container-0e757264 more-devices-image"><a class="gb-container-link" href="/yealink-w73h/"></a><div class="gb-inside-container">

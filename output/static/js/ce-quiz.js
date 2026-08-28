@@ -68,28 +68,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // This page has ~350 <img> elements in total once the "Proud to
   // Support These Businesses" client-logo carousel is counted (Slick
-  // clones each logo ~6x for its infinite-loop effect), roughly 150 of
-  // them positioned earlier in the DOM than #cyber-essentials-heading --
-  // none of them have width/height/aspect-ratio reserved, so each one
-  // still shifts the heading down by its own height as it finishes
-  // loading. On a same-machine test with a warm browser cache these all
-  // resolve in well under a second, which is exactly why this kept
-  // testing as fixed locally while still landing wrong on a real,
-  // uncached connection. Waiting for window.load (confirmed correct, but
-  // took upwards of 10s under a throttled connection in testing) isn't
-  // the right fix either: it makes the panel wait on every one of those
-  // ~150 logos, almost none of which actually sit close enough to the
-  // heading to shift it in practice, when only a handful of images
-  // earlier on the page actually do.
+  // clones each logo ~6x for its infinite-loop effect). Those carousel
+  // images are marked loading="lazy" and sit in a row with a CSS-fixed
+  // height regardless of their own size, so they're excluded from the
+  // checks below on purpose -- waiting on ~300 of them was previously
+  // adding several seconds for no visual benefit. The handful of images
+  // that actually sit above #cyber-essentials-heading in normal flow
+  // (the hero icon and the section images either side of it) do have
+  // width/height reserved and are NOT lazy, so criticalImagesComplete()
+  // below only has a small, real set left to wait on.
   //
-  // Rather than identify exactly which images matter, correctPosition()
-  // is just run repeatedly for a while after the initial arrival --
-  // every 350ms for ~6.5s -- snapping the heading back into place each
-  // time something has nudged it since the last check. cb() still fires
-  // as soon as the first check finds nothing to correct, so opening the
-  // panel doesn't wait on the full 6.5s window; the repeated checks
-  // after that are just insurance against whatever loads in a few
-  // seconds afterwards.
+  // Even with that, a lingering periodic correction after arrival is
+  // kept as a last line of insurance: correctPosition() runs every
+  // 350ms for ~6.5s, snapping the heading back into place if anything
+  // still nudges it after the fact (a font swap, a slow asset). cb()
+  // fires as soon as the first check finds nothing to correct, so
+  // opening the panel doesn't wait on the full 6.5s window.
+  // Animates window scroll from wherever it currently is to an exact,
+  // already-known target over a fixed duration, easing out (same cubic
+  // curve as animateCount() further down, for a consistent feel). Used
+  // instead of trusting the browser's own smooth-scroll heuristics
+  // (`scroll-behavior: smooth`, or scrollIntoView({behavior:'smooth'}))
+  // to pick a good stopping point themselves: measured directly on this
+  // page, that native animation overshoots its own target by ~300px on
+  // a ~5500px jump, consistently, not just occasionally -- the actual
+  // cause of "shoots past where it should". Driving every frame here
+  // explicitly means it always ends exactly on targetY, with nothing
+  // left to overshoot, however far away it started.
+  function animatedScrollTo(targetY, duration, cb) {
+    const startY = window.scrollY;
+    const delta = targetY - startY;
+    if (Math.abs(delta) < 1) { if (cb) cb(); return; }
+    const startTime = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      window.scrollTo({ top: startY + delta * eased, behavior: 'instant' });
+      if (progress < 1) {
+        window.requestAnimationFrame(tick);
+      } else if (cb) {
+        cb();
+      }
+    }
+    window.requestAnimationFrame(tick);
+  }
+
   function scrollToHeading(cb) {
     const heading = document.getElementById('cyber-essentials-heading');
     if (!heading) { if (cb) cb(); return; }
@@ -105,11 +128,39 @@ document.addEventListener('DOMContentLoaded', function () {
     const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
     const timeout = new Promise(function (resolve) { window.setTimeout(resolve, 1200); });
 
-    function correctPosition() {
-      if (panelTransitioning) return false; // see panelTransitioning above -- reading now would be unreliable
+    // The browser's own scroll anchoring is normally helpful (it keeps
+    // whatever you're reading in place when something loads above it),
+    // but here it's a direct competitor: as the ~350 images further up
+    // this page (see note above) finish loading during our own animated
+    // scroll, anchoring tries to compensate by nudging scrollY on its
+    // own -- fighting the position we're actively driving frame by frame
+    // and producing exactly the "shoots past, then snaps back" look this
+    // whole function exists to avoid. The longer the animation runs, the
+    // more of those image loads land mid-scroll, so it only got more
+    // visible once the animation was slowed down. Switched off for the
+    // duration of our own scroll handling, restored once it's done.
+    const prevOverflowAnchor = document.documentElement.style.overflowAnchor;
+    document.documentElement.style.overflowAnchor = 'none';
+    function restoreOverflowAnchor() {
+      document.documentElement.style.overflowAnchor = prevOverflowAnchor;
+    }
+
+    function targetY() {
       const cs = window.getComputedStyle(heading);
       const wantTop = parseFloat(cs.scrollMarginTop) || 0;
+      return heading.getBoundingClientRect().top + window.scrollY - wantTop;
+    }
+
+    // Instant, silent snap -- used only for the *background* correction
+    // checks after the visible animation below has already finished (see
+    // the periodic interval further down): those exist purely to absorb
+    // images still loading well after arrival, and re-animating every
+    // 350ms for that would be far more distracting than the drift itself.
+    function correctPosition() {
+      if (panelTransitioning) return false; // see panelTransitioning above -- reading now would be unreliable
       const actualTop = heading.getBoundingClientRect().top;
+      const cs = window.getComputedStyle(heading);
+      const wantTop = parseFloat(cs.scrollMarginTop) || 0;
       if (Math.abs(actualTop - wantTop) > 2) {
         window.scrollTo({ top: window.scrollY + (actualTop - wantTop), behavior: 'instant' });
         return true; // was off, and has now been corrected
@@ -117,11 +168,72 @@ document.addEventListener('DOMContentLoaded', function () {
       return false; // already on target
     }
 
+    // A fixed "wait N ms before trusting targetY()" turned out to be a
+    // moving target itself -- it only ever worked for as long as this
+    // page's specific mix of assets happened to finish settling within
+    // that window, and broke again the moment that mix changed (exactly
+    // what happened here when the images above the heading were later
+    // compressed and started arriving *faster*, shifting the point where
+    // the page actually finishes settling to earlier than expected).
+    // Rather than re-tune a magic number every time page content
+    // changes, poll targetY() itself and only commit to it once it's
+    // stopped moving -- self-verifying instead of guessed, so it adapts
+    // automatically to whatever this page's assets do in the future.
+    // "Hasn't moved in the last 300ms" and "has genuinely finished
+    // settling" turned out to be different things: right after
+    // navigation, before any image above the heading has even started
+    // downloading, targetY() reads as perfectly stable too -- there's
+    // simply nothing happening *yet* to move it. That false stability is
+    // exactly what let this commit to a target several images too early
+    // in testing. Layering on an explicit "have the images that actually
+    // sit above the heading finished loading" check closes that gap --
+    // lazy-loaded ones (the logo carousel, deliberately deferred and
+    // fixed-height regardless of when they arrive) are excluded, since
+    // waiting on those would just reintroduce the delay this was meant
+    // to remove.
+    function criticalImagesComplete() {
+      const headingTop = heading.getBoundingClientRect().top + window.scrollY;
+      const images = document.images;
+      for (let i = 0; i < images.length; i++) {
+        const img = images[i];
+        if (img.loading === 'lazy') continue;
+        const imgTop = img.getBoundingClientRect().top + window.scrollY;
+        if (imgTop < headingTop && !img.complete) return false;
+      }
+      return true;
+    }
+
+    function waitForStableTarget(cb2) {
+      let lastTarget = targetY();
+      let stableChecks = 0;
+      let totalChecks = 0;
+      const interval = window.setInterval(function () {
+        totalChecks++;
+        const t = targetY();
+        if (Math.abs(t - lastTarget) < 2 && criticalImagesComplete()) {
+          stableChecks++;
+        } else {
+          stableChecks = 0;
+          lastTarget = t;
+        }
+        // 3 consecutive agreeing reads (300ms of no movement) with every
+        // above-heading image loaded, or a hard 2s cap so a page that
+        // never fully settles still doesn't hang.
+        if (stableChecks >= 3 || totalChecks >= 20) {
+          window.clearInterval(interval);
+          cb2(lastTarget);
+        }
+      }, 100);
+    }
+
     Promise.race([fontsReady, timeout]).then(function () {
       whenScrollSettled(function () {
-        window.scrollTo({ top: window.scrollY, behavior: 'instant' });
-        heading.scrollIntoView({ block: 'start', behavior: 'smooth' });
-        whenScrollSettled(function () {
+        // Page is confirmed stable (whenScrollSettled) and fonts are
+        // done, but targetY() itself can still be mid-flight (see
+        // waitForStableTarget above) -- confirm it's actually settled
+        // before committing the animation to it.
+        waitForStableTarget(function (finalTargetY) {
+        animatedScrollTo(finalTargetY, 1900, function () {
           correctPosition();
           if (cb) cb();
           // Never fight a visitor who's actually trying to scroll during
@@ -139,15 +251,39 @@ document.addEventListener('DOMContentLoaded', function () {
             if (e.type === 'keydown' && scrollKeys.indexOf(e.key) === -1) return;
             stopCorrecting();
           }
+          // Clicking any other link on the page (a nav item, a same-page
+          // anchor elsewhere) is just as deliberate a signal as scrolling
+          // by hand -- the visitor has decided where they want to be next.
+          // Without this, clicking straight to e.g. "Microsoft 365 Licence
+          // Management" moments after arriving here would scroll there
+          // correctly for an instant, then this loop's next 350ms tick
+          // would find the CE heading off its expected mark and snap the
+          // page straight back to it, undoing the very navigation the
+          // click just asked for. Capture phase so this still fires even
+          // if the link's own handler stops the event from bubbling.
+          //
+          // #ce-quiz-jump-to-report is included for the exact same reason
+          // even though it's a <button>, not a link: clicking it scrolls
+          // down to the report on its own (see its handler below), and
+          // without this that scroll got undone the same way -- the next
+          // tick of this loop found the heading off-mark and snapped the
+          // page straight back up to it.
+          function onLinkClick(e) {
+            if (e.target.closest('a[href]') || e.target.closest('#ce-quiz-jump-to-report')) stopCorrecting();
+          }
           function stopCorrecting() {
             window.clearInterval(interval);
             window.removeEventListener('wheel', onUserInput);
             window.removeEventListener('touchstart', onUserInput);
             window.removeEventListener('keydown', onUserInput);
+            document.removeEventListener('click', onLinkClick, true);
+            restoreOverflowAnchor();
           }
           window.addEventListener('wheel', onUserInput, { passive: true });
           window.addEventListener('touchstart', onUserInput, { passive: true });
           window.addEventListener('keydown', onUserInput);
+          document.addEventListener('click', onLinkClick, true);
+        });
         });
       });
     });
@@ -173,26 +309,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function closePanel({ refocusTrigger } = {}) {
-    panelTransitioning = true;
-    panel.classList.remove('ce-quiz-open');
-    panel.setAttribute('aria-hidden', 'true');
-    if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    if (refocusTrigger && trigger) trigger.focus({ preventScroll: true });
+  function closePanel({ refocusTrigger, pauseBeforeCollapse } = {}) {
     // Closing can happen from anywhere in a long quiz + report, scrolled
     // well past the section it lives in -- send the user back to the
     // heading itself rather than leaving them stranded, the same robust
     // scroll every other path here uses.
     scrollToHeading();
-    // Updates the URL to match without using location.hash directly --
-    // setting location.hash to a value it's *already* set to is a no-op
-    // in every browser (no scroll, no event), which is why this only
-    // ever worked on the first close and silently did nothing on the
-    // second, third, etc. pushState always updates the URL, and (unlike
-    // location.hash) never triggers its own native jump that could
-    // fight the scroll above.
-    if (window.history && window.history.pushState) {
-      window.history.pushState(null, '', '#cyber-essentials-heading');
+
+    function collapse() {
+      panelTransitioning = true;
+      panel.classList.remove('ce-quiz-open');
+      panel.setAttribute('aria-hidden', 'true');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      if (refocusTrigger && trigger) trigger.focus({ preventScroll: true });
+      // Updates the URL to match without using location.hash directly --
+      // setting location.hash to a value it's *already* set to is a
+      // no-op in every browser (no scroll, no event), which is why this
+      // only ever worked on the first close and silently did nothing on
+      // the second, third, etc. pushState always updates the URL, and
+      // (unlike location.hash) never triggers its own native jump that
+      // could fight the scroll above.
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', '#cyber-essentials-heading');
+      }
+    }
+
+    if (pauseBeforeCollapse) {
+      // The "Close quiz" button sits at the bottom of a long report,
+      // scrolled well past the heading -- collapsing the panel right
+      // away would shrink it out from under the user mid-scroll,
+      // fighting the very scroll just kicked off above. Giving the
+      // scroll a clear beat to land first means the user visibly
+      // arrives back at the heading before anything moves under them;
+      // the panel then closes as normal.
+      window.setTimeout(collapse, 1200);
+    } else {
+      collapse();
     }
   }
 
@@ -202,67 +354,56 @@ document.addEventListener('DOMContentLoaded', function () {
       else goToReport();
     });
   }
-  if (closeBtn) closeBtn.addEventListener('click', () => closePanel({ refocusTrigger: true }));
+  if (closeBtn) closeBtn.addEventListener('click', () => closePanel({ refocusTrigger: true, pauseBeforeCollapse: true }));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && panel.classList.contains('ce-quiz-open')) closePanel({ refocusTrigger: true });
   });
 
-  // "Free Cyber Essentials Report" in the Services mega-menu links straight
-  // to /it-essentials/#ce-quiz-panel.
+  // "Free Cyber Essentials Report" in the Services mega-menu links to
+  // /it-essentials/?ce-quiz=open -- a query parameter, not a #hash. A
+  // #hash matching an element id is *always* auto-scrolled to by the
+  // browser itself, independent of anything this script does, and that
+  // native jump is what every earlier version of this fix was really
+  // fighting: it races this script's own scroll on a fresh navigation
+  // with timing this script can't fully control (queued as part of
+  // loading the document, sometimes landing *after* this script has
+  // already finished), and no amount of adjusting the target position
+  // fixed that, because the position was never the actual problem. A
+  // query string has zero built-in browser scroll behaviour attached to
+  // it at all, so there's nothing left to race -- this sidesteps the
+  // problem outright instead of continuing to compensate for it.
   //
   // The mega-menu link with this href renders on every page site-wide,
   // but only /it-essentials/ has the panel/trigger to act on -- the click
   // listener attached to it below is only ever reached on this page (this
   // whole file returns early above on any page without the panel), so on
   // every other page the link stays a plain, normal one that navigates
-  // here, landing on the openIfDeepLinked() path below once it arrives.
-  function openIfDeepLinked() {
-    if (window.location.hash !== '#ce-quiz-panel') return;
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-    // Per instruction: a fresh navigation straight to this hash now lands
-    // at the very top of the page first -- the same starting point any
-    // other visit to /it-essentials/ would have -- rather than attempting
-    // to jump straight to the target in one go. scrollToHeading()'s own
-    // smooth scrollIntoView then carries the visitor down from there,
-    // which reads as a deliberate "arrive, then travel to the report"
-    // rather than a guess at landing directly on it. This also sidesteps
-    // the whole reason a direct jump kept landing wrong in the first
-    // place: an instant scroll to a *known* position (the top) can't be
-    // thrown off by native scroll races or in-progress image loading the
-    // way a jump straight to a moving target further down the page could.
+  // here, landing on the check below once it arrives.
+  const quizParams = new URLSearchParams(window.location.search);
+  if (quizParams.get('ce-quiz') === 'open') {
+    // Per instruction: land at the very top of the page first -- the same
+    // starting point any other visit to /it-essentials/ would have --
+    // then scrollToHeading()'s own animation carries the visitor down to
+    // the report, reading as a deliberate "arrive, then travel to it"
+    // rather than a guess at landing directly on it.
     window.scrollTo({ top: 0, behavior: 'instant' });
-    if (window.history && window.history.pushState) {
-      window.history.pushState(null, '', '#ce-quiz-panel');
-    }
+    // scrollToHeading()'s own waitForStableTarget() already waits out
+    // any icons/images still popping in above the heading before
+    // committing to an animation target, so there's no separate fixed
+    // delay needed here on top of that -- go straight to it.
     goToReport();
   }
-  openIfDeepLinked();
-  // Covers a hash that's already there when this page loads (a fresh
-  // navigation straight to the URL) or changes later (browser back/
-  // forward, or a link elsewhere on the page pointing here). It does NOT
-  // cover clicking the mega-menu link a *second* time while the hash is
-  // already #ce-quiz-panel from the first click -- per spec, hashchange
-  // only fires when the hash actually changes, and clicking a same-hash
-  // link doesn't change it, so nothing above would run at all and only
-  // the browser's own native (and, per the comment on scrollToHeading,
-  // unreliable) scroll-to-#ce-quiz-panel would fire. The click handler
-  // below covers that case directly, independent of whether the hash
-  // "changes": it intercepts the click, so the browser's native jump
-  // never gets a chance to start in the first place, and calls the exact
-  // same goToReport() every time regardless of the panel's or the hash's
-  // current state.
-  document.querySelectorAll('a[href$="#ce-quiz-panel"]').forEach(function (link) {
+  // Clicking that same link while already on this page: no native jump
+  // to worry about here either (same reason), so this just intercepts
+  // the click and calls the exact same goToReport() the trigger button
+  // uses -- no top-of-page scroll first, since there's nowhere jarring
+  // to arrive from, and no URL bookkeeping needed either.
+  document.querySelectorAll('a[href*="ce-quiz=open"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      if (window.history && window.history.pushState) {
-        window.history.pushState(null, '', '#ce-quiz-panel');
-      }
       goToReport();
     });
   });
-  window.addEventListener('hashchange', openIfDeepLinked);
 
   // Browsers can restore this exact page (DOM, scroll position, JS state
   // and all) from the back-forward cache when returning via back/forward,
@@ -314,6 +455,17 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---------- scoring: build a RAG (Red/Amber/Green) report ----------
   const showBtn = document.getElementById('ce-quiz-show-results');
   const resultDiv = document.getElementById('ce-quiz-result');
+  const jumpToReportBtn = document.getElementById('ce-quiz-jump-to-report');
+
+  if (jumpToReportBtn) {
+    jumpToReportBtn.addEventListener('click', function () {
+      const report = resultDiv.querySelector('.ce-quiz-report');
+      if (!report) return;
+      const wantTop = 80; // clearance below the fixed header, same as #cyber-essentials-heading
+      const targetY = report.getBoundingClientRect().top + window.scrollY - wantTop;
+      animatedScrollTo(targetY, 900);
+    });
+  }
 
   const RAG = {
     green: {
@@ -347,13 +499,17 @@ document.addEventListener('DOMContentLoaded', function () {
     mw1: 'F One Technologies Ltd can deploy and centrally manage endpoint antivirus and mobile app controls across your fleet.'
   };
 
+  const WELL_DONE_MESSAGE = 'Well done! This meets the Cyber Essentials Standard.';
+
   function scoreValue(input) {
     const val = (input.value || '').toString().toLowerCase().trim();
     if (val === 'yes') return 3;
     if (val === 'maybe') return 2;
-    // "not sure" scores the same as "no" -- neither demonstrates the
-    // control is actually in place, so neither earns partial credit.
-    if (val === 'no' || val === 'notsure') return 0;
+    if (val === 'no') return 1;
+    // "not sure" is the only answer that earns nothing -- unlike "no", it
+    // doesn't even confirm the control's absence, so it can't earn the
+    // partial credit "no" now does.
+    if (val === 'notsure') return 0;
     const n = parseInt(val, 10);
     return isNaN(n) ? 0 : n;
   }
@@ -526,6 +682,10 @@ document.addEventListener('DOMContentLoaded', function () {
       row.append(name, bar, scoreLabel);
 
       const gaps = s.gaps || [];
+      // Every answered question now has something to reveal: a real
+      // recommendation for anything short of full marks, or the "Well
+      // done" message for a perfect "yes" -- so the toggle always shows
+      // once there's a gap entry at all.
       if (gaps.length) {
         const toggle = document.createElement('button');
         toggle.type = 'button';
@@ -664,12 +824,12 @@ document.addEventListener('DOMContentLoaded', function () {
             sectionAnswered++;
             answeredCount++;
             const val = (checked.value || '').toLowerCase();
-            if (val === 'yes') gaps.push({ title, status: 'yes' });
+            if (val === 'yes') gaps.push({ title, status: 'yes', recommendation: WELL_DONE_MESSAGE });
             if (val === 'maybe') gaps.push({ title, status: 'maybe', recommendation });
             if (val === 'no') gaps.push({ title, status: 'no', recommendation });
             if (val === 'notsure') gaps.push({ title, status: 'notsure', recommendation });
           } else {
-            gaps.push({ title, status: 'unanswered' });
+            gaps.push({ title, status: 'unanswered', recommendation });
           }
         });
         const sectionPossible = questions.length * 3;
@@ -684,6 +844,9 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       renderReport({ totalScore, totalPossible, answeredCount, totalQuestions, sections });
+      // Never hidden again once shown -- see .ce-quiz-jump-to-report in
+      // ce-quiz.css for why that's deliberate.
+      if (jumpToReportBtn) jumpToReportBtn.hidden = false;
     });
   }
 });

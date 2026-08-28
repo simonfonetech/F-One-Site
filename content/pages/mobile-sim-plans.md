@@ -8,7 +8,7 @@ excerpt: "Mobile SIM Plans . Our business mobile SIM plans keep your team connec
 post_id: 205
 ---
 <div class="gb-container gb-container-db878a2c"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e8a9558c"><div class="gb-grid-column gb-grid-column-d0c883ad"><div class="gb-container gb-container-d0c883ad"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/Group-130.svg" alt="" class="wp-image-12710" style="width:150px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/Group-130.svg" alt="" class="wp-image-12710" style="width:150px" width="254" height="254"/></figure>
 
 <h1 class="gb-headline gb-headline-e83cf586 gb-headline-text">Mobile SIM Plans<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h1>
 
@@ -26,7 +26,7 @@ post_id: 205
 </div></div></div>
 
 <div class="wp-block-column">
-<figure class="wp-block-image aligncenter size-full is-style-default rounded-img"><img src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-21.png" alt="" class="wp-image-15446"/></figure>
+<figure class="wp-block-image aligncenter size-full is-style-default rounded-img"><img src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-21.webp" alt="" class="wp-image-15446" width="1100" height="825"/></figure>
 </div>
 </div>
 </div></div></div></div><div class="gb-container gb-container-199a9993" id="clients"><div class="gb-inside-container"><div class="gb-container gb-container-55e4be16"><div class="gb-inside-container">
@@ -99,7 +99,7 @@ tracksCustomers.forEach((track, i) => {
 <div class="gb-container gb-container-aa227f82"><div class="gb-inside-container">
 <a class="gb-button gb-button-36597eeb gb-button-text" href="/contact-us/">Get in touch</a>
 </div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-585b1bf5" id="mobile-broadband"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-3855af1c"><div class="gb-grid-column gb-grid-column-f31aed7c"><div class="gb-container gb-container-f31aed7c"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-style-default rounded-img"><img src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-17.png" alt="" class="wp-image-15439"/></figure>
+<figure class="wp-block-image size-full is-style-default rounded-img"><img src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-17.webp" alt="" class="wp-image-15439" width="1000" height="750"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-6ae36ade"><div class="gb-container gb-container-6ae36ade"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-5a1beac1 gb-headline-text">Mobile Broadband<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 

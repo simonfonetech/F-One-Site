@@ -40,7 +40,7 @@ post_id: 4763
 
 <a class="gb-button gb-button-b020a5b7 gb-button-text" href="/contact-us/">Get in touch</a>
 </div></div></div></div><div class="gb-grid-wrapper gb-grid-wrapper-365dec40"><div class="gb-grid-column gb-grid-column-f275ea79"><div class="gb-container gb-container-f275ea79 more-devices-image"><a class="gb-container-link" href="/yealink-w59rpro/"></a><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Yealink-W59R-Pro.png" alt="" class="wp-image-17566" style="width:auto;height:150px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Yealink-W59R-Pro.webp" alt="" class="wp-image-17566" style="width:auto;height:150px"/></figure>
 
 <h3 class="wp-block-heading has-text-align-center" id="h-yealink-w59r-pro">Yealink W59R Pro</h3>
 </div></div></div><div class="gb-grid-column gb-grid-column-3e989830"><div class="gb-container gb-container-3e989830 more-devices-image"><a class="gb-container-link" href="/yealink-t74w/"></a><div class="gb-inside-container">

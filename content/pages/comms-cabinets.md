@@ -52,7 +52,7 @@ post_id: 13678
 
 <h3 class="wp-block-heading has-text-align-center" id="h-managed-switches">Managed Switches</h3>
 </div></div></div><div class="gb-grid-column gb-grid-column-3e989830"><div class="gb-container gb-container-3e989830 more-devices-image"><a class="gb-container-link" href="/cordless-dect/"></a><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Cordless-DECT-8-scaled.png" alt="" class="wp-image-17572" style="width:auto;height:120px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Cordless-DECT-8-scaled.webp" alt="" class="wp-image-17572" style="width:auto;height:120px"/></figure>
 
 <h3 class="wp-block-heading has-text-align-center" id="h-cordless-dect">Cordless DECT</h3>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-94aca61c"><div class="gb-inside-container"></div></div><div class="gb-container gb-container-d928bce5"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-a4243318"><div class="gb-grid-column gb-grid-column-5cb68e7d"><div class="gb-container gb-container-5cb68e7d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-94fb6605"><div class="gb-grid-column gb-grid-column-ae8f81c0"><div class="gb-container gb-container-ae8f81c0"><div class="gb-inside-container">

@@ -8,7 +8,7 @@ excerpt: "Cloud Phone Systems . Your phone system should make it easier for your
 post_id: 215
 ---
 <div class="gb-container gb-container-1b5e3fa0"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e8a9558c"><div class="gb-grid-column gb-grid-column-d0c883ad"><div class="gb-container gb-container-d0c883ad"><div class="gb-inside-container">
-<figure class="wp-block-image size-large is-resized"><img src="/assets/uploads/Group-2376.svg" alt="" class="wp-image-12988" style="width:150px"/></figure>
+<figure class="wp-block-image size-large is-resized"><img src="/assets/uploads/Group-2376.svg" alt="" class="wp-image-12988" style="width:150px" width="254" height="254"/></figure>
 
 <h1 class="gb-headline gb-headline-e83cf586 gb-headline-text">Cloud Phone Systems<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h1>
 
@@ -58,7 +58,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/1-6.png" alt="" class="wp-image-16131" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/1-6.webp" alt="" class="wp-image-16131" style="width:auto;height:500px" width="1100" height="1055"/></figure>
 </div>
 </div>
 </div>
@@ -74,7 +74,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T73W-3.png" alt="" class="wp-image-16327" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T73W-3.webp" alt="" class="wp-image-16327" style="width:auto;height:500px" width="1230" height="911"/></figure>
 </div>
 </div>
 </div>
@@ -90,7 +90,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T74W-7.png" alt="" class="wp-image-16328" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T74W-7.webp" alt="" class="wp-image-16328" style="width:auto;height:500px" width="1230" height="866"/></figure>
 </div>
 </div>
 </div>
@@ -106,7 +106,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T85W-5.png" alt="" class="wp-image-16329" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T85W-5.webp" alt="" class="wp-image-16329" style="width:auto;height:500px" width="1230" height="840"/></figure>
 </div>
 </div>
 </div>
@@ -122,7 +122,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T87W-10.png" alt="" class="wp-image-16330" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T87W-10.webp" alt="" class="wp-image-16330" style="width:auto;height:500px" width="1230" height="880"/></figure>
 </div>
 </div>
 </div>
@@ -138,7 +138,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T88W-Pro-6.png" alt="" class="wp-image-16331" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/T88W-Pro-6.webp" alt="" class="wp-image-16331" style="width:auto;height:500px" width="1230" height="965"/></figure>
 </div>
 </div>
 </div>
@@ -154,7 +154,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-9851-1.png" alt="" class="wp-image-17370" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-9851-1.webp" alt="" class="wp-image-17370" style="width:auto;height:500px" width="1230" height="940"/></figure>
 </div>
 </div>
 </div>
@@ -170,7 +170,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-9861-1.png" alt="" class="wp-image-17371" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-9861-1.webp" alt="" class="wp-image-17371" style="width:auto;height:500px" width="1230" height="889"/></figure>
 </div>
 </div>
 </div>
@@ -186,7 +186,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-9871-1.png" alt="" class="wp-image-17372" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-9871-1.webp" alt="" class="wp-image-17372" style="width:auto;height:500px" width="1230" height="944"/></figure>
 </div>
 </div>
 </div>
@@ -202,7 +202,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cordless-DECT-8-scaled.png" alt="" class="wp-image-17572" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cordless-DECT-8-scaled.webp" alt="" class="wp-image-17572" style="width:auto;height:500px" width="1400" height="882"/></figure>
 </div>
 </div>
 </div>
@@ -218,7 +218,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Yealink-W73H-3.png" alt="" class="wp-image-17419" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Yealink-W73H-3.webp" alt="" class="wp-image-17419" style="width:auto;height:500px" width="360" height="1002"/></figure>
 </div>
 </div>
 </div>
@@ -234,7 +234,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:66.66%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Yealink-W59R-Pro.png" alt="" class="wp-image-17566" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Yealink-W59R-Pro.webp" alt="" class="wp-image-17566" style="width:auto;height:500px" width="580" height="1621"/></figure>
 </div>
 </div>
 </div>
@@ -250,7 +250,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Yealink-W56H-2.png" alt="" class="wp-image-17422" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Yealink-W56H-2.webp" alt="" class="wp-image-17422" style="width:auto;height:500px" width="308" height="1001"/></figure>
 </div>
 </div>
 </div>
@@ -266,7 +266,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-6825-7.png" alt="" class="wp-image-17423" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Cisco-6825-7.webp" alt="" class="wp-image-17423" style="width:auto;height:500px" width="416" height="999"/></figure>
 </div>
 </div>
 </div>
@@ -282,7 +282,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:60%">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/Yealink-WH64.png" alt="" class="wp-image-16337" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/Yealink-WH64.webp" alt="" class="wp-image-16337" style="width:auto;height:500px" width="788" height="999"/></figure>
 </div>
 </div>
 </div>
@@ -298,7 +298,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:50%"><div class="gb-container gb-container-420fd662"><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Routers.png" alt="" class="wp-image-16338" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Routers.webp" alt="" class="wp-image-16338" style="width:auto;height:500px" width="1076" height="811"/></figure>
 </div></div></div>
 </div>
 </div>
@@ -314,7 +314,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/WiFi-Access-Points.png" alt="" class="wp-image-16339" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/WiFi-Access-Points.webp" alt="" class="wp-image-16339" style="width:auto;height:500px" width="998" height="1000"/></figure>
 </div>
 </div>
 </div>
@@ -330,7 +330,7 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full"><img src="/assets/uploads/Managed-Switches.png" alt="" class="wp-image-16340" style="object-fit:cover"/></figure>
+<figure class="wp-block-image aligncenter size-full"><img src="/assets/uploads/Managed-Switches.webp" alt="" class="wp-image-16340" style="object-fit:cover" width="1076" height="271"/></figure>
 </div>
 </div>
 </div>
@@ -346,13 +346,13 @@ post_id: 215
 </div></div></div>
 
 <div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Comms-Cabinets-1.png" alt="" class="wp-image-16341" style="width:auto;height:500px"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Comms-Cabinets-1.webp" alt="" class="wp-image-16341" style="width:auto;height:500px" width="1076" height="749"/></figure>
 </div>
 </div>
 </div>
 </div>
 </div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-d56fa762" id="stay-connected-anywhere"><div class="gb-inside-container"><div class="gb-container gb-container-a0011b9d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-955b8c25"><div class="gb-grid-column gb-grid-column-b815c493"><div class="gb-container gb-container-b815c493"><div class="gb-inside-container">
-<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.png" alt="" class="wp-image-17483" title="FOne Elevate Mockup (2)"/></figure>
+<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.webp" alt="" class="wp-image-17483" title="FOne Elevate Mockup (2)" width="1260" height="547"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-20d3082a"><div class="gb-container gb-container-20d3082a"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-0cab301b gb-headline-text">Mobile &amp; PC Apps<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 
@@ -366,9 +366,9 @@ post_id: 215
 
 <a class="gb-button gb-button-1cbae936 gb-button-text" href="/smartvoice-on-hold-messaging/">Find out more</a>
 </div></div></div><div class="gb-grid-column gb-grid-column-c48bf6a6"><div class="gb-container gb-container-c48bf6a6"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-27120220"><img class="gb-image gb-image-27120220" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-10-scaled.png" alt="" title="Rectangle General Page Boxed Image (Website) (10)"/></figure>
+<figure class="gb-block-image gb-block-image-27120220"><img class="gb-image gb-image-27120220" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-10-scaled.webp" alt="" title="Rectangle General Page Boxed Image (Website) (10)" width="1060" height="795"/></figure>
 </div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div><div class="gb-shape gb-shape-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-ff65f7b0" id="smart-call"><div class="gb-inside-container"><div class="gb-container gb-container-ae76a341"><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Laptop-Specific-General-Page-PNG-Image-Website-2.png" alt="" class="wp-image-17492" style="width:566px;height:auto"/></figure>
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Laptop-Specific-General-Page-PNG-Image-Website-2.webp" alt="" class="wp-image-17492" style="width:566px;height:auto" width="1132" height="558"/></figure>
 
 <h2 class="gb-headline gb-headline-56da26e1 gb-headline-text">Smarter Calls with AI<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
@@ -376,7 +376,7 @@ post_id: 215
 
 <a class="gb-button gb-button-f25c87bf gb-button-text" href="/contact-us/">Get in touch</a>
 </div></div></div></div><div class="gb-container gb-container-37fb4f12" id="call-recording"><div class="gb-inside-container"><div class="gb-container gb-container-732fed6a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-bab8c124"><div class="gb-grid-column gb-grid-column-b51de444"><div class="gb-container gb-container-b51de444 mobile-align-center"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-0b3a00f2"><img class="gb-image gb-image-0b3a00f2" src="/assets/uploads/Akixi-Reporting.png" alt="" title="Akixi Reporting"/></figure>
+<figure class="gb-block-image gb-block-image-0b3a00f2"><img class="gb-image gb-image-0b3a00f2" src="/assets/uploads/Akixi-Reporting.webp" alt="" title="Akixi Reporting" width="976" height="477"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-1bad6562"><div class="gb-container gb-container-1bad6562"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-85c50525 gb-headline-text">Clear Call Reporting<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
@@ -390,7 +390,7 @@ post_id: 215
 
 <a class="gb-button gb-button-99d6ea14 gb-button-text" href="/crm-integration/">Find out more</a>
 </div></div></div></div></div></div><div class="gb-container gb-container-67bf6e3c" id="whatsapp"><div class="gb-inside-container"><div class="gb-container gb-container-925d4e10"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-fa950079"><div class="gb-grid-column gb-grid-column-90ed92d3"><div class="gb-container gb-container-90ed92d3 mobile-align-center"><div class="gb-inside-container">
-<figure class="gb-block-image gb-block-image-1f2e3c8e"><img class="gb-image gb-image-1f2e3c8e" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-1-2.png" alt="" title="Rectangle General Page Boxed Image (Website) (1)"/></figure>
+<figure class="gb-block-image gb-block-image-1f2e3c8e"><img class="gb-image gb-image-1f2e3c8e" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-1-2.webp" alt="" title="Rectangle General Page Boxed Image (Website) (1)" width="976" height="732"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-26ad72aa"><div class="gb-container gb-container-26ad72aa"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-dc92313e gb-headline-text">WhatsApp for Business<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
 

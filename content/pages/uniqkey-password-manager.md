@@ -8,7 +8,7 @@ excerpt: Uniqkey Password Manager . Uniqkey Password Manager provides a secure a
 post_id: 16981
 ---
 <div class="gb-container gb-container-67c9176e"><div class="gb-inside-container"><div class="gb-container gb-container-1785f137"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-f3dcb9f4"><div class="gb-grid-column gb-grid-column-f3660215"><div class="gb-container gb-container-f3660215"><div class="gb-inside-container">
-<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/it-services-1.png" alt="" class="wp-image-13105" style="width:150px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/assets/uploads/it-services-1.webp" alt="" class="wp-image-13105" style="width:150px"/></figure>
 
 <h1 class="gb-headline gb-headline-810f2631-07f4-4f74-9f4b-52e4f4ad3530 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-purple-color">Uniqkey Password Manager</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h1>
 
@@ -42,7 +42,7 @@ post_id: 16981
 <div class="gb-container gb-container-91749cf3 gb-accordion-content" id="gb-accordion-content-91749cf3"><div class="gb-inside-container">
 <p class="gb-headline gb-headline-df49a3da gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Passwords can be shared securely between users or teams without revealing the actual password. Access can be granted or removed quickly, making onboarding and offboarding simpler and more secure.</mark></p>
 </div></div></div></div></div></div></div></div></div></div></div></div><div class="gb-container gb-container-9feaae2a"><div class="gb-inside-container"><div class="gb-container gb-container-62bd7aac"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-44407ec5"><div class="gb-grid-column gb-grid-column-296bb988"><div class="gb-container gb-container-296bb988"><div class="gb-inside-container">
-<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-65.png" alt="" class="wp-image-17112"/></figure>
+<figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-65.webp" alt="" class="wp-image-17112"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-1f090e5a"><div class="gb-container gb-container-1f090e5a"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-e4fd3ab7-8171-4127-9fbc-e48c5e8ad822 gb-headline-text">Central Access Dashboard<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h2>
 
