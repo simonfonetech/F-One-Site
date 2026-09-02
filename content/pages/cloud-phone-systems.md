@@ -354,35 +354,51 @@ post_id: 215
 </div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-d56fa762" id="stay-connected-anywhere"><div class="gb-inside-container"><div class="gb-container gb-container-a0011b9d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-955b8c25"><div class="gb-grid-column gb-grid-column-b815c493"><div class="gb-container gb-container-b815c493"><div class="gb-inside-container">
 <figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.webp" alt="" class="wp-image-17483" title="FOne Elevate Mockup (2)" width="1260" height="547"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-20d3082a"><div class="gb-container gb-container-20d3082a"><div class="gb-inside-container">
-<h2 class="gb-headline gb-headline-0cab301b gb-headline-text">Mobile &amp; PC Apps<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
+<h2 class="gb-headline gb-headline-0cab301b gb-headline-text">Mobile &amp; Softphone Apps<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 
 <p class="gb-headline gb-headline-1fe8cfe8 gb-headline-text">Use your business number on your mobile, laptop or PC, wherever you are working. You can make and receive calls, listen to voicemails, join meetings and access contacts whether that’s in the office, at home or out with customers. It keeps your team connected and ensures you always present a consistent, professional presence.</p>
 
-<a class="gb-button gb-button-009f904b gb-button-text" href="/contact-us/">Get in touch</a>
+<a class="gb-button gb-button-009f904b gb-button-text" href="/mobile-and-softphone-apps/">Find out more</a>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-60ee8c42" id="smart-voice"><div class="gb-inside-container"><div class="gb-container gb-container-eec91306"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-1b3ae9cf"><div class="gb-grid-column gb-grid-column-eff998ea"><div class="gb-container gb-container-eff998ea"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-ba552ee1 gb-headline-text">Customisable On-Hold Marketing Messages<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h2>
 
 <p class="gb-headline gb-headline-7f81655f gb-headline-text">Make the most of every call with SmartVoice, our AI-powered on-hold messaging service that keeps callers engaged while they wait. Promote your services, share updates, and reinforce your brand with professional, tailored messages designed for your business.</p>
 
-<a class="gb-button gb-button-1cbae936 gb-button-text" href="/smartvoice-on-hold-messaging/">Find out more</a>
+<a class="gb-button gb-button-1cbae936 gb-button-text" href="/voice-studio/">Find out more</a>
 </div></div></div><div class="gb-grid-column gb-grid-column-c48bf6a6"><div class="gb-container gb-container-c48bf6a6"><div class="gb-inside-container">
 <figure class="gb-block-image gb-block-image-27120220"><img class="gb-image gb-image-27120220" src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-10-scaled.webp" alt="" title="Rectangle General Page Boxed Image (Website) (10)" width="1060" height="795"/></figure>
 </div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div><div class="gb-shape gb-shape-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-ff65f7b0" id="smart-call"><div class="gb-inside-container"><div class="gb-container gb-container-ae76a341"><div class="gb-inside-container">
 <figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Laptop-Specific-General-Page-PNG-Image-Website-2.webp" alt="" class="wp-image-17492" style="width:566px;height:auto" width="1132" height="558"/></figure>
 
-<h2 class="gb-headline gb-headline-56da26e1 gb-headline-text">Smarter Calls with AI<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
+<h2 class="gb-headline gb-headline-56da26e1 gb-headline-text">AI Call Recap<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
-<p class="has-text-align-center">Built in AI tools automatically transcribe calls and meetings, generate clear summaries and highlight key actions. Instead of relying on handwritten notes, your team receives instant recaps with searchable transcripts and sentiment insight. The result is better follow up, stronger accountability and far less time spent on admin.</p>
+<p class="has-text-align-center">AI Call Recap turns every recorded call into a full transcription, a concise summary and a clear read on sentiment and key topics, ready within minutes of the call ending. Instead of relying on handwritten notes, your team moves straight on to the next task with an accurate, searchable record behind them, and managers have a reliable account for follow-ups, coaching and dispute resolution.</p>
 
-<a class="gb-button gb-button-f25c87bf gb-button-text" href="/contact-us/">Get in touch</a>
-</div></div></div></div><div class="gb-container gb-container-37fb4f12" id="call-recording"><div class="gb-inside-container"><div class="gb-container gb-container-732fed6a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-bab8c124"><div class="gb-grid-column gb-grid-column-b51de444"><div class="gb-container gb-container-b51de444 mobile-align-center"><div class="gb-inside-container">
+<a class="gb-button gb-button-f25c87bf gb-button-text" href="/ai-call-recap/">Find out more</a>
+</div></div></div></div><div class="gb-container gb-container-60ee8c42" id="sentiment-topic-analysis"><div class="gb-inside-container"><div class="gb-container gb-container-eec91306"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-1b3ae9cf"><div class="gb-grid-column gb-grid-column-eff998ea"><div class="gb-container gb-container-eff998ea"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-ba552ee1 gb-headline-text">Sentiment &amp; Topic Analysis<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-secondary-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-7f81655f gb-headline-text">Every recorded call is analysed for its overall tone and the key subjects discussed, so you can see at a glance which conversations went well, which need a follow-up, and where the same topics keep coming up across your team. It turns a pile of call recordings into something you can act on.</p>
+
+<a class="gb-button gb-button-1cbae936 gb-button-text" href="/sentiment-and-topic-analysis/">Find out more</a>
+</div></div></div><div class="gb-grid-column gb-grid-column-c48bf6a6"><div class="gb-container gb-container-c48bf6a6"><div class="gb-inside-container">
+<figure class="gb-block-image gb-block-image-27120220"><img class="gb-image gb-image-27120220" src="/assets/uploads/elevate/sentiment-topic-recap.png" alt="AI Call Recap card showing overall sentiment and detected topics for a call" width="515" height="369"/></figure>
+</div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div><div class="gb-shape gb-shape-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-d56fa762" id="microsoft-teams"><div class="gb-inside-container"><div class="gb-container gb-container-a0011b9d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-955b8c25"><div class="gb-grid-column gb-grid-column-b815c493"><div class="gb-container gb-container-b815c493"><div class="gb-inside-container">
+<figure class="wp-block-image size-full"><img src="/assets/uploads/elevate/teams-meeting.png" alt="A Microsoft Teams video meeting with an AI-generated meeting summary alongside" width="517" height="362"/></figure>
+</div></div></div><div class="gb-grid-column gb-grid-column-20d3082a"><div class="gb-container gb-container-20d3082a"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-0cab301b gb-headline-text">Microsoft Teams<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-1fe8cfe8 gb-headline-text">Keep Teams for chat, file sharing and video meetings, and let Elevate handle enterprise-grade calling and SMS from inside it, with no separate Teams Phone licence required. Mix and match plans per user, so everyone gets the right combination of collaboration and calling features.</p>
+
+<a class="gb-button gb-button-009f904b gb-button-text" href="/microsoft-teams/">Find out more</a>
+</div></div></div></div></div></div></div></div><div class="gb-container gb-container-37fb4f12" id="call-recording"><div class="gb-inside-container"><div class="gb-container gb-container-732fed6a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-bab8c124"><div class="gb-grid-column gb-grid-column-b51de444"><div class="gb-container gb-container-b51de444 mobile-align-center"><div class="gb-inside-container">
 <figure class="gb-block-image gb-block-image-0b3a00f2"><img class="gb-image gb-image-0b3a00f2" src="/assets/uploads/Akixi-Reporting.webp" alt="" title="Akixi Reporting" width="976" height="477"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-1bad6562"><div class="gb-container gb-container-1bad6562"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-85c50525 gb-headline-text">Clear Call Reporting<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
 <p class="gb-headline gb-headline-a4f1c030 gb-headline-text">Gain clear visibility over how your phone solution is being used. You can see how many calls you are receiving, how quickly they are answered and where calls are being missed. With Webex by Cisco, advanced reporting is available through Akixi to help you spot issues, improve customer experience and manage workloads effectively.</p>
 
-<a class="gb-button gb-button-544ee991 gb-button-text" href="/contact-us/">Get in touch</a>
+<a class="gb-button gb-button-544ee991 gb-button-text" href="/live-view/">Find out more</a>
 </div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-97d07ac6" id="crm-integration"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-34deccd9"><div class="gb-grid-column gb-grid-column-90d73e04"><div class="gb-container gb-container-90d73e04"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-49f83e93 gb-headline-text">CRM Integration<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 
@@ -460,12 +476,20 @@ tracksCustomers.forEach((track, i) => {
 </style>
 
 <div class="gb-element-e67fb19a"></div>
-</div></div></div></div><div class="gb-container gb-container-dba2aa1b" id="system-management"><div class="gb-inside-container"><div class="gb-container gb-container-4915e31a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-d8d037fd"><div class="gb-grid-column gb-grid-column-032fc88c"><div class="gb-container gb-container-032fc88c"><div class="gb-inside-container">
-<h2 class="gb-headline gb-headline-0d762847 gb-headline-text">Easy System Management<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
+</div></div></div></div><div class="gb-container gb-container-37fb4f12" id="archiving"><div class="gb-inside-container"><div class="gb-container gb-container-732fed6a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-bab8c124"><div class="gb-grid-column gb-grid-column-b51de444"><div class="gb-container gb-container-b51de444 mobile-align-center"><div class="gb-inside-container">
+<figure class="gb-block-image gb-block-image-0b3a00f2"><img class="gb-image gb-image-0b3a00f2" src="/assets/uploads/archiving/archiving-search-tablet.png" alt="Searching archived conversations on a tablet" width="624" height="440"/></figure>
+</div></div></div><div class="gb-grid-column gb-grid-column-1bad6562"><div class="gb-container gb-container-1bad6562"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-85c50525 gb-headline-text">Archiving<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
-<p class="gb-headline gb-headline-d57aeb25 gb-headline-text">Day to day changes do not need to be complicated. Users, opening hours, call flows and basic settings can be updated through a secure online portal, giving you control without requiring an engineer for every small adjustment. Your phone system can adapt quickly as your business evolves.</p>
+<p class="gb-headline gb-headline-a4f1c030 gb-headline-text">Automatically capture and retain every call, SMS, chat, video meeting and email in one secure, encrypted archive, with retention from 30 days to 10 years. Powerful search finds any conversation in seconds, and legal hold, audit logs and tamper-proof storage options keep you covered for compliance, disputes and eDiscovery.</p>
 
-<a class="gb-button gb-button-9dd83a88 gb-button-text" href="/contact-us/">Get in touch</a>
+<a class="gb-button gb-button-544ee991 gb-button-text" href="/archiving/">Find out more</a>
+</div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-dba2aa1b" id="system-management"><div class="gb-inside-container"><div class="gb-container gb-container-4915e31a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-d8d037fd"><div class="gb-grid-column gb-grid-column-032fc88c"><div class="gb-container gb-container-032fc88c"><div class="gb-inside-container">
+<h2 class="gb-headline gb-headline-0d762847 gb-headline-text">Call Queues &amp; Hunt Groups<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
+
+<p class="gb-headline gb-headline-d57aeb25 gb-headline-text">Make sure every call reaches the right people. Hunt groups ring the right team, an auto attendant guides callers to the right department, and opening hours and out-of-hours routing are set once so calls always land somewhere sensible. For busier teams, advanced hunt groups add call queuing, agent log-in, wrap-up time, wallboards and reports, and supervisor tools, all managed through a simple online portal without an engineer for every change.</p>
+
+<a class="gb-button gb-button-9dd83a88 gb-button-text" href="/call-queues-and-hunt-groups/">Find out more</a>
 </div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 100H0V0l400 77.2L1200 0z"/></svg></div></div></div><div class="gb-container gb-container-41bec337" id="contact"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-fde7a852"><div class="gb-grid-column gb-grid-column-b0bb4303"><div class="gb-container gb-container-b0bb4303"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e43d10e6"><div class="gb-grid-column gb-grid-column-1e4b8fdc"><div class="gb-container gb-container-1e4b8fdc"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-038bba78 gb-headline-text">Let's Talk<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 

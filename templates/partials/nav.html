@@ -13,6 +13,43 @@
 {% set service_items = nav.header | selectattr('children') | list %}
 {% set plain_items = nav.header | rejectattr('children') | rejectattr('label', 'equalto', 'Get in touch') | list %}
 
+{# Renders one level of a service's child list, recursing into its own
+   markup for any node that carries `children` -- so "Cloud Phone Systems >
+   Hardware > <phone model>" (or any future depth) needs no extra copies of
+   this block. `.mega-float-nested` (see style.css) is depth-agnostic: it
+   fixes the flex-row default every `li` in the mega-menu otherwise
+   inherits, and drives the click-to-drill-in for whichever node it's
+   applied to, regardless of nesting level.
+
+   v17 swing-drilldown: a node with children gets a `.mega-float-back`
+   breadcrumb button as the first thing in its own drop-down -- clicking it
+   (main.js) closes this node's `.is-open`, which is what un-covers the
+   list this panel slid over. Its label is this node's own label, so a
+   couple of levels deep you can still see which section you're in. #}
+{% macro render_nav_children(items) %}
+{% for node in items %}
+<li{% if node.children %} class="mega-float-nested"{% endif %}>
+  <a href="{{ node.url }}">
+    {{ node.label }}
+    {% if node.children %}
+    <svg class="mega-float-nested-chevron" viewBox="0 0 24 24" width="10" height="10"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    {% endif %}
+  </a>
+  {% if node.children %}
+  <div class="mega-float-nested-drop">
+    <button type="button" class="mega-float-back">
+      <svg class="mega-float-back-icon" viewBox="0 0 24 24" width="10" height="10"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>{{ node.label }}</span>
+    </button>
+    <ul>
+      {{ render_nav_children(node.children) }}
+    </ul>
+  </div>
+  {% endif %}
+</li>
+{% endfor %}
+{% endmacro %}
+
 {# Rendered twice below (desktop .site-branding, left-aligned; mobile
    .site-branding-sm, centred and brightened via CSS filter) -- captured
    once here rather than duplicating ~2KB of path data in the source. The
@@ -76,9 +113,7 @@
               <div class="mega-float-drop">
                 <div class="mega-float-drop-inner">
                   <ul>
-                    {% for child in item.children %}
-                    <li><a href="{{ child.url }}">{{ child.label }}</a></li>
-                    {% endfor %}
+                    {{ render_nav_children(item.children) }}
                   </ul>
                   <a class="mega-float-cta" href="{{ item.url }}">View all<svg viewBox="0 0 24 24" width="13" height="13"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>

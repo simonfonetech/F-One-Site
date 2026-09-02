@@ -977,6 +977,10 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   transform-origin: left;
   transition: transform .25s ease;
 }
+/* Desktop-only: a touch tap leaves :hover stuck on the tapped card (no
+   pointer ever leaves), so below 1025px these would fight the tap-driven
+   .is-open state -- a closed card stayed expanded, the open one dimmed. */
+@media (min-width: 1025px) {
 .mega-float-card:hover,
 .mega-float-card:focus-within {
   flex-grow: 1.35;
@@ -1002,6 +1006,7 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   opacity: .5;
   filter: saturate(.6);
 }
+}
 .mega-float-main {
   display: flex;
   align-items: center;
@@ -1010,6 +1015,13 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   text-decoration: none;
   min-width: 0;
 }
+/* NOTE: on desktop theme.css's `.main-navigation a { display: block }`
+   (0,1,1) outranks the `display: flex` above (0,1,0), so the icon (a
+   flex-level span) sits on its own line ABOVE the title. That is the
+   chosen desktop look -- the title then fits on one line in a ~200px
+   card, where a side-by-side row forced "Internet Connectivity" and
+   "Cloud Phone Systems" onto two lines (tried 2026-09-02 and reverted).
+   Mobile restates flex at (0,2,0) in the <=1024px block for a compact row. */
 /* Shifted the same 4px as the heading text below it, so the icon lines
    up with the heading and the child items rather than sitting 4px to
    their left. */
@@ -1024,8 +1036,10 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   flex-shrink: 0;
   transition: transform .25s ease;
 }
+@media (min-width: 1025px) {
 .mega-float-card:hover .mega-float-chevron,
 .mega-float-card:focus-within .mega-float-chevron { transform: rotate(180deg); }
+}
 /* Animates to the content's own measured height via the CSS grid
    `0fr -> 1fr` row trick, instead of guessing a fixed max-height (was
    480px) and animating toward that ceiling regardless of how tall the
@@ -1043,12 +1057,22 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   padding: 0 14px;
   transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1), opacity .22s ease, padding .32s ease;
 }
-.mega-float-drop-inner { overflow: hidden; min-height: 0; }
+/* v17 swing-drilldown: height is JS-managed (main.js resizeDropInner) so the
+   card can smoothly grow/shrink to whatever depth is currently showing --
+   see the .mega-float-nested-drop block below for the rest of the pattern. */
+.mega-float-drop-inner {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  transition: height .32s cubic-bezier(.2,.8,.2,1);
+}
+@media (min-width: 1025px) {
 .mega-float-card:hover .mega-float-drop,
 .mega-float-card:focus-within .mega-float-drop {
   grid-template-rows: 1fr;
   opacity: 1;
   padding: 0 14px 16px;
+}
 }
 /* theme.css's `.main-navigation ul ul { position:absolute; left:-999em;
    box-shadow:0 3px 3px rgba(0,0,0,.2); }` (the WP default that hides a
@@ -1070,6 +1094,14 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   top: auto !important;
   float: none !important;
   box-shadow: none !important;
+  /* theme.css's mobile slide-in (`.main-navigation.is-open ul { transform:
+     translateY(0) }`, <=1024px) reaches every ul in the nav. Even an
+     identity transform makes the ul the containing block for its
+     position:absolute descendants, so each .mega-float-nested-drop
+     anchored to its parent *list* (below that panel's back row) instead
+     of the panel it's meant to cover, stacking back rows and clipping
+     the bottom of any third-level list. */
+  transform: none !important;
   list-style: none;
   margin: 0;
   padding: 10px 0 0;
@@ -1104,6 +1136,165 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
 .mega-float-drop li a:hover {
   color: var(--card-color) !important;
   transform: translateX(5px);
+}
+/* Cloud Phone Systems > Hardware: one nested level inside the existing flat
+   child list. Same specificity (0,1,1) as `.mega-float-drop ul` above, so
+   source order alone decides -- coming later, this wins for the
+   properties it sets, leaving the shared link styling (size/colour/
+   hover) on `.mega-float-drop li a` completely untouched, so the nested
+   item reads as "one level down" rather than a new visual language.
+
+   `.main-navigation ul.menu li { display:flex; align-items:center;
+   position:relative; }` (0,2,2) reaches every li in the mega-menu
+   regardless of nesting depth, which turned a parent and its nested list
+   into flex-row siblings on the same line instead of stacked rows -- the
+   !important restores normal block stacking for this one wrapper.
+
+   `position: static` (v17 swing-drilldown) undoes that same rule's
+   `position:relative` for exactly this class. Without it, every li.mega-
+   float-nested -- being the *closer* ancestor -- wins the containing-block
+   race for its own `.mega-float-nested-drop` over the intended
+   `.mega-float-drop-inner`/ancestor-drop stage, so the drop positions
+   `inset:0` against its own ~24px trigger row instead of the whole stage
+   it's meant to cover. (Elevate happening to sit first in Cloud Phone
+   Systems' list hid this initially -- its own li's box starts at the same
+   point the stage does, so the bug was invisible until a second level of
+   nesting, e.g. Hardware, sat further down its parent's list.) */
+.mega-float-nested {
+  display: block !important;
+  position: static !important;
+}
+/* Click/tap-to-reveal at every width (main.js). `.mega-float-drop li a`
+   (0,1,2) set the link `display:block`; this needs `flex` to align the
+   label and chevron on one row, so it's re-scoped one level narrower
+   (0,2,2) to win without touching the shared rule's other properties
+   (padding/colour/font-size/hover). */
+.mega-float-drop li.mega-float-nested > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.mega-float-nested-chevron {
+  flex-shrink: 0;
+  opacity: .5;
+  color: var(--card-color);
+}
+/* v17 swing-drilldown: clicking a child with its own children slides its
+   list IN from the right, covering the list it lived in -- not an inline
+   accordion. `.mega-float-nested-drop` sits `position:absolute` over
+   whichever `<ul>` it's nested inside (top level: `.mega-float-drop-inner`,
+   which is `position:relative`; any deeper level: the nearest ancestor
+   `.mega-float-nested-drop`, itself `position:absolute` and so *also* a
+   valid containing block for its own descendants) -- DOM nesting depth
+   doesn't matter, only the nearest positioned ancestor does, so this one
+   rule covers every depth. Height is deliberately left `auto`/unclipped
+   here: only the outermost `.mega-float-drop-inner` clips and animates
+   its height (JS-managed, see main.js resizeDropInner), so a short
+   intermediate level never truncates a taller one drilled in beneath it. */
+/* `z-index: 1` (not the default `auto`) is load-bearing, not decoration.
+   theme.css gives every `<li>` in the nav `position: relative`, so each of
+   this drop's OWN top-level siblings (CRM Integration, Insights, ...) is
+   *also* a `position:relative, z-index:auto` box. Auto-z-index positioned
+   siblings stack purely by tree order, and that comparison happens at the
+   sibling level regardless of what's nested inside either one -- so
+   Elevate's drop, despite being `position:absolute`, would still paint (and
+   hit-test) *underneath* any later sibling `<li>` whose own flow box
+   happens to overlap it on screen, because that later `<li>` is later in
+   tree order. A positive z-index promotes the drop to its own stacking
+   context, which always paints after every z-index:auto layer in its
+   parent regardless of DOM order -- covering the siblings for real instead
+   of just visually beneath them. */
+.mega-float-nested-drop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: var(--text-white);
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .32s cubic-bezier(.2,.8,.2,1), opacity .22s ease;
+}
+.mega-float-nested.is-open > .mega-float-nested-drop {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+/* The list a drilled-in panel covers stays in the DOM/flow (so its own
+   container's height book-keeping is untouched) but slides left and fades
+   as its covering sibling swings in, instead of just vanishing under it.
+
+   This targets each `<a>` individually -- NOT the `<ul>` (or the `<li>`) as
+   a whole, even though that reads simpler. `opacity` composites an element
+   and its entire subtree as one group: a `<ul opacity:0>` would carry every
+   descendant down to zero, INCLUDING the very `.mega-float-nested-drop`
+   (opacity:1, sitting a couple of DOM levels deeper inside the `<li>` that's
+   opening) this whole interaction exists to reveal -- a child can't opt out
+   of an ancestor's opacity the way it can override `visibility`. Fading the
+   `<a>` instead leaves `.mega-float-nested-drop` a sibling of the thing
+   being faded, never a descendant of it, so it's untouched. (`transform` on
+   the `<ul>` had the same failure mode from a different angle: it would
+   make the `<ul>` the containing block for its own `position:absolute`
+   descendants -- including that same drop -- pulling its `inset:0` off
+   `.mega-float-drop-inner` and onto the moving `<ul>` instead.) */
+.mega-float-drop-inner > ul > li > a,
+.mega-float-nested-drop > ul > li > a {
+  transition: background-color .15s ease, color .15s ease, transform .22s cubic-bezier(.2,.8,.2,1), opacity .2s ease;
+}
+.mega-float-drop-inner > ul:has(> li.mega-float-nested.is-open) > li > a,
+.mega-float-nested-drop > ul:has(> li.mega-float-nested.is-open) > li > a {
+  transform: translateX(-16px);
+  opacity: 0;
+  pointer-events: none;
+}
+.mega-float-nested-drop > ul {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+}
+/* Small breadcrumb/back row at the top of every drilled-in panel -- click
+   (or the left chevron) returns to the list this panel covered. Label is
+   the section you're currently inside (its own trigger's label), not a
+   bare "Back", so it also orients you while you're a couple of levels deep.
+
+   theme.css's generic `button { background:#f06120; border:1px solid
+   #f06120; color:#fff; padding:.6em 1em .4em; }` (plus a `:hover`/`:focus`/
+   `:active` variant swapping in #404040) reaches this element -- a plain
+   `<button>` -- and its pseudo-class rules (0,1,1) outrank this plain class
+   selector (0,1,0), so a click that leaves the button focused would win out
+   over an un-`!important`'d override here. `!important` on every property
+   theme.css sets settles it regardless of pseudo-state. */
+.mega-float-back {
+  display: flex !important;
+  width: 100%;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  padding: 6px 4px 10px !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0, 33, 53, .08) !important;
+  border-radius: 0 !important;
+  background: none !important;
+  color: var(--card-color) !important;
+  font: inherit;
+  font-weight: 700;
+  font-size: .78rem;
+  text-align: left;
+  cursor: pointer;
+}
+.mega-float-back-icon { flex-shrink: 0; transition: transform .15s ease; }
+.mega-float-back:hover .mega-float-back-icon,
+.mega-float-back:focus-visible .mega-float-back-icon { transform: translateX(-3px); }
+/* "View all" sits below the top-level list only -- hide it (rather than let
+   it get covered) whenever any depth is drilled into, `:has()` reaching
+   through however many levels down the open one sits. */
+.mega-float-cta { transition: opacity .2s ease, transform .2s ease, gap .18s ease; }
+.mega-float-drop-inner:has(.mega-float-nested.is-open) > .mega-float-cta {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-12px);
 }
 /* theme.css's `.main-navigation a { display:block; color:#535768;
    width:max-content; }` (0,1,1) outranks a plain `.mega-float-cta`
@@ -1201,9 +1392,25 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
    rail's colour. */
 .f-one-social-buttons .tooltip-text { background-color: var(--service-accent, #f06120); }
 .menu-toggle { display: none; cursor: pointer; background: none; border: none; }
+/* theme.css's generic `button:hover/:focus/:active { background: #404040 }`
+   (0,1,1) outranks the class above and left a dark square behind the
+   hamburger after a tap -- invisible on the old navy banner, obvious on
+   the white one. */
+.menu-toggle:hover,
+.menu-toggle:focus,
+.menu-toggle:active { background: none !important; border: none !important; }
 
-@media (max-width: 991px) {
-  .site-header { padding: 0 1rem; }
+/* 1024 matches theme.css's own header breakpoint (hamburger, logo swap,
+   white link colour all flip at 1025px there). At 991 the two disagreed
+   across 992-1024px: theme.css was already in mobile mode with the menu
+   translated off-screen, but the hamburger to open it was hidden. */
+@media (max-width: 1024px) {
+  /* White banner and menu on mobile, matching the desktop header, instead
+     of theme.css's navy (#103e62 header, navy gradient menu). !important
+     beats theme.css's own header rule; the small logo drops the
+     brightness/invert filter theme.css uses to turn it white for navy. */
+  .site-header { padding: 0 1rem; background: #fff !important; box-shadow: 0 1px 0 rgba(0, 33, 53, .08); }
+  .site-header .site-branding-sm { filter: none !important; }
   .site-branding { width: auto; }
   .site-branding svg path { fill: var(--secondary) !important; }
   .main-navigation { width: auto; position: static; }
@@ -1216,14 +1423,14 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    background: var(--secondary);
+    background: #fff !important;
     padding: 1rem;
     overflow-y: auto;
     z-index: 90;
   }
   .main-navigation.is-open ul.menu { display: flex; }
   .main-navigation ul.menu > li { width: 100%; }
-  .main-navigation ul.menu > li > a { height: auto; padding: 12px 0; color: var(--text-white); width: 100%; }
+  .main-navigation ul.menu > li > a { height: auto; padding: 12px 0; color: var(--secondary); width: 100%; }
   .mega-arrow { display: none; }
   /* no hover bridge on touch layouts -- the panel sits inline and is driven by
      .is-open, so the strip would only overlay content */
@@ -1236,7 +1443,11 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
     max-width: none;
     flex-direction: column;
     box-shadow: none;
-    border-radius: 12px;
+    /* no panel chrome on mobile: the cards sit straight on the white menu */
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
     margin: 6px 0 10px;
     opacity: 1;
     visibility: visible;
@@ -1265,18 +1476,23 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
      `display:flex` with no wrap, five cards wide, they ran straight off
      the right edge of a phone screen with every label truncated
      ("Clou", "Inter", "Mob"...). Stacking them is the visible half of the
-     fix; the other half is that reveal is entirely :hover/:focus-within
-     driven, which a touch tap never triggers -- .mega-float-main is a
-     plain <a> to the service's own page, so on a real phone every child
-     link ("Phone System Basics", "Hardware", ...) was completely
-     unreachable, not just visually broken. main.js intercepts a tap on
-     it below 992px and toggles .is-open on the card instead of
-     navigating; these rules mirror the desktop :hover state under that
-     class so the reveal still works, and the existing "View all" link
-     inside .mega-float-drop covers the navigation .mega-float-main
-     would otherwise have done directly. */
+     fix; the other half is that .mega-float-main is a plain <a> to the
+     service's own page, so on a real phone a tap navigated away and every
+     child link ("Phone System Basics", "Hardware", ...) was unreachable.
+     main.js intercepts a tap on it below 1025px and toggles .is-open on
+     the card instead; these rules mirror the desktop reveal under that
+     class (the :hover versions are gated to >=1025px, since a tap leaves
+     :hover stuck and it would otherwise override the tap state), and the
+     "View all" link inside .mega-float-drop covers the navigation
+     .mega-float-main would otherwise have done directly. */
   .mega-float-row { flex-direction: column; gap: 8px; }
   .mega-float-card { width: 100%; flex: none; }
+  /* theme.css's `.main-navigation a { display:block; width:max-content }`
+     (0,1,1) beats `.mega-float-main`'s own `display:flex` (0,1,0) -- kept
+     that way on desktop (icon above title, see the note there), but here
+     restated at (0,2,0): icon and title side by side, full width so the
+     whole row is one target, tighter padding -- ~64px per card. */
+  .main-navigation .mega-float-main { display: flex; width: 100%; padding: 12px 14px; }
   .mega-float-card.is-open {
     background: var(--text-white);
     border-color: rgba(0, 33, 53, .16);
@@ -1288,7 +1504,161 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
     opacity: 1;
     padding: 0 14px 16px;
   }
+  /* theme.css lays every nav li out as a centred flex ROW (`.main-navigation
+     li { display:flex; justify-content:center }`), which put the "Services"
+     label *beside* the card stack -- squeezed into a narrow left column
+     with the cards filling the rest -- instead of above it, and centred
+     every child link inside a card. Selectors carry enough specificity to
+     beat that rule outright rather than relying on file order. */
+  .main-navigation ul.menu > li.mega-services { flex-direction: column; align-items: stretch; }
+  /* No "Services" heading on mobile: main.js opens the card panel as soon
+     as the menu does, so the heading only duplicated what the cards show
+     and cost a row of screen. The panel starts flush at the top instead. */
+  .main-navigation ul.menu > li.mega-services > a { display: none; }
+  .mega-services .mega-menu { margin-top: 0; }
+  .mega-float-drop ul > li { justify-content: flex-start; }
+  /* Full-width rows and roomier padding: the desktop list is sized for a
+     pointer (~24px rows); these are finger targets. */
+  .mega-float-drop li a { width: 100%; padding: 11px 6px; font-size: .92rem; }
+  .mega-float-back { padding: 10px 6px 12px !important; font-size: .9rem; }
+  .mega-float-cta { padding: 8px 6px; font-size: .88rem; }
 }
+
+/* ================= homepage "Products & Services" carousel =================
+   Refresh of the five brand-coloured slide cards (.our-services-slider, the
+   Slick carousel on f-one-technologies.md). Markup is untouched -- the
+   GenerateBlocks containers/headline/button ids are still what the
+   generated CSS (generated/8863.css) targets -- so everything here wins on
+   specificity, not load order: generated/*.css, wp-custom.css and
+   carousel.css all load AFTER this file.
+
+   Height: the generated CSS gives every card `height: 400px`, but
+   carousel.css's `.wp-block-cb-carousel .slick-slide > div { height: 100% }`
+   (0,2,1) beats that (0,1,0) and resolves against Slick's auto-height slide
+   -- i.e. to the card's own content -- so the card with the longest
+   paragraph (Internet Connectivity, 3 lines) ran 24px taller than the other
+   four. A shared min-height sets the standard here; main.js then measures
+   the tallest card after Slick lays out (and on every resize/breakpoint)
+   and gives all of them that min-height, so copy that outgrows the
+   standard at a narrow width still leaves every card the same size.
+
+   Layout: the .gb-inside-container becomes a 2-column grid so the 150px
+   stacked icon becomes a 64px badge with the heading to its right, the
+   paragraph spans below, and the button is pinned to the bottom edge
+   regardless of paragraph length. */
+.our-services-slider .wp-block-cb-slide.slick-slide {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 12px;
+}
+.our-services-slider .wp-block-cb-slide > .gb-container {
+  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
+  min-height: 340px;
+  padding: 28px;
+  border-radius: 20px;
+  justify-content: flex-start;
+  /* brand colour still comes from the generated background-color; this
+     gradient sits over it for a little depth instead of a flat fill */
+  background-image: linear-gradient(150deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, 0) 45%, rgba(0, 33, 53, .14) 100%);
+  /* soft offset shadow + hairline inner highlight, replacing the dated
+     black halo (0 0 12px 2px rgba(0,0,0,.5)) */
+  box-shadow: 0 18px 36px -18px rgba(0, 33, 53, .38), inset 0 0 0 1px rgba(255, 255, 255, .22);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+}
+.our-services-slider .wp-block-cb-slide > .gb-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 44px -20px rgba(0, 33, 53, .48), inset 0 0 0 1px rgba(255, 255, 255, .3);
+}
+.our-services-slider .wp-block-cb-slide .gb-inside-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "icon title"
+    "text text"
+    "btn  btn";
+  column-gap: 16px;
+  row-gap: 16px;
+  align-items: center;
+  width: 100%;
+  /* fills the card via flex, not `height:100%` -- a percentage can't
+     resolve against the card's min-height, so the 1fr text row never grew
+     and the button sat under the paragraph instead of on the bottom edge */
+  flex: 1 1 auto;
+  align-self: stretch;
+  height: auto;
+}
+.our-services-slider .wp-block-cb-slide .gb-inside-container > figure {
+  grid-area: icon;
+  margin: 0;
+  width: 64px;
+  height: 64px;
+}
+/* the img carries an inline style="width:150px" from the block editor */
+.our-services-slider .wp-block-cb-slide .gb-inside-container > figure img {
+  width: 64px !important;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 33, 53, .18));
+}
+.our-services-slider .wp-block-cb-slide .gb-inside-container > h2 {
+  grid-area: title;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+.our-services-slider .wp-block-cb-slide .gb-inside-container > p {
+  grid-area: text;
+  align-self: start;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  opacity: .92;
+}
+.our-services-slider .wp-block-cb-slide .gb-inside-container > a {
+  grid-area: btn;
+  align-self: end;
+  justify-self: start;
+  margin: 0;
+  box-shadow: 0 6px 14px -8px rgba(0, 33, 53, .45);
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+.our-services-slider .wp-block-cb-slide .gb-inside-container > a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px -8px rgba(0, 33, 53, .5);
+}
+/* Desktop: two whole cards side by side, advancing one card at a time (the
+   block's data-slick config already says slidesToShow:2 / slidesToScroll:1
+   above its 769px breakpoint). wp-custom.css's `.our-services-slider
+   .slick-track { margin-left: 25% }` pushed the row half a card to the
+   right so only one card was ever fully in view with slivers of its
+   neighbours, and its mask-image faded both edges of the list. Both are
+   neutralised here at higher specificity, since wp-custom.css loads after
+   this file. */
+@media (min-width: 768px) {
+  .wp-block-cb-carousel.our-services-slider .slick-track { margin-left: 0; }
+  .wp-block-cb-carousel.our-services-slider .slick-list { mask-image: none; -webkit-mask-image: none; }
+}
+@media (max-width: 767px) {
+  .our-services-slider .wp-block-cb-slide.slick-slide { padding: 24px 8px; }
+  .our-services-slider .wp-block-cb-slide > .gb-container { min-height: 300px; padding: 24px; }
+  .our-services-slider .wp-block-cb-slide .gb-inside-container > h2 { font-size: 1.35rem; }
+}
+
+/* ================= Archiving page (content/pages/archiving.md) =================
+   The page borrows Cloud Phone Systems' section containers (and its
+   generated CSS via post_id 215), which style headings, paragraphs and
+   buttons but have nothing for bullet lists or sub-headings -- the
+   datasheet content needs both. .arch-light is for the coloured/photo
+   sections, where theme.css's default dark text would vanish. */
+.arch-sub { margin: 1.25em 0 .5em; font-size: 1.15rem; font-weight: 700; }
+.arch-list { margin: 0 0 1.5em 1.2em; padding: 0; }
+.arch-list li { margin-bottom: .55em; line-height: 1.5; }
+.arch-light, .arch-light li, .arch-light strong { color: #fff; }
+.arch-figure { margin: 0; }
+.arch-figure img { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto; }
 
 /* ================= "Proud to Support These Businesses" band =================
    The client-logo band carries 50px of bottom padding on its own container and

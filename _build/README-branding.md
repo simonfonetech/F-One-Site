@@ -173,6 +173,102 @@ Three things were missing and are now rebuilt:
   using placeholders with no visible labels, so the labels are given an explicit
   colour instead, keeping them for accessibility.
 
+## Per-service accent colour on new content pages
+
+Each of the 5 top-level services has one brand colour, defined once in
+`brand.css` and named for the service in a comment there:
+
+| Service | Token | Hex |
+|---|---|---|
+| Cloud Phone Systems | `--blue` | `#76C0FF` |
+| Internet Connectivity | `--primary` | `#f06120` (F One orange) |
+| WiFi & Networking | `--yellow` | `#FFCE00` |
+| Mobile SIM Plans | `--green` | `#24D19C` |
+| IT Essentials | `--purple` | `#D5ACF8` |
+
+`_build/build.py`'s `SERVICE_ACCENTS` dict (plus the `_CLOUD_PHONE_SYSTEMS_PRODUCTS`-style
+lists just below it) maps every page slug in that service's family to its
+colour. This drives `--service-accent` on `<body>`, which themes the header
+phone number, the header "Get in touch" button and the floating social rail
+for that page — see `SERVICE_ACCENTS` in build.py and `page_theme_color` in
+`templates/base.html`.
+
+**When authoring a new page that belongs to one of these families** (a new
+landing page under Cloud Phone Systems, a new product page linked from a
+service page, etc.):
+
+1. Add its slug to `SERVICE_ACCENTS` (or the relevant `_..._PRODUCTS` list)
+   in `_build/build.py`, mapped to that service's colour — this is what
+   colours the header chrome.
+2. Use the matching WordPress preset colour class — `has-blue-color`,
+   `has-primary-color` (orange), `has-yellow-color`, `has-green-color` or
+   `has-purple-color` from `brand.css` — for every section heading's `<mark>`
+   on the page, not the wider palette of one-off marketing colours
+   (`has-highligh-marketing-color`, `has-connectivity-orange-color`,
+   `has-purple-color` used out of family, etc.). Those exist for other
+   purposes on the live site but read as off-brand when scattered across a
+   single service's pages — headings should consistently carry that
+   service's one colour. The `has-pink-color` accent on the trailing "."
+   after a heading is a separate, page-wide decorative flourish, not a
+   service colour, and stays as-is regardless of family.
+
+### Full-colour "banner" sections
+
+`cloud-phone-systems.md` uses full-width bands whose *background* — not just
+the heading text — is the service colour (`rgb(118, 192, 255)` i.e. `var(--blue)`
+on that page's `hardware`/`system-management`/get-in-touch sections), with
+the heading and body text switched to white (`has-text-white-color`) so it
+reads against the solid colour. This is a distinct pattern from the
+plain-background sections above, where the service colour is on the *text*,
+not the background — don't mix the two: a `has-blue-color` heading on a
+`var(--blue)` background is unreadable (blue-on-blue), and `has-blue-color`'s
+`!important` will beat a section-level white text rule, so switch the mark to
+`has-text-white-color` explicitly rather than relying on inheritance.
+
+New content pages reuse this as `.fone-section.bg-brand { background:
+var(--blue); }` (see `elevate.md` and its siblings) rather than inventing an
+unrelated dark colour for banner sections — the background must be the exact
+service token, not just "a dark shade", so it stays uniform with the
+reference page and with any other banner section on the same page.
+
+### Alternating section rhythm (new content pages)
+
+`elevate.md`, `insights.md`, `live-view.md`, `voice-studio.md` and
+`crm-integration.md` all follow one fixed band order, top to bottom:
+
+**hero (dark/coloured) → white → coloured → white → coloured → … → white
+(Contact)**
+
+Two hard rules, not just a loose guideline:
+
+1. **Never two coloured (`bg-brand`) sections back to back** — every section
+   alternates from whatever the previous one was.
+2. **The Contact/"Let's Talk" section is always white**, with a blue
+   (`var(--blue)`, via `.fone-contact-card`) card holding the form — never
+   the other way round (a coloured section with a white card). This is a
+   fixed rule, not a rhythm slot: since white must land on Contact and the
+   hero is always coloured, the count of sections in between must work out
+   to an *even* total (hero + N middle sections + Contact), so a strict
+   alternation lands white on Contact. If a page's natural content doesn't
+   produce that count, **add a middle section rather than break the
+   alternation** — ground it in real material from the page's own knowledge
+   base folder (see `elevate.md`'s "Archiving & Compliance" section, added
+   for exactly this reason), not filler copy.
+
+Each `.fone-angled` divider's `fill` must match the section it introduces
+(the one immediately after it in the markup), not the one before — get this
+backwards and a divider silently shows the wrong colour on the wrong side of
+the seam. When flipping a section's colour, update its OWN divider (the one
+before it) *and* the next section's divider stays correct automatically only
+if that next section's colour didn't also change.
+
+Any button or image tile sitting inside a `bg-brand` section needs explicit
+contrast handling, not the plain `.gb-button`/inline-grey-background classes
+used elsewhere: use `.fone-cta-btn` for links/buttons (white pill, service-
+colour text) and drop image placeholder tiles to a white backing
+(`background:#fff`) instead of the light-grey `#f4f7fa` used on plain
+sections, since `#f4f7fa` reads as a dull smudge against `var(--blue)`.
+
 ## Deliberate divergences from live
 
 From this point the static build is **prod-only** — changes are no longer

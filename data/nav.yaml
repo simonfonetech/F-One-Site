@@ -2,24 +2,120 @@ header:
   - label: Cloud Phone Systems
     url: /cloud-phone-systems/
     children:
-      - label: Phone System Basics
-        url: "/cloud-phone-systems/#the-basics"
-      - label: Hardware
-        url: "/cloud-phone-systems/#hardware"
-      - label: "Mobile & PC Apps"
-        url: "/cloud-phone-systems/#stay-connected-anywhere"
-      - label: SmartVoice Messaging
-        url: /smartvoice-on-hold-messaging/
-      - label: Smarter Calls with AI
-        url: "/cloud-phone-systems/#smart-call"
-      - label: Call Reporting
-        url: "/cloud-phone-systems/#call-recording"
+      - label: Elevate
+        url: /elevate/
+        children:
+          # Group rows (Key Features / Integrations / Hardware) drill in rather
+          # than navigate, so their urls are only no-JS fallbacks. Every leaf
+          # is a real page; "The Basics" is the Cloud Phone Systems landing page.
+          - label: Key Features
+            url: /elevate/
+            children:
+              - label: The Basics
+                url: /cloud-phone-systems/
+              - label: Mobile & Softphone Apps
+                url: /mobile-and-softphone-apps/
+              - label: Call Queues & Hunt Groups
+                url: /call-queues-and-hunt-groups/
+              - label: WhatsApp Company Messaging
+                url: /whatsapp-for-business/
+              - label: AI Call Recap
+                url: /ai-call-recap/
+              - label: Sentiment & Topic Analysis
+                url: /sentiment-and-topic-analysis/
+              - label: Live View
+                url: /live-view/
+              - label: Archiving
+                url: /archiving/
+          - label: Integrations
+            url: /crm-integration/
+            children:
+              - label: Microsoft Teams
+                url: /microsoft-teams/
+              - label: CRM Integration
+                url: /crm-integration/
+              - label: Voice Studio
+                url: /voice-studio/
+          - label: Hardware
+            url: "/cloud-phone-systems/#hardware"
+            children:
+              - label: Desk Phones
+                url: "/cloud-phone-systems/#hardware"
+                children:
+                  - label: Yealink T34W
+                    url: /yealink-t34w/
+                  - label: Yealink T44W
+                    url: /yealink-t44w/
+                  - label: Yealink T54W
+                    url: /yealink-t54w/
+                  - label: Yealink T57W
+                    url: /yealink-t57w/
+                  - label: Yealink T58W Pro
+                    url: /yealink-t58w-pro/
+                  - label: Yealink T73W
+                    url: /yealink-t73w/
+                  - label: Yealink T74W
+                    url: /yealink-t74w/
+                  - label: Yealink T85W
+                    url: /yealink-t85w/
+                  - label: Yealink T87W
+                    url: /yealink-t87w/
+                  - label: Yealink T88W Pro
+                    url: /yealink-t88wpro/
+                  - label: Cisco 9851
+                    url: /cisco-9851/
+                  - label: Cisco 9861
+                    url: /cisco-9861/
+                  - label: Cisco 9871
+                    url: /cisco-9871/
+              - label: Cordless Handsets
+                url: /cordless-dect/
+                children:
+                  - label: Cisco 6825
+                    url: /cisco-6825/
+                  - label: Yealink W56H
+                    url: /yealink-w56h/
+                  - label: Yealink W59R Pro
+                    url: /yealink-w59rpro/
+                  - label: Yealink W73H
+                    url: /yealink-w73h/
+              - label: Headsets
+                url: /yealink-wh64/
+                children:
+                  - label: Yealink WH64
+                    url: /yealink-wh64/
+      # Second platform alongside Elevate. Structured as a drill-in group like
+      # Elevate so Key Features / Integrations can be added under it later;
+      # for now its Hardware lists the Cisco handsets (also under Elevate >
+      # Hardware until they're split by platform).
+      - label: Cisco Webex
+        url: /cloud-phone-systems/
+        children:
+          - label: Hardware
+            url: "/cloud-phone-systems/#hardware"
+            children:
+              - label: Desk Phones
+                url: "/cloud-phone-systems/#hardware"
+                children:
+                  - label: Cisco 9851
+                    url: /cisco-9851/
+                  - label: Cisco 9861
+                    url: /cisco-9861/
+                  - label: Cisco 9871
+                    url: /cisco-9871/
+              - label: Cordless Handsets
+                url: /cisco-6825/
+                children:
+                  - label: Cisco 6825
+                    url: /cisco-6825/
       - label: CRM Integration
         url: /crm-integration/
-      - label: WhatsApp for Business
-        url: "/cloud-phone-systems/#whatsapp"
-      - label: Easy System Management
-        url: "/cloud-phone-systems/#system-management"
+      - label: Insights
+        url: /insights/
+      - label: Live View
+        url: /live-view/
+      - label: Voice Studio
+        url: /voice-studio/
   - label: Internet Connectivity
     url: /internet-connectivity/
     children:

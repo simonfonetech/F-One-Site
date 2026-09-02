@@ -37,6 +37,10 @@ SERVICE_ACCENTS = {
     'wifi-and-networking':   'var(--yellow)',
     'mobile-sim-plans':      'var(--green)',
     'it-essentials':         'var(--purple)',
+    'elevate':               'var(--blue)',
+    'insights':              'var(--blue)',
+    'live-view':             'var(--blue)',
+    'voice-studio':          'var(--blue)',
 }
 # Individual product pages linked from one of the 5 service pages above
 # (each carrying its own accordion, e.g. "SmartVoice Messaging" on
@@ -53,6 +57,8 @@ SERVICE_ACCENTS = {
 # hardware, not phone hardware -- grouped under WiFi & Networking
 # instead, per explicit correction.
 _CLOUD_PHONE_SYSTEMS_PRODUCTS = [
+    'archiving', 'ai-call-recap', 'sentiment-and-topic-analysis',
+    'mobile-and-softphone-apps', 'call-queues-and-hunt-groups', 'microsoft-teams',
     'cisco-6825', 'cisco-9851', 'cisco-9861', 'cisco-9871',
     'cordless-dect', 'crm-integration',
     'smartvoice-on-hold-messaging',
