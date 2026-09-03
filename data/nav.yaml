@@ -155,12 +155,97 @@ header:
         url: "/it-essentials/#cyber-essentials"
       - label: Free Cyber Essentials Report
         url: "/it-essentials/?ce-quiz=open"
+  # "Our Partners" (user request 2026-09-03): a header section listing the
+  # vendors F One works with. `section: partners` keeps it out of the
+  # Services cards (nav.html filters on it). There are no partner pages yet,
+  # so each leaf goes to the F One page covering that partner's products;
+  # Hikvision and World Pay have no coverage on the site and go to Contact Us.
+  - label: Our Partners
+    url: "#"
+    section: partners
+    children:
+      - label: Intermedia
+        url: /elevate/
+        color: "#1f00e8"
+      - label: Yealink
+        url: "/cloud-phone-systems/#hardware"
+        color: "#078855"
+      - label: TP-Link
+        url: "/wifi-and-networking/#omada"
+        color: "#4acbd6"
+      - label: Social Wifi
+        url: /social-wifi/
+        color: "#2775f0"
+      - label: Microsoft
+        url: "/it-essentials/#microsoft-management"
+        color: "#0078d4"
+      - label: Acronis
+        url: /it-essentials/
+        color: "#2668c5"
+      - label: NinjaOne
+        url: /rmm/
+        color: "#00aa5f"
+      - label: Hikvision
+        url: /contact-us/
+        color: "#e60012"
+      - label: Red Cactus
+        url: /crm-integration/
+        color: "#d50808"
+      - label: World Pay
+        url: /contact-us/
+        color: "#ff1f3e"
+  # About Us (user request 2026-09-03): mirrors the footer's "About Us" links,
+  # then F One Careers on its own, then the footer's remaining "Company"
+  # documents as a "Legal Documents" drill-in group (Customer Area and
+  # Brochures & Guides are left out -- they belong to the Customer Area
+  # section below).
   - label: About Us
     url: /about-us/
-    children: []
+    section: about
+    children:
+      - label: About F One
+        url: /about-us/
+      - label: Meet the F One Team
+        url: "/about-us/#meet-the-team"
+      - label: Blog
+        url: /blog/
+      - label: Get in Touch
+        url: /contact-us/
+      - label: F One Careers
+        url: /careers/
+      # (was "Company", with Careers inside it -- user request 2026-09-03)
+      - label: Legal Documents
+        url: /assets/uploads/Terms-and-Conditions.pdf
+        children:
+          - label: "Terms & Conditions"
+            url: /assets/uploads/Terms-and-Conditions.pdf
+          - label: Privacy Policy
+            url: /assets/uploads/Privacy-Policy.pdf
+          - label: Complaints Procedure
+            url: /assets/uploads/Complaints-Procedure.pdf
+          - label: Code of Conduct
+            url: /assets/uploads/Code-of-Conduct.pdf
+          - label: Service Level Agreement
+            url: /assets/uploads/Service-Level-Agreement.pdf
+          - label: Employers Liability Certificate
+            url: /assets/uploads/Certificate-of-Employers-Liability-Insurance.pdf
+          - label: Professional Indemnity Insurance
+            url: /assets/uploads/Certificate-of-Professional-Indemnity-Insurance.pdf
+          - label: "Public & Products Liability Insurance"
+            url: /assets/uploads/Certificate-of-Public-and-Products-Liability-Insurance.pdf
+  # Customer Area (user request 2026-09-03): "View your bill" is the billing
+  # portal the Customer Area page itself links to ("Download your invoice"),
+  # opened in a new tab; "Useful information" is that page's brochures,
+  # guides and documents section.
   - label: Customer Area
     url: /customerarea/
-    children: []
+    section: customer
+    children:
+      - label: View your bill
+        url: "https://fone.billnow.com/Account/Login?ReturnUrl=%2F"
+        external: true
+      - label: Useful information
+        url: "/customerarea/#brochures"
   - label: Get in touch
     url: /contact-us/
     children: []

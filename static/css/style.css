@@ -841,6 +841,11 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
 .site-branding svg { display: block; }
 .main-navigation { flex: 1 1 auto; min-width: 0; }
 .main-navigation ul.menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; height: 60px; }
+/* Desktop: the options sit centred in the space between the logo and the
+   phone number rather than hugging the logo (user, 2026-09-03). The panels
+   are unaffected: Services spans the header, the sections anchor to their
+   own item wherever it lands. */
+}
 .main-navigation ul.menu li { display: flex; align-items: center; position: relative; cursor: pointer; }
 /* Live equivalent is `.desktop-navigation > ul > li > a` in wp-custom-css:
    deep blue at 16px, going bold (not orange) on hover. */
@@ -930,6 +935,9 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   pointer-events: auto;
 }
 .mega-arrow { display: none; }
+/* main.js adds this for one frame while swapping panels along the banner
+   so the outgoing and incoming panels switch instantly (no cross-fade) */
+.mega-services.is-switching .mega-menu { transition: none !important; }
 
 /* Stretches the panel to the header's own content width -- from the F One
    logo to the right edge of "Get in touch" -- instead of the ~980px box
@@ -1133,8 +1141,10 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
    Management") could force its flex-sized card to recalculate/reflow
    abruptly instead of animating smoothly. transform is purely visual
    (GPU-composited), so it never triggers that reflow. */
+/* --item-color (nav.yaml `color`, e.g. each partner's brand colour) wins
+   over the card colour when a link carries one */
 .mega-float-drop li a:hover {
-  color: var(--card-color) !important;
+  color: var(--item-color, var(--card-color)) !important;
   transform: translateX(5px);
 }
 /* Cloud Phone Systems > Hardware: one nested level inside the existing flat
@@ -1429,6 +1439,11 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
     z-index: 90;
   }
   .main-navigation.is-open ul.menu { display: flex; }
+  /* theme.css gives the open menu `height: 100vh`, but it starts 60px down
+     (under the header), so its last 60px -- and the bottom of the final
+     card once a tall card above is expanded -- sat below the screen where
+     no amount of scrolling could reach them. Let the inset size it. */
+  .main-navigation ul.menu, .main-navigation.is-open ul.menu { height: auto !important; max-height: none !important; }
   .main-navigation ul.menu > li { width: 100%; }
   .main-navigation ul.menu > li > a { height: auto; padding: 12px 0; color: var(--secondary); width: 100%; }
   .mega-arrow { display: none; }
@@ -2099,14 +2114,8 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
      the whole duration is visible motion rather than a dead first half
      followed by a rush */
   @keyframes team-bio-in { from { opacity: 0; max-height: 0; padding-top: 0 !important; } to { opacity: 1; max-height: var(--bio-h, 380px); } }
-  @media (prefers-reduced-motion: reduce) {
-    #meet-the-team .gb-grid-wrapper-6ce775e9 > .gb-grid-column,
-    #meet-the-team .team-member-header h3,
-    #meet-the-team .team-member-header p { transition: none; }
-    #meet-the-team .gb-grid-column.is-expanded figure img,
-    #meet-the-team .gb-grid-column.is-bio-open figure figcaption,
-    #meet-the-team .gb-grid-column.is-collapsing figure figcaption { animation: none; }
-  }
+  /* no prefers-reduced-motion override here: the team sequence animates
+     regardless (user request 2026-09-03) */
 }
 
 /* ================= WhatsApp launcher on phones =================
@@ -2293,3 +2302,72 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
 /* Desktop: the "Our Team." heading sits in a flex row (theme container) and
    shrink-wraps, so its centred text still hugged the left edge; span the row */
 #meet-the-team h2.wp-block-heading.has-text-align-center { width: 100%; flex: 0 0 100%; align-self: center; }
+
+/* Phones: room below the team cards so an open bio on the last row (James
+   Stacey) clears the angled divider of the next section (user, 2026-09-03) */
+@media (max-width: 767px) {
+  #meet-the-team { padding-bottom: 50px !important; }
+}
+
+/* ================= header sections + link cards (2026-09-03) =================
+   Our Partners, About Us and Customer Area (nav.yaml `section:`) each get
+   a dropdown in the Services language: a floating panel anchored under
+   their own nav item holding one card shown in its expanded state.
+   Everything else -- hover hold, mobile stacking, tap-to-expand -- is
+   inherited from .mega-services / .mega-float-card. The link-card rules
+   below only apply to header items with no children (none at present). */
+/* phones only -- (0,3,3) because theme.css's `.main-navigation a { display:
+   block }` outranks a lone class and showed the card next to the text link */
+.main-navigation ul.menu > li > a.mega-float-card--link { display: none; }
+@media (min-width: 1025px) {
+  /* Panel anchored under its own nav item at the section's --mega-w (set
+     inline on the li by nav.html); same chrome as the Services panel. */
+  /* Centred under its own nav item (user, 2026-09-03; Services keeps its
+     header-wide panel): left edge at the item's midpoint, pulled back by
+     half the panel width. margin rather than transform, so the panel's
+     open/close transform animation is left alone. */
+  .mega-section .mega-menu--floating {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    right: auto;
+    width: var(--mega-w);
+    margin-left: calc(-0.5 * var(--mega-w));
+    padding: 22px; /* same as the Services panel, so the cards sit level */
+  }
+  /* the invisible hover bridge below the item follows the panel */
+  .mega-section:hover::after,
+  .mega-section.is-hover::after,
+  .mega-section:focus-within::after { left: 50%; margin-left: calc(-0.5 * var(--mega-w)); }
+  /* The one card sits closed, exactly like a Services card at rest, and
+     swings open on hover/focus through the same .mega-float-card rules
+     (user, 2026-09-03 -- an earlier cut showed it pre-expanded). Only its
+     width is pinned, so it fills the panel instead of flexing. */
+  .mega-section .mega-float-card,
+  .mega-section .mega-float-card:hover,
+  .mega-section .mega-float-card:focus-within { flex: none; width: 100%; }
+  /* ten partner names read better as two columns */
+  .mega-section--partners .mega-float-drop ul {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px 14px;
+  }
+}
+@media (max-width: 1024px) {
+  /* one 8px rhythm from the first service card to the last link card */
+  .main-navigation .mega-services .mega-menu { margin: 0 0 8px; }
+  .main-navigation ul.menu > li.menu-item--card { flex-direction: column; align-items: stretch; margin-bottom: 8px; }
+  .main-navigation ul.menu > li.menu-item--card > a.menu-item-link { display: none; }
+  /* (0,3,3) to beat both `.main-navigation ul.menu > li > a` (padding
+     12px 0, width 100%) and theme.css's `.main-navigation a { display:block;
+     width:max-content }` */
+  .main-navigation ul.menu > li.menu-item--card > a.mega-float-card--link {
+    display: block; width: 100%; height: auto; padding: 0; text-decoration: none;
+  }
+  /* 16px all round = what the service cards' header actually computes to
+     on phones (theme.css's `.main-navigation a` padding wins there), so
+     every card in the stack is the same 62px */
+  .main-navigation .mega-float-card--link .mega-float-main { display: flex; width: 100%; padding: 16px; }
+  .mega-float-card--link .mega-float-chevron--go { transform: none !important; }
+  .mega-float-card--link:active { background: var(--text-white); border-color: rgba(0, 33, 53, .16); }
+}

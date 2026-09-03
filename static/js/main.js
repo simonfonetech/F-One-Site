@@ -90,11 +90,44 @@ document.addEventListener('DOMContentLoaded', function () {
       li.classList.remove('is-open');
     });
   }
+  // Cycling along the banner (user, 2026-09-03): the hold above is per
+  // item, so moving from "Services" to "Our Partners" left the Services
+  // panel held open for up to 500ms while the next one faded in -- two
+  // panels at once. Now the moment the cursor reaches an item every other
+  // panel closes at once, and if one was open this panel appears at once
+  // too (both via .is-switching, which suppresses the panel transition for
+  // a frame), so it reads as a straight swap. Desktop only: on phones the
+  // cards are tap-driven and a tap's synthetic mouseenter must not reset
+  // anything.
+  var megaItems = [];
+  function noTransition(el) {
+    el.classList.add('is-switching');
+    void el.offsetWidth;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.remove('is-switching'); }); });
+  }
   document.querySelectorAll('.mega-services').forEach(function (li) {
     var timer = null;
 
+    function isOpen() {
+      return li.classList.contains('is-hover') || li.matches(':hover') ||
+        (document.activeElement && document.activeElement !== document.body && li.contains(document.activeElement));
+    }
+    function closeNow() {
+      clearTimeout(timer);
+      noTransition(li);
+      li.classList.remove('is-hover');
+      if (document.activeElement && li.contains(document.activeElement)) document.activeElement.blur();
+      li.querySelectorAll('.mega-float-nested.is-open').forEach(function (n) { n.classList.remove('is-open'); });
+    }
     function hold() {
       clearTimeout(timer);
+      if (window.innerWidth > 1024) {
+        var wasOpen = false;
+        megaItems.forEach(function (other) {
+          if (other.li !== li && other.isOpen()) { wasOpen = true; other.closeNow(); }
+        });
+        if (wasOpen) noTransition(li);
+      }
       li.classList.add('is-hover');
     }
     function release(immediate) {
@@ -108,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         resetDrilldowns();
       }, MEGA_CLOSE_DELAY);
     }
+    megaItems.push({ li: li, isOpen: isOpen, closeNow: closeNow });
 
     li.addEventListener('mouseenter', hold);
     li.addEventListener('mouseleave', function () { release(false); });
@@ -130,6 +164,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Phones: when a card expands past the bottom of the menu, scroll the menu
+  // with it (user, 2026-09-03). ul.menu is the scroll container there (a
+  // fixed panel under the header with overflow-y:auto), so the page's own
+  // scroll is irrelevant. Runs for the length of the open transition and
+  // tracks live geometry each frame: it scrolls just enough to keep the
+  // growing card's bottom in view, capped so the card's header never goes
+  // above the top (a card taller than the menu ends up header-at-top). It
+  // therefore also copes with another card collapsing above at the same
+  // time -- the geometry it reads already includes that.
+  function followCardGrowth(card, ms) {
+    var menu = card && card.closest('ul.menu');
+    if (!menu || window.innerWidth > 1024) return;
+    var t0 = performance.now(), pad = 8;
+    // Bring the next two cards along too (user, 2026-09-03): the target is
+    // the bottom of the second card after this one, not just this card's
+    // own bottom, so the visitor can see what follows without scrolling.
+    var all = Array.prototype.slice.call(menu.querySelectorAll('.mega-float-card'));
+    var after = all.slice(all.indexOf(card) + 1, all.indexOf(card) + 3);
+    var tail = after.length ? after[after.length - 1] : card;
+    (function step() {
+      var m = menu.getBoundingClientRect(), c = card.getBoundingClientRect(), t = tail.getBoundingClientRect();
+      var need = t.bottom - (m.bottom - pad);       // how far the target bottom is out of view
+      var maxDown = c.top - (m.top + pad);          // how far we may go before this card's header hits the top
+      if (need > 0 && maxDown > 0) menu.scrollTop += Math.min(need, maxDown);
+      if (performance.now() - t0 < ms) requestAnimationFrame(step);
+    })();
+  }
+
   // Services mega-menu on mobile: .mega-float-card's reveal is
   // :hover/:focus-within driven (see style.css), which nothing on a touch
   // screen ever triggers -- .mega-float-main is a plain link straight to
@@ -140,7 +202,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // intercept that tap and toggle the card open instead; the "View all"
   // link already inside .mega-float-drop covers the direct-navigation
   // case the link would otherwise have handled.
-  document.querySelectorAll('.mega-float-card').forEach(function (card) {
+  // (.mega-float-card--link -- About Us / Customer Area on phones -- is a
+  // plain link card with nothing to expand, so it is left to navigate.)
+  document.querySelectorAll('.mega-float-card:not(.mega-float-card--link)').forEach(function (card) {
     // The whole card is the tap target, not just the title link: theme.css
     // gives every nav <a> `width: max-content`, so the link only covered
     // the icon and title and a tap on the rest of the row did nothing.
@@ -160,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
       card.classList.toggle('is-open', opening);
       if (opening) {
         resizeDropInner(card.querySelector('.mega-float-drop-inner'));
+        followCardGrowth(card, 450);
       } else {
         clearCard(card);
       }
@@ -285,6 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       li.classList.toggle('is-open');
       resizeDropInner(li.closest('.mega-float-drop-inner'));
+      if (opening) followCardGrowth(li.closest('.mega-float-card'), 450);
       blurIfMouse(e);
     });
   });
@@ -587,8 +653,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // left-column tile (which barely moves in the layout) glided cleanly. With
 // one curve the two motions add up to a straight glide from where the tile
 // was to where it ends, whichever column it started in.
+// Deliberately ignores the OS "reduce motion" setting (user request,
+// 2026-09-03: iPhones with it on showed every step snapping into place).
 function teamMove(tiles, mutate, scrollTarget, duration, done) {
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var first = new Map();
   tiles.forEach(function (el) { first.set(el, el.getBoundingClientRect()); });
   mutate();
@@ -625,7 +692,6 @@ function teamMove(tiles, mutate, scrollTarget, duration, done) {
     root.style.scrollBehavior = prevBehavior;
     if (done) done();
   }
-  if (reduce) { finish(); return; }
   apply(0);
   var start = null;
   function step(ts) {
@@ -676,6 +742,11 @@ document.addEventListener('DOMContentLoaded', function () {
               cap.style.animation = 'none';
               col.style.setProperty('--bio-h', cap.scrollHeight + 'px');
               cap.style.animation = '';
+              // once unfolded, drop the height cap the keyframe leaves behind
+              // so a later reflow (font swap, rotation) can't clip the text
+              cap.addEventListener('animationend', function () {
+                if (col.classList.contains('is-bio-open')) cap.style.setProperty('max-height', 'none', 'important');
+              }, { once: true });
             }
           }
           setTimeout(function () { busy = false; }, opening ? 430 : 0);
@@ -692,12 +763,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // then glided back down.
         var oldCap = open.querySelector('figcaption');
         var above = oldCap && docTop(oldCap) < docTop(col);
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var root = document.documentElement, prevBehavior = root.style.scrollBehavior;
         var foldH = oldCap ? oldCap.getBoundingClientRect().height : 0, foldY = window.scrollY;
         open.classList.remove('is-bio-open');
         open.classList.add('is-collapsing');
-        if (!oldCap || reduce || foldH === 0) { moveTiles(); return; }
+        if (!oldCap || foldH === 0) { moveTiles(); return; }
         oldCap.style.animation = 'none';
         root.style.scrollBehavior = 'auto';
         function ease(x) { return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }

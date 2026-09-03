@@ -3,14 +3,31 @@
    colour. They carry their own shape and colour, so they are shown as-is --
    no tinted tile behind them. `color` still drives the chevron, the panel
    underline and the "View all" link. #}
+{# Header sections that are not services (2026-09-03): "Our Partners", About
+   Us, Customer Area. Their diamonds are SVGs drawn in the same language as
+   the service icons; the colours are the logo's own navy and grey plus a
+   teal, so they read as one family next to the five service colours. #}
 {% set icon_map = {
   'Cloud Phone Systems':   {'color': 'var(--blue)',    'icon': '/assets/uploads/menu/cloud-phone-systems.png'},
   'Internet Connectivity': {'color': 'var(--primary)', 'icon': '/assets/uploads/menu/internet-connectivity.png'},
   'WiFi & Networking':     {'color': 'var(--yellow)',  'icon': '/assets/uploads/menu/wifi-networking.png'},
   'Mobile SIM Plans':      {'color': 'var(--green)',   'icon': '/assets/uploads/menu/mobile-sim-plans.png'},
   'IT Essentials':         {'color': 'var(--purple)',  'icon': '/assets/uploads/menu/it-essentials.png'},
+  'Our Partners':          {'color': '#004369',        'icon': '/assets/uploads/menu/our-partners.svg'},
+  'About Us':              {'color': '#0f8f8f',        'icon': '/assets/uploads/menu/about-us.svg'},
+  'Customer Area':         {'color': '#4e5860',        'icon': '/assets/uploads/menu/customer-area.svg'},
 } %}
-{% set service_items = nav.header | selectattr('children') | list %}
+{# `section:` in nav.yaml marks a header item that gets its own dropdown
+   (Our Partners, About Us, Customer Area) rather than a Services card.
+   All section panels share one desktop width (section_width below). #}
+{% set service_items = nav.header | selectattr('children') | rejectattr('section') | list %}
+{% set section_items = nav.header | selectattr('section') | list %}
+{# one width for all three section panels/cards (user, 2026-09-03), sized
+   to the partners card: two columns of the widest name ("Red Cactus",
+   68px + 8px link padding, room for the 5px hover shift) + 14px gap, plus
+   the card's 28px and the panel's 44px padding -- no spare space right of
+   the list. About Us / Customer Area content is narrower and fits inside. #}
+{% set section_width = '264px' %}
 {% set plain_items = nav.header | rejectattr('children') | rejectattr('label', 'equalto', 'Get in touch') | list %}
 
 {# Renders one level of a service's child list, recursing into its own
@@ -29,7 +46,7 @@
 {% macro render_nav_children(items) %}
 {% for node in items %}
 <li{% if node.children %} class="mega-float-nested"{% endif %}>
-  <a href="{{ node.url }}">
+  <a href="{{ node.url }}"{% if node.external %} target="_blank" rel="noopener noreferrer"{% endif %}{% if node.color %} style="--item-color:{{ node.color }}"{% endif %}>
     {{ node.label }}
     {% if node.children %}
     <svg class="mega-float-nested-chevron" viewBox="0 0 24 24" width="10" height="10"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -123,8 +140,57 @@
           </div>
         </div>
       </li>
+      {# Sections (2026-09-03): Our Partners, About Us, Customer Area. Each
+         shares .mega-services so main.js's hover hold / mobile open logic
+         applies unchanged, and holds exactly one card in the same markup as
+         a Services card. Desktop: a narrower floating panel anchored under
+         the item, with the card shown in its expanded state (.mega-section
+         rules in style.css). Phones: one more card in the stack, tap to
+         expand. "View all" goes to the section's own page; Our Partners has
+         no page (url "#"), so it gets none. #}
+      {% for item in section_items %}
+      {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
+      <li class="menu-item menu-item-has-children mega-services mega-section mega-section--{{ item.section }}" style="--mega-w:{{ section_width }}">
+        <a href="{{ item.url }}">{{ item.label }}</a>
+        <div class="mega-menu mega-menu--floating mega-menu--section">
+          <div class="mega-float-row">
+            <div class="mega-float-card" style="--card-color:{{ meta.color }}">
+              <a class="mega-float-main" href="{{ item.url }}">
+                {% if meta.icon %}<span class="mega-float-icon"><img src="{{ meta.icon }}" alt=""></span>{% endif %}
+                <span class="mega-float-title">{{ item.label }}</span>
+                <svg class="mega-float-chevron" viewBox="0 0 24 24" width="15" height="15"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <div class="mega-float-drop">
+                <div class="mega-float-drop-inner">
+                  <ul>
+                    {{ render_nav_children(item.children) }}
+                  </ul>
+                  {% if item.url != '#' %}
+                  <a class="mega-float-cta" href="{{ item.url }}">View all<svg viewBox="0 0 24 24" width="13" height="13"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+      {# About Us / Customer Area: a plain text link on desktop; on phones
+         (user request 2026-09-03) the link is hidden and the same item shows
+         as a card in the service-card style that navigates on tap
+         (.mega-float-card--link -- main.js leaves it alone). #}
       {% for item in plain_items %}
-      <li class="menu-item"><a href="{{ item.url }}">{{ item.label }}</a></li>
+      {% set meta = icon_map.get(item.label, {'color': 'var(--secondary)', 'icon': ''}) %}
+      <li class="menu-item menu-item--card">
+        <a class="menu-item-link" href="{{ item.url }}">{{ item.label }}</a>
+        <a class="mega-float-card mega-float-card--link" href="{{ item.url }}" style="--card-color:{{ meta.color }}">
+          <span class="mega-float-main">
+            {% if meta.icon %}<span class="mega-float-icon"><img src="{{ meta.icon }}" alt=""></span>{% endif %}
+            <span class="mega-float-title">{{ item.label }}</span>
+            <svg class="mega-float-chevron mega-float-chevron--go" viewBox="0 0 24 24" width="15" height="15"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </li>
       {% endfor %}
     </ul>
   </nav>
