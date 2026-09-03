@@ -1,10 +1,15 @@
 <footer id="colophon" class="site-footer">
   <div class="footer-inner">
     <div class="footer-columns">
+      {# On phones each link group collapses to a titled row with a chevron
+         (matching live's footer); the title is a real button so it's
+         keyboard/screen-reader friendly. Desktop shows the groups open and
+         the button is styled as plain heading text. main.js toggles
+         .is-open below 768px. The Get in Touch block below stays open. #}
       {% for col in nav.footer %}
-      <div>
-        <h4>{{ col.title }}</h4>
-        <ul>
+      <div class="footer-col">
+        <h4 class="footer-col-title"><button type="button" aria-expanded="false" aria-controls="footer-col-{{ loop.index }}">{{ col.title }}<svg class="footer-col-chevron" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h4>
+        <ul id="footer-col-{{ loop.index }}">
           {% for link in col.links %}
           <li><a href="{{ link.url }}">{{ link.label }}</a></li>
           {% endfor %}

@@ -69,7 +69,34 @@ post_id: 8825
 <a class="gb-button gb-button-6883640f gb-button-text" href="/omada-network-management/">Find out more</a>
 </div></div></div><div class="gb-grid-column gb-grid-column-c291beda"><div class="gb-container gb-container-c291beda"><div class="gb-inside-container">
 <figure class="gb-block-image gb-block-image-92ef6e42"><img class="gb-image gb-image-92ef6e42" src="/assets/uploads/General-Page-PNG-Image-Website-11.webp" alt="" title="General Page PNG Image (Website)" width="1040" height="684"/></figure>
-</div></div></div></div></div></div></div></div><div class="gb-container gb-container-41bec337" id="contact"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-fde7a852"><div class="gb-grid-column gb-grid-column-b0bb4303"><div class="gb-container gb-container-b0bb4303"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e43d10e6"><div class="gb-grid-column gb-grid-column-1e4b8fdc"><div class="gb-container gb-container-1e4b8fdc"><div class="gb-inside-container">
+</div></div></div></div></div></div></div></div>
+<!-- Networking hardware, moved here from the Cloud Phone Systems hardware
+     carousel (routers, access points, switches and cabinets are WiFi &
+     Networking products, not phones). Self-contained styles: this page's
+     generated CSS has no card grid of its own. -->
+<style>
+.fone-hw { padding: 72px calc(max((100vw - 1100px) / 2, 1rem)); background: #f4f7fa; }
+.fone-hw h2 { text-align: center; margin: 0 0 12px; }
+.fone-hw > p { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+.fone-hw-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.fone-hw-card { background: #fff; border-radius: 16px; padding: 24px 20px 28px; text-align: center; box-shadow: 0 12px 28px -18px rgba(0, 33, 53, .3); display: flex; flex-direction: column; align-items: center; }
+.fone-hw-card img { width: 100%; height: 170px; object-fit: contain; margin-bottom: 16px; }
+.fone-hw-card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+.fone-hw-card p { margin: 0 0 18px; font-size: .95rem; line-height: 1.5; flex: 1; }
+.fone-hw-btn { display: inline-block; background: var(--yellow); color: var(--secondary) !important; padding: 10px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+@media (max-width: 991px) { .fone-hw-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .fone-hw-grid { grid-template-columns: 1fr; } }
+</style>
+<div class="fone-hw" id="hardware">
+<h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Networking Hardware</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-yellow-color">.</mark></h2>
+<p>The TP-Link Omada equipment behind a reliable network: business-grade routers, ceiling and wall-mounted access points, managed switches and tidy comms cabinets, all designed, installed and supported by our team.</p>
+<div class="fone-hw-grid">
+<div class="fone-hw-card"><img src="/assets/uploads/Routers.webp" alt="Business router"><h3>Routers</h3><p>Business-grade routers that manage internet traffic securely and reliably, the foundation of a stable network and connected phone system.</p><a class="fone-hw-btn" href="/routers/">Find out more</a></div>
+<div class="fone-hw-card"><img src="/assets/uploads/WiFi-Access-Points.webp" alt="WiFi access point"><h3>WiFi Access Points</h3><p>Ceiling or wall-mounted access points that give fast, reliable wireless coverage across offices, warehouses and multi-room sites.</p><a class="fone-hw-btn" href="/wifi-access-points/">Find out more</a></div>
+<div class="fone-hw-card"><img src="/assets/uploads/Managed-Switches.webp" alt="Managed network switch"><h3>Managed Switches</h3><p>Switches that connect phones, computers and access points, so the network can be organised, monitored and scaled as you grow.</p><a class="fone-hw-btn" href="/managed-switches/">Find out more</a></div>
+<div class="fone-hw-card"><img src="/assets/uploads/Comms-Cabinets-1.webp" alt="Comms cabinet"><h3>Comms Cabinets</h3><p>Secure cabinets that house networking and phone equipment neatly, protecting hardware and keeping installations tidy.</p><a class="fone-hw-btn" href="/comms-cabinets/">Find out more</a></div>
+</div>
+</div><div class="gb-container gb-container-41bec337" id="contact"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-fde7a852"><div class="gb-grid-column gb-grid-column-b0bb4303"><div class="gb-container gb-container-b0bb4303"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e43d10e6"><div class="gb-grid-column gb-grid-column-1e4b8fdc"><div class="gb-container gb-container-1e4b8fdc"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-038bba78 gb-headline-text">Let's Talk<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">.</mark></h2>
 
 <p class="gb-headline gb-headline-1b642ce9 gb-headline-text">If you’re looking to improve your WiFi or network reliability, we can help. Get in touch to discuss your site, your requirements, and the best way to build a network that works properly for your business.</p>

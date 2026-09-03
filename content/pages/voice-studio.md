@@ -68,7 +68,7 @@ post_id: 16956
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Access Your Voice Studio</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">.</mark></h2>
 <p class="gb-headline gb-headline-text">This is where you control your phone system messages. Make changes instantly without raising a support request, whether that's updating a voicemail, changing an on hold message, or setting holiday hours.</p>
 <div class="gb-container gb-container-2fc684c3"><div class="gb-inside-container">
-<a class="fone-cta-btn" href="https://fone.gtstudio.co.uk/login" target="_blank" rel="noopener noreferrer">Login here</a>
+<a class="fone-cta-btn" href="https://fone.gtstudio.co.uk/login" target="_blank" rel="noopener noreferrer">Log in to Voice Studio</a>
 </div></div>
 </div>
 <div class="fone-section-media">

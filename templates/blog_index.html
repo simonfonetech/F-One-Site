@@ -2,7 +2,7 @@
 {% block content %}
 <div class="blog-header">
   <div class="post-header-background" role="presentation"></div>
-  <h1>Read Our Latest Blog<span style="color:var(--purple)">.</span></h1>
+  <h1>Read Our Latest Blog<span class="dot">.</span></h1>
   <div class="category-filter">
     <a href="/blog/" class="{{ 'is-active' if not active_category else '' }}">All</a>
     {% for cat in categories %}

@@ -32,6 +32,7 @@ post_id: 16956
 .fone-angled { position: relative; height: 64px; overflow: hidden; line-height: 0; }
 .fone-angled svg { width: 100%; height: 100%; display: block; }
 .fone-cta-btn { display: inline-block; background: var(--blue); color: #fff !important; padding: 12px 28px; border-radius: 999px; font-weight: 700; text-decoration: none; margin-top: 20px; }
+.bg-brand .fone-cta-btn { background: #fff; color: var(--blue) !important; }
 .fone-contact-card { background: var(--blue); border-radius: 16px; padding: 32px; }
 .fone-contact-card h2, .fone-contact-card p, .fone-contact-card label { color: #fff !important; }
 @media (max-width: 860px) {
@@ -44,6 +45,7 @@ post_id: 16956
 <div class="fone-section-text">
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">One Number, Every Device</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 <p class="gb-headline gb-headline-text">Use your business number on your mobile, laptop or PC as well as your desk phone. Make and receive calls, check voicemail and access contacts whether you're in the office, at home or out with customers, so your team stays reachable and presents a consistent, professional presence.</p>
+<a class="fone-cta-btn" href="/mobile-and-softphone-apps/">Find out more</a>
 </div>
 <div class="fone-section-media">
 <img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.webp" alt="" title="FOne Elevate Mockup">
@@ -55,6 +57,7 @@ post_id: 16956
 <div class="fone-section-text">
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Simple Call Handling</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">.</mark></h2>
 <p class="gb-headline gb-headline-text">Hold, transfer, voicemail and phonebook features work the same way across every device, so staff can pick up a call on any handset or app without relearning the basics. Opening hours, holiday schedules and out-of-hours routing can be set so calls always reach the right person, without needing IT support for every change.</p>
+<a class="fone-cta-btn" href="/call-queues-and-hunt-groups/">Find out more</a>
 </div>
 <div class="fone-section-media">
 <img src="/assets/uploads/Elevate-Simple-Call-Handling.jpg" alt="Customer service agent taking a call using a headset">
@@ -66,6 +69,7 @@ post_id: 16956
 <div class="fone-section-text">
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">WhatsApp for Company Messaging</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 <p class="gb-headline gb-headline-text">Manage customer conversations on WhatsApp directly inside Elevate, using the business number customers already know. Conversations are shared across your team with full history and visibility, so anyone authorised can pick up where a colleague left off, and multiple people can respond faster instead of enquiries sitting with one person. Available in the UK and EMEA.</p>
+<a class="fone-cta-btn" href="/whatsapp-for-business/">Find out more</a>
 </div>
 <div class="fone-section-media">
 <img src="/assets/uploads/Elevate-WhatsApp-Company-Messaging.jpg" alt="WhatsApp conversation with a customer, viewed on a laptop">
@@ -76,6 +80,7 @@ post_id: 16956
 <div class="fone-section bg-brand" id="teams"><div class="fone-section-center">
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Built to Work Alongside Microsoft Teams</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">.</mark></h2>
 <p class="gb-headline gb-headline-text">Use Teams for chat, file sharing and video meetings, and Elevate's enterprise-grade softphone for calling and SMS, without needing a separate Teams Phone licence. When someone needs help from another team, they can reach out through Teams chat or video without leaving the customer conversation, so everyone stays in sync and customers get answers faster.</p>
+<a class="fone-cta-btn" href="/microsoft-teams/">Find out more</a>
 </div></div>
 
 <div class="fone-angled"><svg viewBox="0 0 1200 64" preserveAspectRatio="none"><path d="M0 64L1200 0V64Z" fill="#ffffff"/></svg></div>

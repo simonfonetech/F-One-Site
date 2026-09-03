@@ -68,7 +68,7 @@ post_id: 16956
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Real-Time Management Dashboard</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">.</mark></h2>
 <p class="gb-headline gb-headline-text">See queue health and call activity across your whole team in one place, making it easy to manage workloads and spot pressure points before they build up. Paired with post-call insights, it gives you a complete picture -- what's happening right now, and how the team is performing over time.</p>
 <div class="gb-container gb-container-2fc684c3"><div class="gb-inside-container">
-<a class="fone-cta-btn" href="/insights/">See Insights</a>
+<a class="fone-cta-btn" href="/ai-call-recap/">Find out more</a>
 </div></div>
 </div>
 <div class="fone-section-media">

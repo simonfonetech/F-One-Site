@@ -2,6 +2,8 @@ header:
   - label: Cloud Phone Systems
     url: /cloud-phone-systems/
     children:
+      - label: The Basics
+        url: "/cloud-phone-systems/#the-basics"
       - label: Elevate
         url: /elevate/
         children:
@@ -11,8 +13,6 @@ header:
           - label: Key Features
             url: /elevate/
             children:
-              - label: The Basics
-                url: /cloud-phone-systems/
               - label: Mobile & Softphone Apps
                 url: /mobile-and-softphone-apps/
               - label: Call Queues & Hunt Groups
@@ -36,86 +36,71 @@ header:
                 url: /crm-integration/
               - label: Voice Studio
                 url: /voice-studio/
-          - label: Hardware
-            url: "/cloud-phone-systems/#hardware"
-            children:
-              - label: Desk Phones
-                url: "/cloud-phone-systems/#hardware"
-                children:
-                  - label: Yealink T34W
-                    url: /yealink-t34w/
-                  - label: Yealink T44W
-                    url: /yealink-t44w/
-                  - label: Yealink T54W
-                    url: /yealink-t54w/
-                  - label: Yealink T57W
-                    url: /yealink-t57w/
-                  - label: Yealink T58W Pro
-                    url: /yealink-t58w-pro/
-                  - label: Yealink T73W
-                    url: /yealink-t73w/
-                  - label: Yealink T74W
-                    url: /yealink-t74w/
-                  - label: Yealink T85W
-                    url: /yealink-t85w/
-                  - label: Yealink T87W
-                    url: /yealink-t87w/
-                  - label: Yealink T88W Pro
-                    url: /yealink-t88wpro/
-                  - label: Cisco 9851
-                    url: /cisco-9851/
-                  - label: Cisco 9861
-                    url: /cisco-9861/
-                  - label: Cisco 9871
-                    url: /cisco-9871/
-              - label: Cordless Handsets
-                url: /cordless-dect/
-                children:
-                  - label: Cisco 6825
-                    url: /cisco-6825/
-                  - label: Yealink W56H
-                    url: /yealink-w56h/
-                  - label: Yealink W59R Pro
-                    url: /yealink-w59rpro/
-                  - label: Yealink W73H
-                    url: /yealink-w73h/
-              - label: Headsets
-                url: /yealink-wh64/
-                children:
-                  - label: Yealink WH64
-                    url: /yealink-wh64/
-      # Second platform alongside Elevate. Structured as a drill-in group like
-      # Elevate so Key Features / Integrations can be added under it later;
-      # for now its Hardware lists the Cisco handsets (also under Elevate >
-      # Hardware until they're split by platform).
+      # Second platform alongside Elevate, with the same Key Features /
+      # Integrations structure. Webex has no feature pages of its own yet, so
+      # each group holds a placeholder leaf until they're written.
       - label: Cisco Webex
         url: /cloud-phone-systems/
         children:
-          - label: Hardware
+          - label: Key Features
+            url: /cloud-phone-systems/
+            children:
+              - label: Webex Overview
+                url: /cloud-phone-systems/
+          - label: Integrations
+            url: /crm-integration/
+            children:
+              - label: CRM Integration
+                url: /crm-integration/
+      # Handsets span both platforms (Yealink for Elevate, Cisco for Webex),
+      # so Hardware sits at card level rather than under either one.
+      - label: Hardware
+        url: "/cloud-phone-systems/#hardware"
+        children:
+          - label: Desk Phones
             url: "/cloud-phone-systems/#hardware"
             children:
-              - label: Desk Phones
-                url: "/cloud-phone-systems/#hardware"
-                children:
-                  - label: Cisco 9851
-                    url: /cisco-9851/
-                  - label: Cisco 9861
-                    url: /cisco-9861/
-                  - label: Cisco 9871
-                    url: /cisco-9871/
-              - label: Cordless Handsets
+              - label: Yealink T34W
+                url: /yealink-t34w/
+              - label: Yealink T44W
+                url: /yealink-t44w/
+              - label: Yealink T54W
+                url: /yealink-t54w/
+              - label: Yealink T57W
+                url: /yealink-t57w/
+              - label: Yealink T58W Pro
+                url: /yealink-t58w-pro/
+              - label: Yealink T73W
+                url: /yealink-t73w/
+              - label: Yealink T74W
+                url: /yealink-t74w/
+              - label: Yealink T85W
+                url: /yealink-t85w/
+              - label: Yealink T87W
+                url: /yealink-t87w/
+              - label: Yealink T88W Pro
+                url: /yealink-t88wpro/
+              - label: Cisco 9851
+                url: /cisco-9851/
+              - label: Cisco 9861
+                url: /cisco-9861/
+              - label: Cisco 9871
+                url: /cisco-9871/
+          - label: Cordless Handsets
+            url: /cordless-dect/
+            children:
+              - label: Yealink W56H
+                url: /yealink-w56h/
+              - label: Yealink W59R Pro
+                url: /yealink-w59rpro/
+              - label: Yealink W73H
+                url: /yealink-w73h/
+              - label: Cisco 6825
                 url: /cisco-6825/
-                children:
-                  - label: Cisco 6825
-                    url: /cisco-6825/
-      - label: CRM Integration
-        url: /crm-integration/
-      - label: Insights
-        url: /insights/
-      - label: Live View
-        url: /live-view/
-      - label: Voice Studio
-        url: /voice-studio/
+          # A single headset today, so a direct link rather than a one-item
+          # drill-in panel; make it a group again when a second model is added.
+          - label: Headsets
+            url: /yealink-wh64/
   - label: Internet Connectivity
     url: /internet-connectivity/
     children:
@@ -216,7 +201,7 @@ footer:
         url: /recruitment-agencies/
       - label: Serviced Offices
         url: /serviced-offices/
-  - title: Products
+  - title: Phones
     links:
       - label: Yealink T34W
         url: /yealink-t34w/
@@ -248,6 +233,8 @@ footer:
         url: /cisco-6825/
       - label: Yealink WH64
         url: /yealink-wh64/
+  - title: Networking
+    links:
       - label: Routers
         url: /routers/
       - label: WiFi Access Points

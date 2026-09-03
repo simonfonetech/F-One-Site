@@ -36,7 +36,7 @@ post_id: 13669
 </div></div></div></div></div></div></div></div></div></div></div></div><div class="gb-container gb-container-07eef872"><div class="gb-inside-container"><div class="gb-container gb-container-7800cc1a"><div class="gb-inside-container"><div class="gb-container gb-container-24c85161"><div class="gb-inside-container"><div class="gb-container gb-container-cce05ed2"><div class="gb-inside-container">
 <h2 class="wp-block-heading has-text-align-center" id="h-explore-more-devices">Explore More Devices<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
-<p class="has-text-align-center">Explore phone options including the Yealink W73H, W56H, W59R Pro, and T88W Pro. From cordless DECT handsets designed for teams on the move to an advanced desk phone for power users, these devices offer flexible options to suit different roles and working styles across your business.</p>
+<p class="has-text-align-center">Explore our cordless DECT handsets: the Yealink W73H, W56H and W59R Pro. Designed for teams on the move, from a dependable everyday handset to a ruggedised model for tougher environments, they offer flexible options to suit different roles and working styles across your business.</p>
 
 <a class="gb-button gb-button-b020a5b7 gb-button-text" href="/contact-us/">Get in touch</a>
 </div></div></div></div><div class="gb-grid-wrapper gb-grid-wrapper-365dec40"><div class="gb-grid-column gb-grid-column-f275ea79"><div class="gb-container gb-container-f275ea79 more-devices-image"><a class="gb-container-link" href="/yealink-w73h/"></a><div class="gb-inside-container">
@@ -51,10 +51,6 @@ post_id: 13669
 <figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/Yealink-W59R-Pro.webp" alt="" class="wp-image-17566" style="width:auto;height:150px"/></figure>
 
 <h3 class="wp-block-heading has-text-align-center" id="h-yealink-w59r-pro">Yealink W59R Pro</h3>
-</div></div></div><div class="gb-grid-column gb-grid-column-fecde2e1"><div class="gb-container gb-container-fecde2e1 more-devices-image"><a class="gb-container-link" href="/yealink-t58w-pro/"></a><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized handset-thumb"><img src="/assets/uploads/T88W-Pro.png" alt="" class="wp-image-16232" style="width:auto;height:150px"/></figure>
-
-<h3 class="wp-block-heading has-text-align-center" id="h-yealink-t88w-pro">Yealink T88W Pro</h3>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-d928bce5"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-a4243318"><div class="gb-grid-column gb-grid-column-5cb68e7d"><div class="gb-container gb-container-5cb68e7d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-94fb6605"><div class="gb-grid-column gb-grid-column-ae8f81c0"><div class="gb-container gb-container-ae8f81c0"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-5bd56e9f-72fd-4a8e-adf2-eda50a1d5c75 gb-headline-text">Let's Talk<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 

@@ -58,14 +58,14 @@ post_id: 16956
 <div class="fone-angled"><svg viewBox="0 0 1200 64" preserveAspectRatio="none"><path d="M0 64L1200 0V64Z" fill="var(--blue)"/></svg></div>
 <div class="fone-section bg-brand" id="call-logging"><div class="fone-section-center">
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Automatic Call Logging &amp; AI Transcription</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">.</mark></h2>
-<p class="gb-headline gb-headline-text">Every inbound and outbound call is logged directly against the right CRM record automatically, with a customisable subject line and space to capture notes during the call. The Activity Hub keeps recordings and AI-generated transcriptions together with the record, so nothing gets lost between systems.</p>
+<p class="gb-headline gb-headline-text">Every inbound and outbound call is logged against the right CRM record automatically, with the recording and its <a href="/ai-call-recap/" style="color:#fff;text-decoration:underline">AI Call Recap</a> transcript kept together with the record, so nothing gets lost between systems.</p>
 </div></div>
 
 <div class="fone-angled"><svg viewBox="0 0 1200 64" preserveAspectRatio="none"><path d="M1200 64L0 0V64Z" fill="#ffffff"/></svg></div>
 <div class="fone-section" id="messaging"><div class="fone-section-grid reverse">
 <div class="fone-section-text">
 <h2 class="gb-headline gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">WhatsApp, Teams &amp; Email in One Place</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
-<p class="gb-headline gb-headline-text">Calling is only part of how customers reach you. WhatsApp, Teams chat and email buttons sit alongside your CRM's own workflows and custom action buttons, so your team can start a conversation on whichever channel the customer prefers without leaving the record they're working from.</p>
+<p class="gb-headline gb-headline-text">Calling is only part of how customers reach you. <a href="/whatsapp-for-business/">WhatsApp</a>, <a href="/microsoft-teams/">Teams</a> chat and email buttons sit alongside your CRM's own workflows, so your team can start a conversation on whichever channel the customer prefers without leaving the record they're working from.</p>
 </div>
 <div class="fone-section-media">
 <img src="/assets/uploads/Cloud-Phone-Systems.png" alt="" style="max-width:220px;margin:0 auto;background:#f4f7fa;padding:40px;border-radius:16px;">

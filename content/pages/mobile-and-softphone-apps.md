@@ -67,7 +67,7 @@ post_id: 215
 <li><strong>Two-way presence sync</strong> with Microsoft Teams, so colleagues can see when you are on a call.</li>
 <li><strong>Quality of service dashboards</strong> give us visibility of call quality on every device, so problems are spotted early.</li>
 </ul>
-<a class="gb-button gb-button-009f904b gb-button-text" href="/microsoft-teams/">Elevate with Microsoft Teams</a>
+<a class="gb-button gb-button-009f904b gb-button-text" href="/microsoft-teams/">Find out more</a>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-97d07ac6" id="rollout"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-34deccd9"><div class="gb-grid-column gb-grid-column-90d73e04"><div class="gb-container gb-container-90d73e04"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-49f83e93 gb-headline-text">Simple to Roll Out<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 

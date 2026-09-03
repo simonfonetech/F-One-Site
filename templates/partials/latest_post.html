@@ -1,0 +1,12 @@
+{# Rendered by build.py into any page body containing the marker
+   <!-- latest-post --> (About Us, "Read Our Latest Blog"). `post` is the
+   newest entry of the date-sorted posts list, so the block updates itself
+   on every build as posts are added. Keeps the section's own generated
+   headline/button classes so the page's CSS styles it. #}
+<div class="latest-post">
+  {% if post.featured_image %}<a class="latest-post-thumb" href="{{ post.url }}"><img src="{{ post.featured_image }}" alt="{{ post.title }}" loading="lazy"></a>{% endif %}
+  <p class="latest-post-meta">{{ post.date }}{% if post.categories %} &middot; {{ post.categories[0] }}{% endif %}</p>
+  <h3 class="gb-headline gb-headline-aaf33f62 gb-headline-text"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+  <div class="gb-headline gb-headline-d3943e5c gb-headline-text">{{ post.excerpt | striptags | truncate(220) }}</div>
+  <a class="gb-button gb-button-8a47fe41 gb-button-text" href="{{ post.url }}"><strong>Read more</strong></a>
+</div>

@@ -33,7 +33,7 @@
    markup. #}
 <link rel="stylesheet" href="/static/css/ce-quiz.css?v={{ asset_version }}">
 </head>
-<body{% if page_theme_color %} style="--service-accent: {{ page_theme_color }}; --service-hover-bg: #fff; --service-hover-border-w: 2px;"{% endif %}{% if is_homepage %} class="is-homepage"{% endif %}>
+<body{% if page_theme_color %} style="--service-accent: {{ page_theme_color }}; --service-hover-bg: #fff; --service-hover-border-w: 2px;"{% endif %}{% if is_homepage or page_slug %} class="{% if page_slug %}page-{{ page_slug }}{% endif %}{% if is_homepage %} is-homepage{% endif %}"{% endif %}>
   {% include "partials/socials.html" %}
   {% include "partials/nav.html" %}
   <main class="site-main">

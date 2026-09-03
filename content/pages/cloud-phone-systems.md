@@ -22,29 +22,35 @@ post_id: 215
 <div class="gb-container gb-container-2fc684c3"><div class="gb-inside-container">
 <a class="gb-button gb-button-a5ae33cb gb-button-text" href="/contact-us/">Get in touch</a>
 </div></div></div></div></div><div class="gb-grid-column gb-grid-column-6ce5b107"><div class="gb-container gb-container-6ce5b107"><div class="gb-inside-container"><div class="gb-container gb-container-ea93cfb1 gb-accordion the-basics-accordian"><div class="gb-inside-container"><div class="gb-container gb-container-bdadd84d gb-accordion-item"><div class="gb-inside-container">
-<button class="gb-button gb-button-ef9db585 gb-accordion__toggle" id="gb-accordion-toggle-ef9db585"><span class="gb-button-text">SmartVoice Messaging</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
+<button class="gb-button gb-button-ef9db585 gb-accordion__toggle" id="gb-accordion-toggle-ef9db585"><span class="gb-button-text">Voice Studio Messaging</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
 <div class="gb-container gb-container-20bd31a1 gb-accordion-content" id="gb-accordion-content-20bd31a1"><div class="gb-inside-container">
 <p>Make the most of on-hold time by turning it into an opportunity to promote your services. With a wide choice of professional voice artists and soundtracks, you can create polished, engaging messages that showcase your brand.</p>
+<p><a href="/voice-studio/">Find out more about Voice Studio</a></p>
 </div></div></div></div><div class="gb-container gb-container-eb70f6f5 gb-accordion-item"><div class="gb-inside-container">
 <button class="gb-button gb-button-b0df50e0 gb-accordion__toggle" id="gb-accordion-toggle-b0df50e0"><span class="gb-button-text">Phonebook &amp; Speed Dials</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
 <div class="gb-container gb-container-a5e76cf6 gb-accordion-content" id="gb-accordion-content-a5e76cf6"><div class="gb-inside-container">
 <p>No more wasted time scrolling through contacts. With our intuitive search-and-dial feature, finding and calling customers or suppliers takes just seconds — a simple but powerful tool that many phone systems miss.</p>
+<p><a href="/mobile-and-softphone-apps/">Find out more about the apps</a></p>
 </div></div></div></div><div class="gb-container gb-container-f485b88e gb-accordion-item"><div class="gb-inside-container">
 <button class="gb-button gb-button-3f58faab gb-accordion__toggle" id="gb-accordion-toggle-3f58faab"><span class="gb-button-text">Hold &amp; Call Transfer</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
 <div class="gb-container gb-container-81132909 gb-accordion-content" id="gb-accordion-content-81132909"><div class="gb-inside-container">
 <p>Transfer calls to colleagues, teams, or external numbers in just a few clicks. Whether you’re on a desk phone, mobile, or PC app, it’s quick, simple, and seamless every time.</p>
+<p><a href="/mobile-and-softphone-apps/">Find out more about the apps</a></p>
 </div></div></div></div><div class="gb-container gb-container-0bb38f2c gb-accordion-item"><div class="gb-inside-container">
 <button class="gb-button gb-button-589d2c36 gb-accordion__toggle" id="gb-accordion-toggle-589d2c36"><span class="gb-button-text">Voicemail &amp; Email Integration</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
 <div class="gb-container gb-container-572328c9 gb-accordion-content" id="gb-accordion-content-572328c9"><div class="gb-inside-container">
 <p>Never miss a message, voicemails go straight to your email with call details and audio attachments included. Prefer to read instead of listen? Switch on voicemail transcription for added convenience.</p>
+<p><a href="/mobile-and-softphone-apps/">Find out more about the apps</a></p>
 </div></div></div></div><div class="gb-container gb-container-533429d6 gb-accordion-item"><div class="gb-inside-container">
 <button class="gb-button gb-button-7cc7ade2 gb-accordion__toggle" id="gb-accordion-toggle-7cc7ade2"><span class="gb-button-text">Scheduling &amp; System Management</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
 <div class="gb-container gb-container-513e72f0 gb-accordion-content" id="gb-accordion-content-513e72f0"><div class="gb-inside-container">
 <p>Take full control with our simple online portal. Manage call stats, directories, user access, and recordings all in one place. Update opening hours, choose the number your customers see, route calls by schedule, and make changes on the go, all with ease.</p>
+<p><a href="/call-queues-and-hunt-groups/">Find out more about call handling</a></p>
 </div></div></div></div><div class="gb-container gb-container-ed3dee78 gb-accordion-item"><div class="gb-inside-container">
 <button class="gb-button gb-button-d50e1521 gb-accordion__toggle" id="gb-accordion-toggle-d50e1521"><span class="gb-button-text">Call Routing</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="1em" height="1em" aria-hidden="true" role="img" class="gb-accordion__icon-open"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" fill="currentColor"></path></svg></span></button>
 <div class="gb-container gb-container-b8da74d7 gb-accordion-content" id="gb-accordion-content-b8da74d7"><div class="gb-inside-container">
 <p>Work smarter with custom call routing, built around the way your team operates. We’ll tailor everything to keep your business running efficiently while giving your customers a smooth, professional experience.</p>
+<p><a href="/call-queues-and-hunt-groups/">Find out more about call queues &amp; hunt groups</a></p>
 </div></div></div></div></div></div></div></div></div></div></div></div><div class="gb-container gb-container-ca28910c" id="hardware"><div class="gb-inside-container"><div class="gb-container gb-container-09ef6a20"><div class="gb-inside-container">
 <div class="wp-block-cb-carousel cb-single-slide phone-systems-carousel-new" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;speed&quot;:1000,&quot;arrows&quot;:false,&quot;dots&quot;:true,&quot;autoplay&quot;:true,&quot;autoplaySpeed&quot;:3000,&quot;infinite&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1}}]}">
 <div class="wp-block-cb-slide">
@@ -287,69 +293,6 @@ post_id: 215
 </div>
 </div>
 
-<div class="wp-block-cb-slide">
-<div class="wp-block-columns">
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:50%">
-<h2 class="gb-headline gb-headline-2156f1ee gb-headline-text">Routers<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
-
-<p class="gb-headline gb-headline-1453de16 gb-headline-text">Business-grade routers that manage internet traffic securely and reliably, forming the foundation of a stable network and connected phone system.</p>
-<div class="gb-container gb-container-f917c77c"><div class="gb-inside-container">
-<a class="gb-button gb-button-a694b716 gb-button-text" href="/routers/">Find out more</a>
-</div></div></div>
-
-<div class="wp-block-column" style="flex-basis:50%"><div class="gb-container gb-container-420fd662"><div class="gb-inside-container">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Routers.webp" alt="" class="wp-image-16338" style="width:auto;height:500px" width="1076" height="811"/></figure>
-</div></div></div>
-</div>
-</div>
-
-<div class="wp-block-cb-slide">
-<div class="wp-block-columns">
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:50%">
-<h2 class="gb-headline gb-headline-1fddfbc8 gb-headline-text">WiFi Access Points<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
-
-<p class="gb-headline gb-headline-7bb5363c gb-headline-text">Ceiling or wall-mounted WiFi access points that provide fast, reliable wireless coverage across offices, warehouses, and multi-room sites.</p>
-<div class="gb-container gb-container-7f970191"><div class="gb-inside-container">
-<a class="gb-button gb-button-845cca54 gb-button-text" href="/wifi-access-points/">Find out more</a>
-</div></div></div>
-
-<div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/WiFi-Access-Points.webp" alt="" class="wp-image-16339" style="width:auto;height:500px" width="998" height="1000"/></figure>
-</div>
-</div>
-</div>
-
-<div class="wp-block-cb-slide">
-<div class="wp-block-columns">
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:50%">
-<h2 class="gb-headline gb-headline-8b92a5e6 gb-headline-text">Managed Switches<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
-
-<p class="gb-headline gb-headline-1112f25f gb-headline-text">Managed network switches that connect phones, computers, and access points, allowing networks to be organised, monitored, and scaled as your business grows.</p>
-<div class="gb-container gb-container-9537a884"><div class="gb-inside-container">
-<a class="gb-button gb-button-a7814829 gb-button-text" href="/managed-switches/">Find out more</a>
-</div></div></div>
-
-<div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full"><img src="/assets/uploads/Managed-Switches.webp" alt="" class="wp-image-16340" style="object-fit:cover" width="1076" height="271"/></figure>
-</div>
-</div>
-</div>
-
-<div class="wp-block-cb-slide">
-<div class="wp-block-columns">
-<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:50%">
-<h2 class="gb-headline gb-headline-a5cab2d7 gb-headline-text">Comms Cabinets<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
-
-<p class="gb-headline gb-headline-f797495b gb-headline-text">Secure cabinets that house networking and phone equipment neatly, helping protect hardware, improve airflow, and keep installations tidy and professional.</p>
-<div class="gb-container gb-container-6d3ed7fa"><div class="gb-inside-container">
-<a class="gb-button gb-button-7c8bdf41 gb-button-text" href="/comms-cabinets/">Find out more</a>
-</div></div></div>
-
-<div class="wp-block-column" style="flex-basis:50%">
-<figure class="wp-block-image aligncenter size-full is-resized"><img src="/assets/uploads/Comms-Cabinets-1.webp" alt="" class="wp-image-16341" style="width:auto;height:500px" width="1076" height="749"/></figure>
-</div>
-</div>
-</div>
 </div>
 </div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-d56fa762" id="stay-connected-anywhere"><div class="gb-inside-container"><div class="gb-container gb-container-a0011b9d"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-955b8c25"><div class="gb-grid-column gb-grid-column-b815c493"><div class="gb-container gb-container-b815c493"><div class="gb-inside-container">
 <figure class="wp-block-image size-full"><img src="/assets/uploads/General-Page-PNG-Image-Website-12-2.webp" alt="" class="wp-image-17483" title="FOne Elevate Mockup (2)" width="1260" height="547"/></figure>
@@ -394,9 +337,9 @@ post_id: 215
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-37fb4f12" id="call-recording"><div class="gb-inside-container"><div class="gb-container gb-container-732fed6a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-bab8c124"><div class="gb-grid-column gb-grid-column-b51de444"><div class="gb-container gb-container-b51de444 mobile-align-center"><div class="gb-inside-container">
 <figure class="gb-block-image gb-block-image-0b3a00f2"><img class="gb-image gb-image-0b3a00f2" src="/assets/uploads/Akixi-Reporting.webp" alt="" title="Akixi Reporting" width="976" height="477"/></figure>
 </div></div></div><div class="gb-grid-column gb-grid-column-1bad6562"><div class="gb-container gb-container-1bad6562"><div class="gb-inside-container">
-<h2 class="gb-headline gb-headline-85c50525 gb-headline-text">Clear Call Reporting<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
+<h2 class="gb-headline gb-headline-85c50525 gb-headline-text">Live View<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
-<p class="gb-headline gb-headline-a4f1c030 gb-headline-text">Gain clear visibility over how your phone solution is being used. You can see how many calls you are receiving, how quickly they are answered and where calls are being missed. With Webex by Cisco, advanced reporting is available through Akixi to help you spot issues, improve customer experience and manage workloads effectively.</p>
+<p class="gb-headline gb-headline-a4f1c030 gb-headline-text">Give supervisors real-time visibility into calls as they happen, not just after they end. Live sentiment by queue, live transcripts and mid-call summaries show which conversations need attention right now, and monitor, whisper and barge let a supervisor listen in, coach an agent privately or step into the call. A real-time dashboard shows queue health and call activity across the whole team in one place.</p>
 
 <a class="gb-button gb-button-544ee991 gb-button-text" href="/live-view/">Find out more</a>
 </div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-97d07ac6" id="crm-integration"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-34deccd9"><div class="gb-grid-column gb-grid-column-90d73e04"><div class="gb-container gb-container-90d73e04"><div class="gb-inside-container">

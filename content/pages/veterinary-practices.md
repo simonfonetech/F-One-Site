@@ -33,7 +33,7 @@ post_id: 1001
 
 <p class="gb-headline gb-headline-77f8b887 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Keep clients engaged while they wait with SmartVoice. Share pet care tips, promote services, or highlight seasonal offers using professional, AI-generated messages that improve communication and help drive bookings.</mark></p>
 
-<a class="gb-button gb-button-65de39ee gb-button-text mobile-remove-gradient" href="/smartvoice-on-hold-messaging/">Find out more</a>
+<a class="gb-button gb-button-65de39ee gb-button-text mobile-remove-gradient" href="/voice-studio/">Find out more</a>
 </div><figure class="wp-block-media-text__media"><img src="/assets/uploads/Rectangle-General-Page-Boxed-Image-Website-7-2-1024x768.png" alt="" class="wp-image-16488 size-full"/></figure></div>
 </div></div><div class="gb-container gb-container-097ee022"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-3e6881e6"><div class="gb-grid-column gb-grid-column-f6599df0"><div class="gb-container gb-container-f6599df0"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-93448b2b gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Call Recording for Service &amp; Training</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">.</mark></h2>

@@ -430,8 +430,10 @@ document.addEventListener('DOMContentLoaded', function () {
       // CSS min-height (style.css) is the standard; if a card's copy
       // outgrows it at some width, every card is raised to match the
       // tallest instead of the row going ragged. Re-measured on Slick's
-      // setPosition (fires on resize and breakpoint changes) and again on
-      // window load, once web fonts have settled the line wrapping.
+      // breakpoint changes, on (debounced) window resize, and again on
+      // window load once web fonts have settled the line wrapping. Not on
+      // setPosition: Slick fires that after every autoplay slide too, and
+      // the clear-then-measure would have nudged the cards every 3s.
       if ($el.hasClass('our-services-slider')) {
         var $cards = $el.find('.wp-block-cb-slide > .gb-container');
         var equalise = function () {
@@ -440,7 +442,12 @@ document.addEventListener('DOMContentLoaded', function () {
           $cards.each(function () { max = Math.max(max, this.getBoundingClientRect().height); });
           if (max) $cards.css('min-height', Math.ceil(max) + 'px');
         };
-        $el.on('setPosition', equalise);
+        var equaliseTimer = null;
+        $el.on('breakpoint', equalise);
+        $(window).on('resize', function () {
+          clearTimeout(equaliseTimer);
+          equaliseTimer = setTimeout(equalise, 120);
+        });
         $(window).on('load', equalise);
         equalise();
       }
@@ -539,6 +546,152 @@ document.addEventListener('DOMContentLoaded', function () {
         if (content) content.style.maxHeight = content.scrollHeight + 'px';
         item.classList.add('is-open');
         btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+});
+
+// Footer link groups collapse to titled rows on phones (footer.html /
+// style.css). One tap opens or closes a group; on wider screens the groups
+// are always open and the title buttons are inert.
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.footer-col-title button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (window.innerWidth > 767) return;
+      var col = btn.closest('.footer-col');
+      var open = col.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+});
+
+// Eased page scroll (used by the team tiles). Hand-rolled rather than
+// behavior:'smooth', whose speed the browser fixes. theme.css sets
+// `html { scroll-behavior: smooth }`, which would turn each per-frame
+// scrollTo into its own browser-smoothed scroll (the glide crept, then the
+// browser's smoothing finished it in a rush), so it's paused for the glide.
+// About Us team portraits on phones: two per row, tap to swing one out
+// (style.css `#meet-the-team ... .is-expanded`); a second tap, or tapping
+// another portrait, collapses it. Inert above 767px, where the desktop
+// hover-reveal applies instead.
+//
+// One loop moves everything. The layout change (tiles wrapping to new rows,
+// the tapped one growing) is animated FLIP-style -- every tile's box is
+// recorded, the classes are swapped (an instant reflow), and each tile is
+// transformed back to its old box and eased into the new one -- and the
+// page scroll that brings the photo under the header is stepped in the
+// SAME frame with the SAME curve (720ms, user asked for 10% faster). That matters: as two separate animations
+// (a fast-start CSS transition for the tiles, a slow-start scroll) a
+// right-column tile, which wraps a whole row lower when it expands, visibly
+// dropped ~200px before the scroll caught up and lifted it, while a
+// left-column tile (which barely moves in the layout) glided cleanly. With
+// one curve the two motions add up to a straight glide from where the tile
+// was to where it ends, whichever column it started in.
+function teamMove(tiles, mutate, scrollTarget, duration, done) {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var first = new Map();
+  tiles.forEach(function (el) { first.set(el, el.getBoundingClientRect()); });
+  mutate();
+  var moves = [];
+  tiles.forEach(function (el) {
+    var f = first.get(el), l = el.getBoundingClientRect();
+    if (!l.width || !l.height) return;
+    var m = { el: el, dx: f.left - l.left, dy: f.top - l.top, sx: f.width / l.width, sy: f.height / l.height };
+    if (Math.abs(m.dx) < .5 && Math.abs(m.dy) < .5 && Math.abs(m.sx - 1) < .01 && Math.abs(m.sy - 1) < .01) return;
+    el.style.transformOrigin = 'top left';
+    moves.push(m);
+  });
+  // scroll target is taken now, after the reflow, from layout offsets (not
+  // bounding rects, which the transforms below would skew)
+  var startY = window.scrollY, endY = startY;
+  if (typeof scrollTarget === 'function') {
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    endY = Math.max(0, Math.min(scrollTarget(), maxY));
+  }
+  var root = document.documentElement, prevBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto'; // theme's smooth scrolling would re-ease every step
+  function ease(x) { return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; } // ease-in-out
+  function apply(e) {
+    var k = 1 - e;
+    moves.forEach(function (m) {
+      m.el.style.transform = 'translate(' + (m.dx * k) + 'px,' + (m.dy * k) + 'px) scale(' +
+        (m.sx + (1 - m.sx) * e) + ',' + (m.sy + (1 - m.sy) * e) + ')';
+    });
+    if (endY !== startY) window.scrollTo(0, startY + (endY - startY) * e);
+  }
+  function finish() {
+    moves.forEach(function (m) { m.el.style.transform = ''; m.el.style.transformOrigin = ''; });
+    if (endY !== startY) window.scrollTo(0, endY);
+    root.style.scrollBehavior = prevBehavior;
+    if (done) done();
+  }
+  if (reduce) { finish(); return; }
+  apply(0);
+  var start = null;
+  function step(ts) {
+    if (start === null) start = ts;
+    var p = Math.min(1, (ts - start) / duration);
+    apply(ease(p));
+    if (p < 1) requestAnimationFrame(step); else finish();
+  }
+  requestAnimationFrame(step);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var team = document.getElementById('meet-the-team');
+  if (!team) return;
+  var busy = false;
+  team.querySelectorAll('.team-member-container').forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      if (window.innerWidth > 767 || busy) return;
+      var col = tile.closest('.gb-grid-column');
+      if (!col) return;
+      var tiles = Array.from(team.querySelectorAll('.gb-grid-column'));
+      var open = team.querySelector('.gb-grid-column.is-expanded');
+      var opening = col !== open;
+      busy = true;
+
+      // layout position ignoring transforms (offsetTop is layout-based)
+      function docTop(el) { var y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; }
+
+      // Same sequence for every tile (user, 2026-09-03): the grid re-flows
+      // and the page glides in one motion until the photo sits 76px under
+      // the header, and only then does the bio roll out beneath it.
+      function moveTiles() {
+        teamMove(tiles, function () {
+          if (open) open.classList.remove('is-expanded', 'is-bio-open', 'is-collapsing');
+          if (opening) col.classList.add('is-expanded');
+        }, opening ? function () { return docTop(col) - 76; } : null, 720, function () {
+          if (opening) {
+            // tell the unfold keyframe the bio's real height: measure it in
+            // its open-state layout (class on) but with the keyframe held
+            // off, then release it so it starts on the next frame
+            col.classList.add('is-bio-open');
+            var cap = col.querySelector('figcaption');
+            if (cap) {
+              cap.style.animation = 'none';
+              col.style.setProperty('--bio-h', cap.scrollHeight + 'px');
+              cap.style.animation = '';
+            }
+          }
+          setTimeout(function () { busy = false; }, opening ? 430 : 0);
+        });
+      }
+
+      if (open && open.classList.contains('is-bio-open')) {
+        // fold the open bio away first (height + opacity animate over its
+        // real height), and move the instant the fold ends so the layout
+        // is final when the scroll target is measured
+        var oldCap = open.querySelector('figcaption');
+        if (oldCap) open.style.setProperty('--bio-h', oldCap.scrollHeight + 'px');
+        open.classList.remove('is-bio-open');
+        open.classList.add('is-collapsing');
+        var moved = false;
+        function moveOnce() { if (moved) return; moved = true; moveTiles(); }
+        if (oldCap) oldCap.addEventListener('animationend', moveOnce, { once: true });
+        setTimeout(moveOnce, 410); // fallback (reduced motion runs no animation)
+      } else {
+        moveTiles();
       }
     });
   });

@@ -26,7 +26,7 @@ post_id: 995
 
 <p class="gb-headline gb-headline-7ba6d92d gb-headline-text">SmartVoice keeps patients engaged while they’re on hold by sharing helpful, professional messages about your services, such as whitening or Invisalign. Using AI-generated voice messages and background music, it turns hold time into a positive experience that can increase enquiries and bookings without adding work for your team.</p>
 
-<a class="gb-button gb-button-43a0a727 gb-button-text mobile-remove-gradient" href="/smartvoice-on-hold-messaging/">Find out more</a>
+<a class="gb-button gb-button-43a0a727 gb-button-text mobile-remove-gradient" href="/voice-studio/">Find out more</a>
 </div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"/></svg></div></div></div><div class="gb-container gb-container-b84a8afb"><div class="gb-inside-container">
 <div class="wp-block-media-text alignwide has-media-on-the-right is-stacked-on-mobile side-by-side-rounded-corners"><div class="wp-block-media-text__content">
 <h2 class="gb-headline gb-headline-0f64c0b1 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Call Queuing with Automatic Callbacks</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>

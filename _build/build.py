@@ -166,28 +166,7 @@ def main():
 
     urls = []
 
-    # ---------------- pages ----------------
-    pages = load_content('pages')
-    for p in pages:
-        slug = p['slug']
-        path = f'/{slug}/'
-        html = env.get_template('page.html').render(base_ctx(
-            page_title=p.get('title', ''),
-            page_description=p.get('excerpt', '') or '',
-            canonical_path=path,
-            og_image=p.get('featured_image'),
-            content=p['_body'],
-            generated_css=generated_css_path(p.get('post_id')),
-            page_theme_color=SERVICE_ACCENTS.get(slug),
-            is_homepage=(slug == site.get('homepage_slug')),
-        ))
-        write_file(path + 'index.html', html)
-        urls.append(path)
-        if slug == site.get('homepage_slug'):
-            write_file('/index.html', html)
-            urls.append('/')
-
-    # ---------------- posts ----------------
+    # ---------------- posts (loaded first so pages can embed the newest) ----------------
     posts_raw = load_content('posts')
     posts_raw.sort(key=lambda p: p.get('date') or '', reverse=True)
 
@@ -203,6 +182,37 @@ def main():
             'excerpt': p.get('excerpt', ''),
         })
 
+    # A page body may carry the marker below (About Us: "Read Our Latest
+    # Blog"); it's replaced with the newest post at build time, so the
+    # section keeps itself current as posts are added.
+    LATEST_POST_MARKER = '<!-- latest-post -->'
+    latest_post_html = (env.get_template('partials/latest_post.html').render(base_ctx(post=posts_view[0]))
+                        if posts_view else '')
+
+    # ---------------- pages ----------------
+    pages = load_content('pages')
+    for p in pages:
+        slug = p['slug']
+        path = f'/{slug}/'
+        html = env.get_template('page.html').render(base_ctx(
+            page_title=p.get('title', ''),
+            page_description=p.get('excerpt', '') or '',
+            canonical_path=path,
+            og_image=p.get('featured_image'),
+            content=p['_body'].replace(LATEST_POST_MARKER, latest_post_html),
+            generated_css=generated_css_path(p.get('post_id')),
+            page_theme_color=SERVICE_ACCENTS.get(slug),
+            is_homepage=(slug == site.get('homepage_slug')),
+            page_slug=slug,  # body.page-<slug>, for per-page CSS scoping
+        ))
+        write_file(path + 'index.html', html)
+        urls.append(path)
+        if slug == site.get('homepage_slug'):
+            write_file('/index.html', html)
+            urls.append('/')
+
+    # ---------------- posts ----------------
+    # (posts_raw / posts_view are built above, before the pages loop)
     for p, view in zip(posts_raw, posts_view):
         html = env.get_template('post.html').render(base_ctx(
             page_title=p.get('title', ''),
@@ -281,6 +291,15 @@ def main():
     )
     write_file('/sitemap.xml', sitemap)
     write_file('/robots.txt', f'User-agent: *\nAllow: /\nSitemap: {base_url}/sitemap.xml\n')
+
+    # ---------------- redirects ----------------
+    # Cloudflare Pages reads _redirects from the output root. The retired
+    # pages also keep a stub .md that bounces via JS for the local preview.
+    redirects = {
+        '/smartvoice-on-hold-messaging/': '/voice-studio/',
+        '/insights/': '/ai-call-recap/',
+    }
+    write_file('/_redirects', ''.join(f'{src} {dst} 301\n' for src, dst in redirects.items()))
 
     print(f'Built {len(pages)} pages, {len(posts_raw)} posts, {len(categories)} category listings.')
     print(f'Output written to {OUTPUT_DIR}')

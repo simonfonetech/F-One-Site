@@ -67,7 +67,7 @@ post_id: 215
 <li><strong>Service adoption and quality dashboards</strong> that show how the system is being used and how calls are performing.</li>
 <li><strong>Call recording</strong> on group calls, with AI Call Recap summaries and searchable archives on eligible plans.</li>
 </ul>
-<a class="gb-button gb-button-009f904b gb-button-text" href="/live-view/">About Live View</a>
+<a class="gb-button gb-button-009f904b gb-button-text" href="/live-view/">Find out more</a>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-97d07ac6" id="set-up-around-you"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-34deccd9"><div class="gb-grid-column gb-grid-column-90d73e04"><div class="gb-container gb-container-90d73e04"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-49f83e93 gb-headline-text">Set Up Around How You Work<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 

@@ -14,7 +14,10 @@ post_id: 14674
 
 <div class="gb-button-wrapper gb-button-wrapper-e6601522"><a class="gb-button gb-button-9f854ee6 gb-button-text mobile-remove-gradient" href="/contact-us/">Get in touch</a></div>
 </div></div></div></div></div></div><div class="gb-container gb-container-d9547324 gradient_blue-black-blue"><div class="gb-inside-container">
-
+<!-- gb-query/gb-looper wrappers and per-award loop-item + splitter divs restored
+     to match live: the page's generated CSS (14674.css) styles exactly this structure. -->
+<div class="gb-query-523cef65"><div class="gb-looper-9772cf59">
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/CRN25.png"/>
 
@@ -28,8 +31,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/cna-2025.webp"/>
 
@@ -43,8 +48,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/channel-champions-logo-2025.svg"/>
 
@@ -58,8 +65,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/tech-reseller-awards-2025.svg"/>
 
@@ -79,8 +88,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/Group-3362.svg"/>
 
@@ -94,8 +105,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/logo.21ddc42553196ab65f2cf4b921717c56.svg"/>
 
@@ -109,8 +122,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/channel-champions-logo-white-rgb.svg"/>
 
@@ -130,8 +145,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/TRA-24.svg"/>
 
@@ -151,8 +168,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/channel-champ-2023.svg"/>
 
@@ -166,8 +185,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/giganet-logo.svg"/>
 
@@ -181,8 +202,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/TRA-23.svg"/>
 
@@ -202,8 +225,10 @@ post_id: 14674
 
 </div>
 </div>
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
 
-
+<div class="gb-loop-item award-loop-item">
 <div class="gb-element-36666926 awards-wrapper award-border-bottom">
 <img class="gb-media-2f521505" alt="" src="/assets/uploads/CRN-2022-e1755082743182.png"/>
 
@@ -217,7 +242,9 @@ post_id: 14674
 
 </div>
 </div>
-
+<div class="gb-element-743e465d award-splitter"></div>
+</div>
+</div></div>
 
 </div></div>
 <script>

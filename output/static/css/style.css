@@ -1564,12 +1564,14 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
   background-image: linear-gradient(150deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, 0) 45%, rgba(0, 33, 53, .14) 100%);
   /* soft offset shadow + hairline inner highlight, replacing the dated
      black halo (0 0 12px 2px rgba(0,0,0,.5)) */
-  box-shadow: 0 18px 36px -18px rgba(0, 33, 53, .38), inset 0 0 0 1px rgba(255, 255, 255, .22);
+  /* no shadow (or inset ring): the user wants plain solid cards on every
+     screen size -- the hover lift below is the only depth cue */
+  box-shadow: none;
   transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
 }
 .our-services-slider .wp-block-cb-slide > .gb-container:hover {
   transform: translateY(-4px);
-  box-shadow: 0 26px 44px -20px rgba(0, 33, 53, .48), inset 0 0 0 1px rgba(255, 255, 255, .3);
+  box-shadow: none;
 }
 .our-services-slider .wp-block-cb-slide .gb-inside-container {
   display: grid;
@@ -1637,6 +1639,25 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
    neighbours, and its mask-image faded both edges of the list. Both are
    neutralised here at higher specificity, since wp-custom.css loads after
    this file. */
+/* Title and its full stop both white (the mark carried a preset colour
+   class with !important); the "Find out more" hover takes the card's own
+   colour instead of the generated pink/black/blue swaps -- with a white
+   ring so a card-coloured button still reads as a button on that card. */
+.our-services-slider .wp-block-cb-slide > .gb-container h2,
+.our-services-slider .wp-block-cb-slide > .gb-container h2 mark { color: #fff !important; }
+.our-services-slider .gb-container-5aef4e79 { --card-bg: var(--wp--preset--color--green, #24D19C); }
+.our-services-slider .gb-container-37204ae0 { --card-bg: var(--wp--preset--color--blue, #76C0FF); }
+.our-services-slider .gb-container-07baede7 { --card-bg: #d5acf8; }
+.our-services-slider .gb-container-7f9e0d80 { --card-bg: var(--wp--preset--color--primary, #f06120); }
+.our-services-slider .gb-container-621458a5 { --card-bg: var(--wp--preset--color--yellow, #FFCE00); }
+.our-services-slider .wp-block-cb-slide > .gb-container a.gb-button { transition: background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+.our-services-slider .wp-block-cb-slide > .gb-container a.gb-button:hover,
+.our-services-slider .wp-block-cb-slide > .gb-container a.gb-button:focus {
+  background-color: var(--card-bg) !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 2px #fff;
+}
+
 @media (min-width: 768px) {
   .wp-block-cb-carousel.our-services-slider .slick-track { margin-left: 0; }
   .wp-block-cb-carousel.our-services-slider .slick-list { mask-image: none; -webkit-mask-image: none; }
@@ -1659,6 +1680,165 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
 .arch-light, .arch-light li, .arch-light strong { color: #fff; }
 .arch-figure { margin: 0; }
 .arch-figure img { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto; }
+
+/* ================= Mobile parity for service & product pages =================
+   IT Essentials is the reference the user signed off: at phone width its
+   text sits 10-16px in from the screen edge and is centred. Every other
+   page's top-level sections (Cloud Phone Systems and the Elevate feature
+   pages built on its generated CSS, the other service pages, product pages)
+   had no side padding below 768px, so paragraphs, lists and headings ran to
+   0-7px from the edge, and lists, sub-headings, CTA buttons, the contact
+   heading and the fone-section pages (Elevate, Voice Studio, CRM, Live
+   View) were left aligned. One phone-only rule set, scoped to page content
+   and excluding only IT Essentials itself (leave the reference exactly as
+   is; body.page-<slug> comes from base.html) and the homepage's
+   Products & Services carousel cards, which are left-aligned by design.
+   Blog listings and posts get the same padding and centred headings/
+   cards below; article body copy stays left-aligned for readability. */
+@media (max-width: 767px) {
+  /* Same scheme as fonetech.uk's homepage at phone width (measured, see the
+     homepage block below): the 15px gutter sits on each top-level section
+     itself and the inside containers carry none -- so a section's own
+     padding never stacks on top of it. Applied to every page (the user
+     asked for the homepage padding on every Cloud Phone Systems page and
+     the rest of the site alike). */
+  body:not(.page-it-essentials) .fo-page-content > .gb-container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    box-sizing: border-box;
+  }
+  body:not(.page-it-essentials) .fo-page-content > .gb-container > .gb-inside-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  body:not(.page-it-essentials) .fo-page-content .gb-inside-container:not(.our-services-slider *),
+  body:not(.page-it-essentials) .fo-page-content .wp-block-column:not(.our-services-slider *),
+  body:not(.page-it-essentials) .fo-page-content .fone-section,
+  body:not(.page-it-essentials) .fo-page-content .fone-section-text,
+  body:not(.page-it-essentials) .fo-page-content :is(h1, h2, h3, h4, p, li):not(.our-services-slider *) {
+    text-align: center;
+  }
+  body:not(.page-it-essentials) .fo-page-content .has-text-align-left:not(.our-services-slider *) { text-align: center !important; }
+  /* generated CSS gives many flex-column containers align-items:flex-start,
+     which parks shrink-to-fit headings and inline-flex buttons on the left
+     whatever text-align says (the homepage's Award Winning Service /
+     Industries / Client Feedback blocks all did this) */
+  body:not(.page-it-essentials) .fo-page-content .gb-container:not(.our-services-slider *) { align-items: center; }
+  body:not(.page-it-essentials) .fo-page-content a.gb-button:not(.our-services-slider *),
+  body:not(.page-it-essentials) .fo-page-content .fone-cta-btn { align-self: center; }
+  /* centred text with bullet markers looks ragged: drop the markers */
+  body:not(.page-it-essentials) .fo-page-content .arch-list { list-style: none; padding-left: 0; margin-left: 0; }
+  body:not(.page-it-essentials) .fo-page-content figure { margin-left: auto; margin-right: auto; }
+  /* Page heroes: the WiFi & Networking hero is the reference (user, 2026-09-02)
+     -- its generated CSS keeps it a full viewport tall on phones, so the
+     centred icon/heading/copy/button start 120px below the fixed 60px
+     header. Every other hero was only 70vh, its content taller than that,
+     and the overflow began at the top of the page hidden under the header
+     (icons cut off, product-page headings at y=0). Same height for all,
+     with header-sized padding top and bottom so centring gives exactly the
+     WiFi positions, and `safe center` so content taller than the screen
+     starts under the header instead of behind it. Scoped to the four
+     photo-background hero containers (Cloud Phone Systems + Elevate feature
+     pages, Mobile SIM / IT Essentials, WiFi / WhatsApp, Omada / Elevate) --
+     the product pages' first section is only a title band, which a
+     viewport-tall rule left as a lone heading in white space. */
+  .fo-page-content > .gb-container:first-child:is(.gb-container-1b5e3fa0, .gb-container-db878a2c, .gb-container-09b457df, .gb-container-67c9176e) {
+    min-height: 100vh !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: safe center;
+  }
+  /* product pages (Yealink / Cisco / networking hardware): the title band
+     sat 30px under the fixed header -- just clear it */
+  .fo-page-content > .gb-container:first-child:is(.gb-container-9779332d, .gb-container-4c322818) {
+    padding-top: 76px !important;
+  }
+  /* testimonial cards (homepage Client Feedback, WiFi page): live keeps the
+     quote centred but the name/company left-aligned, with the client logo
+     overlapping the card's bottom-right corner */
+  body:not(.page-it-essentials) .fo-page-content .f_one_testimonial cite { display: block; text-align: left; }
+
+  /* blog: same side padding; hero, meta, listing cards and -- on phones --
+     the whole article centred (user request 2026-09-02) */
+  .post-body { padding-left: 16px; padding-right: 16px; text-align: center; }
+  .post-body ul, .post-body ol { list-style-position: inside; padding-left: 0; }
+  .post-header, .blog-header, .pagination, .post-card-body,
+  .post-body :is(h1, h2, h3, h4) { text-align: center; }
+  .post-card-body { align-items: center; }
+
+  /* desktop-only spacing that pushes text away from a neighbouring image
+     (padding-right:60px on a few generated headline/paragraph and
+     container rules) reads as off-centre once the columns stack */
+  body:not(.page-it-essentials) .fo-page-content .gb-headline:not(.our-services-slider *) { padding-left: 0 !important; padding-right: 0 !important; }
+  body:not(.page-it-essentials) .fo-page-content .gb-container-ca80ed53 { padding-right: 0 !important; }
+  /* carousel slides (industries, hardware): 8px like the homepage's
+     Products & Services slides, on top of the section's 15px gutter */
+  body:not(.page-it-essentials) .fo-page-content .wp-block-cb-carousel:not(.our-services-slider) .wp-block-cb-slide { padding-left: 8px; padding-right: 8px; }
+}
+
+/* ================= Homepage phone layout, matched to fonetech.uk =================
+   Measured on the live site at 390px (2026-09-02): every top-level section
+   carries a 15px side gutter on the section itself (Award Winning Service
+   20px; the hero and "People at the Heart" none) and NO side padding on its
+   inside container; Products & Services and the client-logo band have no
+   vertical padding of their own on phones (their inner containers carry the
+   spacing). Ours had the generic 16px inside-container gutter on top of the
+   sections' own padding, which pushed carousel cards and the Award copy 20-25px
+   further in than live, and the logo band was 150px taller. This block comes
+   after the mobile-parity rules above and wins on order at equal specificity. */
+@media (max-width: 767px) {
+  body.is-homepage .fo-page-content > .gb-container > .gb-inside-container { padding-left: 0 !important; padding-right: 0 !important; }
+  body.is-homepage .fo-page-content > .gb-container { padding-left: 15px !important; padding-right: 15px !important; }
+  body.is-homepage .fo-page-content > #header-container { padding-left: 0 !important; padding-right: 0 !important; }
+  /* live: the quote text sits 13px in. The card inside scales with the
+     section width, so 0 gives 8px and 5px gives 21px -- 2px lands on 13. */
+  body.is-homepage .fo-page-content > #what-our-team-say { padding-left: 2px !important; padding-right: 2px !important; }
+  body.is-homepage .fo-page-content > .gb-container-15dce509 { padding-left: 20px !important; padding-right: 20px !important; }
+  body.is-homepage .fo-page-content > .gb-container-6af3922a { padding-top: 0 !important; padding-bottom: 0 !important; }
+  /* (0,3,1) to outrank the desktop-only 100px bottom-padding fix on this band
+     further down the file, which is (0,2,1) and also !important */
+  body.is-homepage .fo-page-content > .gb-container-55e4be16 { padding-top: 0 !important; padding-bottom: 0 !important; }
+  body.is-homepage .fo-page-content > .gb-container-5514cb03 { padding-bottom: 0 !important; }
+  /* live keeps 20px on this one inside container (testimonial card gutter) */
+  body.is-homepage .fo-page-content > #what-our-customers-say > .gb-inside-container { padding-left: 20px !important; padding-right: 20px !important; }
+}
+/* Hero: live stacks the text block and the phone-image carousel as plain
+   block flow below 1025px. Ours kept the desktop flex row, so the carousel
+   became a shrink-to-fit flex item -- the circular measurement Slick then
+   locks in (see the .gb-grid-wrapper note near the top of this file) gave
+   its track a width in the tens of millions of pixels, a 616px-tall slide
+   (live: 204px) and a hero 400px taller than live with an empty band under
+   the phones. Block flow gives Slick a determinate 100% width to measure. */
+@media (max-width: 1024px) {
+  body.is-homepage #header-container > .gb-inside-container { display: block !important; }
+  body.is-homepage #header-container .gb-container-c0e5ce88,
+  body.is-homepage #header-container .gb-container-c0e5ce88 .wp-block-cb-carousel { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+}
+
+/* ================= hardware carousel columns (Cloud Phone Systems) =================
+   Live's slides are a WordPress columns block with the block library's
+   flex-layout gap of 2em (32px). The static export dropped the layout
+   class that carries it, so on phones -- where the two columns wrap into
+   text-over-image -- the "Find out more" button sat flush against the top
+   of the handset photo (live: 32px between them). Same 32px sits between
+   the columns side by side on desktop, as on live. */
+.wp-block-cb-carousel .wp-block-columns { gap: 2em; }
+/* measured on live at 390px: 53px from the button to the top of the photo */
+@media (max-width: 781px) { .wp-block-cb-carousel .wp-block-columns { row-gap: 53px; } }
+
+/* ================= latest blog post block (About Us, build-time) =================
+   Markup comes from templates/partials/latest_post.html; the section's own
+   generated CSS styles the h3/button, this covers the thumbnail and meta. */
+.latest-post { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.latest-post-thumb { display: block; width: 100%; max-width: 460px; }
+.latest-post-thumb img { display: block; width: 100%; aspect-ratio: 2.5 / 1; object-fit: cover; border-radius: 14px; }
+.latest-post-meta { margin: 0; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--connectivity-orange, #EE561D); }
+.latest-post .gb-headline-d3943e5c { max-width: 640px; }
+.latest-post h3 a { text-decoration: none; }
+.latest-post h3 a:hover { text-decoration: underline; }
 
 /* ================= "Proud to Support These Businesses" band =================
    The client-logo band carries 50px of bottom padding on its own container and
@@ -1705,9 +1885,17 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
    a 72px overhang reproduces live on both the wifi page and the homepage. */
 .f_one_testimonial figure {
   top: auto;
-  bottom: -72px;
+  bottom: -58px; /* measured on fonetech.uk at 390px, 2026-09-02 (was -72) */
   transform: none;
 }
+/* Phones: the client logo overlaps the review card by ~60% of its own 90px
+   height (user request 2026-09-02: half, then "slightly higher still"). */
+@media (max-width: 767px) {
+  .f_one_testimonial figure { bottom: -35px; }
+}
+/* No soft drop shadow under the review card, desktop or mobile (user
+   request 2026-09-02) -- theme.css draws it as the card's ::after. */
+.f_one_testimonial::after { content: none !important; display: none !important; }
 
 /* ================= SITE FOOTER (matched to the live theme's real CSS) ================= */
 .site-footer {
@@ -1726,7 +1914,9 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
    heading's own margin rather than container padding, so a 40px pad here sat
    24px too deep. */
 .footer-inner { max-width: 1300px; margin: 0 auto; padding: 16px 20px 10px; }
-.footer-columns { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+/* 7 columns since Products was split into Phones / Networking (v24) --
+   at 6 the last column ("Get in Touch") wrapped onto its own row. */
+.footer-columns { display: grid; grid-template-columns: repeat(7, 1fr); gap: 24px; }
 .footer-columns h4 { font-size: 12px; line-height: 18px; color: var(--text-white); margin: 0 0 16px; font-weight: 700; }
 .footer-columns ul { list-style: none; margin: 0; padding: 0; }
 /* line-height on the li itself, not just the link: the li inherits body's 1.5
@@ -1756,8 +1946,191 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
 @media (max-width: 991px) {
   .footer-columns { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 540px) {
-  .footer-columns { grid-template-columns: 1fr; }
+/* The group titles are <button>s (footer.html) so the phone accordion is
+   accessible; on desktop they must look exactly like the plain <h4> they
+   replace. theme.css styles every button orange with padding, so reset. */
+.footer-col-title button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+}
+/* theme.css restyles button:hover/:focus/:active (grey fill, padding).
+   Neutralise those properties individually -- NOT with `all: unset`: at
+   (0,2,1) that outranked the phone padding rule below, so the instant a
+   finger touched the row (:active/:focus) the button shrank from 44px to
+   18px and the tap's click landed on the wrapper div instead. */
+.footer-col-title button:hover,
+.footer-col-title button:focus,
+.footer-col-title button:active {
+  background: none;
+  color: inherit;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  transform: none;
+}
+.footer-col-chevron { display: none; }
+
+/* Phones: each link group collapses to a titled row with a chevron,
+   separated by hairlines, as on fonetech.uk (user request 2026-09-02,
+   replacing the earlier two-column packing). The Get in Touch block is not
+   a group and stays open with its accent-coloured icons. */
+@media (max-width: 767px) {
+  .footer-columns { display: block; }
+  .footer-col { border-bottom: 1px solid rgba(255, 255, 255, .14); }
+  /* (0,2,0) to beat `.footer-columns h4 { margin: 0 0 16px }` above */
+  .footer-columns .footer-col-title { margin: 0; }
+  /* live: 12px/700 title on an 18px line with 8px above and below -- a 34px
+     row pitch (ours was 61px) */
+  .footer-col-title button,
+  .footer-col-title button:hover,
+  .footer-col-title button:focus,
+  .footer-col-title button:active { padding: 8px 0; font-size: 12px; line-height: 18px; cursor: pointer; }
+  .footer-col-chevron { display: block; flex-shrink: 0; transition: transform .2s ease; }
+  .footer-col.is-open .footer-col-chevron { transform: rotate(180deg); }
+  .footer-col > ul { display: none; padding: 0 0 8px; }
+  .footer-col.is-open > ul { display: block; }
+  .footer-col > ul li { line-height: 24px; }
+  .footer-columns > div:not(.footer-col) { padding-top: 14px; }
+}
+
+/* ================= About Us team portraits on phones =================
+   Two portraits per row instead of one 400px-tall portrait each (user
+   request 2026-09-02). The name/role sit BELOW the photo in black text
+   (not the desktop's white overlay on a navy gradient), in both states.
+   A tap swings a tile out to full width and shows the bio under the
+   name; a second tap collapses it. main.js toggles .is-expanded on the
+   column below 768px; desktop keeps its hover-reveal exactly as before. */
+@media (max-width: 767px) {
+  /* no scroll anchoring on phones: when an open tile collapses above the
+     viewport the browser would jump the page to keep some *other* element
+     still (it picks anchors outside this section too), cutting into the
+     glide -- so it's switched off for the whole document at this width */
+  html { overflow-anchor: none; }
+  #meet-the-team .gb-grid-wrapper-6ce775e9 { margin-left: -12px; row-gap: 18px; align-items: flex-start; }
+  #meet-the-team .gb-grid-wrapper-6ce775e9 > .gb-grid-column {
+    width: 50% !important;
+    padding-left: 12px;
+    /* no width transition: layout moves are animated with FLIP in main.js */
+  }
+  /* photo, then name/role, then (expanded only) the bio, as flex siblings:
+     `display: contents` on the figure lifts the img and figcaption up next
+     to the header so they can be ordered */
+  #meet-the-team .team-member-container { display: flex; flex-direction: column; cursor: pointer; }
+  #meet-the-team .team-member-container figure { display: contents; }
+  #meet-the-team figure img {
+    order: 0;
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 5 / 6;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  #meet-the-team .team-member-header {
+    display: block !important;
+    order: 1;
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    padding: 0 2px;
+    margin-top: -6px; /* tuck the name up to the photo (user, 2026-09-02) */
+    background: none !important;
+    color: var(--brand-body-text, #222) !important;
+    text-align: center;
+  }
+  #meet-the-team .team-member-header::before { display: none !important; }
+  /* no font-size transitions: the FLIP scale already carries the name
+     visually, and a transitioning font kept changing the layout height
+     above a newly opened tile for 0.5s, so its scroll target drifted */
+  #meet-the-team .team-member-header h3 { font-size: 15px; line-height: 1.2; margin: 0; color: #111 !important; }
+  #meet-the-team .team-member-header p { font-size: 11px; margin: 2px 0 0; color: #404040 !important; }
+  /* a tap leaves the tile :hover on touch screens; don't let the desktop
+     hover overlay fire on a collapsed tile */
+  #meet-the-team .gb-grid-column:not(.is-bio-open):not(.is-collapsing) figure figcaption,
+  #meet-the-team .gb-grid-column:not(.is-bio-open):not(.is-collapsing):hover figure figcaption,
+  #meet-the-team .gb-grid-column:not(.is-bio-open):not(.is-collapsing):focus figure figcaption { display: none !important; }
+  /* expanded: full width, larger name, bio beneath -- still black on white */
+  /* enlarged tile is 75% of the row (user: 2026-09-02), centred via flex auto margins */
+  #meet-the-team .gb-grid-wrapper-6ce775e9 > .gb-grid-column.is-expanded { width: 75% !important; margin-left: auto; margin-right: auto; }
+  /* the photo eases up to size with the tile; the bio fades and rises in
+     just after the tile has finished growing, instead of popping in */
+  #meet-the-team .gb-grid-column.is-expanded .team-member-header h3 { font-size: 22px; }
+  #meet-the-team .gb-grid-column.is-expanded .team-member-header p { font-size: 14px; }
+  #meet-the-team .gb-grid-column.is-bio-open figure figcaption,
+  #meet-the-team .gb-grid-column.is-collapsing figure figcaption {
+    display: block !important;
+    order: 2;
+    /* the bio breaks out of the 75% tile to the full page width with the
+       site's 15px phone gutters (user, 2026-09-02); photo and name stay
+       inside the tile. The tile is centred on the page and its flex column
+       centres its items, so a page-wide caption simply self-centres. */
+    position: static !important;
+    align-self: center;
+    height: auto !important;
+    width: calc(100vw - 30px) !important;
+    margin-left: 0 !important;
+    box-sizing: border-box;
+    background: none !important;
+    color: var(--brand-body-text, #404040) !important;
+    padding: 10px 0 0 !important;
+    border-radius: 0 !important;
+    font-size: .95rem;
+    line-height: 1.5;
+    text-align: center;
+    overflow: hidden;
+    animation: team-bio-in .405s cubic-bezier(.22, .9, .3, 1) both;
+  }
+  /* a tile being closed (its bio still in the DOM for 450ms, see main.js)
+     folds its bio away instead of dropping ~300px of height in one frame */
+  #meet-the-team .gb-grid-column.is-collapsing figure figcaption {
+    overflow: hidden;
+    animation: team-bio-out .36s cubic-bezier(.22, .9, .3, 1) both;
+  }
+  /* --bio-h is set by main.js to the bio's real height before each fold /
+     unfold, so the visible motion spans the whole keyframe for every tile
+     (a fixed 380px left short bios finished early, then a stall) */
+  @keyframes team-bio-out { from { opacity: 1; max-height: var(--bio-h, 380px); } to { opacity: 0; max-height: 0; padding-top: 0 !important; } }
+  /* max-height runs only slightly past the bios' real height (~300px), so
+     the whole duration is visible motion rather than a dead first half
+     followed by a rush */
+  @keyframes team-bio-in { from { opacity: 0; max-height: 0; padding-top: 0 !important; } to { opacity: 1; max-height: var(--bio-h, 380px); } }
+  @media (prefers-reduced-motion: reduce) {
+    #meet-the-team .gb-grid-wrapper-6ce775e9 > .gb-grid-column,
+    #meet-the-team .team-member-header h3,
+    #meet-the-team .team-member-header p { transition: none; }
+    #meet-the-team .gb-grid-column.is-expanded figure img,
+    #meet-the-team .gb-grid-column.is-bio-open figure figcaption,
+    #meet-the-team .gb-grid-column.is-collapsing figure figcaption { animation: none; }
+  }
+}
+
+/* ================= WhatsApp launcher on phones =================
+   The msgboxx "WhatsApp / Chat with us" pill (170x60, bottom right) becomes
+   just the round logo at 80% size on phones (user request 2026-09-02). Its
+   own stylesheet loads after this file, hence the !importants. */
+@media (max-width: 767px) {
+  .msgboxxContainer .msgboxxlauncher_cta { display: none !important; }
+  .msgboxxContainer .msgboxxlauncher {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 50% !important;
+  }
+  .msgboxxContainer .msgboxxlauncher img {
+    display: block !important;
+    width: 48px !important;
+    height: 48px !important;
+    margin: 0 !important;
+  }
 }
 
 /* ================= BLOG ================= */
@@ -1765,9 +2138,15 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
    left-to-right gradient overlay, with white heading and plain white
    category links (no chips). Matched here minus the hero background
    image and search block, which the static build doesn't carry. */
+/* Colours follow the homepage hero (user request 2026-09-02): navy base
+   with the same dark-to-navy gradient over the photo, white heading with
+   an orange full stop, white category links. The heading is NOT width-
+   capped like the category row: capped at 1200px it was sitting flush
+   left of the 1400px content box, so its centred text read 100px off the
+   page centre on desktop. */
 .blog-header {
   position: relative;
-  background-color: #000;
+  background-color: var(--secondary);
   color: var(--text-white);
   /* leading 120px = 60px clearing the fixed header + 60px of breathing room */
   padding: 120px 20px 40px;
@@ -1776,14 +2155,15 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
 }
 .blog-header::after {
   content: "";
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 66, 105, 0.62));
+  background-image: linear-gradient(90deg, rgba(0, 33, 53, 0.62), rgba(0, 66, 105, 0.72));
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
 }
 .blog-header > *:not(.post-header-background) { max-width: var(--max-width); margin-left: auto; margin-right: auto; }
-.blog-header h1 { color: var(--text-white); }
+.blog-header > h1 { color: var(--text-white); max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
+.blog-header h1 .dot { color: var(--connectivity-orange, #EE561D); }
 .category-filter { display: flex; flex-wrap: wrap; gap: 8px 2rem; justify-content: center; margin: 20px 0 0; }
 .category-filter a {
   color: var(--text-white);
@@ -1815,11 +2195,17 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
   color: var(--brand-body-text);
   background: var(--text-white);
 }
-.post-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+.post-card img { width: 100%; aspect-ratio: 2.5 / 1; object-fit: cover; }
 .post-card-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-.post-card-meta { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--purple); font-weight: 700; }
+/* orange meta / navy titles -- the homepage's accent and heading colours
+   (the meta was purple, the IT Essentials accent) */
+.post-card-meta { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--primary); font-weight: 700; }
 .post-card h3 { margin: 0; font-size: 1.05rem; color: var(--secondary); }
 .post-card p { margin: 0; font-size: .9rem; opacity: .8; }
+/* centred article cards on phones and tablets (user request 2026-09-02) */
+@media (max-width: 991px) {
+  .post-card-body { text-align: center; align-items: center; }
+}
 
 .pagination { display: flex; justify-content: center; gap: 10px; padding-bottom: 60px; }
 .pagination a, .pagination span {
@@ -1838,14 +2224,14 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
   position: relative;
   z-index: 0;
   overflow: hidden;
-  background-color: #000;
+  background-color: var(--secondary); /* navy, as the blog index and homepage hero */
   color: var(--text-white);
   /* leading 120px = 60px clearing the fixed header + 60px of breathing room */
   padding: 120px 20px 50px;
 }
 .post-header::after {
   content: "";
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 66, 105, 0.62));
+  background-image: linear-gradient(90deg, rgba(0, 33, 53, 0.62), rgba(0, 66, 105, 0.72));
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -1861,33 +2247,50 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
   filter: brightness(0.4);
 }
 .post-header > *:not(.post-header-background) { max-width: 800px; margin-left: auto; margin-right: auto; }
+/* The title's auto margins were being overridden (its box sat flush left
+   while the date line and back link were centred), so every post title
+   read as misaligned on desktop. Force the margins and centre the header
+   text (user request 2026-09-02). */
+.post-header > h1 { margin-left: auto !important; margin-right: auto !important; }
+.post-header { text-align: center; }
 .post-header .post-card-meta { margin-bottom: 10px; }
 .post-header h1 { color: var(--text-white); margin-bottom: 10px; }
 .post-body { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; }
 .post-body p { margin: 0 0 1.2em; }
 /* live shows the featured image at the top of the content, centred and rounded */
-.post-featured-image { display: block; max-width: 640px; margin: 0 auto 2em; border-radius: 12px; }
+/* Every blog photo sits in the same rounded 16:9 frame, cropped to fill it
+   (user request 2026-09-02) -- a tall or square upload no longer breaks
+   the shape or the corners. */
+/* The blog artwork is all 2.5:1 (1500x600 / 2560x1024 "New Blog Image"
+   banners), so the frame is 2.5:1 too: the full graphic shows, shrunk to the
+   column, with CSS-rounded corners. The earlier 16:9 frame zoomed into the
+   middle of each banner and cut its own rounded corners off, which is why
+   they read as square-edged crops next to live. */
+.post-featured-image { display: block; width: 100%; max-width: 760px; aspect-ratio: 2.5 / 1; object-fit: cover; margin: 0 auto 2em; border-radius: 16px; }
 .back-to-blog { display: block; margin: 0 0 20px; color: var(--text-white); text-decoration: none; font-weight: 600; opacity: .85; }
 .back-to-blog:hover { opacity: 1; }
 
-/* ================= awards loop (awards-and-achievements page) ================= */
-.awards-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 30px 20px;
-}
-.awards-wrapper img { width: 100px; height: 100px; object-fit: contain; flex-shrink: 0; }
-.award-border-bottom { border-bottom: 1px solid rgba(255,255,255,.15); }
-.award-splitter { display: none; }
-.gb-text-e2f6abdd { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--yellow); font-weight: 700; margin: 0; }
-.gb-text-31028501 { font-size: 1.1rem; font-weight: 700; margin: 4px 0; color: var(--text-white); }
-.gb-text-97b128a5 { font-size: .9rem; opacity: .85; margin: 0; color: var(--text-white); }
-.gb-winner { color: var(--yellow); font-weight: 700; }
-@media (max-width: 640px) { .awards-wrapper { flex-direction: column; text-align: center; } }
+/* ================= awards loop (awards-and-achievements page) =================
+   Layout comes from the page's own generated CSS (generated/14674.css:
+   .gb-query-523cef65 / .gb-looper-9772cf59 one-column grid, .gb-element-36666926
+   200px-logo + text grid row with 150px/50px padding, the .gb-element-743e465d
+   radial-gradient splitter, type sizes, and the 1024/767px breakpoints) --
+   exactly as on the live site, now that the markup carries the same
+   wrappers. A previous simplified flex layout here fought those rules and,
+   with the wrappers missing, the awards ran side by side. Only the bits the
+   generated file doesn't cover live here. */
+.gb-winner { color: rgb(255, 206, 0); }
+.award-loop-item:last-of-type .award-splitter { display: none; }
+/* several awards share one logo: live separates them with a 100px row-gap
+   between loop items; ours are consecutive label/title/text triplets in one
+   column, so space each new label the same way */
+.awards-wrapper .gb-text-97b128a5 + .gb-text-e2f6abdd { margin-top: 100px; }
+.awards-wrapper .gb-text-97b128a5 { margin-bottom: 0; }
 
 /* ================= GENERIC PAGE FALLBACK ================= */
 .fo-page-content { margin: 0; }
 .fo-page-content > .gb-block:first-child { margin-top: 0; }
+
+/* Desktop: the "Our Team." heading sits in a flex row (theme container) and
+   shrink-wraps, so its centred text still hugged the left edge; span the row */
+#meet-the-team h2.wp-block-heading.has-text-align-center { width: 100%; flex: 0 0 100%; align-self: center; }

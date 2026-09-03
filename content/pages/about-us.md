@@ -114,11 +114,7 @@ post_id: 10012
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-4023a4d6"><div class="gb-inside-container"><div class="gb-container gb-container-f5b4696a"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-f7516822"><div class="gb-grid-column gb-grid-column-8bc24496"><div class="gb-container gb-container-8bc24496"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-3b99bbbe gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">Read Our Latest Blog</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
 <div class="gb-grid-wrapper gb-grid-wrapper-871309e2"><div class="gb-grid-column gb-grid-column-974498d2"><div class="gb-container gb-container-974498d2"><div class="gb-inside-container">
-<h3 class="gb-headline gb-headline-aaf33f62 gb-headline-text"></h3>
-
-<div class="gb-headline gb-headline-d3943e5c gb-headline-text"></div>
-
-<span class="gb-button gb-button-8a47fe41 gb-button-text"><strong>Read more</strong></span>
+<!-- latest-post -->
 </div></div></div></div></div></div></div></div></div></div></div><div class="gb-shapes"><div class="gb-shape gb-shape-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M1200 77.2L400 0 0 77.2V100h1200z"/></svg></div></div></div><div class="gb-container gb-container-55e4be16"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-148d77d5 gb-headline-text">Proud to Support These Businesses<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
 

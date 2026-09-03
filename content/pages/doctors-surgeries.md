@@ -40,7 +40,7 @@ post_id: 997
 
 <p class="gb-headline gb-headline-c4353dfd gb-headline-text">SmartVoice messaging keeps patients engaged while they wait. Share surgery updates, promote clinics, or remind patients about prescriptions using professional, AI generated messages that improve communication and patient experience.</p>
 <div class="gb-container gb-container-2fc684c3"><div class="gb-inside-container">
-<a class="gb-button gb-button-a5ae33cb gb-button-text" href="/smartvoice-on-hold-messaging/">Find out more</a>
+<a class="gb-button gb-button-a5ae33cb gb-button-text" href="/voice-studio/">Find out more</a>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-d928bce5" id="contact"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-a4243318"><div class="gb-grid-column gb-grid-column-5cb68e7d"><div class="gb-container gb-container-5cb68e7d industry-contact-text"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-94fb6605"><div class="gb-grid-column gb-grid-column-ae8f81c0"><div class="gb-container gb-container-ae8f81c0"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-f90a30bc gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Let's Talk</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
 

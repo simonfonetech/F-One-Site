@@ -70,7 +70,7 @@ post_id: 215
 <li><strong>During the call:</strong> Live View shows sentiment and a running summary in real time.</li>
 <li><strong>Over time:</strong> Archiving keeps every recap searchable for as long as you need.</li>
 </ul>
-<a class="gb-button gb-button-009f904b gb-button-text" href="/live-view/">About Live View</a>
+<a class="gb-button gb-button-009f904b gb-button-text" href="/live-view/">Find out more</a>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-97d07ac6" id="storage"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-34deccd9"><div class="gb-grid-column gb-grid-column-90d73e04"><div class="gb-container gb-container-90d73e04"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-49f83e93 gb-headline-text">Secure, Compliant Storage<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h2>
 
