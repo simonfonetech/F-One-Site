@@ -2090,12 +2090,11 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
      folds its bio away instead of dropping ~300px of height in one frame */
   #meet-the-team .gb-grid-column.is-collapsing figure figcaption {
     overflow: hidden;
-    animation: team-bio-out .36s cubic-bezier(.22, .9, .3, 1) both;
+    /* the fold itself is stepped by main.js (scroll-compensated) */
   }
   /* --bio-h is set by main.js to the bio's real height before each fold /
      unfold, so the visible motion spans the whole keyframe for every tile
      (a fixed 380px left short bios finished early, then a stall) */
-  @keyframes team-bio-out { from { opacity: 1; max-height: var(--bio-h, 380px); } to { opacity: 0; max-height: 0; padding-top: 0 !important; } }
   /* max-height runs only slightly past the bios' real height (~300px), so
      the whole duration is visible motion rather than a dead first half
      followed by a rush */

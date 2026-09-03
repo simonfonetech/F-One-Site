@@ -659,7 +659,11 @@ document.addEventListener('DOMContentLoaded', function () {
       // the header, and only then does the bio roll out beneath it.
       function moveTiles() {
         teamMove(tiles, function () {
-          if (open) open.classList.remove('is-expanded', 'is-bio-open', 'is-collapsing');
+          if (open) {
+            open.classList.remove('is-expanded', 'is-bio-open', 'is-collapsing');
+            var oc = open.querySelector('figcaption');
+            if (oc) { oc.style.animation = ''; oc.style.maxHeight = ''; oc.style.paddingTop = ''; oc.style.opacity = ''; }
+          }
           if (opening) col.classList.add('is-expanded');
         }, opening ? function () { return docTop(col) - 76; } : null, 720, function () {
           if (opening) {
@@ -679,17 +683,42 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (open && open.classList.contains('is-bio-open')) {
-        // fold the open bio away first (height + opacity animate over its
-        // real height), and move the instant the fold ends so the layout
-        // is final when the scroll target is measured
+        // Fold the open bio away first, stepped in JS (max-height, opacity,
+        // padding) so that, when it sits above the tapped tile, the page can
+        // scroll up by exactly the height lost each frame and the tapped
+        // tile holds still on screen. A CSS keyframe fold with a rAF that
+        // read its height lagged a frame behind and jiggled the tile; before
+        // any compensation the tile shot upward, often under the header,
+        // then glided back down.
         var oldCap = open.querySelector('figcaption');
-        if (oldCap) open.style.setProperty('--bio-h', oldCap.scrollHeight + 'px');
+        var above = oldCap && docTop(oldCap) < docTop(col);
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var root = document.documentElement, prevBehavior = root.style.scrollBehavior;
+        var foldH = oldCap ? oldCap.getBoundingClientRect().height : 0, foldY = window.scrollY;
         open.classList.remove('is-bio-open');
         open.classList.add('is-collapsing');
-        var moved = false;
-        function moveOnce() { if (moved) return; moved = true; moveTiles(); }
-        if (oldCap) oldCap.addEventListener('animationend', moveOnce, { once: true });
-        setTimeout(moveOnce, 410); // fallback (reduced motion runs no animation)
+        if (!oldCap || reduce || foldH === 0) { moveTiles(); return; }
+        oldCap.style.animation = 'none';
+        root.style.scrollBehavior = 'auto';
+        function ease(x) { return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+        function applyFold(e) {
+          var cur = foldH * (1 - e);
+          oldCap.style.setProperty('max-height', cur + 'px', 'important');
+          oldCap.style.setProperty('padding-top', Math.min(10, cur) + 'px', 'important');
+          oldCap.style.opacity = 1 - e;
+          if (above) window.scrollTo(0, Math.max(0, foldY - (foldH - cur)));
+        }
+        var start = null;
+        function foldStep(ts) {
+          if (start === null) start = ts;
+          var p = Math.min(1, (ts - start) / 360);
+          applyFold(ease(p));
+          if (p < 1) { requestAnimationFrame(foldStep); return; }
+          root.style.scrollBehavior = prevBehavior;
+          moveTiles(); // its mutate hides the caption and clears these inline styles
+        }
+        applyFold(0);
+        requestAnimationFrame(foldStep);
       } else {
         moveTiles();
       }
