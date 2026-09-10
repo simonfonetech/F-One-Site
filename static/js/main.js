@@ -795,3 +795,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+// Contact forms: submit to Formspark in the background and show a "Form
+// Submitted" notice in place of the form, so nobody leaves the page (user,
+// 2026-09-08). The form's own action/method stay as the no-JS fallback.
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('form.wp-contact-form[action^="https://submit-form.com/"]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.dataset.sending) return;
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : '';
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      form.dataset.sending = '1';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      var old = form.parentElement.querySelector('.form-error');
+      if (old) old.remove();
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        var note = document.createElement('div');
+        note.className = 'form-sent';
+        note.setAttribute('role', 'status');
+        note.innerHTML = '<span class="form-sent-icon" aria-hidden="true">&#10003;</span><strong>Form Submitted</strong><span>Thank you — we will be in touch shortly.</span>';
+        form.replaceWith(note);
+        note.focus && note.setAttribute('tabindex', '-1'); note.focus();
+      }).catch(function () {
+        delete form.dataset.sending;
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+        var err = document.createElement('p');
+        err.className = 'form-error';
+        err.setAttribute('role', 'alert');
+        err.textContent = 'Sorry, that did not send. Please try again, or call us on 0330 221 1183.';
+        form.insertAdjacentElement('afterend', err);
+      });
+    });
+  });
+});

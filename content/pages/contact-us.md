@@ -30,13 +30,13 @@ post_id: 503
 <p>Fill in the form below and one of our team will get back to you shortly. Whether you’ve got a quick question or want to talk through your options, we’re here to help.</p>
 
 <div class="wp-contact-form-wrap">
-  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
-    <div><label for="cf-name-ad4dec2">Name</label><input type="text" id="cf-name-ad4dec2" name="your-name" placeholder="Name" required></div>
-    <div><label for="cf-email-ad4dec2">Email</label><input type="email" id="cf-email-ad4dec2" name="your-email" placeholder="Email" required></div>
-    <div><label for="cf-message-ad4dec2">Message</label><textarea id="cf-message-ad4dec2" name="your-message" placeholder="Message" rows="5"></textarea></div>
+  <form class="wp-contact-form" action="https://submit-form.com/muubnhXNp" method="POST">
+    <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+    <div><label for="cf-name-ad4dec2">Name</label><input type="text" id="cf-name-ad4dec2" name="name" placeholder="Name" required></div>
+    <div><label for="cf-email-ad4dec2">Email</label><input type="email" id="cf-email-ad4dec2" name="email" placeholder="Email" required></div>
+    <div><label for="cf-message-ad4dec2">Message</label><textarea id="cf-message-ad4dec2" name="message" placeholder="Message" rows="5" required></textarea></div>
     <button type="submit" class="gb-button">Submit</button>
   </form>
-  <p class="form-note">This form needs a submission endpoint connecting before it will send.</p>
 </div>
 </div></div></div></div></div></div></div></div></div></div><div class="gb-container gb-container-59df0676"><div class="gb-inside-container"><div class="wpmapblockrender" style="width:100%;height:1000px"><iframe src="https://maps.google.com/maps?q=50.903689614642644,-1.3970843554852768&z=16&hl=en&output=embed" title="F One Technologies" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div></div><div class="gb-container gb-container-f40cd054"><div class="gb-inside-container"><div class="gb-container gb-container-1e1a32fb"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-ca45f449"><div class="gb-grid-column gb-grid-column-ff0835aa"><div class="gb-container gb-container-ff0835aa"><div class="gb-inside-container">
 <h2 class="gb-headline gb-headline-55d06994 gb-headline-text"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-black-color">Request a Quote</mark><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-connectivity-orange-color">.</mark></h2>
@@ -46,8 +46,9 @@ post_id: 503
 <a class="gb-button gb-button-13b5fd90 gb-button-text" href="tel:03302211183">0330 221 1183</a>
 </div></div></div></div></div><div class="gb-grid-column gb-grid-column-706d6a17"><div class="gb-container gb-container-706d6a17"><div class="gb-inside-container">
 <div class="wp-contact-form-wrap request-quote-form">
-  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
-    <div><label for="cf-service-7d59c66">Product or service</label><select id="cf-service-7d59c66" name="your-services">
+  <form class="wp-contact-form" action="https://submit-form.com/muubnhXNp" method="POST">
+    <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+    <div><label for="cf-service-7d59c66">Product or service</label><select id="cf-service-7d59c66" name="service">
       <option value="">Please choose an option</option>
       <option>Cloud Phone Systems</option>
       <option>Internet Connectivity</option>
@@ -55,13 +56,12 @@ post_id: 503
       <option>Mobile SIM Plans</option>
       <option>IT Essentials</option>
     </select></div>
-    <div><label for="cf-users-7d59c66">Estimated number of users</label><input type="range" id="cf-users-7d59c66" name="your-users" min="1" max="250" value="10" oninput="this.nextElementSibling.value=this.value"><output>10</output></div>
-    <div><label for="cf-name-7d59c66">Name</label><input type="text" id="cf-name-7d59c66" name="your-name" placeholder="Name" required></div>
-    <div><label for="cf-phone-7d59c66">Phone</label><input type="tel" id="cf-phone-7d59c66" name="your-phone" placeholder="Phone"></div>
-    <div><label for="cf-email-7d59c66">Email</label><input type="email" id="cf-email-7d59c66" name="your-email" placeholder="Email" required></div>
+    <div><label for="cf-users-7d59c66">Estimated number of users</label><input type="range" id="cf-users-7d59c66" name="users" min="1" max="250" value="10" oninput="this.nextElementSibling.value=this.value"><output>10</output></div>
+    <div><label for="cf-name-7d59c66">Name</label><input type="text" id="cf-name-7d59c66" name="name" placeholder="Name" required></div>
+    <div><label for="cf-phone-7d59c66">Phone</label><input type="tel" id="cf-phone-7d59c66" name="phone" placeholder="Phone"></div>
+    <div><label for="cf-email-7d59c66">Email</label><input type="email" id="cf-email-7d59c66" name="email" placeholder="Email" required></div>
     <button type="submit" class="gb-button">Submit</button>
   </form>
-  <p class="form-note">This form needs a submission endpoint connecting before it will send.</p>
 </div>
 </div></div></div></div></div></div></div></div><div class="gb-container gb-container-5514cb03"><div class="gb-inside-container">
 <div class="slider-container" >

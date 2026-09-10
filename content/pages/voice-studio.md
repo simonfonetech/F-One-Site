@@ -89,14 +89,14 @@ post_id: 16956
 <div class="fone-contact-card">
 <h2 class="gb-headline gb-headline-text">Get in Touch<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-text-white-color">.</mark></h2>
 <div class="wp-contact-form-wrap">
-  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
-    <div><label for="cf-name-904">Your Name</label><input type="text" id="cf-name-904" required></div>
-    <div><label for="cf-email-904">Your Email</label><input type="email" id="cf-email-904" required></div>
-    <div><label for="cf-phone-904">Your Phone</label><input type="tel" id="cf-phone-904"></div>
-    <div><label for="cf-message-904">Your Message</label><textarea id="cf-message-904"></textarea></div>
+  <form class="wp-contact-form" action="https://submit-form.com/muubnhXNp" method="POST">
+    <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+    <div><label for="cf-name-904">Your Name</label><input type="text" id="cf-name-904" name="name" required></div>
+    <div><label for="cf-email-904">Your Email</label><input type="email" id="cf-email-904" name="email" required></div>
+    <div><label for="cf-phone-904">Your Phone</label><input type="tel" id="cf-phone-904" name="phone"></div>
+    <div><label for="cf-message-904">Your Message</label><textarea id="cf-message-904" name="message" required></textarea></div>
     <button type="submit" class="btn">Send</button>
   </form>
-  <p class="form-note">Placeholder for WordPress Contact Form 7 &mdash; connect a form backend before publishing.</p>
 </div>
 </div>
 </div>

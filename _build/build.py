@@ -85,6 +85,16 @@ for _slug in _WIFI_AND_NETWORKING_PRODUCTS:
     SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['wifi-and-networking']
 for _slug in _INTERNET_CONNECTIVITY_PRODUCTS:
     SERVICE_ACCENTS[_slug] = SERVICE_ACCENTS['internet-connectivity']
+# Product pages branded after the product itself rather than the parent
+# service (user, 2026-09-03): the header banner (phone number, "Get in
+# touch") and the floating socials rail take the product's own colour.
+# Applied last so it wins over the service grouping above (microsoft-teams
+# is otherwise a Cloud Phone Systems product and would be blue).
+BRAND_ACCENTS = {
+    'whatsapp-for-business': 'var(--wp--preset--color--wsa-green, #2ACC63)',  # WhatsApp green (site preset)
+    'microsoft-teams':       '#5B5FC7',                                         # Microsoft Teams purple
+}
+SERVICE_ACCENTS.update(BRAND_ACCENTS)
 
 FRONTMATTER_RE = re.compile(r'\A---\n(.*?)\n---\n?', re.DOTALL)
 

@@ -36,24 +36,9 @@ header:
                 url: /crm-integration/
               - label: Voice Studio
                 url: /voice-studio/
-      # Second platform alongside Elevate, with the same Key Features /
-      # Integrations structure. Webex has no feature pages of its own yet, so
-      # each group holds a placeholder leaf until they're written.
-      - label: Cisco Webex
-        url: /cloud-phone-systems/
-        children:
-          - label: Key Features
-            url: /cloud-phone-systems/
-            children:
-              - label: Webex Overview
-                url: /cloud-phone-systems/
-          - label: Integrations
-            url: /crm-integration/
-            children:
-              - label: CRM Integration
-                url: /crm-integration/
-      # Handsets span both platforms (Yealink for Elevate, Cisco for Webex),
-      # so Hardware sits at card level rather than under either one.
+      # Handsets (Yealink and Cisco) sit at card level rather than under
+      # Elevate. (The Cisco Webex group that used to sit here was removed at
+      # the user's request on 2026-09-03.)
       - label: Hardware
         url: "/cloud-phone-systems/#hardware"
         children:
@@ -167,30 +152,30 @@ header:
       - label: Intermedia
         url: /elevate/
         color: "#1f00e8"
+      - label: Red Cactus
+        url: /crm-integration/
+        color: "#d50808"
       - label: Yealink
         url: "/cloud-phone-systems/#hardware"
         color: "#078855"
-      - label: TP-Link
-        url: "/wifi-and-networking/#omada"
-        color: "#4acbd6"
       - label: Social Wifi
         url: /social-wifi/
         color: "#2775f0"
+      - label: Hikvision
+        url: /contact-us/
+        color: "#e60012"
+      - label: TP-Link
+        url: "/wifi-and-networking/#omada"
+        color: "#4acbd6"
+      - label: NinjaOne
+        url: /rmm/
+        color: "#00aa5f"
       - label: Microsoft
         url: "/it-essentials/#microsoft-management"
         color: "#0078d4"
       - label: Acronis
         url: /it-essentials/
         color: "#2668c5"
-      - label: NinjaOne
-        url: /rmm/
-        color: "#00aa5f"
-      - label: Hikvision
-        url: /contact-us/
-        color: "#e60012"
-      - label: Red Cactus
-        url: /crm-integration/
-        color: "#d50808"
       - label: World Pay
         url: /contact-us/
         color: "#ff1f3e"
@@ -205,6 +190,34 @@ header:
     children:
       - label: About F One
         url: /about-us/
+      # Industries (user request 2026-09-04): a drill-in group mirroring the
+      # footer's Industries links, so the sector pages are reachable from
+      # the header.
+      - label: Industries
+        url: /care-homes/
+        children:
+          - label: Care Homes
+            url: /care-homes/
+          - label: Dental Practices
+            url: /dental-practices/
+          - label: Doctor Surgeries
+            url: /doctors-surgeries/
+          - label: Golf Clubs
+            url: /golf-clubs/
+          - label: Veterinary Practices
+            url: /veterinary-practices/
+          - label: Education Solutions
+            url: /education-solutions/
+          - label: General Office
+            url: /general-office/
+          - label: Warehouse Solutions
+            url: /warehouses/
+          - label: Estate Agencies
+            url: /estate-agencies/
+          - label: Recruitment Agencies
+            url: /recruitment-agencies/
+          - label: Serviced Offices
+            url: /serviced-offices/
       - label: Meet the F One Team
         url: "/about-us/#meet-the-team"
       - label: Blog

@@ -41,23 +41,25 @@ SKIP_PAGE_SLUGS = {'blog'}  # blog index is generated, not migrated as a flat pa
 
 # Field sets mirror the live Contact Form 7 forms: the general enquiry form is
 # name / email / message, the quote form is service / user count / name / phone /
-# email. A static build has nowhere to post to, so both carry a note.
+# email. Both now post to Formspark (submit-form.com/muubnhXNp, user-supplied
+# 2026-09-08) with a Formspark honeypot field; the old placeholder note is gone.
 CONTACT_FORM_HTML = """
 <div class="wp-contact-form-wrap">
-  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
-    <div><label for="cf-name-{cid}">Name</label><input type="text" id="cf-name-{cid}" name="your-name" placeholder="Name" required></div>
-    <div><label for="cf-email-{cid}">Email</label><input type="email" id="cf-email-{cid}" name="your-email" placeholder="Email" required></div>
-    <div><label for="cf-message-{cid}">Message</label><textarea id="cf-message-{cid}" name="your-message" placeholder="Message" rows="5"></textarea></div>
+  <form class="wp-contact-form" action="https://submit-form.com/muubnhXNp" method="POST">
+    <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+    <div><label for="cf-name-{cid}">Name</label><input type="text" id="cf-name-{cid}" name="name" placeholder="Name" required></div>
+    <div><label for="cf-email-{cid}">Email</label><input type="email" id="cf-email-{cid}" name="email" placeholder="Email" required></div>
+    <div><label for="cf-message-{cid}">Message</label><textarea id="cf-message-{cid}" name="message" placeholder="Message" rows="5" required></textarea></div>
     <button type="submit" class="gb-button">Submit</button>
   </form>
-  <p class="form-note">This form needs a submission endpoint connecting before it will send.</p>
 </div>
 """.strip()
 
 QUOTE_FORM_HTML = """
 <div class="wp-contact-form-wrap request-quote-form">
-  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
-    <div><label for="cf-service-{cid}">Product or service</label><select id="cf-service-{cid}" name="your-services">
+  <form class="wp-contact-form" action="https://submit-form.com/muubnhXNp" method="POST">
+    <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+    <div><label for="cf-service-{cid}">Product or service</label><select id="cf-service-{cid}" name="service">
       <option value="">Please choose an option</option>
       <option>Cloud Phone Systems</option>
       <option>Internet Connectivity</option>
@@ -65,13 +67,12 @@ QUOTE_FORM_HTML = """
       <option>Mobile SIM Plans</option>
       <option>IT Essentials</option>
     </select></div>
-    <div><label for="cf-users-{cid}">Estimated number of users</label><input type="range" id="cf-users-{cid}" name="your-users" min="1" max="250" value="10" oninput="this.nextElementSibling.value=this.value"><output>10</output></div>
-    <div><label for="cf-name-{cid}">Name</label><input type="text" id="cf-name-{cid}" name="your-name" placeholder="Name" required></div>
-    <div><label for="cf-phone-{cid}">Phone</label><input type="tel" id="cf-phone-{cid}" name="your-phone" placeholder="Phone"></div>
-    <div><label for="cf-email-{cid}">Email</label><input type="email" id="cf-email-{cid}" name="your-email" placeholder="Email" required></div>
+    <div><label for="cf-users-{cid}">Estimated number of users</label><input type="range" id="cf-users-{cid}" name="users" min="1" max="250" value="10" oninput="this.nextElementSibling.value=this.value"><output>10</output></div>
+    <div><label for="cf-name-{cid}">Name</label><input type="text" id="cf-name-{cid}" name="name" placeholder="Name" required></div>
+    <div><label for="cf-phone-{cid}">Phone</label><input type="tel" id="cf-phone-{cid}" name="phone" placeholder="Phone"></div>
+    <div><label for="cf-email-{cid}">Email</label><input type="email" id="cf-email-{cid}" name="email" placeholder="Email" required></div>
     <button type="submit" class="gb-button">Submit</button>
   </form>
-  <p class="form-note">This form needs a submission endpoint connecting before it will send.</p>
 </div>
 """.strip()
 

@@ -1757,7 +1757,10 @@ body[style*="--service-accent"] :is(.gb-accordion__toggle:hover, .gb-accordion-i
      pages, Mobile SIM / IT Essentials, WiFi / WhatsApp, Omada / Elevate) --
      the product pages' first section is only a title band, which a
      viewport-tall rule left as a lone heading in white space. */
-  .fo-page-content > .gb-container:first-child:is(.gb-container-1b5e3fa0, .gb-container-db878a2c, .gb-container-09b457df, .gb-container-67c9176e) {
+  /* 33b466d4 (About Us + the eleven industry pages) and ec030f75 (Awards)
+     added 2026-09-03 per the mobile section audit, group 1: they stopped at
+     70vh (591px) and showed the next section under the fold. */
+  .fo-page-content > .gb-container:first-child:is(.gb-container-1b5e3fa0, .gb-container-db878a2c, .gb-container-09b457df, .gb-container-67c9176e, .gb-container-33b466d4, .gb-container-ec030f75) {
     min-height: 100vh !important;
     padding-top: 60px !important;
     padding-bottom: 60px !important;
@@ -2371,3 +2374,265 @@ body.is-homepage .gb-container-55e4be16 { padding-bottom: 100px !important; }
   .mega-float-card--link .mega-float-chevron--go { transform: none !important; }
   .mega-float-card--link:active { background: var(--text-white); border-color: rgba(0, 33, 53, .16); }
 }
+
+/* AI Call Recap / Archiving: the section they borrow from the Cloud Phone
+   Systems page (67bf6e3c) is WhatsApp green there by design; on these two
+   pages it is a generic requirements/add-on band and reads as off-brand, so
+   it takes the page's light blue instead (user, 2026-09-03). Text stays as
+   it is: dark heading + white lists, the same scheme the other blue bands
+   on these pages use. */
+body.page-ai-call-recap .gb-container-67bf6e3c,
+body.page-archiving .gb-container-67bf6e3c { background-color: var(--blue) !important; }
+
+/* ============ Microsoft Teams page: full Teams-purple branding ============
+   (user, 2026-09-03). post_id 215 gives the page the Cloud Phone Systems
+   light blue for its headings, bands and buttons; every one of those is
+   restated here in Teams purple. Two tints: the brand purple for fills and
+   headings on white, a lighter one for headings sitting on the dark photo
+   backgrounds, where the brand purple has too little contrast. Button
+   hovers already follow --service-accent (set to the same purple in
+   build.py), the hero diamond is a purple recolour of the blue one. */
+body.page-microsoft-teams { --teams: #5B5FC7; --teams-light: #A5A8F0; }
+body.page-microsoft-teams .gb-headline-e83cf586,
+body.page-microsoft-teams .gb-headline-49f83e93 { color: var(--teams-light) !important; }
+body.page-microsoft-teams .gb-headline-0cab301b,
+body.page-microsoft-teams .gb-headline-038bba78 { color: var(--teams) !important; }
+body.page-microsoft-teams .gb-container-37fb4f12,
+body.page-microsoft-teams .gb-container-b1471337 { background-color: var(--teams) !important; }
+/* rest state only -- the page-scoped selector would otherwise outrank the
+   shared hover rule (white fill, accent text) and leave purple on purple */
+body.page-microsoft-teams a.gb-button-424478e8:not(:hover):not(:focus):not(:active),
+body.page-microsoft-teams a.gb-button-a5ae33cb:not(:hover):not(:focus):not(:active),
+body.page-microsoft-teams a.gb-button-009f904b:not(:hover):not(:focus):not(:active),
+body.page-microsoft-teams a.gb-button-99d6ea14:not(:hover):not(:focus):not(:active),
+body.page-microsoft-teams a.gb-button-13b5fd90:not(:hover):not(:focus):not(:active) { background-color: var(--teams) !important; }
+/* the full stop after a purple-light heading follows the heading */
+body.page-microsoft-teams[style*="--service-accent"] :is(.gb-headline-e83cf586, .gb-headline-49f83e93) mark:last-child { color: var(--teams-light) !important; }
+/* The light-blue band template (37fb4f12) paints its heading and intro
+   white on the Cloud Phone Systems page through that page's own section
+   ids, but every other page that borrows it (Microsoft Teams, Mobile &
+   Softphone Apps, ...) inherited the body grey, which reads as black on
+   the colour. White everywhere the band is used (user, 2026-09-08). */
+.gb-container-37fb4f12 :is(.gb-headline-85c50525, .gb-headline-a4f1c030) { color: #fff !important; }
+body[style*="--service-accent"] .gb-container-37fb4f12 h2 mark:last-child { color: #fff !important; }
+
+/* ============ WhatsApp for Business page: full WhatsApp-green branding ============
+   (user, 2026-09-03). The page's own generated CSS (8749.css) is green at
+   rest but hovers its buttons orange and colours its small icon links in
+   the site orange; both follow the page accent (WhatsApp green) instead.
+   Filled buttons hover to white with a green ring, the site's usual
+   Blue > White pattern. */
+body.page-whatsapp-for-business a.gb-button-d472a50b,
+body.page-whatsapp-for-business a.gb-button-48f48082,
+body.page-whatsapp-for-business a.gb-button-68bf05ab,
+body.page-whatsapp-for-business a.gb-button-6f0676e8 {
+  border: 2px solid transparent !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+body.page-whatsapp-for-business a.gb-button-d472a50b:hover, body.page-whatsapp-for-business a.gb-button-d472a50b:focus, body.page-whatsapp-for-business a.gb-button-d472a50b:active,
+body.page-whatsapp-for-business a.gb-button-48f48082:hover, body.page-whatsapp-for-business a.gb-button-48f48082:focus, body.page-whatsapp-for-business a.gb-button-48f48082:active,
+body.page-whatsapp-for-business a.gb-button-68bf05ab:hover, body.page-whatsapp-for-business a.gb-button-68bf05ab:focus, body.page-whatsapp-for-business a.gb-button-68bf05ab:active,
+body.page-whatsapp-for-business a.gb-button-6f0676e8:hover, body.page-whatsapp-for-business a.gb-button-6f0676e8:focus, body.page-whatsapp-for-business a.gb-button-6f0676e8:active {
+  background-color: #fff !important;
+  color: var(--service-accent, #2ACC63) !important;
+  border: 2px solid currentColor !important;
+  box-shadow: 0 0 0 1px var(--service-accent, #2ACC63) !important;
+}
+body.page-whatsapp-for-business a.gb-button-75935421,
+body.page-whatsapp-for-business a.gb-button-90480644,
+body.page-whatsapp-for-business a.gb-button-37e5cf16,
+body.page-whatsapp-for-business a.gb-button-ed164c5c,
+body.page-whatsapp-for-business a.gb-button-e1829e4d { color: var(--service-accent, #2ACC63) !important; }
+
+/* AI Call Recap / Archiving blue band: heading and intro in white, not the
+   grey the borrowed section carries (user, 2026-09-03); the heading's full
+   stop follows, since the page accent (light blue) would vanish on it. */
+body.page-ai-call-recap .gb-container-67bf6e3c :is(.gb-headline-dc92313e, .gb-headline-af8516b7),
+body.page-archiving .gb-container-67bf6e3c :is(.gb-headline-dc92313e, .gb-headline-af8516b7),
+body.page-ai-call-recap[style*="--service-accent"] .gb-container-67bf6e3c h2 mark:last-child,
+body.page-archiving[style*="--service-accent"] .gb-container-67bf6e3c h2 mark:last-child { color: #fff !important; }
+
+/* Product pages' first screen (mobile section audit, group 2, option A --
+   approved 2026-09-03): the title band and the product-image block below
+   it share the first screen. The band is capped at 256px (76px header
+   clearance + a one-line title with its padding; a two-line title's text
+   still ends at 236px, only its bottom padding overflows into the empty
+   top of the image block), and the image block takes the rest of the
+   screen with the image centred. Pages whose image block is taller than
+   that (the DECT handset galleries) simply keep their content height. */
+@media (max-width: 767px) {
+  .fo-page-content > .gb-container:first-child:is(.gb-container-9779332d, .gb-container-4c322818) {
+    max-height: 256px;
+    overflow: visible;
+  }
+  /* the title's 16px bottom margin otherwise escapes the band and pushes
+     the image block 16px past the fold on one-line pages */
+  .fo-page-content > .gb-container:first-child:is(.gb-container-9779332d, .gb-container-4c322818) :is(h1, h2) { margin-bottom: 0 !important; }
+  .fo-page-content > .gb-container:first-child:is(.gb-container-9779332d, .gb-container-4c322818) + .gb-container {
+    min-height: calc(100vh - 256px) !important;
+    box-sizing: border-box;
+    display: flex; align-items: center; justify-content: center;
+  }
+}
+
+/* Elevate-family pages (Elevate, CRM Integration, Live View, Voice Studio,
+   SmartVoice) -- mobile section audit, group 4 batch D, approved 2026-09-04.
+   These pages' own .fone-angled dividers are SVG wedges on a transparent
+   block, so the white ones vanished on the white page and every divider
+   read as a 64px gap. Each wedge now overlaps the bottom of the section
+   before it (blue wedge over white, white wedge over blue or over the hero
+   photo) so it cuts a true angled edge, and every section fills one screen
+   with its content centred and clear of the wedge. The classes exist only
+   on these five pages, so no page scoping is needed. */
+@media (max-width: 767px) {
+  .fone-section {
+    min-height: 100vh; box-sizing: border-box;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 72px !important; padding-bottom: 104px !important;
+  }
+  .fone-angled { margin-top: -64px; position: relative; z-index: 2; pointer-events: none; }
+}
+
+/* Mobile section audit, group 4 batches A (photo bands), B (colour bands)
+   and C (white content sections) -- approved 2026-09-04. Every one of
+   these section templates fills one screen on phones with its content
+   centred; sections whose content already runs past a screen simply keep
+   their height. First sections are excluded (the heroes have their own
+   rule). The classes are the 35 templates the audit found short of a
+   screen somewhere on the site. */
+@media (max-width: 767px) {
+  .fo-page-content > .gb-container:not(:first-child):is(.gb-container-097ee022, .gb-container-97d07ac6, .gb-container-5032885c, .gb-container-59df0676, .gb-container-99854019, .gb-container-dba2aa1b, .gb-container-b72a280d, .gb-container-9bea688f, .gb-container-b84a8afb, .gb-container-9feaae2a, .gb-container-67bf6e3c, .gb-container-37fb4f12, .gb-container-15dce509, .gb-container-264e8403, .gb-container-0e750aca, .gb-container-1203f559, .gb-container-a4508b07, .gb-container-585b1bf5, .gb-container-d8405dc1, .gb-container-48fdd6a8, .gb-container-28286b24, .gb-container-ca4f96a1, .gb-container-dbfc0811, .gb-container-b658d84e, .gb-container-d928bce5, .gb-container-3a433208, .gb-container-2082a6f7, .gb-container-7ce6aaef, .gb-container-6af3922a, .gb-container-5cb786d9, .gb-container-dd2acb76, .gb-container-4f040cac, .gb-container-d56fa762, .gb-container-920c9f46, .gb-container-a62be9a9, .gb-container-b528f460, .gb-container-1fa082cc) {
+    min-height: 100vh !important; box-sizing: border-box;
+    display: flex; flex-direction: column; justify-content: center;
+    /* stretch, not centre: the phone parity block gives every .gb-container
+       align-items:center, and on a flex COLUMN that shrink-wraps the inner
+       container to its content -- a Slick carousel then sizes itself off its
+       own slides and ran to 18 million px wide on the homepage (2026-09-04) */
+    align-items: stretch !important;
+  }
+  .fo-page-content > .gb-container:not(:first-child):is(.gb-container-097ee022, .gb-container-6af3922a, .gb-container-5cb786d9, .gb-container-0e750aca, .gb-container-15dce509, .gb-container-264e8403) > .gb-inside-container { width: 100%; min-width: 0; max-width: 100%; }
+  /* Batch B's angled edge: where a colour band follows a flat white section
+     it gets a white wedge across its top, cut the same way as the site's
+     existing dividers. The pairs below are the adjacencies the audit
+     found; a wedge is never added after a photo band or an angled one. */
+  .gb-container-2082a6f7 + .gb-container-9feaae2a,
+  .gb-container-55e4be16 + .gb-container-0e750aca,
+  .gb-container-5cb786d9 + .gb-container-264e8403,
+  .gb-container-6af3922a + .gb-container-15dce509,
+  .gb-container-7ce6aaef + .gb-container-48fdd6a8,
+  .gb-container-9bea688f + .gb-container-1203f559,
+  .gb-container-a62be9a9 + .gb-container-585b1bf5,
+  .gb-container-dd2acb76 + .gb-container-a4508b07 { position: relative; padding-top: 80px !important; }
+  .gb-container-2082a6f7 + .gb-container-9feaae2a::before,
+  .gb-container-55e4be16 + .gb-container-0e750aca::before,
+  .gb-container-5cb786d9 + .gb-container-264e8403::before,
+  .gb-container-6af3922a + .gb-container-15dce509::before,
+  .gb-container-7ce6aaef + .gb-container-48fdd6a8::before,
+  .gb-container-9bea688f + .gb-container-1203f559::before,
+  .gb-container-a62be9a9 + .gb-container-585b1bf5::before,
+  .gb-container-dd2acb76 + .gb-container-a4508b07::before {
+    content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 48px;
+    background: #fff; clip-path: polygon(0 0, 100% 0, 100% 100%); pointer-events: none;
+  }
+}
+
+/* PREVIEW (audit group 5, merged) -- Mobile SIM Plans only, pending the
+   user's decision (2026-09-04): Nationwide Coverage and the "Proud to
+   Support These Businesses" strip become one screen. The strip keeps its
+   236px and white background; Nationwide gives up that much of its screen
+   so the pair ends exactly at the fold. The strip heading, which inherits
+   the marquee's 1408px width and was cut off, is sized to the viewport. */
+@media (max-width: 767px) {
+  /* the strip already pulls 100px up into Nationwide (its own margin-top:
+     -100px), so the pair is 782 + 236 - 100 = 918; trimming Nationwide's
+     inner top padding (96 -> 40) and the column gap (28 -> 10) makes it
+     708, and 708 + 236 - 100 = one 844px screen */
+  body.page-mobile-sim-plans #nationwide { min-height: 0 !important; }
+  /* keep 76px at the top so the heading clears the fixed header when the
+     section is scrolled to the top; find the room in the photo instead
+     (270 -> 220px tall, whole picture kept, centred) */
+  body.page-mobile-sim-plans #nationwide .gb-container-0b14b100 { padding-top: 76px !important; padding-bottom: 78px !important; }
+  body.page-mobile-sim-plans #nationwide .wp-block-columns { margin-bottom: 10px !important; }
+  body.page-mobile-sim-plans #nationwide figure img { height: 220px !important; width: auto !important; max-width: 100%; margin: 0 auto; display: block; }
+  body.page-mobile-sim-plans #clients { height: 236px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 0 !important; }
+  body.page-mobile-sim-plans #clients h2 { width: 100vw; margin: 0 0 14px calc((1408px - 100vw) / 2) !important; padding: 0 15px; box-sizing: border-box; }
+}
+
+/* Thin full-screen sections (mobile section audit follow-up, user chose
+   "option B" on 2026-09-04): the ten flat-background sections whose content
+   is under 400px with no picture keep their full screen but the type is
+   set larger (rem sizes -- em would have scaled from the 16px parent and
+   made the headings smaller) so the content owns more of it. Buttons scale a little too and
+   are held to one line. Voice Studio's ids also cover its SmartVoice mirror. */
+@media (max-width: 767px) {
+  :is(#screen-pop, #call-logging, #deployment, .gb-container-dbfc0811, #teams, #live-transcripts, #monitor-whisper-barge, #customisable, #integration, #intelligent-replies) :is(h1, h2, h3) { font-size: 2.1rem !important; line-height: 1.2 !important; } /* h1: Customer Area's View Your Bill heading */
+  :is(#screen-pop, #call-logging, #deployment, .gb-container-dbfc0811, #teams, #live-transcripts, #monitor-whisper-barge, #customisable, #integration, #intelligent-replies) :is(p, li) { font-size: 1.15rem !important; line-height: 1.55 !important; }
+  :is(#screen-pop, #call-logging, #deployment, .gb-container-dbfc0811, #teams, #live-transcripts, #monitor-whisper-barge, #customisable, #integration, #intelligent-replies) :is(a.gb-button, a.fone-cta-btn, .gb-button) { font-size: 1.1rem !important; padding: 14px 30px !important; white-space: nowrap !important; }
+}
+
+/* Customer Area, Useful Information: one screen on phones (user, 2026-09-08).
+   The two stacked blocks each carried 96px of padding top and bottom (384px
+   of a 1118px section); trimmed to 64 / 4 / 4 / 4 (the accordion rows grew 30px when they were matched to The Basics) it comes in at 840. */
+@media (max-width: 767px) {
+  /* 76px on top so the heading clears the fixed header when the section is
+     scrolled to the top; 8px between the two blocks; 16px at the foot */
+  body.page-customerarea #brochures .gb-container-f3660215 { padding-top: 64px !important; padding-bottom: 4px !important; }
+  body.page-customerarea #brochures .gb-container-29b13201 { padding-top: 4px !important; padding-bottom: 4px !important; }
+}
+
+/* Customer Area, Useful Information accordion: same formatting as The
+   Basics on Cloud Phone Systems (user, 2026-09-08): bold labels, 15px 20px
+   row padding, 4px between rows, content inset 20px. Each row here is
+   wrapped in its own container carrying the 34px gap, so those wrappers
+   are flattened with :has(). */
+body.page-customerarea #brochures button.gb-accordion__toggle { padding: 15px 20px !important; font-weight: 700 !important; }
+body.page-customerarea #brochures .gb-accordion-content { padding-left: 20px !important; padding-right: 20px !important; }
+body.page-customerarea #brochures .gb-container:has(> .gb-inside-container > .gb-accordion-item) { padding: 0 !important; margin: 0 !important; }
+body.page-customerarea #brochures .gb-container:has(> .gb-inside-container > .gb-accordion-item) > .gb-inside-container { padding: 0 !important; }
+body.page-customerarea #brochures .gb-accordion-item { margin: 0 0 4px !important; }
+/* the column that stacks the row wrappers is a flex column with a 30px gap */
+body.page-customerarea #brochures .gb-inside-container:has(> .gb-container > .gb-inside-container > .gb-accordion-item) { gap: 0 !important; row-gap: 0 !important; }
+
+/* Voice Studio (and its SmartVoice mirror): the hero title rendered black
+   on the dark photo hero; every other hero in this family uses the page's
+   light blue (user-reported 2026-09-08 via the dark-on-colour scan). */
+body.page-voice-studio .fo-page-content > .gb-container:first-child h1,
+body.page-smartvoice-on-hold-messaging .fo-page-content > .gb-container:first-child h1 { color: var(--blue) !important; }
+
+/* Archiving page: sections compacted on phones (user, 2026-09-08 -- "slightly
+   too long"). Inner paddings are trimmed to 64px on top (so a heading still
+   clears the fixed header when its section is scrolled to the top) and 24px
+   at the foot; the Search section's stacked 128/160 + 96 + 40/30 paddings
+   are cut hardest; the Deployment band loses its 200/280 outer padding and
+   is centred by the full-screen rule instead; lists tighten; pictures cap at
+   160px. Text-heavy sections still run past a screen -- that is content,
+   not spacing. */
+@media (max-width: 767px) {
+  body.page-archiving #what-is-archiving > .gb-inside-container { padding-top: 64px !important; padding-bottom: 24px !important; }
+  body.page-archiving :is(#why-archiving .gb-container-732fed6a, #overview .gb-container-a0011b9d, #compliance-module .gb-container-925d4e10) { padding-top: 64px !important; padding-bottom: 24px !important; }
+  body.page-archiving #search .gb-container-eec91306 { padding-top: 64px !important; padding-bottom: 24px !important; }
+  body.page-archiving #search .gb-container-eff998ea { padding-top: 16px !important; margin-bottom: 12px !important; }
+  body.page-archiving #search .gb-container-c48bf6a6 { padding-top: 16px !important; padding-bottom: 8px !important; }
+  body.page-archiving #deployment { padding-top: 64px !important; padding-bottom: 40px !important; }
+  body.page-archiving #deployment .gb-container-032fc88c { padding-top: 24px !important; padding-bottom: 24px !important; }
+  body.page-archiving .fo-page-content li { margin-bottom: 4px !important; }
+  body.page-archiving .fo-page-content ul { margin-bottom: 12px !important; }
+  body.page-archiving .fo-page-content > .gb-container:not(:first-child) figure img { max-height: 160px; width: auto !important; max-width: 100%; margin: 0 auto; display: block; }
+}
+
+/* Contact form result states (Formspark background submit, main.js) */
+.form-sent {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+  max-width: 480px; padding: 28px 24px; border-radius: 16px;
+  background: var(--text-white); color: var(--secondary, #004269);
+  outline: none;
+}
+.form-sent-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; margin-bottom: 4px;
+  background: var(--service-accent, var(--primary, #f06120)); color: #fff; font-size: 1.4rem; font-weight: 700;
+}
+.form-sent strong { font-size: 1.25rem; }
+.form-sent span:not(.form-sent-icon) { font-size: .95rem; color: var(--text-black, #363636); opacity: .85; }
+.form-error { margin-top: 10px; font-size: .9rem; font-weight: 600; color: var(--text-white); }
+.wp-contact-form button[type="submit"]:disabled { opacity: .7; cursor: default; }

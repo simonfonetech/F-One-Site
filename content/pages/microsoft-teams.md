@@ -12,7 +12,7 @@ post_id: 215
      Integration.pdf", "Datasheet Elevate for Teams Mix & Match Plans.pdf" and
      the existing Elevate page copy. -->
 <div class="gb-container gb-container-1b5e3fa0"><div class="gb-inside-container"><div class="gb-grid-wrapper gb-grid-wrapper-e8a9558c"><div class="gb-grid-column gb-grid-column-d0c883ad"><div class="gb-container gb-container-d0c883ad"><div class="gb-inside-container">
-<figure class="wp-block-image size-large is-resized"><img src="/assets/uploads/Cloud-Phone-Systems.png" alt="" class="wp-image-13107" style="width:150px" width="254" height="254"/></figure>
+<figure class="wp-block-image size-large is-resized"><img src="/assets/uploads/elevate/teams-diamond.png" alt="" class="wp-image-13107" style="width:150px" width="254" height="254"/></figure>
 
 <h1 class="gb-headline gb-headline-e83cf586 gb-headline-text">Microsoft Teams<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-highligh-marketing-color">.</mark></h1>
 
@@ -84,13 +84,13 @@ post_id: 215
 <h2 class="wp-block-heading has-text-align-left" id="h-get-in-touch">Get in Touch<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pink-color">.</mark></h2>
 
 <div class="wp-contact-form-wrap">
-  <form class="wp-contact-form" action="#" method="post" onsubmit="return false;">
-    <div><label for="cf-name-514">Your Name</label><input type="text" id="cf-name-514" required></div>
-    <div><label for="cf-email-514">Your Email</label><input type="email" id="cf-email-514" required></div>
-    <div><label for="cf-phone-514">Your Phone</label><input type="tel" id="cf-phone-514"></div>
-    <div><label for="cf-message-514">Your Message</label><textarea id="cf-message-514"></textarea></div>
+  <form class="wp-contact-form" action="https://submit-form.com/muubnhXNp" method="POST">
+    <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+    <div><label for="cf-name-514">Your Name</label><input type="text" id="cf-name-514" name="name" required></div>
+    <div><label for="cf-email-514">Your Email</label><input type="email" id="cf-email-514" name="email" required></div>
+    <div><label for="cf-phone-514">Your Phone</label><input type="tel" id="cf-phone-514" name="phone"></div>
+    <div><label for="cf-message-514">Your Message</label><textarea id="cf-message-514" name="message" required></textarea></div>
     <button type="submit" class="btn">Send</button>
   </form>
-  <p class="form-note">Placeholder for WordPress Contact Form 7 (id 514) &mdash; connect a form backend before publishing.</p>
 </div>
 </div></div></div></div></div></div></div></div>
